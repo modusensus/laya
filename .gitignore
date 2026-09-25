@@ -80,3 +80,10 @@ research/*_benchmark_results.json
 # local checkpoint weights, kept out of the tree
 # (fetch them with: python verify/checkpoints.py --fetch)
 models/
+
+# Local fine-tuning artifacts (weights too big for git; regenerate via train_local.py)
+out/
+data_local/*.jsonl
+
+# Kaggle CLI output (downloaded checkpoint dumps)
+laya-kaggle-output/
