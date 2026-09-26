@@ -1,0 +1,14 @@
+{
+ "id": "daphnelaurent/laya-nli-memory-conflict-fine-tune",
+ "title": "Laya NLI memory-conflict fine-tune",
+ "code_file": "nli_kernel.py",
+ "language": "python",
+ "kernel_type": "script",
+ "is_private": "true",
+ "enable_gpu": "true",
+ "enable_internet": "true",
+ "dataset_sources": ["daphnelaurent/nli-conflict-pairs"],
+ "competition_sources": [],
+ "kernel_sources": [],
+ "model_sources": []
+}

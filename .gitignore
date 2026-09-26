@@ -80,3 +80,8 @@ data_local/*.jsonl
 
 # Kaggle CLI output (downloaded checkpoint dumps)
 laya-kaggle-output/
+
+# NLI work: 808MB stray checkpoint copy + dataset JSONLs stay local
+kaggle_eval/rl_agent_config.json/
+kaggle_eval/nli_data/
+kaggle_eval/__pycache__/
