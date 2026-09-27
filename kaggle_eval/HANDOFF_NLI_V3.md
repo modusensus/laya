@@ -226,6 +226,15 @@ cfg 值、由 `train_local.py:fit_temperatures()` 在 held-out 切片上后训�
 - 本机 SSH:hf.co 专用密钥 `~/.ssh/id_ed25519_hf` 已生成并写入 config(Host hf.co);
   git-over-SSH 走线就绪,公钥需在 https://huggingface.co/settings/keys 手动注册一次
 - GitHub:全部脚本与文档已推 fork `main`(commit df2238a)
+- **HF 发布核验(2026-09-27,三层证据)**:①权重身份——Hub 上 `model.safetensors` 的 LFS oid
+  = `e9e1c4a5…b13758` = 本地交付 sha256(缓存的 `.incomplete` blob 文件名即该哈希,未下载完也能核);
+  ②4 个配置文件(`metrics.json`/`rl_agent_config.json`/`encoder/config.json`/
+  `tokenizer/tokenizer_config.json`)经 hf-mirror 拉回与本地**逐字节相同**;
+  ③用「仅已发布的 6 个文件」组成本地快照跑老 20+否定 5+新 10 = **35 条逐条一致**
+  (p_conflict 四位小数全等,20/20 + 4/5 + 10/10)→ 已发布文件集自足、可加载、行为与交付版一致。
+  **未完成**:整包 647MB 从本机下载(镜像→Xet/CDN 均在 ~1MB 处断流,属本机到 HF 的链路问题);
+  网络恢复后补端到端:
+  `HF_ENDPOINT=https://hf-mirror.com python kaggle_eval/realtest_v4.py Modusnsus/laya-nli-memory-conflict <out>.json`
 - 无被否决的 v4 候选(v4-ce 未跑),无 `-v4-alt` 需要清理;v3 头留档于
   `laya-nli-conflict-v3`(上一交付版),v2 头留档于 `laya-nli-conflict-v2`
 
