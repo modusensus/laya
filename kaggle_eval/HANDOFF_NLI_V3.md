@@ -220,6 +220,9 @@ cfg 值、由 `train_local.py:fit_temperatures()` 在 held-out 切片上后训�
 - 脚本:`kaggle_eval/gen_soft_conflicts_v4.py`(seed 20260930)、`label_swap_check.py`、
   `realtest_v4.py`、`temperature_sweep.py`(ECE 未过项的收尾实测);calib_report.py 加了 v4 列
 - 附:`data_local/val_probs_v4.json`(复杂 val 1000 的逐条概率,供温度扫描/复算用)
+- HF 发布:`kaggle_eval/hf_model_card_nli_conflict.md`(模型卡)+ `hf_publish.py`(建仓+上传+回读校验);
+  需先 `hf auth login`,仓库名 `laya-nli-memory-conflict`
+- GitHub:全部脚本与文档已推 fork `main`(commit df2238a)
 - 无被否决的 v4 候选(v4-ce 未跑),无 `-v4-alt` 需要清理;v3 头留档于
   `laya-nli-conflict-v3`(上一交付版),v2 头留档于 `laya-nli-conflict-v2`
 
