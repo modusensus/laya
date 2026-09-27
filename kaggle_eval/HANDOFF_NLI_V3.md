@@ -229,3 +229,16 @@ cfg 值、由 `train_local.py:fit_temperatures()` 在 held-out 切片上后训�
 **Kaggle 资产终态**:数据集 v9(README 含完整对照表+SHA256+ECE 注记)为最新;
 kernel v8 = v4 训练(交付输出来源),kernel v9 = 文档版 quick save(最新版,无输出,
 status ERROR 属占位)。取交付模型:本地副本,或网页 Versions → v8 → Output。
+
+### 温度扫描结论(2026-09-27 收尾,门槛建议给 v5)
+
+按验收意见跑了 `temperature_sweep.py`(主 val 一次前向落盘 + 其余集合 logit 空间精确重标定,
+曲线存档 `data_local/temperature_sweep_v4.txt`):**全网格没有任何 τ 同时满足三项 ECE 门槛**。
+主 val 的 ECE 在 τ_cur=1.2176 恰好最小(0.0187)——98 条错例需要软化;而 realtest 在 20/20 时
+需要锐化,两个方向互斥,τ 单独了结不了这个门槛。**配置保持 1.2176 不变**(权重的 SHA256 不受
+影响,τ 是推理期 cfg 值)。
+
+v5 门槛重写按验收意见执行:不要放宽绝对 ECE(ac=1.0 时 ECE ≡ 1−置信上限,绝对数只会放水);
+改成**只在 acc<1 的切片上评 ECE/|acc−mean_conf|**,acc=1 的切片改报 (acc, mean_conf) 二元组,
+把 0.92 置信天花板作为独立跟踪量(接插件红线已在 HANDOFF_NLI_V2.md「v4 待办」第 4 节)。
+若未来确实要动 τ:标定切片必须与报数集不相交(自检见 temperature_sweep.py 注释)。
