@@ -1,0 +1,142 @@
+[
+  {
+    "note": "地点变更",
+    "expect": "true",
+    "got": "true",
+    "conf": 0.9,
+    "ok": true
+  },
+  {
+    "note": "偏好变更",
+    "expect": "true",
+    "got": "true",
+    "conf": 0.91,
+    "ok": true
+  },
+  {
+    "note": "时间变更",
+    "expect": "true",
+    "got": "true",
+    "conf": 0.91,
+    "ok": true
+  },
+  {
+    "note": "关键事实反转",
+    "expect": "true",
+    "got": "true",
+    "conf": 0.91,
+    "ok": true
+  },
+  {
+    "note": "部署变更",
+    "expect": "true",
+    "got": "true",
+    "conf": 0.91,
+    "ok": true
+  },
+  {
+    "note": "口味变更",
+    "expect": "true",
+    "got": "true",
+    "conf": 0.91,
+    "ok": true
+  },
+  {
+    "note": "名字矛盾",
+    "expect": "true",
+    "got": "false",
+    "conf": 0.76,
+    "ok": false
+  },
+  {
+    "note": "年龄矛盾",
+    "expect": "true",
+    "got": "true",
+    "conf": 0.91,
+    "ok": true
+  },
+  {
+    "note": "一致行为",
+    "expect": "false",
+    "got": "true",
+    "conf": 0.65,
+    "ok": false
+  },
+  {
+    "note": "补充细节",
+    "expect": "false",
+    "got": "true",
+    "conf": 0.91,
+    "ok": false
+  },
+  {
+    "note": "无关补充",
+    "expect": "false",
+    "got": "true",
+    "conf": 0.91,
+    "ok": false
+  },
+  {
+    "note": "无关陈述",
+    "expect": "false",
+    "got": "true",
+    "conf": 0.85,
+    "ok": false
+  },
+  {
+    "note": "工作相关",
+    "expect": "false",
+    "got": "true",
+    "conf": 0.91,
+    "ok": false
+  },
+  {
+    "note": "习惯一致",
+    "expect": "false",
+    "got": "true",
+    "conf": 0.91,
+    "ok": false
+  },
+  {
+    "note": "偏好一致",
+    "expect": "false",
+    "got": "true",
+    "conf": 0.82,
+    "ok": false
+  },
+  {
+    "note": "兼容细节",
+    "expect": "false",
+    "got": "true",
+    "conf": 0.9,
+    "ok": false
+  },
+  {
+    "note": "临时的不违背偏好",
+    "expect": "false",
+    "got": "true",
+    "conf": 0.91,
+    "ok": false
+  },
+  {
+    "note": "饮食禁忌松动",
+    "expect": "true",
+    "got": "true",
+    "conf": 0.91,
+    "ok": true
+  },
+  {
+    "note": "家庭结构矛盾",
+    "expect": "true",
+    "got": "true",
+    "conf": 0.91,
+    "ok": true
+  },
+  {
+    "note": "子集关系",
+    "expect": "false",
+    "got": "true",
+    "conf": 0.91,
+    "ok": false
+  }
+]

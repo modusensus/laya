@@ -83,7 +83,7 @@ models/
 
 # Local fine-tuning artifacts (weights too big for git; regenerate via train_local.py)
 out/
-data_local/*.jsonl
+data_local/**/*.jsonl
 
 # Kaggle CLI output (downloaded checkpoint dumps)
 laya-kaggle-output/

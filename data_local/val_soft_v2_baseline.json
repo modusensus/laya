@@ -1,0 +1,3002 @@
+[
+ {
+  "pred": 1,
+  "p_true": 0.9288,
+  "label": 1,
+  "meta": {
+   "cat": "degree",
+   "kind": "true",
+   "lang": "zh"
+  }
+ },
+ {
+  "pred": 1,
+  "p_true": 0.9319,
+  "label": 1,
+  "meta": {
+   "cat": "lang",
+   "kind": "true",
+   "lang": "en"
+  }
+ },
+ {
+  "pred": 1,
+  "p_true": 0.932,
+  "label": 1,
+  "meta": {
+   "cat": "desk_floor",
+   "kind": "true",
+   "lang": "zh"
+  }
+ },
+ {
+  "pred": 1,
+  "p_true": 0.9287,
+  "label": 1,
+  "meta": {
+   "cat": "phone",
+   "kind": "true",
+   "lang": "zh"
+  }
+ },
+ {
+  "pred": 0,
+  "p_true": 0.0726,
+  "label": 0,
+  "meta": {
+   "cat": "barber",
+   "kind": "compat",
+   "lang": "zh"
+  }
+ },
+ {
+  "pred": 0,
+  "p_true": 0.0645,
+  "label": 0,
+  "meta": {
+   "cat": "lang",
+   "kind": "compat",
+   "lang": "zh"
+  }
+ },
+ {
+  "pred": 0,
+  "p_true": 0.0647,
+  "label": 0,
+  "meta": {
+   "cat": "city",
+   "kind": "compat",
+   "lang": "zh"
+  }
+ },
+ {
+  "pred": 0,
+  "p_true": 0.0681,
+  "label": 0,
+  "meta": {
+   "cat": "city",
+   "kind": "compat",
+   "lang": "en"
+  }
+ },
+ {
+  "pred": 1,
+  "p_true": 0.9285,
+  "label": 1,
+  "meta": {
+   "cat": "email",
+   "kind": "true",
+   "lang": "zh"
+  }
+ },
+ {
+  "pred": 1,
+  "p_true": 0.9171,
+  "label": 1,
+  "meta": {
+   "cat": "cloud",
+   "kind": "true",
+   "lang": "zh"
+  }
+ },
+ {
+  "pred": 0,
+  "p_true": 0.0672,
+  "label": 0,
+  "meta": {
+   "cat": "alarm",
+   "kind": "compat",
+   "lang": "zh"
+  }
+ },
+ {
+  "pred": 0,
+  "p_true": 0.067,
+  "label": 0,
+  "meta": {
+   "cat": "alarm",
+   "kind": "consid",
+   "lang": "zh"
+  }
+ },
+ {
+  "pred": 1,
+  "p_true": 0.9332,
+  "label": 0,
+  "meta": {
+   "cat": "job",
+   "kind": "compat",
+   "lang": "en"
+  }
+ },
+ {
+  "pred": 0,
+  "p_true": 0.1293,
+  "label": 0,
+  "meta": {
+   "cat": "gym_brand",
+   "kind": "consid",
+   "lang": "zh"
+  }
+ },
+ {
+  "pred": 0,
+  "p_true": 0.0668,
+  "label": 0,
+  "meta": {
+   "cat": "cloud",
+   "kind": "consid",
+   "lang": "zh"
+  }
+ },
+ {
+  "pred": 0,
+  "p_true": 0.0712,
+  "label": 0,
+  "meta": {
+   "cat": "car",
+   "kind": "compat",
+   "lang": "en"
+  }
+ },
+ {
+  "pred": 0,
+  "p_true": 0.0672,
+  "label": 0,
+  "meta": {
+   "cat": "cloud",
+   "kind": "unrelated",
+   "lang": "en"
+  }
+ },
+ {
+  "pred": 0,
+  "p_true": 0.0692,
+  "label": 0,
+  "meta": {
+   "cat": "work_start",
+   "kind": "compat",
+   "lang": "zh"
+  }
+ },
+ {
+  "pred": 0,
+  "p_true": 0.0686,
+  "label": 1,
+  "meta": {
+   "cat": "degree",
+   "kind": "true",
+   "lang": "zh"
+  }
+ },
+ {
+  "pred": 1,
+  "p_true": 0.9312,
+  "label": 0,
+  "meta": {
+   "cat": "coffee",
+   "kind": "compat",
+   "lang": "zh"
+  }
+ },
+ {
+  "pred": 0,
+  "p_true": 0.0606,
+  "label": 0,
+  "meta": {
+   "cat": "email",
+   "kind": "compat",
+   "lang": "zh"
+  }
+ },
+ {
+  "pred": 0,
+  "p_true": 0.0704,
+  "label": 0,
+  "meta": {
+   "cat": "barber",
+   "kind": "consid",
+   "lang": "zh"
+  }
+ },
+ {
+  "pred": 0,
+  "p_true": 0.1692,
+  "label": 0,
+  "meta": {
+   "cat": "city",
+   "kind": "consid",
+   "lang": "zh"
+  }
+ },
+ {
+  "pred": 0,
+  "p_true": 0.0719,
+  "label": 0,
+  "meta": {
+   "cat": "lang",
+   "kind": "compat",
+   "lang": "zh"
+  }
+ },
+ {
+  "pred": 1,
+  "p_true": 0.5801,
+  "label": 0,
+  "meta": {
+   "cat": "cloud",
+   "kind": "consid",
+   "lang": "zh"
+  }
+ },
+ {
+  "pred": 1,
+  "p_true": 0.7252,
+  "label": 0,
+  "meta": {
+   "cat": "lang",
+   "kind": "unrelated",
+   "lang": "zh"
+  }
+ },
+ {
+  "pred": 1,
+  "p_true": 0.9294,
+  "label": 1,
+  "meta": {
+   "cat": "barber",
+   "kind": "true",
+   "lang": "zh"
+  }
+ },
+ {
+  "pred": 1,
+  "p_true": 0.5365,
+  "label": 0,
+  "meta": {
+   "cat": "gym_day",
+   "kind": "compat",
+   "lang": "en"
+  }
+ },
+ {
+  "pred": 0,
+  "p_true": 0.0693,
+  "label": 1,
+  "meta": {
+   "cat": "hair",
+   "kind": "true",
+   "lang": "zh"
+  }
+ },
+ {
+  "pred": 1,
+  "p_true": 0.8787,
+  "label": 1,
+  "meta": {
+   "cat": "city",
+   "kind": "true",
+   "lang": "zh"
+  }
+ },
+ {
+  "pred": 0,
+  "p_true": 0.063,
+  "label": 0,
+  "meta": {
+   "cat": "coffee",
+   "kind": "compat",
+   "lang": "en"
+  }
+ },
+ {
+  "pred": 1,
+  "p_true": 0.9259,
+  "label": 0,
+  "meta": {
+   "cat": "barber",
+   "kind": "consid",
+   "lang": "zh"
+  }
+ },
+ {
+  "pred": 0,
+  "p_true": 0.0723,
+  "label": 0,
+  "meta": {
+   "cat": "team",
+   "kind": "consid",
+   "lang": "en"
+  }
+ },
+ {
+  "pred": 0,
+  "p_true": 0.4047,
+  "label": 0,
+  "meta": {
+   "cat": "hair",
+   "kind": "consid",
+   "lang": "en"
+  }
+ },
+ {
+  "pred": 1,
+  "p_true": 0.9168,
+  "label": 0,
+  "meta": {
+   "cat": "city",
+   "kind": "unrelated",
+   "lang": "zh"
+  }
+ },
+ {
+  "pred": 0,
+  "p_true": 0.0745,
+  "label": 0,
+  "meta": {
+   "cat": "barber",
+   "kind": "compat",
+   "lang": "zh"
+  }
+ },
+ {
+  "pred": 0,
+  "p_true": 0.0689,
+  "label": 0,
+  "meta": {
+   "cat": "degree",
+   "kind": "compat",
+   "lang": "zh"
+  }
+ },
+ {
+  "pred": 1,
+  "p_true": 0.8919,
+  "label": 0,
+  "meta": {
+   "cat": "hair",
+   "kind": "compat",
+   "lang": "en"
+  }
+ },
+ {
+  "pred": 0,
+  "p_true": 0.0821,
+  "label": 0,
+  "meta": {
+   "cat": "gym_day",
+   "kind": "consid",
+   "lang": "zh"
+  }
+ },
+ {
+  "pred": 1,
+  "p_true": 0.9301,
+  "label": 0,
+  "meta": {
+   "cat": "lang",
+   "kind": "unrelated",
+   "lang": "en"
+  }
+ },
+ {
+  "pred": 0,
+  "p_true": 0.0648,
+  "label": 0,
+  "meta": {
+   "cat": "cloud",
+   "kind": "unrelated",
+   "lang": "zh"
+  }
+ },
+ {
+  "pred": 1,
+  "p_true": 0.9295,
+  "label": 1,
+  "meta": {
+   "cat": "job",
+   "kind": "true",
+   "lang": "zh"
+  }
+ },
+ {
+  "pred": 1,
+  "p_true": 0.9268,
+  "label": 0,
+  "meta": {
+   "cat": "lang",
+   "kind": "unrelated",
+   "lang": "zh"
+  }
+ },
+ {
+  "pred": 1,
+  "p_true": 0.9273,
+  "label": 1,
+  "meta": {
+   "cat": "team",
+   "kind": "true",
+   "lang": "zh"
+  }
+ },
+ {
+  "pred": 0,
+  "p_true": 0.0693,
+  "label": 0,
+  "meta": {
+   "cat": "alarm",
+   "kind": "compat",
+   "lang": "zh"
+  }
+ },
+ {
+  "pred": 1,
+  "p_true": 0.8399,
+  "label": 0,
+  "meta": {
+   "cat": "coffee",
+   "kind": "consid",
+   "lang": "zh"
+  }
+ },
+ {
+  "pred": 0,
+  "p_true": 0.0686,
+  "label": 0,
+  "meta": {
+   "cat": "lang",
+   "kind": "consid",
+   "lang": "zh"
+  }
+ },
+ {
+  "pred": 0,
+  "p_true": 0.0685,
+  "label": 0,
+  "meta": {
+   "cat": "desk_floor",
+   "kind": "compat",
+   "lang": "zh"
+  }
+ },
+ {
+  "pred": 1,
+  "p_true": 0.9285,
+  "label": 1,
+  "meta": {
+   "cat": "gym_brand",
+   "kind": "true",
+   "lang": "zh"
+  }
+ },
+ {
+  "pred": 0,
+  "p_true": 0.065,
+  "label": 0,
+  "meta": {
+   "cat": "cloud",
+   "kind": "compat",
+   "lang": "en"
+  }
+ },
+ {
+  "pred": 1,
+  "p_true": 0.9209,
+  "label": 0,
+  "meta": {
+   "cat": "degree",
+   "kind": "unrelated",
+   "lang": "zh"
+  }
+ },
+ {
+  "pred": 1,
+  "p_true": 0.9276,
+  "label": 1,
+  "meta": {
+   "cat": "barber",
+   "kind": "true",
+   "lang": "zh"
+  }
+ },
+ {
+  "pred": 1,
+  "p_true": 0.8812,
+  "label": 0,
+  "meta": {
+   "cat": "work_start",
+   "kind": "unrelated",
+   "lang": "zh"
+  }
+ },
+ {
+  "pred": 1,
+  "p_true": 0.8758,
+  "label": 0,
+  "meta": {
+   "cat": "gym_day",
+   "kind": "consid",
+   "lang": "en"
+  }
+ },
+ {
+  "pred": 0,
+  "p_true": 0.3322,
+  "label": 0,
+  "meta": {
+   "cat": "gym_day",
+   "kind": "consid",
+   "lang": "en"
+  }
+ },
+ {
+  "pred": 0,
+  "p_true": 0.0658,
+  "label": 0,
+  "meta": {
+   "cat": "cloud",
+   "kind": "compat",
+   "lang": "zh"
+  }
+ },
+ {
+  "pred": 1,
+  "p_true": 0.9127,
+  "label": 1,
+  "meta": {
+   "cat": "gym_day",
+   "kind": "true",
+   "lang": "zh"
+  }
+ },
+ {
+  "pred": 1,
+  "p_true": 0.8425,
+  "label": 0,
+  "meta": {
+   "cat": "barber",
+   "kind": "consid",
+   "lang": "zh"
+  }
+ },
+ {
+  "pred": 0,
+  "p_true": 0.1332,
+  "label": 0,
+  "meta": {
+   "cat": "alarm",
+   "kind": "consid",
+   "lang": "en"
+  }
+ },
+ {
+  "pred": 1,
+  "p_true": 0.6765,
+  "label": 1,
+  "meta": {
+   "cat": "alarm",
+   "kind": "true",
+   "lang": "zh"
+  }
+ },
+ {
+  "pred": 0,
+  "p_true": 0.0674,
+  "label": 0,
+  "meta": {
+   "cat": "phone",
+   "kind": "compat",
+   "lang": "zh"
+  }
+ },
+ {
+  "pred": 0,
+  "p_true": 0.0705,
+  "label": 0,
+  "meta": {
+   "cat": "desk_floor",
+   "kind": "compat",
+   "lang": "zh"
+  }
+ },
+ {
+  "pred": 1,
+  "p_true": 0.9289,
+  "label": 1,
+  "meta": {
+   "cat": "desk_floor",
+   "kind": "true",
+   "lang": "zh"
+  }
+ },
+ {
+  "pred": 0,
+  "p_true": 0.1458,
+  "label": 0,
+  "meta": {
+   "cat": "cloud",
+   "kind": "consid",
+   "lang": "en"
+  }
+ },
+ {
+  "pred": 1,
+  "p_true": 0.9297,
+  "label": 0,
+  "meta": {
+   "cat": "team",
+   "kind": "consid",
+   "lang": "en"
+  }
+ },
+ {
+  "pred": 0,
+  "p_true": 0.0817,
+  "label": 1,
+  "meta": {
+   "cat": "gym_day",
+   "kind": "true",
+   "lang": "zh"
+  }
+ },
+ {
+  "pred": 0,
+  "p_true": 0.065,
+  "label": 0,
+  "meta": {
+   "cat": "email",
+   "kind": "compat",
+   "lang": "zh"
+  }
+ },
+ {
+  "pred": 0,
+  "p_true": 0.0669,
+  "label": 0,
+  "meta": {
+   "cat": "desk_floor",
+   "kind": "compat",
+   "lang": "zh"
+  }
+ },
+ {
+  "pred": 0,
+  "p_true": 0.0685,
+  "label": 0,
+  "meta": {
+   "cat": "gym_day",
+   "kind": "consid",
+   "lang": "en"
+  }
+ },
+ {
+  "pred": 0,
+  "p_true": 0.0592,
+  "label": 0,
+  "meta": {
+   "cat": "phone",
+   "kind": "compat",
+   "lang": "zh"
+  }
+ },
+ {
+  "pred": 1,
+  "p_true": 0.9163,
+  "label": 0,
+  "meta": {
+   "cat": "lang",
+   "kind": "unrelated",
+   "lang": "zh"
+  }
+ },
+ {
+  "pred": 1,
+  "p_true": 0.8503,
+  "label": 0,
+  "meta": {
+   "cat": "cloud",
+   "kind": "compat",
+   "lang": "en"
+  }
+ },
+ {
+  "pred": 1,
+  "p_true": 0.833,
+  "label": 0,
+  "meta": {
+   "cat": "desk_floor",
+   "kind": "consid",
+   "lang": "zh"
+  }
+ },
+ {
+  "pred": 0,
+  "p_true": 0.1273,
+  "label": 1,
+  "meta": {
+   "cat": "cloud",
+   "kind": "true",
+   "lang": "en"
+  }
+ },
+ {
+  "pred": 1,
+  "p_true": 0.9178,
+  "label": 0,
+  "meta": {
+   "cat": "desk_floor",
+   "kind": "unrelated",
+   "lang": "zh"
+  }
+ },
+ {
+  "pred": 1,
+  "p_true": 0.9298,
+  "label": 1,
+  "meta": {
+   "cat": "desk_floor",
+   "kind": "true",
+   "lang": "zh"
+  }
+ },
+ {
+  "pred": 1,
+  "p_true": 0.7514,
+  "label": 1,
+  "meta": {
+   "cat": "gym_day",
+   "kind": "true",
+   "lang": "en"
+  }
+ },
+ {
+  "pred": 0,
+  "p_true": 0.066,
+  "label": 0,
+  "meta": {
+   "cat": "city",
+   "kind": "compat",
+   "lang": "zh"
+  }
+ },
+ {
+  "pred": 0,
+  "p_true": 0.0668,
+  "label": 0,
+  "meta": {
+   "cat": "desk_floor",
+   "kind": "compat",
+   "lang": "zh"
+  }
+ },
+ {
+  "pred": 0,
+  "p_true": 0.0703,
+  "label": 0,
+  "meta": {
+   "cat": "team",
+   "kind": "compat",
+   "lang": "zh"
+  }
+ },
+ {
+  "pred": 1,
+  "p_true": 0.6129,
+  "label": 0,
+  "meta": {
+   "cat": "lang",
+   "kind": "consid",
+   "lang": "zh"
+  }
+ },
+ {
+  "pred": 1,
+  "p_true": 0.5503,
+  "label": 1,
+  "meta": {
+   "cat": "email",
+   "kind": "true",
+   "lang": "zh"
+  }
+ },
+ {
+  "pred": 1,
+  "p_true": 0.9283,
+  "label": 0,
+  "meta": {
+   "cat": "rent",
+   "kind": "consid",
+   "lang": "zh"
+  }
+ },
+ {
+  "pred": 0,
+  "p_true": 0.061,
+  "label": 0,
+  "meta": {
+   "cat": "email",
+   "kind": "compat",
+   "lang": "zh"
+  }
+ },
+ {
+  "pred": 0,
+  "p_true": 0.2024,
+  "label": 0,
+  "meta": {
+   "cat": "degree",
+   "kind": "unrelated",
+   "lang": "zh"
+  }
+ },
+ {
+  "pred": 0,
+  "p_true": 0.067,
+  "label": 0,
+  "meta": {
+   "cat": "car",
+   "kind": "compat",
+   "lang": "en"
+  }
+ },
+ {
+  "pred": 0,
+  "p_true": 0.2169,
+  "label": 0,
+  "meta": {
+   "cat": "degree",
+   "kind": "consid",
+   "lang": "zh"
+  }
+ },
+ {
+  "pred": 1,
+  "p_true": 0.5982,
+  "label": 0,
+  "meta": {
+   "cat": "cat_food",
+   "kind": "unrelated",
+   "lang": "zh"
+  }
+ },
+ {
+  "pred": 1,
+  "p_true": 0.7082,
+  "label": 0,
+  "meta": {
+   "cat": "gym_brand",
+   "kind": "compat",
+   "lang": "zh"
+  }
+ },
+ {
+  "pred": 0,
+  "p_true": 0.0668,
+  "label": 0,
+  "meta": {
+   "cat": "city",
+   "kind": "compat",
+   "lang": "zh"
+  }
+ },
+ {
+  "pred": 0,
+  "p_true": 0.0664,
+  "label": 0,
+  "meta": {
+   "cat": "phone",
+   "kind": "consid",
+   "lang": "zh"
+  }
+ },
+ {
+  "pred": 0,
+  "p_true": 0.0679,
+  "label": 0,
+  "meta": {
+   "cat": "job",
+   "kind": "compat",
+   "lang": "en"
+  }
+ },
+ {
+  "pred": 0,
+  "p_true": 0.0675,
+  "label": 0,
+  "meta": {
+   "cat": "city",
+   "kind": "compat",
+   "lang": "zh"
+  }
+ },
+ {
+  "pred": 0,
+  "p_true": 0.0682,
+  "label": 0,
+  "meta": {
+   "cat": "team",
+   "kind": "compat",
+   "lang": "en"
+  }
+ },
+ {
+  "pred": 1,
+  "p_true": 0.6537,
+  "label": 1,
+  "meta": {
+   "cat": "cloud",
+   "kind": "true",
+   "lang": "en"
+  }
+ },
+ {
+  "pred": 1,
+  "p_true": 0.8331,
+  "label": 1,
+  "meta": {
+   "cat": "gym_day",
+   "kind": "true",
+   "lang": "zh"
+  }
+ },
+ {
+  "pred": 0,
+  "p_true": 0.2627,
+  "label": 1,
+  "meta": {
+   "cat": "gym_brand",
+   "kind": "true",
+   "lang": "zh"
+  }
+ },
+ {
+  "pred": 0,
+  "p_true": 0.0656,
+  "label": 0,
+  "meta": {
+   "cat": "gym_day",
+   "kind": "compat",
+   "lang": "zh"
+  }
+ },
+ {
+  "pred": 0,
+  "p_true": 0.0654,
+  "label": 1,
+  "meta": {
+   "cat": "email",
+   "kind": "true",
+   "lang": "zh"
+  }
+ },
+ {
+  "pred": 0,
+  "p_true": 0.0657,
+  "label": 0,
+  "meta": {
+   "cat": "car",
+   "kind": "compat",
+   "lang": "en"
+  }
+ },
+ {
+  "pred": 1,
+  "p_true": 0.9246,
+  "label": 1,
+  "meta": {
+   "cat": "coffee",
+   "kind": "true",
+   "lang": "en"
+  }
+ },
+ {
+  "pred": 1,
+  "p_true": 0.8912,
+  "label": 1,
+  "meta": {
+   "cat": "gym_brand",
+   "kind": "true",
+   "lang": "zh"
+  }
+ },
+ {
+  "pred": 1,
+  "p_true": 0.9282,
+  "label": 1,
+  "meta": {
+   "cat": "coffee",
+   "kind": "true",
+   "lang": "en"
+  }
+ },
+ {
+  "pred": 1,
+  "p_true": 0.9308,
+  "label": 0,
+  "meta": {
+   "cat": "cloud",
+   "kind": "consid",
+   "lang": "zh"
+  }
+ },
+ {
+  "pred": 0,
+  "p_true": 0.0675,
+  "label": 0,
+  "meta": {
+   "cat": "city",
+   "kind": "consid",
+   "lang": "zh"
+  }
+ },
+ {
+  "pred": 1,
+  "p_true": 0.8016,
+  "label": 0,
+  "meta": {
+   "cat": "rent",
+   "kind": "consid",
+   "lang": "zh"
+  }
+ },
+ {
+  "pred": 1,
+  "p_true": 0.9088,
+  "label": 0,
+  "meta": {
+   "cat": "work_start",
+   "kind": "consid",
+   "lang": "zh"
+  }
+ },
+ {
+  "pred": 1,
+  "p_true": 0.8845,
+  "label": 1,
+  "meta": {
+   "cat": "job",
+   "kind": "true",
+   "lang": "zh"
+  }
+ },
+ {
+  "pred": 0,
+  "p_true": 0.0674,
+  "label": 0,
+  "meta": {
+   "cat": "job",
+   "kind": "unrelated",
+   "lang": "en"
+  }
+ },
+ {
+  "pred": 0,
+  "p_true": 0.3344,
+  "label": 0,
+  "meta": {
+   "cat": "alarm",
+   "kind": "unrelated",
+   "lang": "en"
+  }
+ },
+ {
+  "pred": 1,
+  "p_true": 0.9278,
+  "label": 0,
+  "meta": {
+   "cat": "gym_brand",
+   "kind": "unrelated",
+   "lang": "zh"
+  }
+ },
+ {
+  "pred": 0,
+  "p_true": 0.0734,
+  "label": 1,
+  "meta": {
+   "cat": "cat_food",
+   "kind": "true",
+   "lang": "zh"
+  }
+ },
+ {
+  "pred": 0,
+  "p_true": 0.0677,
+  "label": 0,
+  "meta": {
+   "cat": "cloud",
+   "kind": "compat",
+   "lang": "zh"
+  }
+ },
+ {
+  "pred": 1,
+  "p_true": 0.8515,
+  "label": 0,
+  "meta": {
+   "cat": "desk_floor",
+   "kind": "consid",
+   "lang": "zh"
+  }
+ },
+ {
+  "pred": 1,
+  "p_true": 0.9297,
+  "label": 0,
+  "meta": {
+   "cat": "desk_floor",
+   "kind": "consid",
+   "lang": "zh"
+  }
+ },
+ {
+  "pred": 1,
+  "p_true": 0.5349,
+  "label": 0,
+  "meta": {
+   "cat": "home_city",
+   "kind": "consid",
+   "lang": "zh"
+  }
+ },
+ {
+  "pred": 0,
+  "p_true": 0.066,
+  "label": 0,
+  "meta": {
+   "cat": "city",
+   "kind": "compat",
+   "lang": "en"
+  }
+ },
+ {
+  "pred": 0,
+  "p_true": 0.0689,
+  "label": 0,
+  "meta": {
+   "cat": "city",
+   "kind": "unrelated",
+   "lang": "en"
+  }
+ },
+ {
+  "pred": 1,
+  "p_true": 0.9313,
+  "label": 1,
+  "meta": {
+   "cat": "rent",
+   "kind": "true",
+   "lang": "zh"
+  }
+ },
+ {
+  "pred": 0,
+  "p_true": 0.0655,
+  "label": 0,
+  "meta": {
+   "cat": "job",
+   "kind": "consid",
+   "lang": "en"
+  }
+ },
+ {
+  "pred": 1,
+  "p_true": 0.9301,
+  "label": 1,
+  "meta": {
+   "cat": "job",
+   "kind": "true",
+   "lang": "zh"
+  }
+ },
+ {
+  "pred": 1,
+  "p_true": 0.9272,
+  "label": 1,
+  "meta": {
+   "cat": "lang",
+   "kind": "true",
+   "lang": "zh"
+  }
+ },
+ {
+  "pred": 1,
+  "p_true": 0.8603,
+  "label": 1,
+  "meta": {
+   "cat": "city",
+   "kind": "true",
+   "lang": "zh"
+  }
+ },
+ {
+  "pred": 0,
+  "p_true": 0.0848,
+  "label": 1,
+  "meta": {
+   "cat": "city",
+   "kind": "true",
+   "lang": "en"
+  }
+ },
+ {
+  "pred": 0,
+  "p_true": 0.073,
+  "label": 1,
+  "meta": {
+   "cat": "email",
+   "kind": "true",
+   "lang": "zh"
+  }
+ },
+ {
+  "pred": 0,
+  "p_true": 0.1315,
+  "label": 1,
+  "meta": {
+   "cat": "email",
+   "kind": "true",
+   "lang": "zh"
+  }
+ },
+ {
+  "pred": 1,
+  "p_true": 0.9277,
+  "label": 1,
+  "meta": {
+   "cat": "city",
+   "kind": "true",
+   "lang": "zh"
+  }
+ },
+ {
+  "pred": 0,
+  "p_true": 0.0665,
+  "label": 0,
+  "meta": {
+   "cat": "city",
+   "kind": "unrelated",
+   "lang": "zh"
+  }
+ },
+ {
+  "pred": 1,
+  "p_true": 0.9271,
+  "label": 1,
+  "meta": {
+   "cat": "gym_day",
+   "kind": "true",
+   "lang": "zh"
+  }
+ },
+ {
+  "pred": 1,
+  "p_true": 0.9286,
+  "label": 1,
+  "meta": {
+   "cat": "barber",
+   "kind": "true",
+   "lang": "zh"
+  }
+ },
+ {
+  "pred": 0,
+  "p_true": 0.067,
+  "label": 0,
+  "meta": {
+   "cat": "home_city",
+   "kind": "compat",
+   "lang": "zh"
+  }
+ },
+ {
+  "pred": 0,
+  "p_true": 0.1389,
+  "label": 0,
+  "meta": {
+   "cat": "hair",
+   "kind": "consid",
+   "lang": "en"
+  }
+ },
+ {
+  "pred": 1,
+  "p_true": 0.9329,
+  "label": 0,
+  "meta": {
+   "cat": "gym_brand",
+   "kind": "consid",
+   "lang": "zh"
+  }
+ },
+ {
+  "pred": 0,
+  "p_true": 0.0707,
+  "label": 1,
+  "meta": {
+   "cat": "email",
+   "kind": "true",
+   "lang": "zh"
+  }
+ },
+ {
+  "pred": 1,
+  "p_true": 0.9157,
+  "label": 0,
+  "meta": {
+   "cat": "rent",
+   "kind": "unrelated",
+   "lang": "zh"
+  }
+ },
+ {
+  "pred": 0,
+  "p_true": 0.0677,
+  "label": 0,
+  "meta": {
+   "cat": "team",
+   "kind": "compat",
+   "lang": "en"
+  }
+ },
+ {
+  "pred": 1,
+  "p_true": 0.9339,
+  "label": 1,
+  "meta": {
+   "cat": "barber",
+   "kind": "true",
+   "lang": "zh"
+  }
+ },
+ {
+  "pred": 1,
+  "p_true": 0.922,
+  "label": 1,
+  "meta": {
+   "cat": "cat_food",
+   "kind": "true",
+   "lang": "zh"
+  }
+ },
+ {
+  "pred": 0,
+  "p_true": 0.088,
+  "label": 0,
+  "meta": {
+   "cat": "car",
+   "kind": "compat",
+   "lang": "en"
+  }
+ },
+ {
+  "pred": 0,
+  "p_true": 0.0651,
+  "label": 0,
+  "meta": {
+   "cat": "alarm",
+   "kind": "consid",
+   "lang": "zh"
+  }
+ },
+ {
+  "pred": 0,
+  "p_true": 0.1078,
+  "label": 1,
+  "meta": {
+   "cat": "hair",
+   "kind": "true",
+   "lang": "en"
+  }
+ },
+ {
+  "pred": 0,
+  "p_true": 0.0672,
+  "label": 0,
+  "meta": {
+   "cat": "city",
+   "kind": "unrelated",
+   "lang": "en"
+  }
+ },
+ {
+  "pred": 1,
+  "p_true": 0.6969,
+  "label": 0,
+  "meta": {
+   "cat": "barber",
+   "kind": "unrelated",
+   "lang": "zh"
+  }
+ },
+ {
+  "pred": 0,
+  "p_true": 0.0686,
+  "label": 0,
+  "meta": {
+   "cat": "alarm",
+   "kind": "compat",
+   "lang": "en"
+  }
+ },
+ {
+  "pred": 1,
+  "p_true": 0.912,
+  "label": 0,
+  "meta": {
+   "cat": "desk_floor",
+   "kind": "consid",
+   "lang": "zh"
+  }
+ },
+ {
+  "pred": 0,
+  "p_true": 0.0733,
+  "label": 0,
+  "meta": {
+   "cat": "job",
+   "kind": "compat",
+   "lang": "zh"
+  }
+ },
+ {
+  "pred": 1,
+  "p_true": 0.9279,
+  "label": 1,
+  "meta": {
+   "cat": "degree",
+   "kind": "true",
+   "lang": "zh"
+  }
+ },
+ {
+  "pred": 1,
+  "p_true": 0.9195,
+  "label": 0,
+  "meta": {
+   "cat": "job",
+   "kind": "unrelated",
+   "lang": "en"
+  }
+ },
+ {
+  "pred": 1,
+  "p_true": 0.9303,
+  "label": 0,
+  "meta": {
+   "cat": "barber",
+   "kind": "consid",
+   "lang": "zh"
+  }
+ },
+ {
+  "pred": 1,
+  "p_true": 0.9259,
+  "label": 1,
+  "meta": {
+   "cat": "barber",
+   "kind": "true",
+   "lang": "zh"
+  }
+ },
+ {
+  "pred": 1,
+  "p_true": 0.9289,
+  "label": 0,
+  "meta": {
+   "cat": "team",
+   "kind": "consid",
+   "lang": "en"
+  }
+ },
+ {
+  "pred": 1,
+  "p_true": 0.9181,
+  "label": 0,
+  "meta": {
+   "cat": "barber",
+   "kind": "compat",
+   "lang": "zh"
+  }
+ },
+ {
+  "pred": 1,
+  "p_true": 0.9317,
+  "label": 1,
+  "meta": {
+   "cat": "barber",
+   "kind": "true",
+   "lang": "zh"
+  }
+ },
+ {
+  "pred": 1,
+  "p_true": 0.9321,
+  "label": 0,
+  "meta": {
+   "cat": "city",
+   "kind": "unrelated",
+   "lang": "en"
+  }
+ },
+ {
+  "pred": 1,
+  "p_true": 0.866,
+  "label": 0,
+  "meta": {
+   "cat": "desk_floor",
+   "kind": "unrelated",
+   "lang": "zh"
+  }
+ },
+ {
+  "pred": 0,
+  "p_true": 0.0695,
+  "label": 0,
+  "meta": {
+   "cat": "lang",
+   "kind": "compat",
+   "lang": "en"
+  }
+ },
+ {
+  "pred": 0,
+  "p_true": 0.0745,
+  "label": 0,
+  "meta": {
+   "cat": "lang",
+   "kind": "compat",
+   "lang": "en"
+  }
+ },
+ {
+  "pred": 0,
+  "p_true": 0.0662,
+  "label": 0,
+  "meta": {
+   "cat": "gym_day",
+   "kind": "compat",
+   "lang": "en"
+  }
+ },
+ {
+  "pred": 1,
+  "p_true": 0.7949,
+  "label": 0,
+  "meta": {
+   "cat": "job",
+   "kind": "consid",
+   "lang": "zh"
+  }
+ },
+ {
+  "pred": 0,
+  "p_true": 0.061,
+  "label": 0,
+  "meta": {
+   "cat": "team",
+   "kind": "unrelated",
+   "lang": "zh"
+  }
+ },
+ {
+  "pred": 1,
+  "p_true": 0.927,
+  "label": 1,
+  "meta": {
+   "cat": "team",
+   "kind": "true",
+   "lang": "en"
+  }
+ },
+ {
+  "pred": 0,
+  "p_true": 0.0621,
+  "label": 0,
+  "meta": {
+   "cat": "gym_day",
+   "kind": "compat",
+   "lang": "zh"
+  }
+ },
+ {
+  "pred": 0,
+  "p_true": 0.0622,
+  "label": 0,
+  "meta": {
+   "cat": "email",
+   "kind": "compat",
+   "lang": "zh"
+  }
+ },
+ {
+  "pred": 1,
+  "p_true": 0.934,
+  "label": 0,
+  "meta": {
+   "cat": "degree",
+   "kind": "unrelated",
+   "lang": "zh"
+  }
+ },
+ {
+  "pred": 1,
+  "p_true": 0.8865,
+  "label": 0,
+  "meta": {
+   "cat": "desk_floor",
+   "kind": "consid",
+   "lang": "zh"
+  }
+ },
+ {
+  "pred": 0,
+  "p_true": 0.0678,
+  "label": 0,
+  "meta": {
+   "cat": "coffee",
+   "kind": "consid",
+   "lang": "zh"
+  }
+ },
+ {
+  "pred": 0,
+  "p_true": 0.0699,
+  "label": 0,
+  "meta": {
+   "cat": "cloud",
+   "kind": "compat",
+   "lang": "zh"
+  }
+ },
+ {
+  "pred": 1,
+  "p_true": 0.9312,
+  "label": 0,
+  "meta": {
+   "cat": "cat_food",
+   "kind": "unrelated",
+   "lang": "zh"
+  }
+ },
+ {
+  "pred": 0,
+  "p_true": 0.0587,
+  "label": 0,
+  "meta": {
+   "cat": "phone",
+   "kind": "unrelated",
+   "lang": "zh"
+  }
+ },
+ {
+  "pred": 0,
+  "p_true": 0.0701,
+  "label": 0,
+  "meta": {
+   "cat": "cloud",
+   "kind": "compat",
+   "lang": "en"
+  }
+ },
+ {
+  "pred": 1,
+  "p_true": 0.9313,
+  "label": 1,
+  "meta": {
+   "cat": "cloud",
+   "kind": "true",
+   "lang": "zh"
+  }
+ },
+ {
+  "pred": 1,
+  "p_true": 0.8563,
+  "label": 0,
+  "meta": {
+   "cat": "desk_floor",
+   "kind": "consid",
+   "lang": "zh"
+  }
+ },
+ {
+  "pred": 1,
+  "p_true": 0.8901,
+  "label": 1,
+  "meta": {
+   "cat": "city",
+   "kind": "true",
+   "lang": "zh"
+  }
+ },
+ {
+  "pred": 1,
+  "p_true": 0.9274,
+  "label": 1,
+  "meta": {
+   "cat": "rent",
+   "kind": "true",
+   "lang": "zh"
+  }
+ },
+ {
+  "pred": 0,
+  "p_true": 0.0709,
+  "label": 0,
+  "meta": {
+   "cat": "desk_floor",
+   "kind": "compat",
+   "lang": "zh"
+  }
+ },
+ {
+  "pred": 1,
+  "p_true": 0.8784,
+  "label": 1,
+  "meta": {
+   "cat": "gym_day",
+   "kind": "true",
+   "lang": "zh"
+  }
+ },
+ {
+  "pred": 1,
+  "p_true": 0.9267,
+  "label": 1,
+  "meta": {
+   "cat": "coffee",
+   "kind": "true",
+   "lang": "en"
+  }
+ },
+ {
+  "pred": 0,
+  "p_true": 0.0636,
+  "label": 0,
+  "meta": {
+   "cat": "lang",
+   "kind": "compat",
+   "lang": "en"
+  }
+ },
+ {
+  "pred": 0,
+  "p_true": 0.0759,
+  "label": 0,
+  "meta": {
+   "cat": "lang",
+   "kind": "compat",
+   "lang": "en"
+  }
+ },
+ {
+  "pred": 0,
+  "p_true": 0.0614,
+  "label": 0,
+  "meta": {
+   "cat": "email",
+   "kind": "compat",
+   "lang": "zh"
+  }
+ },
+ {
+  "pred": 1,
+  "p_true": 0.8998,
+  "label": 0,
+  "meta": {
+   "cat": "desk_floor",
+   "kind": "compat",
+   "lang": "zh"
+  }
+ },
+ {
+  "pred": 1,
+  "p_true": 0.5782,
+  "label": 1,
+  "meta": {
+   "cat": "car",
+   "kind": "true",
+   "lang": "en"
+  }
+ },
+ {
+  "pred": 0,
+  "p_true": 0.0723,
+  "label": 0,
+  "meta": {
+   "cat": "coffee",
+   "kind": "compat",
+   "lang": "en"
+  }
+ },
+ {
+  "pred": 1,
+  "p_true": 0.9238,
+  "label": 1,
+  "meta": {
+   "cat": "home_city",
+   "kind": "true",
+   "lang": "zh"
+  }
+ },
+ {
+  "pred": 0,
+  "p_true": 0.0671,
+  "label": 0,
+  "meta": {
+   "cat": "email",
+   "kind": "consid",
+   "lang": "zh"
+  }
+ },
+ {
+  "pred": 1,
+  "p_true": 0.9264,
+  "label": 1,
+  "meta": {
+   "cat": "barber",
+   "kind": "true",
+   "lang": "zh"
+  }
+ },
+ {
+  "pred": 0,
+  "p_true": 0.0706,
+  "label": 1,
+  "meta": {
+   "cat": "cloud",
+   "kind": "true",
+   "lang": "en"
+  }
+ },
+ {
+  "pred": 1,
+  "p_true": 0.9279,
+  "label": 1,
+  "meta": {
+   "cat": "cloud",
+   "kind": "true",
+   "lang": "zh"
+  }
+ },
+ {
+  "pred": 0,
+  "p_true": 0.079,
+  "label": 1,
+  "meta": {
+   "cat": "email",
+   "kind": "true",
+   "lang": "zh"
+  }
+ },
+ {
+  "pred": 1,
+  "p_true": 0.9311,
+  "label": 1,
+  "meta": {
+   "cat": "home_city",
+   "kind": "true",
+   "lang": "zh"
+  }
+ },
+ {
+  "pred": 0,
+  "p_true": 0.0726,
+  "label": 1,
+  "meta": {
+   "cat": "email",
+   "kind": "true",
+   "lang": "zh"
+  }
+ },
+ {
+  "pred": 1,
+  "p_true": 0.9283,
+  "label": 0,
+  "meta": {
+   "cat": "coffee",
+   "kind": "compat",
+   "lang": "en"
+  }
+ },
+ {
+  "pred": 0,
+  "p_true": 0.1139,
+  "label": 0,
+  "meta": {
+   "cat": "degree",
+   "kind": "unrelated",
+   "lang": "zh"
+  }
+ },
+ {
+  "pred": 1,
+  "p_true": 0.6855,
+  "label": 1,
+  "meta": {
+   "cat": "email",
+   "kind": "true",
+   "lang": "zh"
+  }
+ },
+ {
+  "pred": 0,
+  "p_true": 0.0693,
+  "label": 1,
+  "meta": {
+   "cat": "cloud",
+   "kind": "true",
+   "lang": "en"
+  }
+ },
+ {
+  "pred": 0,
+  "p_true": 0.0797,
+  "label": 1,
+  "meta": {
+   "cat": "city",
+   "kind": "true",
+   "lang": "zh"
+  }
+ },
+ {
+  "pred": 0,
+  "p_true": 0.0648,
+  "label": 0,
+  "meta": {
+   "cat": "cloud",
+   "kind": "compat",
+   "lang": "en"
+  }
+ },
+ {
+  "pred": 0,
+  "p_true": 0.0659,
+  "label": 0,
+  "meta": {
+   "cat": "email",
+   "kind": "compat",
+   "lang": "zh"
+  }
+ },
+ {
+  "pred": 1,
+  "p_true": 0.9258,
+  "label": 0,
+  "meta": {
+   "cat": "gym_day",
+   "kind": "consid",
+   "lang": "zh"
+  }
+ },
+ {
+  "pred": 0,
+  "p_true": 0.0662,
+  "label": 0,
+  "meta": {
+   "cat": "email",
+   "kind": "compat",
+   "lang": "zh"
+  }
+ },
+ {
+  "pred": 0,
+  "p_true": 0.344,
+  "label": 0,
+  "meta": {
+   "cat": "barber",
+   "kind": "consid",
+   "lang": "zh"
+  }
+ },
+ {
+  "pred": 1,
+  "p_true": 0.9156,
+  "label": 0,
+  "meta": {
+   "cat": "barber",
+   "kind": "unrelated",
+   "lang": "zh"
+  }
+ },
+ {
+  "pred": 1,
+  "p_true": 0.9304,
+  "label": 1,
+  "meta": {
+   "cat": "hair",
+   "kind": "true",
+   "lang": "zh"
+  }
+ },
+ {
+  "pred": 0,
+  "p_true": 0.0693,
+  "label": 0,
+  "meta": {
+   "cat": "degree",
+   "kind": "unrelated",
+   "lang": "zh"
+  }
+ },
+ {
+  "pred": 1,
+  "p_true": 0.9161,
+  "label": 0,
+  "meta": {
+   "cat": "desk_floor",
+   "kind": "unrelated",
+   "lang": "zh"
+  }
+ },
+ {
+  "pred": 0,
+  "p_true": 0.0633,
+  "label": 0,
+  "meta": {
+   "cat": "email",
+   "kind": "unrelated",
+   "lang": "zh"
+  }
+ },
+ {
+  "pred": 0,
+  "p_true": 0.0662,
+  "label": 0,
+  "meta": {
+   "cat": "lang",
+   "kind": "compat",
+   "lang": "zh"
+  }
+ },
+ {
+  "pred": 1,
+  "p_true": 0.9306,
+  "label": 1,
+  "meta": {
+   "cat": "desk_floor",
+   "kind": "true",
+   "lang": "zh"
+  }
+ },
+ {
+  "pred": 0,
+  "p_true": 0.0783,
+  "label": 0,
+  "meta": {
+   "cat": "email",
+   "kind": "unrelated",
+   "lang": "zh"
+  }
+ },
+ {
+  "pred": 1,
+  "p_true": 0.8876,
+  "label": 0,
+  "meta": {
+   "cat": "home_city",
+   "kind": "consid",
+   "lang": "zh"
+  }
+ },
+ {
+  "pred": 1,
+  "p_true": 0.9272,
+  "label": 1,
+  "meta": {
+   "cat": "phone",
+   "kind": "true",
+   "lang": "zh"
+  }
+ },
+ {
+  "pred": 0,
+  "p_true": 0.0656,
+  "label": 0,
+  "meta": {
+   "cat": "home_city",
+   "kind": "compat",
+   "lang": "zh"
+  }
+ },
+ {
+  "pred": 1,
+  "p_true": 0.9275,
+  "label": 1,
+  "meta": {
+   "cat": "team",
+   "kind": "true",
+   "lang": "en"
+  }
+ },
+ {
+  "pred": 1,
+  "p_true": 0.9287,
+  "label": 0,
+  "meta": {
+   "cat": "degree",
+   "kind": "consid",
+   "lang": "zh"
+  }
+ },
+ {
+  "pred": 0,
+  "p_true": 0.0652,
+  "label": 0,
+  "meta": {
+   "cat": "rent",
+   "kind": "compat",
+   "lang": "zh"
+  }
+ },
+ {
+  "pred": 1,
+  "p_true": 0.9321,
+  "label": 1,
+  "meta": {
+   "cat": "barber",
+   "kind": "true",
+   "lang": "zh"
+  }
+ },
+ {
+  "pred": 1,
+  "p_true": 0.5551,
+  "label": 1,
+  "meta": {
+   "cat": "job",
+   "kind": "true",
+   "lang": "en"
+  }
+ },
+ {
+  "pred": 0,
+  "p_true": 0.0808,
+  "label": 0,
+  "meta": {
+   "cat": "gym_day",
+   "kind": "consid",
+   "lang": "en"
+  }
+ },
+ {
+  "pred": 0,
+  "p_true": 0.0847,
+  "label": 0,
+  "meta": {
+   "cat": "cloud",
+   "kind": "unrelated",
+   "lang": "zh"
+  }
+ },
+ {
+  "pred": 0,
+  "p_true": 0.1916,
+  "label": 0,
+  "meta": {
+   "cat": "barber",
+   "kind": "unrelated",
+   "lang": "zh"
+  }
+ },
+ {
+  "pred": 1,
+  "p_true": 0.8151,
+  "label": 0,
+  "meta": {
+   "cat": "barber",
+   "kind": "consid",
+   "lang": "zh"
+  }
+ },
+ {
+  "pred": 1,
+  "p_true": 0.933,
+  "label": 0,
+  "meta": {
+   "cat": "coffee",
+   "kind": "consid",
+   "lang": "en"
+  }
+ },
+ {
+  "pred": 0,
+  "p_true": 0.0671,
+  "label": 0,
+  "meta": {
+   "cat": "hair",
+   "kind": "compat",
+   "lang": "zh"
+  }
+ },
+ {
+  "pred": 0,
+  "p_true": 0.0673,
+  "label": 0,
+  "meta": {
+   "cat": "city",
+   "kind": "compat",
+   "lang": "en"
+  }
+ },
+ {
+  "pred": 0,
+  "p_true": 0.0669,
+  "label": 0,
+  "meta": {
+   "cat": "degree",
+   "kind": "compat",
+   "lang": "zh"
+  }
+ },
+ {
+  "pred": 0,
+  "p_true": 0.0669,
+  "label": 0,
+  "meta": {
+   "cat": "degree",
+   "kind": "compat",
+   "lang": "zh"
+  }
+ },
+ {
+  "pred": 1,
+  "p_true": 0.8852,
+  "label": 0,
+  "meta": {
+   "cat": "desk_floor",
+   "kind": "consid",
+   "lang": "zh"
+  }
+ },
+ {
+  "pred": 1,
+  "p_true": 0.9273,
+  "label": 1,
+  "meta": {
+   "cat": "lang",
+   "kind": "true",
+   "lang": "zh"
+  }
+ },
+ {
+  "pred": 1,
+  "p_true": 0.9252,
+  "label": 1,
+  "meta": {
+   "cat": "gym_day",
+   "kind": "true",
+   "lang": "zh"
+  }
+ },
+ {
+  "pred": 1,
+  "p_true": 0.919,
+  "label": 1,
+  "meta": {
+   "cat": "lang",
+   "kind": "true",
+   "lang": "en"
+  }
+ },
+ {
+  "pred": 1,
+  "p_true": 0.9296,
+  "label": 1,
+  "meta": {
+   "cat": "car",
+   "kind": "true",
+   "lang": "en"
+  }
+ },
+ {
+  "pred": 1,
+  "p_true": 0.7691,
+  "label": 0,
+  "meta": {
+   "cat": "barber",
+   "kind": "consid",
+   "lang": "zh"
+  }
+ },
+ {
+  "pred": 0,
+  "p_true": 0.069,
+  "label": 0,
+  "meta": {
+   "cat": "degree",
+   "kind": "unrelated",
+   "lang": "zh"
+  }
+ },
+ {
+  "pred": 0,
+  "p_true": 0.0708,
+  "label": 1,
+  "meta": {
+   "cat": "gym_day",
+   "kind": "true",
+   "lang": "zh"
+  }
+ },
+ {
+  "pred": 1,
+  "p_true": 0.929,
+  "label": 0,
+  "meta": {
+   "cat": "work_start",
+   "kind": "consid",
+   "lang": "zh"
+  }
+ },
+ {
+  "pred": 1,
+  "p_true": 0.933,
+  "label": 1,
+  "meta": {
+   "cat": "phone",
+   "kind": "true",
+   "lang": "zh"
+  }
+ },
+ {
+  "pred": 1,
+  "p_true": 0.9058,
+  "label": 0,
+  "meta": {
+   "cat": "lang",
+   "kind": "unrelated",
+   "lang": "zh"
+  }
+ },
+ {
+  "pred": 1,
+  "p_true": 0.9297,
+  "label": 1,
+  "meta": {
+   "cat": "rent",
+   "kind": "true",
+   "lang": "zh"
+  }
+ },
+ {
+  "pred": 1,
+  "p_true": 0.8958,
+  "label": 0,
+  "meta": {
+   "cat": "barber",
+   "kind": "consid",
+   "lang": "zh"
+  }
+ },
+ {
+  "pred": 1,
+  "p_true": 0.9292,
+  "label": 0,
+  "meta": {
+   "cat": "barber",
+   "kind": "consid",
+   "lang": "zh"
+  }
+ },
+ {
+  "pred": 0,
+  "p_true": 0.0664,
+  "label": 0,
+  "meta": {
+   "cat": "barber",
+   "kind": "compat",
+   "lang": "zh"
+  }
+ },
+ {
+  "pred": 1,
+  "p_true": 0.9178,
+  "label": 0,
+  "meta": {
+   "cat": "lang",
+   "kind": "unrelated",
+   "lang": "en"
+  }
+ },
+ {
+  "pred": 1,
+  "p_true": 0.9157,
+  "label": 1,
+  "meta": {
+   "cat": "lang",
+   "kind": "true",
+   "lang": "zh"
+  }
+ },
+ {
+  "pred": 1,
+  "p_true": 0.9257,
+  "label": 1,
+  "meta": {
+   "cat": "lang",
+   "kind": "true",
+   "lang": "zh"
+  }
+ },
+ {
+  "pred": 0,
+  "p_true": 0.0693,
+  "label": 0,
+  "meta": {
+   "cat": "email",
+   "kind": "unrelated",
+   "lang": "zh"
+  }
+ },
+ {
+  "pred": 1,
+  "p_true": 0.9273,
+  "label": 1,
+  "meta": {
+   "cat": "barber",
+   "kind": "true",
+   "lang": "zh"
+  }
+ },
+ {
+  "pred": 1,
+  "p_true": 0.899,
+  "label": 1,
+  "meta": {
+   "cat": "rent",
+   "kind": "true",
+   "lang": "zh"
+  }
+ },
+ {
+  "pred": 1,
+  "p_true": 0.9254,
+  "label": 1,
+  "meta": {
+   "cat": "hair",
+   "kind": "true",
+   "lang": "zh"
+  }
+ },
+ {
+  "pred": 0,
+  "p_true": 0.1687,
+  "label": 0,
+  "meta": {
+   "cat": "city",
+   "kind": "unrelated",
+   "lang": "zh"
+  }
+ },
+ {
+  "pred": 1,
+  "p_true": 0.926,
+  "label": 0,
+  "meta": {
+   "cat": "barber",
+   "kind": "consid",
+   "lang": "zh"
+  }
+ },
+ {
+  "pred": 0,
+  "p_true": 0.0653,
+  "label": 0,
+  "meta": {
+   "cat": "cloud",
+   "kind": "compat",
+   "lang": "en"
+  }
+ },
+ {
+  "pred": 0,
+  "p_true": 0.0675,
+  "label": 0,
+  "meta": {
+   "cat": "alarm",
+   "kind": "compat",
+   "lang": "en"
+  }
+ },
+ {
+  "pred": 1,
+  "p_true": 0.9281,
+  "label": 1,
+  "meta": {
+   "cat": "team",
+   "kind": "true",
+   "lang": "zh"
+  }
+ },
+ {
+  "pred": 0,
+  "p_true": 0.069,
+  "label": 0,
+  "meta": {
+   "cat": "degree",
+   "kind": "compat",
+   "lang": "zh"
+  }
+ },
+ {
+  "pred": 0,
+  "p_true": 0.0679,
+  "label": 0,
+  "meta": {
+   "cat": "degree",
+   "kind": "compat",
+   "lang": "zh"
+  }
+ },
+ {
+  "pred": 0,
+  "p_true": 0.1674,
+  "label": 0,
+  "meta": {
+   "cat": "degree",
+   "kind": "consid",
+   "lang": "zh"
+  }
+ },
+ {
+  "pred": 0,
+  "p_true": 0.1461,
+  "label": 0,
+  "meta": {
+   "cat": "barber",
+   "kind": "unrelated",
+   "lang": "zh"
+  }
+ },
+ {
+  "pred": 1,
+  "p_true": 0.9271,
+  "label": 0,
+  "meta": {
+   "cat": "degree",
+   "kind": "consid",
+   "lang": "zh"
+  }
+ },
+ {
+  "pred": 0,
+  "p_true": 0.0665,
+  "label": 0,
+  "meta": {
+   "cat": "home_city",
+   "kind": "compat",
+   "lang": "zh"
+  }
+ },
+ {
+  "pred": 0,
+  "p_true": 0.0627,
+  "label": 0,
+  "meta": {
+   "cat": "gym_day",
+   "kind": "compat",
+   "lang": "zh"
+  }
+ },
+ {
+  "pred": 1,
+  "p_true": 0.9312,
+  "label": 0,
+  "meta": {
+   "cat": "barber",
+   "kind": "consid",
+   "lang": "zh"
+  }
+ },
+ {
+  "pred": 0,
+  "p_true": 0.07,
+  "label": 0,
+  "meta": {
+   "cat": "job",
+   "kind": "unrelated",
+   "lang": "en"
+  }
+ },
+ {
+  "pred": 0,
+  "p_true": 0.0626,
+  "label": 0,
+  "meta": {
+   "cat": "cloud",
+   "kind": "compat",
+   "lang": "en"
+  }
+ },
+ {
+  "pred": 1,
+  "p_true": 0.9303,
+  "label": 0,
+  "meta": {
+   "cat": "barber",
+   "kind": "consid",
+   "lang": "zh"
+  }
+ },
+ {
+  "pred": 0,
+  "p_true": 0.065,
+  "label": 0,
+  "meta": {
+   "cat": "email",
+   "kind": "unrelated",
+   "lang": "zh"
+  }
+ },
+ {
+  "pred": 1,
+  "p_true": 0.8583,
+  "label": 1,
+  "meta": {
+   "cat": "car",
+   "kind": "true",
+   "lang": "en"
+  }
+ },
+ {
+  "pred": 1,
+  "p_true": 0.8732,
+  "label": 0,
+  "meta": {
+   "cat": "work_start",
+   "kind": "unrelated",
+   "lang": "zh"
+  }
+ },
+ {
+  "pred": 1,
+  "p_true": 0.6555,
+  "label": 1,
+  "meta": {
+   "cat": "job",
+   "kind": "true",
+   "lang": "zh"
+  }
+ },
+ {
+  "pred": 1,
+  "p_true": 0.8838,
+  "label": 1,
+  "meta": {
+   "cat": "lang",
+   "kind": "true",
+   "lang": "zh"
+  }
+ },
+ {
+  "pred": 0,
+  "p_true": 0.2041,
+  "label": 1,
+  "meta": {
+   "cat": "email",
+   "kind": "true",
+   "lang": "zh"
+  }
+ },
+ {
+  "pred": 1,
+  "p_true": 0.8999,
+  "label": 0,
+  "meta": {
+   "cat": "barber",
+   "kind": "compat",
+   "lang": "zh"
+  }
+ },
+ {
+  "pred": 1,
+  "p_true": 0.9279,
+  "label": 1,
+  "meta": {
+   "cat": "degree",
+   "kind": "true",
+   "lang": "zh"
+  }
+ },
+ {
+  "pred": 0,
+  "p_true": 0.0705,
+  "label": 0,
+  "meta": {
+   "cat": "lang",
+   "kind": "compat",
+   "lang": "zh"
+  }
+ },
+ {
+  "pred": 1,
+  "p_true": 0.9101,
+  "label": 1,
+  "meta": {
+   "cat": "city",
+   "kind": "true",
+   "lang": "zh"
+  }
+ },
+ {
+  "pred": 1,
+  "p_true": 0.9271,
+  "label": 1,
+  "meta": {
+   "cat": "cloud",
+   "kind": "true",
+   "lang": "zh"
+  }
+ },
+ {
+  "pred": 0,
+  "p_true": 0.0947,
+  "label": 0,
+  "meta": {
+   "cat": "email",
+   "kind": "unrelated",
+   "lang": "zh"
+  }
+ },
+ {
+  "pred": 1,
+  "p_true": 0.9042,
+  "label": 1,
+  "meta": {
+   "cat": "degree",
+   "kind": "true",
+   "lang": "zh"
+  }
+ },
+ {
+  "pred": 0,
+  "p_true": 0.0629,
+  "label": 0,
+  "meta": {
+   "cat": "cloud",
+   "kind": "unrelated",
+   "lang": "zh"
+  }
+ },
+ {
+  "pred": 1,
+  "p_true": 0.9301,
+  "label": 1,
+  "meta": {
+   "cat": "degree",
+   "kind": "true",
+   "lang": "zh"
+  }
+ },
+ {
+  "pred": 1,
+  "p_true": 0.9261,
+  "label": 0,
+  "meta": {
+   "cat": "hair",
+   "kind": "compat",
+   "lang": "en"
+  }
+ },
+ {
+  "pred": 0,
+  "p_true": 0.0707,
+  "label": 1,
+  "meta": {
+   "cat": "work_start",
+   "kind": "true",
+   "lang": "zh"
+  }
+ },
+ {
+  "pred": 0,
+  "p_true": 0.067,
+  "label": 0,
+  "meta": {
+   "cat": "barber",
+   "kind": "compat",
+   "lang": "zh"
+  }
+ },
+ {
+  "pred": 0,
+  "p_true": 0.2674,
+  "label": 1,
+  "meta": {
+   "cat": "gym_day",
+   "kind": "true",
+   "lang": "en"
+  }
+ },
+ {
+  "pred": 0,
+  "p_true": 0.0643,
+  "label": 0,
+  "meta": {
+   "cat": "barber",
+   "kind": "compat",
+   "lang": "zh"
+  }
+ },
+ {
+  "pred": 0,
+  "p_true": 0.2401,
+  "label": 0,
+  "meta": {
+   "cat": "car",
+   "kind": "consid",
+   "lang": "en"
+  }
+ },
+ {
+  "pred": 1,
+  "p_true": 0.9294,
+  "label": 1,
+  "meta": {
+   "cat": "coffee",
+   "kind": "true",
+   "lang": "en"
+  }
+ },
+ {
+  "pred": 0,
+  "p_true": 0.0707,
+  "label": 0,
+  "meta": {
+   "cat": "phone",
+   "kind": "consid",
+   "lang": "zh"
+  }
+ },
+ {
+  "pred": 0,
+  "p_true": 0.068,
+  "label": 0,
+  "meta": {
+   "cat": "gym_day",
+   "kind": "compat",
+   "lang": "en"
+  }
+ },
+ {
+  "pred": 0,
+  "p_true": 0.1592,
+  "label": 0,
+  "meta": {
+   "cat": "cat_food",
+   "kind": "consid",
+   "lang": "zh"
+  }
+ },
+ {
+  "pred": 1,
+  "p_true": 0.9305,
+  "label": 1,
+  "meta": {
+   "cat": "job",
+   "kind": "true",
+   "lang": "en"
+  }
+ },
+ {
+  "pred": 0,
+  "p_true": 0.1729,
+  "label": 1,
+  "meta": {
+   "cat": "cloud",
+   "kind": "true",
+   "lang": "en"
+  }
+ },
+ {
+  "pred": 0,
+  "p_true": 0.2813,
+  "label": 0,
+  "meta": {
+   "cat": "barber",
+   "kind": "consid",
+   "lang": "zh"
+  }
+ },
+ {
+  "pred": 0,
+  "p_true": 0.13,
+  "label": 0,
+  "meta": {
+   "cat": "barber",
+   "kind": "unrelated",
+   "lang": "zh"
+  }
+ },
+ {
+  "pred": 1,
+  "p_true": 0.8653,
+  "label": 0,
+  "meta": {
+   "cat": "car",
+   "kind": "unrelated",
+   "lang": "en"
+  }
+ },
+ {
+  "pred": 1,
+  "p_true": 0.9154,
+  "label": 0,
+  "meta": {
+   "cat": "city",
+   "kind": "unrelated",
+   "lang": "zh"
+  }
+ },
+ {
+  "pred": 1,
+  "p_true": 0.8558,
+  "label": 1,
+  "meta": {
+   "cat": "work_start",
+   "kind": "true",
+   "lang": "zh"
+  }
+ },
+ {
+  "pred": 0,
+  "p_true": 0.0682,
+  "label": 0,
+  "meta": {
+   "cat": "gym_day",
+   "kind": "consid",
+   "lang": "en"
+  }
+ },
+ {
+  "pred": 1,
+  "p_true": 0.8782,
+  "label": 0,
+  "meta": {
+   "cat": "barber",
+   "kind": "unrelated",
+   "lang": "zh"
+  }
+ },
+ {
+  "pred": 0,
+  "p_true": 0.0683,
+  "label": 0,
+  "meta": {
+   "cat": "gym_day",
+   "kind": "compat",
+   "lang": "zh"
+  }
+ },
+ {
+  "pred": 1,
+  "p_true": 0.8817,
+  "label": 1,
+  "meta": {
+   "cat": "email",
+   "kind": "true",
+   "lang": "zh"
+  }
+ }
+]

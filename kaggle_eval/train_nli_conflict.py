@@ -100,6 +100,7 @@ def main():
     ap.add_argument('--train-jsonl', required=True)
     ap.add_argument('--val-jsonl', required=True)
     ap.add_argument('--output-dir', required=True)
+    ap.add_argument('--expected-train', type=int, default=0, help='assert exact train row count (guards against silent truncation)')
     args, _ = ap.parse_known_args()
 
     with open(os.path.join(args.model_dir, 'rl_agent_config.json')) as f:
@@ -121,10 +122,16 @@ def main():
 
     if rank == 0:
         print('Building items...', flush=True)
-    all_train = load_items(args.train_jsonl, tok, cfg, max_items=8000)
+    all_train = load_items(args.train_jsonl, tok, cfg, max_items=13000)
     all_val = load_items(args.val_jsonl, tok, cfg, max_items=2000)
+    if args.expected_train:
+        assert len(all_train) == args.expected_train, (
+            f'train rows {len(all_train)} != expected {args.expected_train} (silent truncation?)')
     if rank == 0:
-        print(f'{len(all_train)} train items | {len(all_val)} val items', flush=True)
+        lens = sorted(len(it['ids']) for it in all_train)
+        p99 = lens[int(0.99 * (len(lens) - 1))] if lens else 0
+        print(f'{len(all_train)} train items | {len(all_val)} val items | '
+              f'token len p99={p99} max={lens[-1] if lens else 0}', flush=True)
 
     CALIB_MAX = 400
     order = list(range(len(all_train)))
@@ -134,7 +141,7 @@ def main():
     train_items = [all_train[i] for i in sorted(order[n_calib:])]
     my_items = train_items[rank::world_size]
 
-    EPOCHS = 3
+    EPOCHS = 4
     MICRO_BATCH = 16      # short sequences -> bigger batches fit
     GRAD_ACCUM = 2
     LR_ENCODER = 2.5e-5

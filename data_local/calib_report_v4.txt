@@ -1,0 +1,5 @@
+val_soft v2: all 206/300 acc=0.687 ece=0.2140 | lang:zh 149/221 acc=0.674 ece=0.2228 | kind:true 78/100 acc=0.780 ece=0.1628 | holdout 62/100 acc=0.620 ece=0.2864 | lang:en 57/79 acc=0.722 ece=0.2079 | kind:compat 74/85 acc=0.871 ece=0.0605 | kind:consid 29/65 acc=0.446 ece=0.4205 | kind:unrelated 25/50 acc=0.500 ece=0.3902
+val_soft v3: all 295/300 acc=0.983 ece=0.0625 | lang:zh 216/221 acc=0.977 ece=0.0569 | kind:true 99/100 acc=0.990 ece=0.0684 | holdout 95/100 acc=0.950 ece=0.0310 | lang:en 79/79 acc=1.000 ece=0.0782 | kind:compat 85/85 acc=1.000 ece=0.0780 | kind:consid 61/65 acc=0.938 ece=0.0203 | kind:unrelated 50/50 acc=1.000 ece=0.0791
+val_soft v4: all 297/300 acc=0.990 ece=0.0703 | lang:zh 218/221 acc=0.986 ece=0.0681 | kind:true 99/100 acc=0.990 ece=0.0696 | holdout 97/100 acc=0.970 ece=0.0585 | lang:en 79/79 acc=1.000 ece=0.0765 | kind:compat 85/85 acc=1.000 ece=0.0759 | kind:consid 63/65 acc=0.969 ece=0.0596 | kind:unrelated 50/50 acc=1.000 ece=0.0763
+realtest v3: all 19/20 acc=0.950 ece=0.0309
+realtest v4: all 20/20 acc=1.000 ece=0.0765
