@@ -1,0 +1,541 @@
+{
+  "fit": {
+    "set": "val_soft 300",
+    "nominal": 0.9,
+    "k_order_stat": 271,
+    "qhat": 0.078,
+    "threshold_T": 0.922
+  },
+  "gates": {
+    "capture": 58,
+    "capture_total": 99,
+    "abstain": 0.294,
+    "gate": ">=50/99 and <=35%",
+    "pass": true
+  },
+  "main_val": {
+    "decide": 706,
+    "abstain": 0.294,
+    "capture": 58,
+    "write_error_rate": 0.0581,
+    "aurc_maxconf_order": 0.05564,
+    "aurc_oracle": 0.00512
+  },
+  "val_soft": {
+    "decide": 274,
+    "coverage": 0.9067,
+    "abstain": 0.0867,
+    "note": "same-distribution slice; nominal 90% guarantee applies here"
+  },
+  "realtest_35": {
+    "decide": 27,
+    "coverage_decide_and_ok": 0.7714,
+    "abstain": 0.2286
+  },
+  "diag_14": {
+    "n_p_found": 14,
+    "decide": 14
+  },
+  "budget_20pct": {
+    "envelope_capture": "48-49/99 (recompute note in V4.1); 50 unreachable at <=20%",
+    "verdict": "unreachable, report-only per V4.1"
+  },
+  "variants_migrated": {
+    "95%": {
+      "T": 0.9201,
+      "qhat": 0.0799,
+      "main_abstain": 0.131,
+      "main_capture": 41
+    },
+    "85%": {
+      "T": 0.9225,
+      "qhat": 0.0775,
+      "main_abstain": 0.377,
+      "main_capture": 64
+    },
+    "80%": {
+      "T": 0.9229,
+      "qhat": 0.0771,
+      "main_abstain": 0.459,
+      "main_capture": 68
+    }
+  },
+  "audit_table_main_val": {
+    "0.9200": {
+      "threshold": 0.92,
+      "write_rate": 0.871,
+      "write_error_rate": 0.0666,
+      "abstain_rate": 0.129,
+      "n_write": 871,
+      "n_write_err": 58
+    },
+    "0.9220": {
+      "threshold": 0.922,
+      "write_rate": 0.706,
+      "write_error_rate": 0.0581,
+      "abstain_rate": 0.294,
+      "n_write": 706,
+      "n_write_err": 41
+    },
+    "0.9225": {
+      "threshold": 0.9225,
+      "write_rate": 0.623,
+      "write_error_rate": 0.0562,
+      "abstain_rate": 0.377,
+      "n_write": 623,
+      "n_write_err": 35
+    },
+    "0.9000": {
+      "threshold": 0.9,
+      "write_rate": 0.96,
+      "write_error_rate": 0.0844,
+      "abstain_rate": 0.04,
+      "n_write": 960,
+      "n_write_err": 81
+    }
+  },
+  "audit_table_val_soft": {
+    "0.9200": {
+      "threshold": 0.92,
+      "write_rate": 0.96,
+      "write_error_rate": 0.0069,
+      "abstain_rate": 0.04,
+      "n_write": 288,
+      "n_write_err": 2
+    },
+    "0.9220": {
+      "threshold": 0.922,
+      "write_rate": 0.9133,
+      "write_error_rate": 0.0073,
+      "abstain_rate": 0.0867,
+      "n_write": 274,
+      "n_write_err": 2
+    },
+    "0.9225": {
+      "threshold": 0.9225,
+      "write_rate": 0.87,
+      "write_error_rate": 0.0077,
+      "abstain_rate": 0.13,
+      "n_write": 261,
+      "n_write_err": 2
+    },
+    "0.9000": {
+      "threshold": 0.9,
+      "write_rate": 0.98,
+      "write_error_rate": 0.0068,
+      "abstain_rate": 0.02,
+      "n_write": 294,
+      "n_write_err": 2
+    }
+  },
+  "tau_warning": "confidence band is a function of tau: sharpening tau 1.2176->0.7-0.8 lifts main-val write rate 87.1%->98.5%+ and write error rate 6.66%->9.4-9.5%; any tau change must pass the audit table first (V4.1 预核算 §5)",
+  "exchangeability_note": "val_soft(synthetic) fit -> main val(MNLI) = distribution shift; main-val numbers are TRANSFER PERFORMANCE, not a finite-sample guarantee; val_soft coverage 0.907 is the same-distribution check",
+  "abstained_errors": [
+    {
+      "idx": 0,
+      "known": "i'm kind of familiar with the weather out that way in west Texas but not in not in Lewisville",
+      "new": "I do not know the weather conditions in Lewisville.",
+      "p_true": 0.8742963075637817,
+      "gold": "false"
+    },
+    {
+      "idx": 55,
+      "known": "China could never trump the warhead blizzard Washington would send in retaliation against any atomic attack, though the country would be loath to cede to U.S. missile defenses the deterrence afforded by its handfuls of warheads.",
+      "new": "China had many more nuclear warhead than the US.",
+      "p_true": 0.07800131291151047,
+      "gold": "true"
+    },
+    {
+      "idx": 83,
+      "known": "As of last week he charges $50 an hour minimum instead of $25 for the services of his yearling Northern Utah Legal Aid Foundation.",
+      "new": "His charges went down.",
+      "p_true": 0.07856692373752594,
+      "gold": "true"
+    },
+    {
+      "idx": 105,
+      "known": "If the company makes money on the policy, other insurers are expected to follow.",
+      "new": "If the company loses money on the policy then other insurers will copy them.",
+      "p_true": 0.08262350410223007,
+      "gold": "true"
+    },
+    {
+      "idx": 122,
+      "known": "Boca da Corrida Encumeada (moderate; 5 hours): views of Curral das Freiras and the valley of Ribeiro do Poco.",
+      "new": "This chapter is in the advance category.",
+      "p_true": 0.08601967990398407,
+      "gold": "true"
+    },
+    {
+      "idx": 123,
+      "known": "Prior to 1986, the United States had been a net creditor because its holdings of foreign assets exceeded foreign holdings of U.S. assets.",
+      "new": "The US wasn't a net creditor until after 1986.",
+      "p_true": 0.14459851384162903,
+      "gold": "true"
+    },
+    {
+      "idx": 128,
+      "known": "Tuppence rose.",
+      "new": "Tuppence floated into the air.",
+      "p_true": 0.9179587364196777,
+      "gold": "false"
+    },
+    {
+      "idx": 129,
+      "known": "Sir James's presence in Manchester was not accidental.",
+      "new": "Manchester was not the place that Sir James had intended to go.",
+      "p_true": 0.10471044480800629,
+      "gold": "true"
+    },
+    {
+      "idx": 133,
+      "known": "But the most sustained assault on Orientalism 's premises, and on its prestige, came from the left.",
+      "new": "They did not see the attack coming.",
+      "p_true": 0.9212175607681274,
+      "gold": "false"
+    },
+    {
+      "idx": 136,
+      "known": "we wouldn't be expected to cast a ballet on the subject",
+      "new": "We have been asked to vote on the subject.",
+      "p_true": 0.08543144166469574,
+      "gold": "true"
+    },
+    {
+      "idx": 140,
+      "known": "Through a friend who knows the lift boy here.",
+      "new": "Through my friend has not yet met the lift boy here.",
+      "p_true": 0.07973095774650574,
+      "gold": "true"
+    },
+    {
+      "idx": 168,
+      "known": "The Government does not sacrifice anything of value in exchange and the entity that forfeits the property does not receive anything of value.",
+      "new": "The entity will receive appropriate compensation for forfeited property.",
+      "p_true": 0.08064320683479309,
+      "gold": "true"
+    },
+    {
+      "idx": 172,
+      "known": "The Kal tangled both of Adrin's arms, keeping the blades far away.",
+      "new": "Adrin's arms were tangled, keeping his rusty blades away from Kal.",
+      "p_true": 0.9212566018104553,
+      "gold": "false"
+    },
+    {
+      "idx": 188,
+      "known": "of course you could annex Cuba but they wouldn't like that a bit",
+      "new": "Annexing Cuba is a great idea.",
+      "p_true": 0.39643940329551697,
+      "gold": "true"
+    },
+    {
+      "idx": 213,
+      "known": "Simpson through the tunnels of time.",
+      "new": "Simpson through the unpredictable nature of the what will happen.",
+      "p_true": 0.9145158529281616,
+      "gold": "false"
+    },
+    {
+      "idx": 218,
+      "known": "The most important directions are simply up and up leads eventually to the cathedral and fortress commanding the hilltop, and down inevitably leads to one of three gates through the wall to the new town.",
+      "new": "Go downwards to one of the gates, all of which will lead you into the cathedral.",
+      "p_true": 0.09209129214286804,
+      "gold": "true"
+    },
+    {
+      "idx": 224,
+      "known": "Catch up on the Indian avant-garde and the bohemian people of Caletta at the Academy of Fine Arts on the southeast corner of the Maidan.",
+      "new": "The Academy of Fine Arts is a prominent school for all up and coming artists.",
+      "p_true": 0.9016394019126892,
+      "gold": "false"
+    },
+    {
+      "idx": 229,
+      "known": "What changed?",
+      "new": "What was unique?",
+      "p_true": 0.8467852473258972,
+      "gold": "false"
+    },
+    {
+      "idx": 235,
+      "known": "Well, we've just got to get down to it, that's all.",
+      "new": "We should take a break from this.",
+      "p_true": 0.08363692462444305,
+      "gold": "true"
+    },
+    {
+      "idx": 264,
+      "known": "Off El Hurriya Street you'll find the Neo-Classical facade of the Greco-Roman Museum with a fine collection of both Roman, Greek, and Ptolemaic artifacts found around the city and under the waters of the harbor, along with many ancient Egyptian pieces.",
+      "new": "Interestingly enough, every item is a vampire ward and keeps the vampires at bay.",
+      "p_true": 0.9189721941947937,
+      "gold": "false"
+    },
+    {
+      "idx": 275,
+      "known": "The Leland Act  (1) simplify the household definition",
+      "new": "The Leland Act defines the legal definition of what a household is.",
+      "p_true": 0.8177050352096558,
+      "gold": "false"
+    },
+    {
+      "idx": 276,
+      "known": "Missouri was asked to continue its planning efforts and file a supplemental planning report with LSC on or before October 1, 1999.",
+      "new": "Missouri was happy to continue it's planning efforts.",
+      "p_true": 0.9042330384254456,
+      "gold": "false"
+    },
+    {
+      "idx": 313,
+      "known": "Conversely, an increase in government saving adds to the supply of resources available for investment and may put downward pressure on interest rates.",
+      "new": "Interest rates should increase to increase saving.",
+      "p_true": 0.0919274389743805,
+      "gold": "true"
+    },
+    {
+      "idx": 345,
+      "known": "WHOLE LIFE POLICIES - Policies that provide insurance over the insured's entire life and the proceeds (face amount) are paid only upon death of the insured.",
+      "new": "Whole life policies are a type of life insurance that only cover the insured person until retirement from the workforce.",
+      "p_true": 0.08267316222190857,
+      "gold": "true"
+    },
+    {
+      "idx": 396,
+      "known": "It cannot be outlawed.",
+      "new": "It's not something that can be made illegal.",
+      "p_true": 0.883427619934082,
+      "gold": "false"
+    },
+    {
+      "idx": 419,
+      "known": "After the second course I began to feel slightly at ease, although I couldn't help being disturbed by the way they just stared at me.",
+      "new": "I felt at ease around them.",
+      "p_true": 0.3418216109275818,
+      "gold": "true"
+    },
+    {
+      "idx": 433,
+      "known": "in you know just dealing with the customer maybe that's there only reason why they don't it'd seem like they'd just put a little barrel out there and say it pour here and go on  we'll take your money",
+      "new": "I do not deal with customers well.",
+      "p_true": 0.9196250438690186,
+      "gold": "false"
+    },
+    {
+      "idx": 436,
+      "known": "facilitate suits for benefits by using the State and Federal courts and the independent bar on which those courts depend for the proper performance of their duties and responsibilities.",
+      "new": "The State and Federal courts are the same regardless of location.",
+      "p_true": 0.921164870262146,
+      "gold": "false"
+    },
+    {
+      "idx": 439,
+      "known": "Poirot remained lost in thought for a few minutes.",
+      "new": "Poirot didn't think.",
+      "p_true": 0.42905816435813904,
+      "gold": "true"
+    },
+    {
+      "idx": 458,
+      "known": "GAO's Web site (www.gao.gov) contains abstracts and full-text files ofcurrent reports and testimony and an expanding archive of older products.",
+      "new": "The GAO has received many complaints due to lack of a website.",
+      "p_true": 0.10286110639572144,
+      "gold": "true"
+    },
+    {
+      "idx": 474,
+      "known": "Just north of the Shalom Tower is the Yemenite Quarter, its main attractions being the bustling Carmel market and good Oriental restaurants.",
+      "new": "The Shalom Tower is north of the Yemenite Quarter.",
+      "p_true": 0.07869905978441238,
+      "gold": "true"
+    },
+    {
+      "idx": 505,
+      "known": "Along with each step, certain practices proved especially important to the success of their efforts.",
+      "new": "Some practices were useless",
+      "p_true": 0.8726120591163635,
+      "gold": "false"
+    },
+    {
+      "idx": 510,
+      "known": "Behind the cathedral, croseover the Rue de la R??publique to the 15th-century Eglise Saint-Maclou, the richest example of Flam?­boy?­ant Gothic in the country.",
+      "new": "Eglise Saint-Michel is built in a flamboyant Gothic style.",
+      "p_true": 0.9031597971916199,
+      "gold": "false"
+    },
+    {
+      "idx": 512,
+      "known": "Sultan Abdul Hamid II (1876 1909) tried to apply absolute rule to an empire staggering under a crushing foreign debt, with a fragmented population of hostile people, and succeeded only in creating ill will and dissatisfaction amongst the younger generation of educated Turks.",
+      "new": "Although he was disliked by educated young Turks, Sultan Abdul Hamid II was loved by the older generations.",
+      "p_true": 0.9217010736465454,
+      "gold": "false"
+    },
+    {
+      "idx": 543,
+      "known": "This testing of the marketplace may range from written or telephone contacts with knowledgeable federal and non-federal experts regarding similar or duplicate requirements and the results of any market test recently undertaken, to the more formal sources-sought announcements in pertinent publications (e.g.",
+      "new": "This marketplace testing ranges from informal to formal surveys.",
+      "p_true": 0.8432439565658569,
+      "gold": "false"
+    },
+    {
+      "idx": 548,
+      "known": "She's smiling but her eyes are closed.",
+      "new": "Her eyes widened as she smiled.",
+      "p_true": 0.1110062375664711,
+      "gold": "true"
+    },
+    {
+      "idx": 637,
+      "known": "She has believed that the sleeping draught she administered was perfectly harmless, but there is no doubt that for one terrible moment she must have feared that Mrs. Inglethorp's death lay at her door.",
+      "new": "The sleeping draught was not harmless, as it gave her violent diarrhoea.",
+      "p_true": 0.6357171535491943,
+      "gold": "false"
+    },
+    {
+      "idx": 676,
+      "known": "Savonarola burned in Florence",
+      "new": "Florence became Savonarola's new home.",
+      "p_true": 0.09406232088804245,
+      "gold": "true"
+    },
+    {
+      "idx": 694,
+      "known": "He found himself thinking in circles of worry and pulled himself back to his problem.",
+      "new": "He got lost in circles of worry, and could not face his problem anymore.",
+      "p_true": 0.12109372019767761,
+      "gold": "true"
+    },
+    {
+      "idx": 697,
+      "known": "The Kal tangled both of Adrin's arms, keeping the blades far away.",
+      "new": "Adrin's arms were tangled, keeping his blades away from Kal.",
+      "p_true": 0.921701192855835,
+      "gold": "false"
+    },
+    {
+      "idx": 721,
+      "known": "In the depths of the Cold War, many Americans suspected Communists had infiltrated Washington and were about to subvert our democracy.",
+      "new": "Communists assisted America's government during the Cold War.",
+      "p_true": 0.07808483392000198,
+      "gold": "true"
+    },
+    {
+      "idx": 739,
+      "known": "The almost midtown Massabielle quarter (faubourg de Massabielle), is sometimes described as the most picturesque in the city.",
+      "new": "The most picturesque part of the city is in the south.",
+      "p_true": 0.10937764495611191,
+      "gold": "true"
+    },
+    {
+      "idx": 781,
+      "known": "You're the Desert Ghost.",
+      "new": "You're a living desert camel.",
+      "p_true": 0.07889309525489807,
+      "gold": "true"
+    },
+    {
+      "idx": 794,
+      "known": "But when he was persuaded by divers means to help us, he gave up after one week, declaring it beyond his powers.",
+      "new": "He solved the issue within seven days, because he was so smart.",
+      "p_true": 0.08775879442691803,
+      "gold": "true"
+    },
+    {
+      "idx": 805,
+      "known": "A re-created street of colonial Macau is lined with traditional Chinese shops.",
+      "new": "This street, formerly a colonial site, is now home to modern high-rise development.",
+      "p_true": 0.07937251776456833,
+      "gold": "true"
+    },
+    {
+      "idx": 813,
+      "known": "TIG funds support the Technology Evaluation Project, an initiative of the Legal Aid Society of Cincinnati.",
+      "new": "The Technology Evolution project was founded in 1992.",
+      "p_true": 0.9101356267929077,
+      "gold": "false"
+    },
+    {
+      "idx": 826,
+      "known": "Divers can explore the deeps but you can also snorkel here, or take a glass-bottom boat or submarine tour to get a glimpse of this watery world.",
+      "new": "Divers do not like to explore the deeps here.",
+      "p_true": 0.11431637406349182,
+      "gold": "true"
+    },
+    {
+      "idx": 836,
+      "known": "One thing was worrying me dreadfully, but my heart gave a great throb of relief when I saw my ulster lying carelessly over the back of a chair.",
+      "new": "I was dreadfully worried about many things.",
+      "p_true": 0.07881364971399307,
+      "gold": "true"
+    },
+    {
+      "idx": 850,
+      "known": "oh like if they say i i we just type it in like that",
+      "new": "Change it before typing it in.",
+      "p_true": 0.08097172528505325,
+      "gold": "true"
+    },
+    {
+      "idx": 896,
+      "known": "These revelations were embarrassing to Clinton's opponents, wrote the Washington Post . The Sun-Times quoted Rahm Emanuel, Stephanopoulos' successor, on the  From Day One I always thought this was politically motivated and had politics written all over it; after five years, it is nice to have the truth catch up with the president's political opponents.",
+      "new": "Clinton's supporters were pleased with how the hearings went.",
+      "p_true": 0.6038876175880432,
+      "gold": "false"
+    },
+    {
+      "idx": 900,
+      "known": "Were you in company with anyone?",
+      "new": "Were you awake?",
+      "p_true": 0.07935717701911926,
+      "gold": "true"
+    },
+    {
+      "idx": 906,
+      "known": "If you need to use the mail, it would be helpful if you sent your comments both in writing and on diskette (in Word or ASCII format).",
+      "new": "We don't need more than one copy of your comments, either a diskette or writing will do.",
+      "p_true": 0.08209637552499771,
+      "gold": "true"
+    },
+    {
+      "idx": 945,
+      "known": "because i don't want to my mother was also a domineering type of personality because she had to take over the things that my dad fell short in",
+      "new": "My mother made me take over the things that my dad fell short it.",
+      "p_true": 0.07871916890144348,
+      "gold": "true"
+    },
+    {
+      "idx": 956,
+      "known": "yeah those yeah it was all bloodless and the good guys can get hit all day long and they have to shake it off they don't they don't you know get  epileptic fits or anything from getting hit on the head",
+      "new": "That was the goriest most true to life thing I've ever seen and I think that's gonna psychologically affect me for a long time.",
+      "p_true": 0.07896869629621506,
+      "gold": "true"
+    },
+    {
+      "idx": 975,
+      "known": "17 \"Surely you are not thinking of refusing?",
+      "new": "You should pass up the opportunity.",
+      "p_true": 0.07865066826343536,
+      "gold": "true"
+    },
+    {
+      "idx": 984,
+      "known": "The word itself, tapa, is translated as  lid  and derives from the old custom of offering a bite of food along with a drink, the food being served on a saucer sitting on top of the glass like a lid.",
+      "new": "Tapas are only small in order for you to try a lot.",
+      "p_true": 0.9068553447723389,
+      "gold": "false"
+    },
+    {
+      "idx": 992,
+      "known": "is there still that type of music available",
+      "new": "I could care less if the music still existed.",
+      "p_true": 0.08907046914100647,
+      "gold": "true"
+    },
+    {
+      "idx": 996,
+      "known": "Sure enough, there was the chest, a fine old piece, all studded with brass nails, and full to overflowing with every imaginable type of garment.",
+      "new": "The chest wasn't big enough to completely contain all of the garments.",
+      "p_true": 0.9033154249191284,
+      "gold": "false"
+    }
+  ]
+}

@@ -1,0 +1,86 @@
+per-class vector scaling — pre-check (HANDOFF_NLI_V4.1 改动2)
+criterion: any class needing OPPOSITE fixes across sets => FAIL (negative conclusion)
+offline only; runtime has no per-class axis / bias term / tau not clamped here; nothing served
+
+主 val 1000 (MNLI 系, tau=1.2176) | true  class: n= 334 err= 57 acc=0.8293 mean_conf=0.9154 conf-acc=+0.0861 -> soften(τ>1)
+主 val 1000 (MNLI 系, tau=1.2176) | false class: n= 666 err= 42 acc=0.9369 mean_conf=0.9187 conf-acc=-0.0182 -> sharpen(τ<1)
+
+val_soft 300 (合成软冲突) | true  class: n= 100 err=  1 acc=0.9900 mean_conf=0.9204 conf-acc=-0.0696 -> sharpen(τ<1)
+val_soft 300 (合成软冲突) | false class: n= 200 err=  2 acc=0.9900 mean_conf=0.9221 conf-acc=-0.0679 -> sharpen(τ<1)
+
+class x set direction matrix (judgeable only if both sets have errors in the class):
+  true : main +0.0861 vs soft -0.0696 -> OPPOSITE => FAIL
+  false: main -0.0182 vs soft -0.0679 -> same direction
+
+PRE-CHECK: FAIL — negative conclusion. Per-class scaling cannot fix a class that
+needs softening on one set and sharpening on the other (and the bias term (b_t-b_f)
+is a prior shift, which cannot split a within-class cross-set conflict either).
+Root cause is the confidence compression band (~0.92 for nearly everything), see
+V4.1 预核算 §2 — fix belongs to training (soft CE / R-Drop / temperature-in-train), v5.
+
+reliability tables (max_conf bins; classes split by gold):
+  主 val 1000 (MNLI 系, tau=1.2176) | true class
+    bin              n    acc   mean_conf
+    [0.500,0.800)     6 0.500    0.6722
+    [0.800,0.880)     6 0.667    0.8443
+    [0.880,0.900)     7 0.286    0.8909
+    [0.900,0.905)     5 1.000    0.9024
+    [0.905,0.910)     5 0.400    0.9078
+    [0.910,0.915)    13 0.692    0.9129
+    [0.915,0.918)     7 0.429    0.9172
+    [0.918,0.920)    14 0.857    0.9192
+    [0.920,0.921)    14 0.786    0.9205
+    [0.921,0.922)    39 0.769    0.9215
+    [0.922,0.923)    61 0.902    0.9226
+    [0.923,0.924)    69 0.841    0.9235
+    [0.924,0.925)    56 0.929    0.9244
+    [0.925,0.926)    27 0.963    0.9254
+    [0.926,0.927)     4 1.000    0.9265
+    [0.927,1.000)     1 1.000    0.9271
+
+  主 val 1000 (MNLI 系, tau=1.2176) | false class
+    bin              n    acc   mean_conf
+    [0.500,0.800)     5 0.600    0.6112
+    [0.800,0.880)    12 0.583    0.8437
+    [0.880,0.900)     4 0.750    0.8943
+    [0.900,0.905)     8 0.500    0.9031
+    [0.905,0.910)     4 0.750    0.9071
+    [0.910,0.915)     5 0.600    0.9135
+    [0.915,0.918)     9 0.889    0.9169
+    [0.918,0.920)    19 0.895    0.9194
+    [0.920,0.921)    33 1.000    0.9206
+    [0.921,0.922)    79 0.937    0.9215
+    [0.922,0.923)   135 0.956    0.9225
+    [0.923,0.924)   169 0.976    0.9235
+    [0.924,0.925)   133 0.940    0.9244
+    [0.925,0.926)    40 0.975    0.9253
+    [0.926,0.927)    10 1.000    0.9264
+    [0.927,1.000)     1 1.000    0.9279
+
+  val_soft 300 (合成软冲突) | true class
+    bin              n    acc   mean_conf
+    [0.500,0.800)     1 1.000    0.6247
+    [0.905,0.910)     2 1.000    0.9061
+    [0.920,0.921)     1 1.000    0.9206
+    [0.921,0.922)     7 1.000    0.9214
+    [0.922,0.923)    13 1.000    0.9225
+    [0.923,0.924)    32 1.000    0.9234
+    [0.924,0.925)    32 1.000    0.9244
+    [0.925,0.926)    10 0.900    0.9254
+    [0.926,0.927)     2 1.000    0.9262
+
+  val_soft 300 (合成软冲突) | false class
+    bin              n    acc   mean_conf
+    [0.800,0.880)     3 0.667    0.8313
+    [0.880,0.900)     2 1.000    0.8921
+    [0.900,0.905)     1 1.000    0.9037
+    [0.915,0.918)     1 1.000    0.9150
+    [0.918,0.920)     2 1.000    0.9194
+    [0.920,0.921)     2 1.000    0.9204
+    [0.921,0.922)     4 1.000    0.9217
+    [0.922,0.923)    21 1.000    0.9226
+    [0.923,0.924)    56 1.000    0.9235
+    [0.924,0.925)    85 0.988    0.9244
+    [0.925,0.926)    18 1.000    0.9254
+    [0.926,0.927)     5 1.000    0.9262
+

@@ -425,4 +425,48 @@ conformal:val_soft 覆盖 <x>(名义 90%);主 val 捕捉 <n>/99(门槛 ≥50)@�
 
 ---
 
-<!-- 执行完成后在此补「第 4 轮执行结果」节(照 V3 写法) -->
+## 第 4 轮执行结果(2026-09-28 执行,零训练轮,权重/τ/红线全部未动)
+
+```
+第 4 轮验收汇报(v4 权重不动,SHA256 e9e1c4a5…b13758;零训练轮)
+极性预检:per-class 假设不成立——true 类跨集方向相反(主 val +0.0861 需软化 vs val_soft −0.0696 需锐化)⇒ 负结论交付,未进入拟合(logits dump 无必要)
+极性诊断:NLI real 20:std 20/neutral 20/random 19;diag 14:13/13/13(同一条已知歧义例);val_soft 错例 3→5→5,超 ≤1 门槛 ⇒ FAIL
+          multilingual choice(600 decisions,官方 400-case 全量):中性改名翻转 71/600=11.83%(acc 0.7517→0.7067,McNemar b=44/c=17,p=0.0007)、
+          随机串 105/600=17.50%(→0.7100,b=61/c=36,p=0.0144)⇒ FAIL;基线复跑 total 0.7880(卡面 0.7875,差 1 条 GPU 非确定性,口径吻合)
+vector scaling:预检 FAIL → 负结论收尾(改动 2 无拟合数字,这是数据支持的正确答案)
+conformal:主 val 捕捉 58/99(门槛 ≥50 ✓)@ 弃权 29.4%(门槛 ≤35% ✓)⇒ PASS;AURC 0.05564 vs oracle 0.00512;
+          组合规则审计:0.92 红线档 87.1%/6.66% → 0.9220 档 70.6%/5.81% → 0.9225 档 62.3%/5.62%(逐条清单 58 条在 conformal_v4.json)
+模型卡同基准对比节:已加并推送 HF(multilingual commit 7c32121:Jev 0.727 / meraGPT 0.768 同基准行 + 口径注记 + 极性诊断段;
+          NLI commit c1af977:第 4 轮诊断节 + ≥0.92 子集错误率行);τ 未动(1.2176);红线 0.92 未动
+```
+
+**两个头都判 FAIL ⇒ v5 预案 #1(选项名体系增广)从「建议」升级为「必做」**。multilingual 侧的
+量级值得单说:中性名就翻掉 11.8% 的 choice 决策、丢 4.5 个百分点,翻转方向高度模式化
+(`human_review` 被改名后概率流向仍带语义的 `stop`/`success`)——我们的头比 arXiv:2609.26758
+报的 hosted Jev(AUC .8146→.5806)对名字更敏感,卡片已如实记录,这条也要进 v5 训练目标。
+
+### 交付物
+
+- 脚本:`kaggle_eval/option_polarity_check.py`(NLI 侧)、`typed_polarity_kernel.py` +
+  `typed_polarity_kernel_metadata.json`(Kaggle GPU 评测,**数字来源记录 = kernel v2**)、
+  `typed_polarity_check.py`(本机 CPU 版,跑至 300/400 被 Kaggle 结果取代后停掉,留作 CPU 复现路径)、
+  `vector_scaling.py`、`conformal_abstain.py`、`hf_push_cards.py`
+- `data_local/`:`polarity_nli_v4.json`、`polarity_typed_v4.json` + `polarity_typed_v4_kernel.log`
+  (Kaggle 输出)、`vector_scaling_v4.txt`、`conformal_v4.json`(含 58 条被弃错例逐条)、
+  `typed_official/test.parquet`(官方 400-case,sha f7a2487e)
+- HF:两卡已更新(commit 见上),`hf_push_cards.py` 可重复推送
+- Kaggle:kernel `daphnelaurent/laya-typed-polarity-check` v2(输出含 JSON + log;
+  v1 因 PyPI laya 0.3.20 无 `revision` 参数失败,已留痕)
+
+### 已知代价与残留
+
+- **置信压缩带是本轮最重要的确诊**:两个头的极性翻转都发生在边界样本上(NLI 侧 consid 类
+  p≈0.10-0.18 被改名推过 0.5),与预核算 §2 的「恒定输出 ~0.92」互为印证。后处理(τ/per-class/
+  阈值)都已证明救不了,**v5 的主攻方向 = 让置信变可分**(soft CE / R-Drop / 温度入训)。
+- 20% 预算档包络实测 48-49/99(预核算写 49/50,并列值计数歧义,复算注记已写入预核算节);
+  「50 @ ≤20%」不可达结论不变。
+- `nli_data/_README.md` 版本表已修(「上_ITER」+缺 v9 行),但该目录在 .gitignore,修复需随
+  下次 Kaggle 数据集版本(README-only v10)同步,本轮未推。
+- multilingual 基线与卡面差 1 条决策(GPU vs 当时的运行环境),属正常非确定性;变体对比以
+  同一 GPU 基线为锚。
+- pandas 在本机 laya-ft env 被 Windows 应用控制策略挡(DLL),parquet 一律走 pyarrow。

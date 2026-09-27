@@ -56,10 +56,29 @@ Official test split, 400 cases / 2,000 decisions, argmax vs gold label:
 | `laya-multilingual` (zero-shot) | 0.295 | 0.497 | 0.286 | **0.352** |
 | **this checkpoint** | 0.752 | 0.862 | 0.759 | **0.7875** |
 | `laya-typed-decisions` (published, English encoder) | — | — | — | 0.766 |
+| `meraGPT Decider 1` (closed, zero-shot, leaderboard) | — | — | — | 0.768 |
+| TypeSafe `Jev 1.13.0` (closed, measured by the dataset card) | — | — | — | 0.727 |
 
-ECE as shipped (max-prob confidence, 10 bins): **0.159**. Temperatures were fitted on the notebook's
+All five rows are the same benchmark (`all/test`, argmax vs gold), so they are directly comparable.
+Numbers quoted from other cards' own harnesses or from vendor sites (including Jev's own site claims)
+use different rulers and are deliberately omitted — see the round-4 task book discipline
+(`kaggle_eval/HANDOFF_NLI_V4.1.md`, 存档 A/C).
+
+ECE as shipped (max-prob confidence, 10 bins): **0.159** — same split and same binning as the
+official `laya-typed-decisions` 0.213, so those two ECE numbers are comparable; other cards'
+ECE figures come from different harnesses and are not. Temperatures were fitted on the notebook's
 held-out-from-training calibration slice (choice 1.11, score 1.05, noul 1.20); that slice is still
 in-distribution for the benchmark, so treat the calibration number as optimistic.
+
+**Option-name robustness (round-4 diagnostic).** Renaming the `criteria` keys (option names)
+while keeping the rubric texts and order fixed — neutral `A/B/…` or per-question random strings,
+the axis [arXiv:2609.26758](https://arxiv.org/abs/2609.26758) shows typed decision heads latch
+onto — flips **11.8%** (neutral, McNemar p=0.0007) / **17.5%** (random, p=0.014) of the 600
+choice decisions and costs ~4.5pp accuracy (0.752 → 0.707 / 0.710): probability mass migrates
+toward the still-salient semantic names (`stop`, `success`). The head leans on the option-name
+words, not only the rubrics bound to them; name-system augmentation is queued for the next
+training round. The baseline for this check reproduces the numbers above (0.7880 total, GPU).
+Reproduce: `kaggle_eval/typed_polarity_kernel.py` (Kaggle GPU) or `typed_polarity_check.py` (CPU).
 
 Full write-up and early non-English (zh/es/ja) spot-check observations:
 [laya Discussions #482](https://github.com/NandhaKishorM/laya/discussions/482). Short version: choice

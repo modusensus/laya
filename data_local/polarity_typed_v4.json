@@ -1,0 +1,1285 @@
+{
+  "model_rev": "d4385065972ea1f5b0a8495fac40016233a02b8e",
+  "device": "cuda",
+  "baseline": {
+    "choice": {
+      "acc": 0.7517,
+      "n": 600
+    },
+    "noul": {
+      "acc": 0.8633,
+      "n": 600
+    },
+    "score": {
+      "acc": 0.7588,
+      "n": 800
+    },
+    "total": 0.788
+  },
+  "choice_variants": {
+    "neutral": {
+      "flips": [
+        {
+          "case": "agent_trace_observability_000006",
+          "q": "action",
+          "std": "human_review",
+          "var": "stop",
+          "gold": "human_review"
+        },
+        {
+          "case": "agent_trace_observability_000015",
+          "q": "action",
+          "std": "human_review",
+          "var": "stop",
+          "gold": "human_review"
+        },
+        {
+          "case": "agent_trace_observability_000029",
+          "q": "action",
+          "std": "human_review",
+          "var": "observe",
+          "gold": "observe"
+        },
+        {
+          "case": "agent_trace_observability_000031",
+          "q": "action",
+          "std": "human_review",
+          "var": "observe",
+          "gold": "human_review"
+        },
+        {
+          "case": "agent_trace_observability_000033",
+          "q": "action",
+          "std": "human_review",
+          "var": "stop",
+          "gold": "human_review"
+        },
+        {
+          "case": "agent_trace_observability_000034",
+          "q": "action",
+          "std": "human_review",
+          "var": "observe",
+          "gold": "observe"
+        },
+        {
+          "case": "agent_trace_observability_000039",
+          "q": "action",
+          "std": "human_review",
+          "var": "stop",
+          "gold": "human_review"
+        },
+        {
+          "case": "agent_trace_observability_000040",
+          "q": "action",
+          "std": "human_review",
+          "var": "observe",
+          "gold": "human_review"
+        },
+        {
+          "case": "agent_trace_observability_000059",
+          "q": "action",
+          "std": "human_review",
+          "var": "stop",
+          "gold": "human_review"
+        },
+        {
+          "case": "agent_trace_observability_000063",
+          "q": "action",
+          "std": "human_review",
+          "var": "stop",
+          "gold": "human_review"
+        },
+        {
+          "case": "agent_trace_observability_000065",
+          "q": "action",
+          "std": "human_review",
+          "var": "stop",
+          "gold": "human_review"
+        },
+        {
+          "case": "agent_trace_observability_000076",
+          "q": "action",
+          "std": "human_review",
+          "var": "observe",
+          "gold": "human_review"
+        },
+        {
+          "case": "agent_trace_observability_000078",
+          "q": "action",
+          "std": "human_review",
+          "var": "observe",
+          "gold": "observe"
+        },
+        {
+          "case": "agent_trace_observability_000080",
+          "q": "action",
+          "std": "human_review",
+          "var": "observe",
+          "gold": "human_review"
+        },
+        {
+          "case": "agent_trace_observability_000086",
+          "q": "action",
+          "std": "human_review",
+          "var": "stop",
+          "gold": "stop"
+        },
+        {
+          "case": "agent_trace_observability_000098",
+          "q": "action",
+          "std": "human_review",
+          "var": "observe",
+          "gold": "observe"
+        },
+        {
+          "case": "customer_service_000000",
+          "q": "action",
+          "std": "answer_directly",
+          "var": "escalate_to_human",
+          "gold": "answer_directly"
+        },
+        {
+          "case": "customer_service_000001",
+          "q": "action",
+          "std": "answer_directly",
+          "var": "escalate_to_human",
+          "gold": "execute_refund"
+        },
+        {
+          "case": "customer_service_000002",
+          "q": "action",
+          "std": "answer_directly",
+          "var": "escalate_to_human",
+          "gold": "request_information"
+        },
+        {
+          "case": "customer_service_000004",
+          "q": "action",
+          "std": "answer_directly",
+          "var": "escalate_to_human",
+          "gold": "answer_directly"
+        },
+        {
+          "case": "customer_service_000006",
+          "q": "action",
+          "std": "escalate_to_human",
+          "var": "request_information",
+          "gold": "escalate_to_human"
+        },
+        {
+          "case": "customer_service_000009",
+          "q": "category",
+          "std": "billing",
+          "var": "account",
+          "gold": "billing"
+        },
+        {
+          "case": "customer_service_000010",
+          "q": "action",
+          "std": "escalate_to_human",
+          "var": "request_information",
+          "gold": "escalate_to_human"
+        },
+        {
+          "case": "customer_service_000012",
+          "q": "action",
+          "std": "escalate_to_human",
+          "var": "request_information",
+          "gold": "escalate_to_human"
+        },
+        {
+          "case": "customer_service_000015",
+          "q": "action",
+          "std": "request_information",
+          "var": "escalate_to_human",
+          "gold": "escalate_to_human"
+        },
+        {
+          "case": "customer_service_000021",
+          "q": "action",
+          "std": "request_information",
+          "var": "escalate_to_human",
+          "gold": "request_information"
+        },
+        {
+          "case": "customer_service_000022",
+          "q": "action",
+          "std": "escalate_to_human",
+          "var": "request_information",
+          "gold": "request_information"
+        },
+        {
+          "case": "customer_service_000025",
+          "q": "action",
+          "std": "escalate_to_human",
+          "var": "request_information",
+          "gold": "escalate_to_human"
+        },
+        {
+          "case": "customer_service_000030",
+          "q": "action",
+          "std": "request_information",
+          "var": "escalate_to_human",
+          "gold": "request_information"
+        },
+        {
+          "case": "customer_service_000031",
+          "q": "action",
+          "std": "escalate_to_human",
+          "var": "request_information",
+          "gold": "request_information"
+        },
+        {
+          "case": "customer_service_000032",
+          "q": "action",
+          "std": "answer_directly",
+          "var": "escalate_to_human",
+          "gold": "execute_refund"
+        },
+        {
+          "case": "customer_service_000037",
+          "q": "action",
+          "std": "request_information",
+          "var": "escalate_to_human",
+          "gold": "escalate_to_human"
+        },
+        {
+          "case": "customer_service_000038",
+          "q": "action",
+          "std": "answer_directly",
+          "var": "escalate_to_human",
+          "gold": "request_information"
+        },
+        {
+          "case": "customer_service_000039",
+          "q": "action",
+          "std": "request_information",
+          "var": "escalate_to_human",
+          "gold": "request_information"
+        },
+        {
+          "case": "customer_service_000046",
+          "q": "action",
+          "std": "answer_directly",
+          "var": "escalate_to_human",
+          "gold": "escalate_to_human"
+        },
+        {
+          "case": "customer_service_000049",
+          "q": "action",
+          "std": "escalate_to_human",
+          "var": "request_information",
+          "gold": "request_information"
+        },
+        {
+          "case": "customer_service_000057",
+          "q": "action",
+          "std": "answer_directly",
+          "var": "escalate_to_human",
+          "gold": "answer_directly"
+        },
+        {
+          "case": "customer_service_000067",
+          "q": "action",
+          "std": "request_information",
+          "var": "escalate_to_human",
+          "gold": "request_information"
+        },
+        {
+          "case": "customer_service_000071",
+          "q": "action",
+          "std": "request_information",
+          "var": "escalate_to_human",
+          "gold": "request_information"
+        },
+        {
+          "case": "customer_service_000077",
+          "q": "category",
+          "std": "account",
+          "var": "refund",
+          "gold": "account"
+        },
+        {
+          "case": "customer_service_000081",
+          "q": "category",
+          "std": "technical",
+          "var": "account",
+          "gold": "technical"
+        },
+        {
+          "case": "customer_service_000089",
+          "q": "action",
+          "std": "answer_directly",
+          "var": "escalate_to_human",
+          "gold": "answer_directly"
+        },
+        {
+          "case": "customer_service_000095",
+          "q": "action",
+          "std": "request_information",
+          "var": "escalate_to_human",
+          "gold": "request_information"
+        },
+        {
+          "case": "invoice_processing_000006",
+          "q": "disposition",
+          "std": "manual_review",
+          "var": "hold",
+          "gold": "manual_review"
+        },
+        {
+          "case": "invoice_processing_000018",
+          "q": "disposition",
+          "std": "hold",
+          "var": "manual_review",
+          "gold": "manual_review"
+        },
+        {
+          "case": "invoice_processing_000025",
+          "q": "disposition",
+          "std": "manual_review",
+          "var": "hold",
+          "gold": "manual_review"
+        },
+        {
+          "case": "invoice_processing_000030",
+          "q": "disposition",
+          "std": "approve",
+          "var": "reject",
+          "gold": "reject"
+        },
+        {
+          "case": "invoice_processing_000042",
+          "q": "disposition",
+          "std": "approve",
+          "var": "reject",
+          "gold": "approve"
+        },
+        {
+          "case": "invoice_processing_000049",
+          "q": "disposition",
+          "std": "hold",
+          "var": "approve",
+          "gold": "approve"
+        },
+        {
+          "case": "invoice_processing_000050",
+          "q": "disposition",
+          "std": "hold",
+          "var": "approve",
+          "gold": "manual_review"
+        },
+        {
+          "case": "invoice_processing_000056",
+          "q": "disposition",
+          "std": "hold",
+          "var": "approve",
+          "gold": "manual_review"
+        },
+        {
+          "case": "invoice_processing_000061",
+          "q": "disposition",
+          "std": "manual_review",
+          "var": "hold",
+          "gold": "manual_review"
+        },
+        {
+          "case": "invoice_processing_000068",
+          "q": "disposition",
+          "std": "manual_review",
+          "var": "hold",
+          "gold": "manual_review"
+        },
+        {
+          "case": "invoice_processing_000071",
+          "q": "disposition",
+          "std": "hold",
+          "var": "approve",
+          "gold": "hold"
+        },
+        {
+          "case": "invoice_processing_000078",
+          "q": "disposition",
+          "std": "manual_review",
+          "var": "hold",
+          "gold": "manual_review"
+        },
+        {
+          "case": "invoice_processing_000083",
+          "q": "disposition",
+          "std": "manual_review",
+          "var": "hold",
+          "gold": "manual_review"
+        },
+        {
+          "case": "invoice_processing_000084",
+          "q": "disposition",
+          "std": "manual_review",
+          "var": "hold",
+          "gold": "manual_review"
+        },
+        {
+          "case": "invoice_processing_000092",
+          "q": "disposition",
+          "std": "hold",
+          "var": "reject",
+          "gold": "hold"
+        },
+        {
+          "case": "invoice_processing_000096",
+          "q": "disposition",
+          "std": "hold",
+          "var": "approve",
+          "gold": "approve"
+        },
+        {
+          "case": "security_incidents_000004",
+          "q": "disposition",
+          "std": "investigate",
+          "var": "monitor",
+          "gold": "close_benign"
+        },
+        {
+          "case": "security_incidents_000010",
+          "q": "disposition",
+          "std": "investigate",
+          "var": "monitor",
+          "gold": "investigate"
+        },
+        {
+          "case": "security_incidents_000013",
+          "q": "disposition",
+          "std": "investigate",
+          "var": "close_benign",
+          "gold": "monitor"
+        },
+        {
+          "case": "security_incidents_000032",
+          "q": "disposition",
+          "std": "close_benign",
+          "var": "monitor",
+          "gold": "close_benign"
+        },
+        {
+          "case": "security_incidents_000039",
+          "q": "disposition",
+          "std": "investigate",
+          "var": "contain",
+          "gold": "investigate"
+        },
+        {
+          "case": "security_incidents_000050",
+          "q": "disposition",
+          "std": "investigate",
+          "var": "contain",
+          "gold": "contain"
+        },
+        {
+          "case": "security_incidents_000056",
+          "q": "disposition",
+          "std": "investigate",
+          "var": "monitor",
+          "gold": "investigate"
+        },
+        {
+          "case": "security_incidents_000068",
+          "q": "disposition",
+          "std": "monitor",
+          "var": "close_benign",
+          "gold": "investigate"
+        },
+        {
+          "case": "security_incidents_000071",
+          "q": "disposition",
+          "std": "investigate",
+          "var": "contain",
+          "gold": "investigate"
+        },
+        {
+          "case": "security_incidents_000087",
+          "q": "disposition",
+          "std": "investigate",
+          "var": "contain",
+          "gold": "contain"
+        },
+        {
+          "case": "security_incidents_000094",
+          "q": "disposition",
+          "std": "contain",
+          "var": "investigate",
+          "gold": "contain"
+        },
+        {
+          "case": "security_incidents_000095",
+          "q": "disposition",
+          "std": "investigate",
+          "var": "close_benign",
+          "gold": "monitor"
+        }
+      ],
+      "flip_count": 71,
+      "flip_rate": 0.1183,
+      "acc_std": 0.7517,
+      "acc_var": 0.7067,
+      "mcnemar": {
+        "b": 44,
+        "c": 17,
+        "p": 0.0007
+      },
+      "verdict": "FAIL"
+    },
+    "random": {
+      "flips": [
+        {
+          "case": "agent_trace_observability_000015",
+          "q": "action",
+          "std": "human_review",
+          "var": "stop",
+          "gold": "human_review"
+        },
+        {
+          "case": "agent_trace_observability_000017",
+          "q": "action",
+          "std": "human_review",
+          "var": "observe",
+          "gold": "human_review"
+        },
+        {
+          "case": "agent_trace_observability_000017",
+          "q": "outcome",
+          "std": "partial",
+          "var": "success",
+          "gold": "success"
+        },
+        {
+          "case": "agent_trace_observability_000020",
+          "q": "action",
+          "std": "observe",
+          "var": "human_review",
+          "gold": "observe"
+        },
+        {
+          "case": "agent_trace_observability_000024",
+          "q": "outcome",
+          "std": "partial",
+          "var": "success",
+          "gold": "success"
+        },
+        {
+          "case": "agent_trace_observability_000029",
+          "q": "action",
+          "std": "human_review",
+          "var": "observe",
+          "gold": "observe"
+        },
+        {
+          "case": "agent_trace_observability_000031",
+          "q": "action",
+          "std": "human_review",
+          "var": "observe",
+          "gold": "human_review"
+        },
+        {
+          "case": "agent_trace_observability_000033",
+          "q": "outcome",
+          "std": "harmful",
+          "var": "failure",
+          "gold": "harmful"
+        },
+        {
+          "case": "agent_trace_observability_000034",
+          "q": "action",
+          "std": "human_review",
+          "var": "observe",
+          "gold": "observe"
+        },
+        {
+          "case": "agent_trace_observability_000034",
+          "q": "outcome",
+          "std": "success",
+          "var": "partial",
+          "gold": "success"
+        },
+        {
+          "case": "agent_trace_observability_000040",
+          "q": "action",
+          "std": "human_review",
+          "var": "observe",
+          "gold": "human_review"
+        },
+        {
+          "case": "agent_trace_observability_000041",
+          "q": "action",
+          "std": "observe",
+          "var": "continue",
+          "gold": "continue"
+        },
+        {
+          "case": "agent_trace_observability_000041",
+          "q": "outcome",
+          "std": "partial",
+          "var": "success",
+          "gold": "success"
+        },
+        {
+          "case": "agent_trace_observability_000047",
+          "q": "outcome",
+          "std": "partial",
+          "var": "success",
+          "gold": "success"
+        },
+        {
+          "case": "agent_trace_observability_000061",
+          "q": "action",
+          "std": "human_review",
+          "var": "observe",
+          "gold": "human_review"
+        },
+        {
+          "case": "agent_trace_observability_000061",
+          "q": "outcome",
+          "std": "partial",
+          "var": "success",
+          "gold": "success"
+        },
+        {
+          "case": "agent_trace_observability_000071",
+          "q": "outcome",
+          "std": "partial",
+          "var": "success",
+          "gold": "success"
+        },
+        {
+          "case": "agent_trace_observability_000076",
+          "q": "action",
+          "std": "human_review",
+          "var": "observe",
+          "gold": "human_review"
+        },
+        {
+          "case": "agent_trace_observability_000077",
+          "q": "outcome",
+          "std": "harmful",
+          "var": "failure",
+          "gold": "harmful"
+        },
+        {
+          "case": "agent_trace_observability_000078",
+          "q": "outcome",
+          "std": "partial",
+          "var": "success",
+          "gold": "success"
+        },
+        {
+          "case": "agent_trace_observability_000080",
+          "q": "action",
+          "std": "human_review",
+          "var": "observe",
+          "gold": "human_review"
+        },
+        {
+          "case": "agent_trace_observability_000083",
+          "q": "outcome",
+          "std": "partial",
+          "var": "success",
+          "gold": "success"
+        },
+        {
+          "case": "agent_trace_observability_000098",
+          "q": "action",
+          "std": "human_review",
+          "var": "observe",
+          "gold": "observe"
+        },
+        {
+          "case": "customer_service_000000",
+          "q": "action",
+          "std": "answer_directly",
+          "var": "escalate_to_human",
+          "gold": "answer_directly"
+        },
+        {
+          "case": "customer_service_000001",
+          "q": "action",
+          "std": "answer_directly",
+          "var": "escalate_to_human",
+          "gold": "execute_refund"
+        },
+        {
+          "case": "customer_service_000002",
+          "q": "action",
+          "std": "answer_directly",
+          "var": "request_information",
+          "gold": "request_information"
+        },
+        {
+          "case": "customer_service_000004",
+          "q": "action",
+          "std": "answer_directly",
+          "var": "escalate_to_human",
+          "gold": "answer_directly"
+        },
+        {
+          "case": "customer_service_000006",
+          "q": "action",
+          "std": "escalate_to_human",
+          "var": "request_information",
+          "gold": "escalate_to_human"
+        },
+        {
+          "case": "customer_service_000008",
+          "q": "action",
+          "std": "escalate_to_human",
+          "var": "request_information",
+          "gold": "request_information"
+        },
+        {
+          "case": "customer_service_000020",
+          "q": "category",
+          "std": "technical",
+          "var": "refund",
+          "gold": "technical"
+        },
+        {
+          "case": "customer_service_000022",
+          "q": "action",
+          "std": "escalate_to_human",
+          "var": "request_information",
+          "gold": "request_information"
+        },
+        {
+          "case": "customer_service_000030",
+          "q": "action",
+          "std": "request_information",
+          "var": "escalate_to_human",
+          "gold": "request_information"
+        },
+        {
+          "case": "customer_service_000031",
+          "q": "action",
+          "std": "escalate_to_human",
+          "var": "request_information",
+          "gold": "request_information"
+        },
+        {
+          "case": "customer_service_000032",
+          "q": "action",
+          "std": "answer_directly",
+          "var": "escalate_to_human",
+          "gold": "execute_refund"
+        },
+        {
+          "case": "customer_service_000037",
+          "q": "action",
+          "std": "request_information",
+          "var": "escalate_to_human",
+          "gold": "escalate_to_human"
+        },
+        {
+          "case": "customer_service_000038",
+          "q": "action",
+          "std": "answer_directly",
+          "var": "escalate_to_human",
+          "gold": "request_information"
+        },
+        {
+          "case": "customer_service_000044",
+          "q": "category",
+          "std": "technical",
+          "var": "billing",
+          "gold": "technical"
+        },
+        {
+          "case": "customer_service_000046",
+          "q": "action",
+          "std": "answer_directly",
+          "var": "escalate_to_human",
+          "gold": "escalate_to_human"
+        },
+        {
+          "case": "customer_service_000047",
+          "q": "action",
+          "std": "escalate_to_human",
+          "var": "request_information",
+          "gold": "request_information"
+        },
+        {
+          "case": "customer_service_000049",
+          "q": "action",
+          "std": "escalate_to_human",
+          "var": "request_information",
+          "gold": "request_information"
+        },
+        {
+          "case": "customer_service_000052",
+          "q": "category",
+          "std": "account",
+          "var": "billing",
+          "gold": "billing"
+        },
+        {
+          "case": "customer_service_000057",
+          "q": "action",
+          "std": "answer_directly",
+          "var": "escalate_to_human",
+          "gold": "answer_directly"
+        },
+        {
+          "case": "customer_service_000067",
+          "q": "action",
+          "std": "request_information",
+          "var": "escalate_to_human",
+          "gold": "request_information"
+        },
+        {
+          "case": "customer_service_000069",
+          "q": "action",
+          "std": "escalate_to_human",
+          "var": "request_information",
+          "gold": "escalate_to_human"
+        },
+        {
+          "case": "customer_service_000071",
+          "q": "action",
+          "std": "request_information",
+          "var": "escalate_to_human",
+          "gold": "request_information"
+        },
+        {
+          "case": "customer_service_000078",
+          "q": "action",
+          "std": "escalate_to_human",
+          "var": "request_information",
+          "gold": "escalate_to_human"
+        },
+        {
+          "case": "customer_service_000081",
+          "q": "category",
+          "std": "technical",
+          "var": "account",
+          "gold": "technical"
+        },
+        {
+          "case": "customer_service_000082",
+          "q": "action",
+          "std": "escalate_to_human",
+          "var": "request_information",
+          "gold": "escalate_to_human"
+        },
+        {
+          "case": "customer_service_000087",
+          "q": "action",
+          "std": "escalate_to_human",
+          "var": "request_information",
+          "gold": "escalate_to_human"
+        },
+        {
+          "case": "customer_service_000089",
+          "q": "action",
+          "std": "answer_directly",
+          "var": "escalate_to_human",
+          "gold": "answer_directly"
+        },
+        {
+          "case": "customer_service_000095",
+          "q": "action",
+          "std": "request_information",
+          "var": "escalate_to_human",
+          "gold": "request_information"
+        },
+        {
+          "case": "customer_service_000096",
+          "q": "category",
+          "std": "refund",
+          "var": "billing",
+          "gold": "refund"
+        },
+        {
+          "case": "customer_service_000098",
+          "q": "action",
+          "std": "escalate_to_human",
+          "var": "execute_refund",
+          "gold": "execute_refund"
+        },
+        {
+          "case": "invoice_processing_000001",
+          "q": "disposition",
+          "std": "manual_review",
+          "var": "hold",
+          "gold": "manual_review"
+        },
+        {
+          "case": "invoice_processing_000003",
+          "q": "disposition",
+          "std": "manual_review",
+          "var": "hold",
+          "gold": "hold"
+        },
+        {
+          "case": "invoice_processing_000006",
+          "q": "disposition",
+          "std": "manual_review",
+          "var": "hold",
+          "gold": "manual_review"
+        },
+        {
+          "case": "invoice_processing_000012",
+          "q": "disposition",
+          "std": "approve",
+          "var": "reject",
+          "gold": "reject"
+        },
+        {
+          "case": "invoice_processing_000019",
+          "q": "disposition",
+          "std": "manual_review",
+          "var": "hold",
+          "gold": "manual_review"
+        },
+        {
+          "case": "invoice_processing_000022",
+          "q": "disposition",
+          "std": "approve",
+          "var": "hold",
+          "gold": "approve"
+        },
+        {
+          "case": "invoice_processing_000023",
+          "q": "disposition",
+          "std": "approve",
+          "var": "reject",
+          "gold": "approve"
+        },
+        {
+          "case": "invoice_processing_000025",
+          "q": "disposition",
+          "std": "manual_review",
+          "var": "hold",
+          "gold": "manual_review"
+        },
+        {
+          "case": "invoice_processing_000027",
+          "q": "disposition",
+          "std": "hold",
+          "var": "reject",
+          "gold": "approve"
+        },
+        {
+          "case": "invoice_processing_000029",
+          "q": "disposition",
+          "std": "manual_review",
+          "var": "hold",
+          "gold": "manual_review"
+        },
+        {
+          "case": "invoice_processing_000030",
+          "q": "disposition",
+          "std": "approve",
+          "var": "reject",
+          "gold": "reject"
+        },
+        {
+          "case": "invoice_processing_000035",
+          "q": "disposition",
+          "std": "manual_review",
+          "var": "hold",
+          "gold": "manual_review"
+        },
+        {
+          "case": "invoice_processing_000040",
+          "q": "disposition",
+          "std": "approve",
+          "var": "reject",
+          "gold": "reject"
+        },
+        {
+          "case": "invoice_processing_000041",
+          "q": "disposition",
+          "std": "approve",
+          "var": "reject",
+          "gold": "reject"
+        },
+        {
+          "case": "invoice_processing_000042",
+          "q": "disposition",
+          "std": "approve",
+          "var": "reject",
+          "gold": "approve"
+        },
+        {
+          "case": "invoice_processing_000043",
+          "q": "disposition",
+          "std": "approve",
+          "var": "reject",
+          "gold": "reject"
+        },
+        {
+          "case": "invoice_processing_000046",
+          "q": "disposition",
+          "std": "hold",
+          "var": "manual_review",
+          "gold": "hold"
+        },
+        {
+          "case": "invoice_processing_000048",
+          "q": "disposition",
+          "std": "approve",
+          "var": "hold",
+          "gold": "manual_review"
+        },
+        {
+          "case": "invoice_processing_000053",
+          "q": "disposition",
+          "std": "approve",
+          "var": "reject",
+          "gold": "approve"
+        },
+        {
+          "case": "invoice_processing_000054",
+          "q": "disposition",
+          "std": "manual_review",
+          "var": "hold",
+          "gold": "manual_review"
+        },
+        {
+          "case": "invoice_processing_000058",
+          "q": "disposition",
+          "std": "manual_review",
+          "var": "hold",
+          "gold": "manual_review"
+        },
+        {
+          "case": "invoice_processing_000061",
+          "q": "disposition",
+          "std": "manual_review",
+          "var": "hold",
+          "gold": "manual_review"
+        },
+        {
+          "case": "invoice_processing_000062",
+          "q": "disposition",
+          "std": "approve",
+          "var": "reject",
+          "gold": "approve"
+        },
+        {
+          "case": "invoice_processing_000065",
+          "q": "disposition",
+          "std": "approve",
+          "var": "hold",
+          "gold": "approve"
+        },
+        {
+          "case": "invoice_processing_000066",
+          "q": "disposition",
+          "std": "approve",
+          "var": "hold",
+          "gold": "approve"
+        },
+        {
+          "case": "invoice_processing_000068",
+          "q": "disposition",
+          "std": "manual_review",
+          "var": "hold",
+          "gold": "manual_review"
+        },
+        {
+          "case": "invoice_processing_000070",
+          "q": "disposition",
+          "std": "manual_review",
+          "var": "hold",
+          "gold": "manual_review"
+        },
+        {
+          "case": "invoice_processing_000073",
+          "q": "disposition",
+          "std": "manual_review",
+          "var": "hold",
+          "gold": "manual_review"
+        },
+        {
+          "case": "invoice_processing_000076",
+          "q": "disposition",
+          "std": "manual_review",
+          "var": "hold",
+          "gold": "manual_review"
+        },
+        {
+          "case": "invoice_processing_000078",
+          "q": "disposition",
+          "std": "manual_review",
+          "var": "hold",
+          "gold": "manual_review"
+        },
+        {
+          "case": "invoice_processing_000083",
+          "q": "disposition",
+          "std": "manual_review",
+          "var": "hold",
+          "gold": "manual_review"
+        },
+        {
+          "case": "invoice_processing_000084",
+          "q": "disposition",
+          "std": "manual_review",
+          "var": "hold",
+          "gold": "manual_review"
+        },
+        {
+          "case": "security_incidents_000004",
+          "q": "disposition",
+          "std": "investigate",
+          "var": "monitor",
+          "gold": "close_benign"
+        },
+        {
+          "case": "security_incidents_000010",
+          "q": "disposition",
+          "std": "investigate",
+          "var": "monitor",
+          "gold": "investigate"
+        },
+        {
+          "case": "security_incidents_000011",
+          "q": "disposition",
+          "std": "investigate",
+          "var": "monitor",
+          "gold": "investigate"
+        },
+        {
+          "case": "security_incidents_000013",
+          "q": "disposition",
+          "std": "investigate",
+          "var": "monitor",
+          "gold": "monitor"
+        },
+        {
+          "case": "security_incidents_000031",
+          "q": "disposition",
+          "std": "investigate",
+          "var": "contain",
+          "gold": "contain"
+        },
+        {
+          "case": "security_incidents_000032",
+          "q": "disposition",
+          "std": "close_benign",
+          "var": "monitor",
+          "gold": "close_benign"
+        },
+        {
+          "case": "security_incidents_000050",
+          "q": "disposition",
+          "std": "investigate",
+          "var": "contain",
+          "gold": "contain"
+        },
+        {
+          "case": "security_incidents_000056",
+          "q": "disposition",
+          "std": "investigate",
+          "var": "monitor",
+          "gold": "investigate"
+        },
+        {
+          "case": "security_incidents_000057",
+          "q": "disposition",
+          "std": "investigate",
+          "var": "monitor",
+          "gold": "monitor"
+        },
+        {
+          "case": "security_incidents_000061",
+          "q": "disposition",
+          "std": "investigate",
+          "var": "contain",
+          "gold": "contain"
+        },
+        {
+          "case": "security_incidents_000071",
+          "q": "disposition",
+          "std": "investigate",
+          "var": "contain",
+          "gold": "investigate"
+        },
+        {
+          "case": "security_incidents_000072",
+          "q": "disposition",
+          "std": "close_benign",
+          "var": "monitor",
+          "gold": "investigate"
+        },
+        {
+          "case": "security_incidents_000073",
+          "q": "disposition",
+          "std": "close_benign",
+          "var": "monitor",
+          "gold": "investigate"
+        },
+        {
+          "case": "security_incidents_000076",
+          "q": "disposition",
+          "std": "investigate",
+          "var": "contain",
+          "gold": "contain"
+        },
+        {
+          "case": "security_incidents_000077",
+          "q": "disposition",
+          "std": "investigate",
+          "var": "monitor",
+          "gold": "monitor"
+        },
+        {
+          "case": "security_incidents_000081",
+          "q": "disposition",
+          "std": "investigate",
+          "var": "monitor",
+          "gold": "investigate"
+        },
+        {
+          "case": "security_incidents_000087",
+          "q": "disposition",
+          "std": "investigate",
+          "var": "contain",
+          "gold": "contain"
+        },
+        {
+          "case": "security_incidents_000089",
+          "q": "disposition",
+          "std": "investigate",
+          "var": "contain",
+          "gold": "investigate"
+        },
+        {
+          "case": "security_incidents_000091",
+          "q": "disposition",
+          "std": "investigate",
+          "var": "contain",
+          "gold": "investigate"
+        },
+        {
+          "case": "security_incidents_000093",
+          "q": "disposition",
+          "std": "investigate",
+          "var": "monitor",
+          "gold": "investigate"
+        }
+      ],
+      "flip_count": 105,
+      "flip_rate": 0.175,
+      "acc_std": 0.7517,
+      "acc_var": 0.71,
+      "mcnemar": {
+        "b": 61,
+        "c": 36,
+        "p": 0.0144
+      },
+      "verdict": "FAIL"
+    }
+  },
+  "gates": {
+    "flips_le_2pct_and_mcnemar_p_gt_0.05": false,
+    "verdict": "FAIL"
+  }
+}

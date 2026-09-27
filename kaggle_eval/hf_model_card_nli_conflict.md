@@ -121,6 +121,30 @@ print(p_conflict)   # ~0.92 -> conflict: the intent violates a stored hard const
 - Assets on Hugging Face are pinned by name, not by commit; the SHA256 above is the identity of
   the delivered weights.
 
+## Round-4 diagnostics (option-name polarity & abstention layer)
+
+- **Option-name axis (new).** The label-surface swap above exchanges the two label *values*;
+  renaming the label *system* itself (neutral `A/B`, or per-case random strings — the axis
+  [arXiv:2609.26758](https://arxiv.org/abs/2609.26758) shows typed decision heads latch onto)
+  does move answers: on the 300-pair soft-conflict set accuracy drops 0.990 → 0.983 (net +2
+  errors, above the ±1 gate), random renames shift `p_true` by ~0.05 on average, and the frozen
+  real-20 loses 1 case to random renames (19/20, within gate). The head partly reads option-name
+  polarity; name-system augmentation is on the v5 plan.
+- **Confidence is a compression band.** On main val, `max_conf` lands between 0.918 and 0.928
+  for essentially every pair (q10 0.9185, max 0.9279) — the tidy 0.901 acc / 0.918 mean-conf
+  pairing is largely a constant-output artifact, so confidence has almost no ranking power.
+  The `max_conf ≥ 0.92` subset is 87.1% of main val with a 6.66% error rate.
+- **Conformal abstention layer (optional; red line unchanged).** A 90%-nominal split-conformal
+  rule fitted on the soft-conflict set and transferred to main val captures **58 of 99 errors**
+  at a **29.4% abstention rate** (write-error rate 6.66% → 5.81%). The plugin auto-write
+  threshold stays ≤ 0.92 and the layer is additive: write = at red line AND not abstained.
+  These are transfer numbers across a distribution shift (synthetic fit → MNLI-style eval),
+  not finite-sample guarantees. Reproduce: `kaggle_eval/conformal_abstain.py`,
+  precomputed gates in `kaggle_eval/HANDOFF_NLI_V4.1.md`.
+- **No external same-benchmark comparison exists** for this task — the frozen memory-conflict
+  sets are ours alone. The same-ruler comparison discipline is applied on the sibling
+  typed-decisions card, where a shared public benchmark does exist.
+
 ## License
 
 Apache-2.0, following upstream. Base model © [Convai Innovations](https://huggingface.co/convaiinnovations).

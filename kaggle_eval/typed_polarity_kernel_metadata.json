@@ -1,0 +1,14 @@
+{
+ "id": "daphnelaurent/laya-typed-polarity-check",
+ "title": "Laya typed polarity check",
+ "code_file": "typed_polarity_kernel.py",
+ "language": "python",
+ "kernel_type": "script",
+ "is_private": "true",
+ "enable_gpu": "true",
+ "enable_internet": "true",
+ "dataset_sources": [],
+ "competition_sources": [],
+ "kernel_sources": [],
+ "model_sources": []
+}

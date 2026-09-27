@@ -1,0 +1,37 @@
+[{"stream_name":"stdout","time":5.071094215,"data":"     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 58.6/58.6 kB 1.5 MB/s eta 0:00:00\n"}
+,{"stream_name":"stdout","time":5.382339498,"data":"   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 118.5/118.5 kB 2.9 MB/s eta 0:00:00\n"}
+,{"stream_name":"stderr","time":15.087023959,"data":"Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.\n"}
+,{"stream_name":"stdout","time":17.262340134,"data":"device: cuda\n"}
+,{"stream_name":"stderr","time":40.034323997,"data":"\rFetching 5 files:   0%|          | 0/5 [00:00\u003c?, ?it/s]\rFetching 5 files:  20%|██        | 1/5 [00:00\u003c00:00,  7.20it/s]\rFetching 5 files:  40%|████      | 2/5 [00:06\u003c00:11,  3.71s/it]\rFetching 5 files: 100%|██████████| 5/5 [00:06\u003c00:00,  1.27s/it]\n"}
+,{"stream_name":"stdout","time":61.763560866,"data":"baseline 50/400\n"}
+,{"stream_name":"stdout","time":65.638765726,"data":"baseline 100/400\n"}
+,{"stream_name":"stdout","time":72.796684655,"data":"baseline 150/400\n"}
+,{"stream_name":"stdout","time":80.444147731,"data":"baseline 200/400\n"}
+,{"stream_name":"stdout","time":87.83121787,"data":"baseline 250/400\n"}
+,{"stream_name":"stdout","time":95.434736665,"data":"baseline 300/400\n"}
+,{"stream_name":"stdout","time":102.333450934,"data":"baseline 350/400\n"}
+,{"stream_name":"stdout","time":109.319982381,"data":"baseline 400/400\n"}
+,{"stream_name":"stdout","time":109.320030433,"data":"BASELINE: {'choice': '451/600=0.7517', 'noul': '518/600=0.8633', 'score': '607/800=0.7588'} total 1576/2000=0.7880\n"}
+,{"stream_name":"stdout","time":113.186611882,"data":"neutral 100/600\n"}
+,{"stream_name":"stdout","time":117.017463996,"data":"neutral 200/600\n"}
+,{"stream_name":"stdout","time":121.373685266,"data":"neutral 300/600\n"}
+,{"stream_name":"stdout","time":125.811157921,"data":"neutral 400/600\n"}
+,{"stream_name":"stdout","time":130.006200644,"data":"neutral 500/600\n"}
+,{"stream_name":"stdout","time":134.075883201,"data":"neutral 600/600\n"}
+,{"stream_name":"stdout","time":134.075937123,"data":"neutral: flips 71/600 (11.83%), acc 0.7517-\u003e0.7067, b=44 c=17 p=0.0007\n"}
+,{"stream_name":"stdout","time":137.931491407,"data":"random 100/600\n"}
+,{"stream_name":"stdout","time":141.782314171,"data":"random 200/600\n"}
+,{"stream_name":"stdout","time":146.373403916,"data":"random 300/600\n"}
+,{"stream_name":"stdout","time":151.148954655,"data":"random 400/600\n"}
+,{"stream_name":"stdout","time":155.81897459,"data":"random 500/600\n"}
+,{"stream_name":"stdout","time":159.919637537,"data":"random 600/600\n"}
+,{"stream_name":"stdout","time":159.919693905,"data":"random: flips 105/600 (17.50%), acc 0.7517-\u003e0.7100, b=61 c=36 p=0.0144\n"}
+,{"stream_name":"stdout","time":159.921476912,"data":"GATES: {'flips_le_2pct_and_mcnemar_p_gt_0.05': False, 'verdict': 'FAIL'}\n"}
+,{"stream_name":"stdout","time":159.921495905,"data":"saved: /kaggle/working/polarity_typed_v4.json\n"}
+,{"stream_name":"stderr","time":165.562027154,"data":"/usr/local/lib/python3.12/dist-packages/mistune.py:435: SyntaxWarning: invalid escape sequence '\\|'\n"}
+,{"stream_name":"stderr","time":165.562062961,"data":"  cells[i][c] = re.sub('\\\\\\\\\\|', '|', cell)\n"}
+,{"stream_name":"stderr","time":165.806983892,"data":"/usr/local/lib/python3.12/dist-packages/nbconvert/filters/filter_links.py:36: SyntaxWarning: invalid escape sequence '\\_'\n"}
+,{"stream_name":"stderr","time":165.807010692,"data":"  text = re.sub(r'_', '\\_', text) # Escape underscores in display text\n"}
+,{"stream_name":"stderr","time":166.443259677,"data":"[NbConvertApp] Converting notebook __script__.ipynb to html\n"}
+,{"stream_name":"stderr","time":167.818011657,"data":"[NbConvertApp] Writing 312255 bytes to __results__.html\n"}
+]
