@@ -101,6 +101,9 @@ def main():
     ap.add_argument('--val-jsonl', required=True)
     ap.add_argument('--output-dir', required=True)
     ap.add_argument('--expected-train', type=int, default=0, help='assert exact train row count (guards against silent truncation)')
+    ap.add_argument('--max-items', type=int, default=14000, help='loader cap; must exceed the train row count')
+    ap.add_argument('--no-rl', action='store_true', help='arm B: pure soft CE (loss = loss_ce / GRAD_ACCUM), upstream laya#238 one-liner')
+    ap.add_argument('--r-drop', type=float, default=0.0, help='arm C: R-Drop lambda (two-dropout KL); 0 disables')
     args, _ = ap.parse_known_args()
 
     with open(os.path.join(args.model_dir, 'rl_agent_config.json')) as f:
@@ -122,7 +125,7 @@ def main():
 
     if rank == 0:
         print('Building items...', flush=True)
-    all_train = load_items(args.train_jsonl, tok, cfg, max_items=13000)
+    all_train = load_items(args.train_jsonl, tok, cfg, max_items=args.max_items)
     all_val = load_items(args.val_jsonl, tok, cfg, max_items=2000)
     if args.expected_train:
         assert len(all_train) == args.expected_train, (
@@ -180,19 +183,35 @@ def main():
             k = mask.sum(-1, keepdim=True).float()
             target = batch['target'].to(device)
 
-            eps = torch.randn((4,) + logits.shape, device=device) * sigma * mask
-            eps = (eps - eps.sum(-1, keepdim=True) / k) * mask
-            z = logits.detach().unsqueeze(0) + eps
-            q = torch.softmax(z.masked_fill(~mask, -1e4), -1)
-            with torch.no_grad():
-                r = proper_reward(q, target.unsqueeze(0), batch['qtype'].to(device), mask, w_sph=0.75, w_rps=1.0)
-                adv = r - r.mean(0, keepdim=True)
-                adv = adv / (adv.std() + 1e-6)
-
-            logp = -(((z - logits.unsqueeze(0)) ** 2) * mask).sum(-1) / (2 * sigma ** 2)
-            loss_rl = -(adv * logp).mean()
             loss_ce = -(target * torch.log_softmax(logits.masked_fill(~mask, -1e4), -1)).sum(-1).mean()
-            loss = (loss_rl + 1.0 * loss_ce) / GRAD_ACCUM + 0.0 * act.sum()
+            if args.no_rl:
+                # arm B (upstream laya#238): pure soft CE against the graded targets
+                loss = loss_ce / GRAD_ACCUM + 0.0 * act.sum()
+            else:
+                eps = torch.randn((4,) + logits.shape, device=device) * sigma * mask
+                eps = (eps - eps.sum(-1, keepdim=True) / k) * mask
+                z = logits.detach().unsqueeze(0) + eps
+                q = torch.softmax(z.masked_fill(~mask, -1e4), -1)
+                with torch.no_grad():
+                    r = proper_reward(q, target.unsqueeze(0), batch['qtype'].to(device), mask, w_sph=0.75, w_rps=1.0)
+                    adv = r - r.mean(0, keepdim=True)
+                    adv = adv / (adv.std() + 1e-6)
+
+                logp = -(((z - logits.unsqueeze(0)) ** 2) * mask).sum(-1) / (2 * sigma ** 2)
+                loss_rl = -(adv * logp).mean()
+                loss = (loss_rl + 1.0 * loss_ce) / GRAD_ACCUM + 0.0 * act.sum()
+            if args.r_drop > 0:
+                # arm C: consistency between two dropout forwards (same batch re-run)
+                with torch.autocast('cuda', dtype=torch.float16):
+                    logits2, _ = ddp_model(
+                        batch['input_ids'].to(device), batch['attention_mask'].to(device),
+                        batch['marker_pos'].to(device), batch['marker_mask'].to(device),
+                        batch['qtype'].to(device))
+                logits2 = logits2.float()
+                p1 = torch.log_softmax(logits.masked_fill(~mask, -1e4), -1)
+                p2 = torch.log_softmax(logits2.masked_fill(~mask, -1e4), -1)
+                kl = 0.5 * (torch.exp(p1) * (p1 - p2)).sum(-1) + 0.5 * (torch.exp(p2) * (p2 - p1)).sum(-1)
+                loss = loss + args.r_drop * kl.mean()
 
             scaler.scale(loss).backward()
             accum_step += 1
@@ -206,7 +225,8 @@ def main():
             epoch_loss += loss.item() * GRAD_ACCUM
             n_batches += 1
             if rank == 0 and n_batches % 50 == 0:
-                print(f'  ep{epoch+1} step {n_batches} | loss {loss.item()*GRAD_ACCUM:.4f} | reward {r.mean().item():.3f}', flush=True)
+                reward_str = f'| reward {r.mean().item():.3f} ' if not args.no_rl else ''
+                print(f'  ep{epoch+1} step {n_batches} | loss {loss.item()*GRAD_ACCUM:.4f} {reward_str}', flush=True)
         if rank == 0:
             print(f'=== Epoch {epoch+1}/{EPOCHS} done in {time.time()-t0:.0f}s | avg loss {epoch_loss/max(1,n_batches):.4f} ===', flush=True)
             ckpt_dir = os.path.join(args.output_dir, 'checkpoint_latest')
@@ -248,9 +268,9 @@ def main():
         cfg.pop('temperature_by_options', None)
         with open(os.path.join(args.output_dir, 'rl_agent_config.json'), 'w') as f:
             json.dump(cfg, f, indent=2)
-        # eval metrics on val items
+        # eval metrics on val items (+ per-row probs dump for offline gate checks)
         import numpy as np
-        correct, confs = [], []
+        correct, confs, val_rows = [], [], []
         with torch.no_grad():
             for i in range(0, len(all_val), 32):
                 cb = collate(all_val[i:i+32], tok.pad_token_id)
@@ -265,6 +285,8 @@ def main():
                     p = np.exp(zz - zz.max()); p = p / p.sum()
                     correct.append(float(int(np.argmax(p)) == it['label']))
                     confs.append(float(p.max()))
+                    # noul targets are ordered [p_false, p_true]; dump τ-corrected p_true
+                    val_rows.append({'gold': int(it['label']), 'p_true': float(p[1])})
         acc = float(sum(correct) / len(correct))
         # ECE 10 bins
         ece = 0.0
@@ -274,10 +296,14 @@ def main():
             m = (confs_a > lo) & (confs_a <= hi)
             if m.sum():
                 ece += m.mean() * abs(confs_a[m].mean() - corr_a[m].mean())
-        metrics = {'val_accuracy': round(acc, 4), 'val_ece': round(float(ece), 4), 'n_val': len(correct)}
+        metrics = {'val_accuracy': round(acc, 4), 'val_ece': round(float(ece), 4), 'n_val': len(correct),
+                   'no_rl': bool(args.no_rl), 'r_drop': float(args.r_drop)}
         print('METRICS:', json.dumps(metrics), flush=True)
         with open(os.path.join(args.output_dir, 'metrics.json'), 'w') as f:
             json.dump(metrics, f, indent=2)
+        with open(os.path.join(args.output_dir, 'val_probs.json'), 'w', encoding='utf-8') as f:
+            json.dump(val_rows, f)
+        print('val probs dumped:', len(val_rows), flush=True)
     dist.destroy_process_group()
 
 if __name__ == '__main__':

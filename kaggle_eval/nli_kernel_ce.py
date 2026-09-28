@@ -1,4 +1,4 @@
-"""Laya NLI memory-conflict fine-tune on Kaggle 2xT4 -- conflict-head v3.
+"""Laya NLI memory-conflict fine-tune on Kaggle 2xT4 -- conflict-head v5 ARM B (pure CE).
 
 End-to-end: loads the attached dataset, materializes the embedded DDP train script,
 launches torchrun, prints metrics. Output: /kaggle/working/laya-nli-conflict/
@@ -108,7 +108,7 @@ TRAIN_SCRIPT = cands_script[0]
 print('train script:', TRAIN_SCRIPT, flush=True)
 OUT = '/kaggle/working/laya-nli-conflict'
 cmd = ('torchrun --standalone --nproc_per_node=2 %s --model-dir %s --train-jsonl %s --val-jsonl %s --output-dir %s'
-       ' --expected-train 13400 --max-items 14000'
+       ' --expected-train 13400 --max-items 14000 --no-rl'
        % (TRAIN_SCRIPT, model_dir, train_jsonl, val_jsonl, OUT))
 print('RUN:', cmd, flush=True)
 r = subprocess.run(cmd, shell=True)

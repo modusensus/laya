@@ -1,0 +1,16 @@
+{
+ "id": "daphnelaurent/laya-nli-conflict-ce",
+ "title": "Laya nli conflict ce",
+ "code_file": "nli_kernel_ce.py",
+ "language": "python",
+ "kernel_type": "script",
+ "is_private": "true",
+ "enable_gpu": "true",
+ "enable_internet": "true",
+ "dataset_sources": [
+  "daphnelaurent/nli-conflict-pairs"
+ ],
+ "competition_sources": [],
+ "kernel_sources": [],
+ "model_sources": []
+}
