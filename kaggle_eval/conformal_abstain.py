@@ -41,6 +41,13 @@ _ap.add_argument('--split-half', action='store_true',
                       'report/gate on half 2 (disjoint halves asserted). Legacy val_soft fit is '
                       'kept as an archive section.')
 _ap.add_argument('--split-seed', type=int, default=20260928)
+_ap.add_argument('--rule', choices=('maxconf', 's2'), default='maxconf',
+                 help="V7 §6 adopted rule: 'maxconf' = LAC baseline (default, back-compat with "
+                      "v4-v6 reports); 's2' = surface consistency = 1-(max-min) of p_true over "
+                      "three fixed renderings of the same state (adopted after half2 66%% capture "
+                      "@ 33%% abstain; per-row scores from conformal_alt_probe.py)")
+_ap.add_argument('--alt-scores', default=_D + r'\conformal_alt_v7.json',
+                 help='per-row scores from conformal_alt_probe.py (required with --rule s2)')
 args = _ap.parse_args()
 SOFT, MAIN, VALJ, REAL, DIAG, OUT = args.soft, args.main, args.valj, args.real, args.diag, args.out
 
@@ -148,8 +155,59 @@ def main():
         gate_capture = cap2 >= math.ceil(0.5 * err2_n)
         gate_abst = abst2 <= args_capture[1]
 
+    # ---- V7 §6 adopted rule s2 (surface consistency), same split protocol ----
+    if args.rule == 's2':
+        import random as _random2
+        arows = json.load(open(args.alt_scores, encoding='utf-8'))['rows']
+        assert len(arows) == len(p), (len(arows), len(p))
+        s2v = np.array([1 - (max(r['p1'], r['p2'], r['p3']) - min(r['p1'], r['p2'], r['p3']))
+                        for r in arows])
+        idx = list(range(len(p)))
+        _random2.Random(args.split_seed).shuffle(idx)
+        h1, h2 = idx[:len(idx) // 2], idx[len(idx) // 2:]
+        assert set(h1).isdisjoint(set(h2)) and len(h1) + len(h2) == len(p)
+        # protocol = probe: scan BOTH directions on half1, select max capture @ abstain <= gate
+        cands = []
+        for direction in ('ge', 'le'):
+            for t in np.unique(s2v[h1]):
+                d1 = (s2v[h1] >= t) if direction == 'ge' else (s2v[h1] <= t)
+                ab1 = float((~d1).mean())
+                cp1 = int((err[h1] & ~d1).sum())
+                if ab1 <= args_capture[1]:
+                    cands.append((cp1, -ab1, direction, float(t)))
+        assert cands, 'no half1 variant satisfies the abstain gate'
+        cap1, _negab, direction, t_sel = max(cands)
+        dec2 = (s2v[h2] >= t_sel) if direction == 'ge' else (s2v[h2] <= t_sel)
+        err2_n = int(err[h2].sum())
+        cap2 = int((err[h2] & ~dec2).sum())
+        abst2 = float((~dec2).mean())
+        split_info = {
+            'rule': 's2_surface_consistency (adopted per V7 §6 protocol; maxconf LAC archived)',
+            'score_definition': 's2 = 1 - (max(p1,p2,p3) - min(p1,p2,p3)) over three fixed renderings '
+                                '(row-original / neutral A-B / keep-supersede); rows from conformal_alt_v7.json',
+            'seed': args.split_seed, 'n1': len(h1), 'n2': len(h2),
+            'half1_err': int(err[h1].sum()), 'half2_err': err2_n,
+            'half1_selected': {'direction': direction, 'T': round(t_sel, 4),
+                               'capture': cap1,
+                               'abstain': round(float((~((s2v[h1] >= t_sel) if direction == 'ge' else (s2v[h1] <= t_sel))).mean()), 4)},
+            'half2_report': {'decide': int(dec2.sum()), 'abstain': round(abst2, 4),
+                             'capture': cap2, 'capture_total': err2_n,
+                             'write_error_rate': round(float((dec2 & err[h2]).sum() / dec2.sum()), 4) if dec2.sum() else None},
+            'gate': f'capture >=50% of {err2_n} @ abstain <= {args_capture[1]:.0%}',
+            'pass': bool(cap2 >= math.ceil(0.5 * err2_n) and abst2 <= args_capture[1]),
+        }
+        print(f"s2 rule: half1 sel {direction} T={t_sel:.4f} (cap {cap1}) | "
+              f"half2 GATE: capture {cap2}/{err2_n} @ abstain {abst2:.1%} => {'PASS' if split_info['pass'] else 'FAIL'}")
+        rep_idx = np.array(h2)
+        capture, abst = cap2, abst2
+        gate_capture = cap2 >= math.ceil(0.5 * err2_n)
+        gate_abst = abst2 <= args_capture[1]
+        s2_dec_full = (s2v >= t_sel) if direction == 'ge' else (s2v <= t_sel)
+
     # active decision rule over the full set (T = split-half threshold when enabled)
     dec = mc >= T
+    if args.rule == 's2':
+        dec = s2_dec_full  # s2 rule replaces the maxconf decision everywhere downstream
     active_idx = rep_idx if split_info is not None else np.arange(len(p))
 
     # risk-coverage / AURC on main val (ordering = max_conf desc; threshold-free, full set)
