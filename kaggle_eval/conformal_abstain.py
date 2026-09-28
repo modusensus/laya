@@ -87,6 +87,7 @@ def main():
     sp = np.array([r['p_true'] for r in soft], float)
     sg = np.array([1 if r['label'] in (True, 'true', 1) else 0 for r in soft], int)
     qhat, T, k = fit_quantile(sp, sg, 0.90)
+    T_legacy = T  # V6: --split-half overwrites T below; keep the legacy fit value for the archive section
     print(f'legacy fit (val_soft): n=300, nominal 90% -> k={k}, qhat={qhat:.4f}, T={1 - qhat:.4f}')
 
     variants = {}
@@ -204,7 +205,7 @@ def main():
                 {'set': 'val_soft 300', 'nominal': 0.90, 'k_order_stat': k,
                  'qhat': round(qhat, 4), 'threshold_T': round(T, 4)}),
         'fit_legacy_valsoft': {'set': 'val_soft 300', 'nominal': 0.90, 'k_order_stat': k,
-                               'qhat': round(qhat, 4), 'threshold_T': round(T, 4),
+                               'qhat': round(qhat, 4), 'threshold_T': round(T_legacy, 4),
                                'status': ('archive: cross-set transfer collapsed in v5 (12/107@2.3% / '
                                           '16/98@3.0%); superseded by same-distribution split-half fit'
                                           if split_info is not None else 'active')},

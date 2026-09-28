@@ -1,0 +1,198 @@
+{
+  "input": {
+    "soft": "data_local/val_soft_probs_v6.json",
+    "main": "data_local/val_probs_v6.json",
+    "real": "data_local/memory_conflict_realtest_v6.json"
+  },
+  "fit": {
+    "seed": 20260928,
+    "n1": 500,
+    "n2": 500,
+    "half1_err": 43,
+    "half2_err": 54,
+    "half1_acc": 0.914,
+    "half2_acc": 0.892,
+    "acc_gap_pp": 2.2,
+    "nominal": 0.9,
+    "k_order_stat": 451,
+    "qhat": 0.3141,
+    "threshold_T": 0.6859,
+    "half1_in_sample": {
+      "decide": 488,
+      "abstain": 0.024,
+      "captured_err": 6
+    },
+    "half2_report": {
+      "decide": 486,
+      "abstain": 0.028,
+      "capture": 4,
+      "capture_total": 54,
+      "write_error_rate": 0.1029
+    },
+    "gate": "capture >=50% of 54 @ abstain <= 35%",
+    "pass": false
+  },
+  "fit_legacy_valsoft": {
+    "set": "val_soft 300",
+    "nominal": 0.9,
+    "k_order_stat": 271,
+    "qhat": 0.2162,
+    "threshold_T": 0.7838,
+    "status": "archive: cross-set transfer collapsed in v5 (12/107@2.3% / 16/98@3.0%); superseded by same-distribution split-half fit"
+  },
+  "gates": {
+    "capture": 4,
+    "capture_total": 54,
+    "abstain": 0.028,
+    "gate": ">=50% of report-half errors and <=35% abstain",
+    "pass": false
+  },
+  "main_val": {
+    "decide": 486,
+    "abstain": 0.028,
+    "capture": 4,
+    "write_error_rate": 0.1029,
+    "aurc_maxconf_order": 0.04345,
+    "aurc_oracle": 0.00491,
+    "scope": "report half (split-half calibration; AURC over full main val, threshold-free)"
+  },
+  "val_soft": {
+    "decide": 298,
+    "coverage": 0.9833,
+    "abstain": 0.0067,
+    "note": "same-distribution slice; nominal 90% guarantee applies here"
+  },
+  "realtest_35": {
+    "decide": 34,
+    "coverage_decide_and_ok": 0.9143,
+    "abstain": 0.0286
+  },
+  "diag_14": {
+    "n_p_found": 14,
+    "decide": 14
+  },
+  "budget_20pct": {
+    "envelope_capture": "48-49/99 (recompute note in V4.1); 50 unreachable at <=20%",
+    "verdict": "unreachable, report-only per V4.1"
+  },
+  "variants_migrated": {
+    "95%": {
+      "T": 0.7706,
+      "qhat": 0.2294,
+      "main_abstain": 0.039,
+      "main_capture": 15
+    },
+    "85%": {
+      "T": 0.7942,
+      "qhat": 0.2058,
+      "main_abstain": 0.042,
+      "main_capture": 17
+    },
+    "80%": {
+      "T": 0.8026,
+      "qhat": 0.1974,
+      "main_abstain": 0.045,
+      "main_capture": 18
+    }
+  },
+  "audit_table_main_val": {
+    "0.9200": {
+      "threshold": 0.92,
+      "write_rate": 0.844,
+      "write_error_rate": 0.0616,
+      "abstain_rate": 0.156,
+      "n_write": 844,
+      "n_write_err": 52
+    },
+    "0.6859": {
+      "threshold": 0.6858750581741333,
+      "write_rate": 0.974,
+      "write_error_rate": 0.0893,
+      "abstain_rate": 0.026,
+      "n_write": 974,
+      "n_write_err": 87
+    },
+    "0.9225": {
+      "threshold": 0.9225,
+      "write_rate": 0.829,
+      "write_error_rate": 0.0591,
+      "abstain_rate": 0.171,
+      "n_write": 829,
+      "n_write_err": 49
+    },
+    "0.9000": {
+      "threshold": 0.9,
+      "write_rate": 0.893,
+      "write_error_rate": 0.0672,
+      "abstain_rate": 0.107,
+      "n_write": 893,
+      "n_write_err": 60
+    }
+  },
+  "audit_table_val_soft": {
+    "0.9200": {
+      "threshold": 0.92,
+      "write_rate": 0.3233,
+      "write_error_rate": 0.0,
+      "abstain_rate": 0.6767,
+      "n_write": 97,
+      "n_write_err": 0
+    },
+    "0.6859": {
+      "threshold": 0.6858750581741333,
+      "write_rate": 0.9933,
+      "write_error_rate": 0.0101,
+      "abstain_rate": 0.0067,
+      "n_write": 298,
+      "n_write_err": 3
+    },
+    "0.9225": {
+      "threshold": 0.9225,
+      "write_rate": 0.2767,
+      "write_error_rate": 0.0,
+      "abstain_rate": 0.7233,
+      "n_write": 83,
+      "n_write_err": 0
+    },
+    "0.9000": {
+      "threshold": 0.9,
+      "write_rate": 0.7433,
+      "write_error_rate": 0.0,
+      "abstain_rate": 0.2567,
+      "n_write": 223,
+      "n_write_err": 0
+    }
+  },
+  "tau_warning": "confidence band is a function of tau: sharpening tau 1.2176->0.7-0.8 lifts main-val write rate 87.1%->98.5%+ and write error rate 6.66%->9.4-9.5%; any tau change must pass the audit table first (V4.1 预核算 §5)",
+  "exchangeability_note": "val_soft(synthetic) fit -> main val(MNLI) = distribution shift; main-val numbers are TRANSFER PERFORMANCE, not a finite-sample guarantee; val_soft coverage 0.907 is the same-distribution check",
+  "abstained_errors": [
+    {
+      "idx": 785,
+      "known": "He pulled his cloak tighter and wished for a moment that he had not shaved his head.",
+      "new": "The man pulled his super hero cape around himself to show off.",
+      "p_true": 0.6241680383682251,
+      "gold": "false"
+    },
+    {
+      "idx": 178,
+      "known": "They wanted you, so they got you.\"  Dave considered it.",
+      "new": "They never wanted you, but they ended up getting you anyways.",
+      "p_true": 0.4215662181377411,
+      "gold": "true"
+    },
+    {
+      "idx": 136,
+      "known": "we wouldn't be expected to cast a ballet on the subject",
+      "new": "We have been asked to vote on the subject.",
+      "p_true": 0.3260122239589691,
+      "gold": "true"
+    },
+    {
+      "idx": 276,
+      "known": "Missouri was asked to continue its planning efforts and file a supplemental planning report with LSC on or before October 1, 1999.",
+      "new": "Missouri was happy to continue it's planning efforts.",
+      "p_true": 0.5160021781921387,
+      "gold": "false"
+    }
+  ]
+}
