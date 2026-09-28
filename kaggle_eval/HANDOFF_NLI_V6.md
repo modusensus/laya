@@ -391,7 +391,7 @@ assert_no_case_leak(v6_train)   # 变量名以 v6 生成器为准(v5 里为 v5_t
 |---|---|
 | 训练数据 | `nli_conflict_train_v6.jsonl` 14500 行;§3.5 六条断言 + §3.6 泄漏断言全过;`leak_audit.py` **0/35**(`data_local/leak_audit_v6.txt`) |
 | 数据卫生替换 | 值池:city 上海→南京/北京→重庆、coffee 美式→澳白、cloud 阿里云→百度智能云/腾讯云→京东云;字面:HC spicy「用户不吃辣」→「用户碰不得辣」、neg 族 spicy→「用户向来不吃辣」/peanut→「用户对花生严重过敏」/smoke→「用户戒烟好几个月了」;shape 值:周一上午十点→周三上午十点/周四下午三点→周四下午四点/地铁→轻轨/公司前台→单位前台/膝盖韧带拉伤→膝盖半月板损伤。示例:训练中「用户的项目部署在{A}」族完整保留,取值换成百度智能云等(替换前后语气/长度对齐 §9.4) |
-| 新块 | neg_unrelated 400 / cf_unrelated 300(supp「同话题无关补充」:mention = 75:25,逐族精确配额,全 19 族 supp ≥74%);五形状 400(pet/never/relapse/dneg/nocar 各 80,按形状语义映射 neg_true 168/neg_false 104/neg_false_boundary 128,meta.shape 可查) |
+| 新块 | neg_unrelated 400 / cf_unrelated 300(supp「同话题无关补充」:mention = 75:25,逐族精确配额,全 28 桶(族×语言:neg 18 + cf 10)supp ≥74%);五形状 400(pet/never/relapse/dneg/nocar 各 80,按形状语义映射 neg_true 168/neg_false 104/neg_false_boundary 128,meta.shape 可查) |
 | Kaggle | 数据集 `daphnelaurent/nli-conflict-pairs` **v11**(val/val_soft 逐字节冻结,SHA256 复核一致);kernel `laya-nli-conflict-ce` **v2(= kernel v11,纯 CE 主臂)**,运行约 19 分钟 |
 | checkpoint | `D:\laya-kaggle-output\laya-nli-conflict-v6\`(1.3 GB);model.safetensors SHA256 `11facce681c4a99b7bce6e27b5b10a6034bd02eefeb5252089f5fcf35984b4e0` |
 | τ(noul) | **1.200**(v4 1.2176 / v5-A 1.138 / v5-B 1.065;报告项,未校准) |
@@ -408,7 +408,7 @@ assert_no_case_leak(v6_train)   # 变量名以 v6 生成器为准(v5 里为 v5_t
 | val_soft 错误数 | 3 | **5** | ≤ 3 | **FAIL** |
 | 偏置诊断 | 13/14 | **13/14**(tracks_input=True, not_pinned=True) | ≥ 13/14 | **PASS** |
 | label-surface swap diff | 0 | **0**(20v20/13v13) | 0 | **PASS** |
-| 极性 real/diag \|diff\| | ≤1 | **0 / 0** | ≤1 | **PASS** |
+| 极性 real/diag \|diff\| | ≤1 | **1 / 0**(real 1,1 · diag 0,0) | ≤1 | **PASS** |
 | 极性 val_soft 错误变化 | 3 | **+2**(3→5;std/neu/rnd = 5/5/3) | ≤1 | **FAIL**(与上一行同源:同一组 5 错) |
 | 分离度 val_soft band | 0.28pp | **16.29pp**(q10 0.7859 / q90 0.9488) | ≥ 8pp | **PASS** |
 | conformal(同分布对半切) | 58/99@29.4%(旧口径) | **4/54 @ 弃权 2.8%**(T=0.6859) | 捕捉 ≥50% @ ≤35% | **FAIL** |
@@ -416,7 +416,7 @@ assert_no_case_leak(v6_train)   # 变量名以 v6 生成器为准(v5 里为 v5_t
 
 ### 6.3 分离度与 conformal 数字(conf_band_v6.txt 全表)
 
-- 主 val:n=1000 err=97 acc=0.9030 mean_conf=0.9204;q10 0.8951 / q50 0.9379 / q90 0.9465 / max 0.9568,**band 5.14pp**(v4 0.62 / v5-A 1.62 / v5-B 3.96;不设门槛)。分箱错误率单调递减(0.370/0.444/0.306/0.163/0.062)。
+- 主 val:n=1000 err=97 acc=0.9030 mean_conf=0.9204;q10 0.8951 / q50 0.9379 / q90 0.9465 / max 0.9568,**band 5.14pp**(v4 0.62 / v5-A 1.62 / v5-B 3.96;不设门槛)。分箱错误率总体递减(0.370/0.444/0.306/0.163/0.062;第二箱有小反转,其余单调)。
 - val_soft:n=300 err=5,**band 16.29pp** 保持 v5 水平;分级软目标+纯 CE 的可分性稳定。
 - **consid 中位置信 = 0.7882**(v4 0.9239)——0.80±0.05 下探到位;由 dump row_id ↔ `nli_conflict_val_soft.meta.json` 边车回查(v5 工具缺口已补)。
 - conformal 同分布标定(§2.4/§9.1):seed 20260928 洗牌对半;half1 n=500 err=43(acc 0.914)、half2 n=500 err=54(acc 0.892),**acc 差 2.2pp > 1.5pp 说明线**(MNLI 难度两半不均,报数半偏难,对 capture 分母是保守方向,照报)。拟合 k=451、qhat=0.3141、**T=0.6859**;报数半捕捉 **4/54 @ 2.8% 弃权 ⇒ FAIL**。旧 val_soft 拟合口径存档于 `conformal_v6.json`(`fit_legacy_valsoft`)。AURC **0.04345**(oracle 0.00491;v4 0.05564 / v5-A 0.04637 / v5-B 0.04402,连续三轮改善)。
