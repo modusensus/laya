@@ -36,6 +36,11 @@ _ap.add_argument('--diag', default=_D + r'\noul_bias_diag_v4.json')
 _ap.add_argument('--out', default=_D + r'\conformal_v4.json')
 _ap.add_argument('--capture-gate', type=int, default=50, help='min errors to capture (v5: >=50 of that round errors)')
 _ap.add_argument('--abstain-gate', type=float, default=0.35)
+_ap.add_argument('--split-half', action='store_true',
+                 help='V6 §2.4 same-distribution calibration: fit the quantile on main-val half 1, '
+                      'report/gate on half 2 (disjoint halves asserted). Legacy val_soft fit is '
+                      'kept as an archive section.')
+_ap.add_argument('--split-seed', type=int, default=20260928)
 args = _ap.parse_args()
 SOFT, MAIN, VALJ, REAL, DIAG, OUT = args.soft, args.main, args.valj, args.real, args.diag, args.out
 
@@ -77,12 +82,12 @@ def audit(p, ok, t):
 def main():
     global args_capture
     args_capture = (args.capture_gate, args.abstain_gate)
-    # ---- fit (val_soft only) ----
+    # ---- fit (val_soft only; ARCHIVE under --split-half) ----
     soft = json.load(open(SOFT, encoding='utf-8'))
     sp = np.array([r['p_true'] for r in soft], float)
     sg = np.array([1 if r['label'] in (True, 'true', 1) else 0 for r in soft], int)
     qhat, T, k = fit_quantile(sp, sg, 0.90)
-    print(f'fit: n=300, nominal 90% -> k={k}, qhat={qhat:.4f}, T={1 - qhat:.4f}')
+    print(f'legacy fit (val_soft): n=300, nominal 90% -> k={k}, qhat={qhat:.4f}, T={1 - qhat:.4f}')
 
     variants = {}
     for nom in (0.95, 0.85, 0.80):
@@ -101,7 +106,52 @@ def main():
     gate_capture = capture >= args_capture[0]
     gate_abst = abst <= args_capture[1]
 
-    # risk-coverage / AURC on main val (ordering = max_conf desc)
+    # ---- V6 §2.4 same-distribution calibration (half1 fit -> half2 report) ----
+    split_info = None
+    if args.split_half:
+        import random as _random
+        idx = list(range(len(p)))
+        _random.Random(args.split_seed).shuffle(idx)
+        h1, h2 = idx[:len(idx) // 2], idx[len(idx) // 2:]
+        assert set(h1).isdisjoint(set(h2)) and len(h1) + len(h2) == len(p), 'halves not a disjoint split'
+        qh_sh, T_sh, k_sh = fit_quantile(p[h1], g[h1], 0.90)
+        dec1, dec2 = mc[h1] >= T_sh, mc[h2] >= T_sh
+        err1_n, err2_n = int(err[h1].sum()), int(err[h2].sum())
+        cap2 = int((err[h2] & ~dec2).sum())
+        abst2 = float((~dec2).mean())
+        acc1, acc2 = float((~err[h1]).mean()), float((~err[h2]).mean())
+        split_info = {
+            'seed': args.split_seed, 'n1': len(h1), 'n2': len(h2),
+            'half1_err': err1_n, 'half2_err': err2_n,
+            'half1_acc': round(acc1, 4), 'half2_acc': round(acc2, 4),
+            'acc_gap_pp': round(abs(acc1 - acc2) * 100, 2),
+            'nominal': 0.90, 'k_order_stat': k_sh, 'qhat': round(qh_sh, 4),
+            'threshold_T': round(T_sh, 4),
+            'half1_in_sample': {'decide': int(dec1.sum()), 'abstain': round(float((~dec1).mean()), 4),
+                                'captured_err': int((err[h1] & ~dec1).sum())},
+            'half2_report': {'decide': int(dec2.sum()), 'abstain': round(abst2, 4),
+                             'capture': cap2, 'capture_total': err2_n,
+                             'write_error_rate': round(float((dec2 & err[h2]).sum() / dec2.sum()), 4) if dec2.sum() else None},
+            'gate': f'capture >=50% of {err2_n} @ abstain <= {args_capture[1]:.0%}',
+            'pass': bool(cap2 >= math.ceil(0.5 * err2_n) and abst2 <= args_capture[1]),
+        }
+        print(f"split-half: seed {args.split_seed} | half1 n={len(h1)} err={err1_n} (acc {acc1:.3f}) | "
+              f"half2 n={len(h2)} err={err2_n} (acc {acc2:.3f}, gap {split_info['acc_gap_pp']}pp)")
+        print(f'split-half fit: k={k_sh}, qhat={qh_sh:.4f}, T={T_sh:.4f}')
+        print(f"half2 GATE: capture {cap2}/{err2_n} @ abstain {abst2:.1%} => {'PASS' if split_info['pass'] else 'FAIL'}")
+        # switch the ACTIVE threshold to the same-distribution fit; legacy numbers stay archived.
+        # Full arrays stay intact (AURC / per-item listing map through rep_idx).
+        T = T_sh
+        rep_idx = np.array(h2)
+        capture, abst = cap2, abst2
+        gate_capture = cap2 >= math.ceil(0.5 * err2_n)
+        gate_abst = abst2 <= args_capture[1]
+
+    # active decision rule over the full set (T = split-half threshold when enabled)
+    dec = mc >= T
+    active_idx = rep_idx if split_info is not None else np.arange(len(p))
+
+    # risk-coverage / AURC on main val (ordering = max_conf desc; threshold-free, full set)
     order = np.argsort(-mc, kind='stable')
     risks = np.cumsum(err[order]) / np.arange(1, len(err) + 1)
     aurc = float(risks.mean())
@@ -131,7 +181,7 @@ def main():
     golds = [1 if r['gold']['conflict']['label'] == 'true' else 0 for r in rows]
     assert golds == list(g), 'val jsonl order does not match val_probs golds'
     abstained_err = []
-    for i in np.where(err & ~dec)[0]:
+    for i in active_idx[(err & ~dec)[active_idx]]:
         st = json.loads(rows[i]['state'])
         abstained_err.append({'idx': int(i), 'known': st.get('known', ''), 'new': st.get('new', ''),
                               'p_true': float(p[i]), 'gold': 'true' if g[i] == 1 else 'false'})
@@ -150,14 +200,24 @@ def main():
 
     out = {
         'input': {'soft': SOFT, 'main': MAIN, 'real': REAL},
-        'fit': {'set': 'val_soft 300', 'nominal': 0.90, 'k_order_stat': k,
-                'qhat': round(qhat, 4), 'threshold_T': round(T, 4)},
-        'gates': {'capture': capture, 'capture_total': int(err.sum()), 'abstain': round(abst, 4),
-                  'gate': f'>={args_capture[0]}/errors and <={args_capture[1]:.0%} abstain',
+        'fit': (split_info if split_info is not None else
+                {'set': 'val_soft 300', 'nominal': 0.90, 'k_order_stat': k,
+                 'qhat': round(qhat, 4), 'threshold_T': round(T, 4)}),
+        'fit_legacy_valsoft': {'set': 'val_soft 300', 'nominal': 0.90, 'k_order_stat': k,
+                               'qhat': round(qhat, 4), 'threshold_T': round(T, 4),
+                               'status': ('archive: cross-set transfer collapsed in v5 (12/107@2.3% / '
+                                          '16/98@3.0%); superseded by same-distribution split-half fit'
+                                          if split_info is not None else 'active')},
+        'gates': {'capture': capture, 'capture_total': int(err[active_idx].sum()), 'abstain': round(abst, 4),
+                  'gate': (f'>=50% of report-half errors and <={args_capture[1]:.0%} abstain'
+                           if split_info is not None else
+                           f'>={args_capture[0]}/errors and <={args_capture[1]:.0%} abstain'),
                   'pass': bool(gate_capture and gate_abst)},
-        'main_val': {'decide': int(dec.sum()), 'abstain': round(abst, 4), 'capture': capture,
-                     'write_error_rate': round(float((dec & err).sum() / dec.sum()), 4),
-                     'aurc_maxconf_order': round(aurc, 5), 'aurc_oracle': round(aurc_oracle, 5)},
+        'main_val': {'decide': int(dec[active_idx].sum()), 'abstain': round(abst, 4), 'capture': capture,
+                     'write_error_rate': round(float((dec & err)[active_idx].sum() / dec[active_idx].sum()), 4),
+                     'aurc_maxconf_order': round(aurc, 5), 'aurc_oracle': round(aurc_oracle, 5),
+                     'scope': ('report half (split-half calibration; AURC over full main val, threshold-free)'
+                               if split_info is not None else 'full main val')},
         'val_soft': {'decide': int(sdec.sum()), 'coverage': round(soft_cov, 4),
                      'abstain': round(float((~sdec).mean()), 4),
                      'note': 'same-distribution slice; nominal 90% guarantee applies here'},
@@ -179,9 +239,9 @@ def main():
         'abstained_errors': abstained_err,
     }
     json.dump(out, open(OUT, 'w', encoding='utf-8'), ensure_ascii=False, indent=2)
-    print(f"GATE: capture {capture}/{int(err.sum())} (>={args_capture[0]} {'PASS' if gate_capture else 'FAIL'}) @ "
-          f"abstain {abst:.1%} (<={args_capture[1]:.0%} {'PASS' if gate_abst else 'FAIL'}) => "
-          f"{'PASS' if out['gates']['pass'] else 'FAIL'}")
+    print(f"GATE: capture {capture}/{int(err[active_idx].sum())} "
+          f"({'report half' if split_info is not None else 'full set'}) @ "
+          f"abstain {abst:.1%} => {'PASS' if out['gates']['pass'] else 'FAIL'}")
     print(f"val_soft coverage {soft_cov:.4f} (nominal 90%) | realtest decide {int(rdec.sum())}/35 | "
           f"AURC {aurc:.5f} vs oracle {aurc_oracle:.5f}")
     print('abstained errors listed:', len(abstained_err))

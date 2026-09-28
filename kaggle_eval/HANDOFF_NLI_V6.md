@@ -377,3 +377,61 @@ assert_no_case_leak(v6_train)   # 变量名以 v6 生成器为准(v5 里为 v5_t
 | 交付头 | `laya-nli-conflict-v4`(仍交付) | 无(两臂 FAIL) | 达标才出 |
 | val / val_soft | 1000 / 300 | 逐字节不变 | 逐字节不变 |
 | 数据卫生 | 6/35 案复用 | 12/35(含 1 对) | **0/35(断言)** |
+
+---
+
+## 第 6 轮执行结果
+
+**结论:8 项硬门槛 PASS / 4 项 FAIL ⇒ 无交付头,v4 保持已交付;HF 卡未动(§6 未达标不动)。**
+执行范围 = §1 全部必做项;RL 对照臂未跑(§9.3 默认),`nli_kernel.py` 同步嵌 v6 训练脚本但未执行。
+
+### 6.1 执行与资产
+
+| 项 | 值 |
+|---|---|
+| 训练数据 | `nli_conflict_train_v6.jsonl` 14500 行;§3.5 六条断言 + §3.6 泄漏断言全过;`leak_audit.py` **0/35**(`data_local/leak_audit_v6.txt`) |
+| 数据卫生替换 | 值池:city 上海→南京/北京→重庆、coffee 美式→澳白、cloud 阿里云→百度智能云/腾讯云→京东云;字面:HC spicy「用户不吃辣」→「用户碰不得辣」、neg 族 spicy→「用户向来不吃辣」/peanut→「用户对花生严重过敏」/smoke→「用户戒烟好几个月了」;shape 值:周一上午十点→周三上午十点/周四下午三点→周四下午四点/地铁→轻轨/公司前台→单位前台/膝盖韧带拉伤→膝盖半月板损伤。示例:训练中「用户的项目部署在{A}」族完整保留,取值换成百度智能云等(替换前后语气/长度对齐 §9.4) |
+| 新块 | neg_unrelated 400 / cf_unrelated 300(supp「同话题无关补充」:mention = 75:25,逐族精确配额,全 19 族 supp ≥74%);五形状 400(pet/never/relapse/dneg/nocar 各 80,按形状语义映射 neg_true 168/neg_false 104/neg_false_boundary 128,meta.shape 可查) |
+| Kaggle | 数据集 `daphnelaurent/nli-conflict-pairs` **v11**(val/val_soft 逐字节冻结,SHA256 复核一致);kernel `laya-nli-conflict-ce` **v2(= kernel v11,纯 CE 主臂)**,运行约 19 分钟 |
+| checkpoint | `D:\laya-kaggle-output\laya-nli-conflict-v6\`(1.3 GB);model.safetensors SHA256 `11facce681c4a99b7bce6e27b5b10a6034bd02eefeb5252089f5fcf35984b4e0` |
+| τ(noul) | **1.200**(v4 1.2176 / v5-A 1.138 / v5-B 1.065;报告项,未校准) |
+| 复验产物 | `val_probs_v6.json`、`val_soft_probs_v6.json`(带 row_id)、`polarity_nli_v6.json`、`memory_conflict_realtest_v6.json`、`noul_bias_diag_v6.json`、`label_swap_v6.json`、`conformal_v6.json`、`conf_band_v6.txt`、`leak_audit_v6.txt`、`eval_v6.log` |
+
+### 6.2 硬门槛对照(§5.1)
+
+| 指标 | v4 | v6 实测 | 门槛 | 判定 |
+|---|---|---|---|---|
+| 主 val acc | 0.901 | **0.903**(err 97) | ≥ 0.896 | **PASS**(历轮最高) |
+| realtest 老 20 | 20/20 | **20/20** | 20/20 | **PASS**(根因①修复) |
+| realtest 新 10 | 10/10 | **8/10** | 10/10 | **FAIL** |
+| realtest 否定 5 | 4/5 | **5/5** | 5/5 | **PASS**(v3/v4/v5 连续 4/5 后首次全过;根因②修复) |
+| val_soft 错误数 | 3 | **5** | ≤ 3 | **FAIL** |
+| 偏置诊断 | 13/14 | **13/14**(tracks_input=True, not_pinned=True) | ≥ 13/14 | **PASS** |
+| label-surface swap diff | 0 | **0**(20v20/13v13) | 0 | **PASS** |
+| 极性 real/diag \|diff\| | ≤1 | **0 / 0** | ≤1 | **PASS** |
+| 极性 val_soft 错误变化 | 3 | **+2**(3→5;std/neu/rnd = 5/5/3) | ≤1 | **FAIL**(与上一行同源:同一组 5 错) |
+| 分离度 val_soft band | 0.28pp | **16.29pp**(q10 0.7859 / q90 0.9488) | ≥ 8pp | **PASS** |
+| conformal(同分布对半切) | 58/99@29.4%(旧口径) | **4/54 @ 弃权 2.8%**(T=0.6859) | 捕捉 ≥50% @ ≤35% | **FAIL** |
+| 训练数据卫生 | 6/35 案复用 | **0/35**(断言 + leak_audit 双口径) | 0/35 | **PASS** |
+
+### 6.3 分离度与 conformal 数字(conf_band_v6.txt 全表)
+
+- 主 val:n=1000 err=97 acc=0.9030 mean_conf=0.9204;q10 0.8951 / q50 0.9379 / q90 0.9465 / max 0.9568,**band 5.14pp**(v4 0.62 / v5-A 1.62 / v5-B 3.96;不设门槛)。分箱错误率单调递减(0.370/0.444/0.306/0.163/0.062)。
+- val_soft:n=300 err=5,**band 16.29pp** 保持 v5 水平;分级软目标+纯 CE 的可分性稳定。
+- **consid 中位置信 = 0.7882**(v4 0.9239)——0.80±0.05 下探到位;由 dump row_id ↔ `nli_conflict_val_soft.meta.json` 边车回查(v5 工具缺口已补)。
+- conformal 同分布标定(§2.4/§9.1):seed 20260928 洗牌对半;half1 n=500 err=43(acc 0.914)、half2 n=500 err=54(acc 0.892),**acc 差 2.2pp > 1.5pp 说明线**(MNLI 难度两半不均,报数半偏难,对 capture 分母是保守方向,照报)。拟合 k=451、qhat=0.3141、**T=0.6859**;报数半捕捉 **4/54 @ 2.8% 弃权 ⇒ FAIL**。旧 val_soft 拟合口径存档于 `conformal_v6.json`(`fit_legacy_valsoft`)。AURC **0.04345**(oracle 0.00491;v4 0.05564 / v5-A 0.04637 / v5-B 0.04402,连续三轮改善)。
+
+### 6.4 根因与读数
+
+1. **无关补充误报已修**:老 20 恢复 20/20(v5 双臂 19/20)。neg/cf 两块各补的同话题 unrelated 控制行(neg 400 + cf 300)直接命中根因①;「无关补充」案 p=0.3485,判定余量健康。
+2. **否定句 5/5**:五形状族补齐(pet 反转/never 日常/复发/双否定/无车通勤各 80 行)后,v3/v4/v5 连续三轮的 4/5 首次清零。逐条 p 值见 `memory_conflict_realtest_v6.json`。
+3. **数据卫生全清且主 val 反而最高(0.903)**:证伪「验收句复用抬分」担忧——句面复用对泛化指标无净贡献。**v6 是首个零句面复用的干净基线;v2–v5 全部数字带既有句式复用口径(§2.5 注),跨轮对比按此读。**
+4. **新 10 两 miss 同为「硬约束 + 裸意图」形状**:`新-宠物粮食` p=0.283、`新-运动伤病史` p=0.196,都把「想试试/打算去」读成不冲突。cf_true 训练形状的新句带显式违逆词(「不顾{A}的医嘱」),而验收案是裸意图;且运动伤病史案的 known 原文在 v5 语料中(known×4),v6 清除后该案变成真·未见样本——**v5-B 的 10/10 有句面复用成分,v6 的 8/10 是干净口径下的真实泛化水平**。方向:v7 若追此案,应在 hc/cf 块补「裸意图 + 硬约束」true 形状(意图动词不带违逆标记),而不是回填原文。
+5. **val_soft 5 错全部落在 holdout 类**:degree×3(度数变化冲突读成一致,p=0.16/0.34/0.49)+ barber consid×2(「听说{B}手艺不错」读成冲突,p=0.86/0.70);分布内 200 行 **0 错**。v4 的 3 错也全在 holdout——holdout 泛化仍是弱轴,且考虑类误报方向反转(v4 consid 边界贴判定线 → v6 consid 学到「考虑≈可忽略」但对「听说他者好」过拟合为冲突)。
+6. **conformal 同分布标定后仍 FAIL 的结构性根因(本轮最重要负结论)**:主 val 97 错中 **52 条 conf ≥ 0.92**(高置信错误);LAC 规则「写 = conf ≥ T」天生只弃权低置信行,T=0.6859 时弃权带里只有 4 条错误。同分布标定解决了 v5 的「跨集迁移塌缩」,但暴露出更深层问题:**MNLI 错误的置信排序质量虽在改善(AURC 三连降),错误本体是高置信的,任何置信阈值规则都抓不住**。要可用需换规则形态(如低困惑度/抽样一致性门)或训练侧压低 MNLI 错误置信——均属 v7+ 议题,本轮不动规则(判据纪律)。
+
+### 6.5 判定
+
+4 项 FAIL(新 10、val_soft 错误数、极性变化、conformal)照实报,不调门槛不换判据(§5.3)。
+v6 主臂作为**干净基线与分离度参照**留档;交付头仍为 `laya-nli-conflict-v4`。
+建议 v7 议题(供方向决策,未立项):裸意图硬约束形状、holdout 类难度、MNLI 高置信错误的处理(数据源难度分层或规则形态),conformal 规则形态另行评估。

@@ -29,7 +29,8 @@ def main():
         meta = r.get('meta', {})
         out.append({'pred': 'true' if p >= 0.5 else 'false', 'p_true': round(p, 4),
                     'label': r['gold']['conflict']['label'],
-                    'meta': {'cat': meta.get('cat', 'val_soft'), 'kind': meta.get('kind', 'val_soft'),
+                    'meta': {'row_id': i,  # 0-based line in the frozen val_soft jsonl (V6 §4 回查)
+                             'cat': meta.get('cat', 'val_soft'), 'kind': meta.get('kind', 'val_soft'),
                              'lang': meta.get('lang', 'zh'), 'labelset': meta.get('labelset', 1)}})
         if (i + 1) % 100 == 0:
             print(f'{i + 1}/300', flush=True)
