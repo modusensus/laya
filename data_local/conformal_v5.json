@@ -1,0 +1,224 @@
+{
+  "input": {
+    "soft": "D:\\laya\\data_local\\val_soft_probs_v5.json",
+    "main": "D:\\laya\\data_local\\val_probs_v5.json",
+    "real": "D:\\laya\\data_local\\memory_conflict_realtest_v5.json"
+  },
+  "fit": {
+    "set": "val_soft 300",
+    "nominal": 0.9,
+    "k_order_stat": 271,
+    "qhat": 0.2205,
+    "threshold_T": 0.7795
+  },
+  "gates": {
+    "capture": 12,
+    "capture_total": 107,
+    "abstain": 0.023,
+    "gate": ">=50/errors and <=35% abstain",
+    "pass": false
+  },
+  "main_val": {
+    "decide": 977,
+    "abstain": 0.023,
+    "capture": 12,
+    "write_error_rate": 0.0972,
+    "aurc_maxconf_order": 0.04637,
+    "aurc_oracle": 0.00599
+  },
+  "val_soft": {
+    "decide": 272,
+    "coverage": 0.9033,
+    "abstain": 0.0933,
+    "note": "same-distribution slice; nominal 90% guarantee applies here"
+  },
+  "realtest_35": {
+    "decide": 31,
+    "coverage_decide_and_ok": 0.8571,
+    "abstain": 0.1143
+  },
+  "diag_14": {
+    "n_p_found": 14,
+    "decide": 14
+  },
+  "budget_20pct": {
+    "envelope_capture": "48-49/99 (recompute note in V4.1); 50 unreachable at <=20%",
+    "verdict": "unreachable, report-only per V4.1"
+  },
+  "variants_migrated": {
+    "95%": {
+      "T": 0.7739,
+      "qhat": 0.2261,
+      "main_abstain": 0.02,
+      "main_capture": 10
+    },
+    "85%": {
+      "T": 0.7877,
+      "qhat": 0.2123,
+      "main_abstain": 0.024,
+      "main_capture": 13
+    },
+    "80%": {
+      "T": 0.7986,
+      "qhat": 0.2014,
+      "main_abstain": 0.026,
+      "main_capture": 14
+    }
+  },
+  "audit_table_main_val": {
+    "0.9200": {
+      "threshold": 0.92,
+      "write_rate": 0.908,
+      "write_error_rate": 0.0749,
+      "abstain_rate": 0.092,
+      "n_write": 908,
+      "n_write_err": 68
+    },
+    "0.7795": {
+      "threshold": 0.7795,
+      "write_rate": 0.977,
+      "write_error_rate": 0.0972,
+      "abstain_rate": 0.023,
+      "n_write": 977,
+      "n_write_err": 95
+    },
+    "0.9225": {
+      "threshold": 0.9225,
+      "write_rate": 0.898,
+      "write_error_rate": 0.0713,
+      "abstain_rate": 0.102,
+      "n_write": 898,
+      "n_write_err": 64
+    },
+    "0.9000": {
+      "threshold": 0.9,
+      "write_rate": 0.944,
+      "write_error_rate": 0.0858,
+      "abstain_rate": 0.056,
+      "n_write": 944,
+      "n_write_err": 81
+    }
+  },
+  "audit_table_val_soft": {
+    "0.9200": {
+      "threshold": 0.92,
+      "write_rate": 0.2133,
+      "write_error_rate": 0.0,
+      "abstain_rate": 0.7867,
+      "n_write": 64,
+      "n_write_err": 0
+    },
+    "0.7795": {
+      "threshold": 0.7795,
+      "write_rate": 0.9067,
+      "write_error_rate": 0.0037,
+      "abstain_rate": 0.0933,
+      "n_write": 272,
+      "n_write_err": 1
+    },
+    "0.9225": {
+      "threshold": 0.9225,
+      "write_rate": 0.19,
+      "write_error_rate": 0.0,
+      "abstain_rate": 0.81,
+      "n_write": 57,
+      "n_write_err": 0
+    },
+    "0.9000": {
+      "threshold": 0.9,
+      "write_rate": 0.7467,
+      "write_error_rate": 0.0,
+      "abstain_rate": 0.2533,
+      "n_write": 224,
+      "n_write_err": 0
+    }
+  },
+  "tau_warning": "confidence band is a function of tau: sharpening tau 1.2176->0.7-0.8 lifts main-val write rate 87.1%->98.5%+ and write error rate 6.66%->9.4-9.5%; any tau change must pass the audit table first (V4.1 预核算 §5)",
+  "exchangeability_note": "val_soft(synthetic) fit -> main val(MNLI) = distribution shift; main-val numbers are TRANSFER PERFORMANCE, not a finite-sample guarantee; val_soft coverage 0.907 is the same-distribution check",
+  "abstained_errors": [
+    {
+      "idx": 70,
+      "known": "There's only one thing for me to do.\"",
+      "new": "There's a few things left for me to do.",
+      "p_true": 0.26880699396133423,
+      "gold": "true"
+    },
+    {
+      "idx": 99,
+      "known": "uh well i figured if i had it done in the garage at the Toyota dealer i would be looking at probably three or four hundred dollars",
+      "new": "The cost at the dealer's garage is twice as much as what I paid.",
+      "p_true": 0.56906658411026,
+      "gold": "false"
+    },
+    {
+      "idx": 213,
+      "known": "Simpson through the tunnels of time.",
+      "new": "Simpson through the unpredictable nature of the what will happen.",
+      "p_true": 0.7420870661735535,
+      "gold": "false"
+    },
+    {
+      "idx": 371,
+      "known": "There are no shares of a stock that might someday come back, just piles of options as worthless as those shares of Cook's American Business Alliance.",
+      "new": "Cook's American Business Alliance caused shares of stock to come back.",
+      "p_true": 0.27086153626441956,
+      "gold": "true"
+    },
+    {
+      "idx": 428,
+      "known": "'No one in Large would ever try to harm us.",
+      "new": "They're out to get us there in Large, you know.",
+      "p_true": 0.49098706245422363,
+      "gold": "true"
+    },
+    {
+      "idx": 514,
+      "known": "all right thanks bye bye",
+      "new": "hello stop upsetting me",
+      "p_true": 0.42737895250320435,
+      "gold": "true"
+    },
+    {
+      "idx": 672,
+      "known": "The islands' names refer to the different force winds hitting them, not their topography.",
+      "new": "The way the islands are called is based on the force of the wins they experience.",
+      "p_true": 0.6106419563293457,
+      "gold": "false"
+    },
+    {
+      "idx": 676,
+      "known": "Savonarola burned in Florence",
+      "new": "Florence became Savonarola's new home.",
+      "p_true": 0.39743101596832275,
+      "gold": "true"
+    },
+    {
+      "idx": 728,
+      "known": "you can get a hard copy of it and that's about it",
+      "new": "An email won't cut it.",
+      "p_true": 0.7779517769813538,
+      "gold": "false"
+    },
+    {
+      "idx": 830,
+      "known": "The two programs are currently housed in buildings about a block apart.",
+      "new": "The two buildings are on opposite sides of the city.",
+      "p_true": 0.3659448027610779,
+      "gold": "true"
+    },
+    {
+      "idx": 850,
+      "known": "oh like if they say i i we just type it in like that",
+      "new": "Change it before typing it in.",
+      "p_true": 0.24305684864521027,
+      "gold": "true"
+    },
+    {
+      "idx": 923,
+      "known": "well that's uh i agree with you there i mean he didn't have the surrounding cast that Montana had there's no doubt about that",
+      "new": "I don't agree when you say that he didn't have as much support as Montana.",
+      "p_true": 0.222066730260849,
+      "gold": "true"
+    }
+  ]
+}

@@ -19,18 +19,25 @@ not a finite-sample guarantee.
 
 Usage: python conformal_abstain.py <out_json>
 """
+import argparse
 import json
 import math
 import sys
 
 import numpy as np
 
-SOFT = r'D:\laya\data_local\val_soft_v4.json'
-MAIN = r'D:\laya\data_local\val_probs_v4.json'
-VALJ = r'D:\laya\data_local\nli_conflict_val.jsonl'
-REAL = r'D:\laya\data_local\memory_conflict_realtest_v4.json'
-DIAG = r'D:\laya\data_local\noul_bias_diag_v4.json'
-OUT = sys.argv[1] if len(sys.argv) > 1 else r'D:\laya\data_local\conformal_v4.json'
+_D = r'D:\laya\data_local'
+_ap = argparse.ArgumentParser()
+_ap.add_argument('--soft', default=_D + r'\val_soft_v4.json')
+_ap.add_argument('--main', default=_D + r'\val_probs_v4.json')
+_ap.add_argument('--valj', default=_D + r'\nli_conflict_val.jsonl')
+_ap.add_argument('--real', default=_D + r'\memory_conflict_realtest_v4.json')
+_ap.add_argument('--diag', default=_D + r'\noul_bias_diag_v4.json')
+_ap.add_argument('--out', default=_D + r'\conformal_v4.json')
+_ap.add_argument('--capture-gate', type=int, default=50, help='min errors to capture (v5: >=50 of that round errors)')
+_ap.add_argument('--abstain-gate', type=float, default=0.35)
+args = _ap.parse_args()
+SOFT, MAIN, VALJ, REAL, DIAG, OUT = args.soft, args.main, args.valj, args.real, args.diag, args.out
 
 
 def fit_quantile(p, g, nominal):
@@ -68,6 +75,8 @@ def audit(p, ok, t):
 
 
 def main():
+    global args_capture
+    args_capture = (args.capture_gate, args.abstain_gate)
     # ---- fit (val_soft only) ----
     soft = json.load(open(SOFT, encoding='utf-8'))
     sp = np.array([r['p_true'] for r in soft], float)
@@ -89,8 +98,8 @@ def main():
     dec = mc >= T
     capture = int((err & ~dec).sum())
     abst = float((~dec).mean())
-    gate_capture = capture >= 50
-    gate_abst = abst <= 0.35
+    gate_capture = capture >= args_capture[0]
+    gate_abst = abst <= args_capture[1]
 
     # risk-coverage / AURC on main val (ordering = max_conf desc)
     order = np.argsort(-mc, kind='stable')
@@ -140,10 +149,12 @@ def main():
                           'main_capture': int((err & ~d2).sum())}
 
     out = {
+        'input': {'soft': SOFT, 'main': MAIN, 'real': REAL},
         'fit': {'set': 'val_soft 300', 'nominal': 0.90, 'k_order_stat': k,
                 'qhat': round(qhat, 4), 'threshold_T': round(T, 4)},
         'gates': {'capture': capture, 'capture_total': int(err.sum()), 'abstain': round(abst, 4),
-                  'gate': '>=50/99 and <=35%', 'pass': bool(gate_capture and gate_abst)},
+                  'gate': f'>={args_capture[0]}/errors and <={args_capture[1]:.0%} abstain',
+                  'pass': bool(gate_capture and gate_abst)},
         'main_val': {'decide': int(dec.sum()), 'abstain': round(abst, 4), 'capture': capture,
                      'write_error_rate': round(float((dec & err).sum() / dec.sum()), 4),
                      'aurc_maxconf_order': round(aurc, 5), 'aurc_oracle': round(aurc_oracle, 5)},
@@ -168,8 +179,8 @@ def main():
         'abstained_errors': abstained_err,
     }
     json.dump(out, open(OUT, 'w', encoding='utf-8'), ensure_ascii=False, indent=2)
-    print(f"GATE: capture {capture}/99 (>=50 {'PASS' if gate_capture else 'FAIL'}) @ "
-          f"abstain {abst:.1%} (<=35% {'PASS' if gate_abst else 'FAIL'}) => "
+    print(f"GATE: capture {capture}/{int(err.sum())} (>={args_capture[0]} {'PASS' if gate_capture else 'FAIL'}) @ "
+          f"abstain {abst:.1%} (<={args_capture[1]:.0%} {'PASS' if gate_abst else 'FAIL'}) => "
           f"{'PASS' if out['gates']['pass'] else 'FAIL'}")
     print(f"val_soft coverage {soft_cov:.4f} (nominal 90%) | realtest decide {int(rdec.sum())}/35 | "
           f"AURC {aurc:.5f} vs oracle {aurc_oracle:.5f}")
