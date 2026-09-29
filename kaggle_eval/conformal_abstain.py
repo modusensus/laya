@@ -36,6 +36,9 @@ _ap.add_argument('--diag', default=_D + r'\noul_bias_diag_v4.json')
 _ap.add_argument('--out', default=_D + r'\conformal_v4.json')
 _ap.add_argument('--capture-gate', type=int, default=50, help='min errors to capture (v5: >=50 of that round errors)')
 _ap.add_argument('--abstain-gate', type=float, default=0.35)
+_ap.add_argument('--sel-budget', type=float, default=None,
+                 help='half1 SELECTION budget for the s2 rule (V9 §6.2: pass 0.34; '
+                      'default = --abstain-gate for back-compat; half2 GATE unchanged)')
 _ap.add_argument('--split-half', action='store_true',
                  help='V6 §2.4 same-distribution calibration: fit the quantile on main-val half 1, '
                       'report/gate on half 2 (disjoint halves asserted). Legacy val_soft fit is '
@@ -89,6 +92,7 @@ def audit(p, ok, t):
 def main():
     global args_capture
     args_capture = (args.capture_gate, args.abstain_gate)
+    sel_budget = args.sel_budget if args.sel_budget is not None else args.abstain_gate
     # ---- fit (val_soft only; ARCHIVE under --split-half) ----
     soft = json.load(open(SOFT, encoding='utf-8'))
     sp = np.array([r['p_true'] for r in soft], float)
@@ -173,9 +177,9 @@ def main():
                 d1 = (s2v[h1] >= t) if direction == 'ge' else (s2v[h1] <= t)
                 ab1 = float((~d1).mean())
                 cp1 = int((err[h1] & ~d1).sum())
-                if ab1 <= args_capture[1]:
+                if ab1 <= sel_budget:  # V9 §6.2: selection budget (gate stays args_capture[1])
                     cands.append((cp1, -ab1, direction, float(t)))
-        assert cands, 'no half1 variant satisfies the abstain gate'
+        assert cands, f'no half1 variant satisfies the selection budget {sel_budget:.0%}'
         cap1, _negab, direction, t_sel = max(cands)
         dec2 = (s2v[h2] >= t_sel) if direction == 'ge' else (s2v[h2] <= t_sel)
         err2_n = int(err[h2].sum())
@@ -194,6 +198,7 @@ def main():
             'half2_report': {'decide': int(dec2.sum()), 'abstain': round(abst2, 4),
                              'capture': cap2, 'capture_total': err2_n,
                              'write_error_rate': round(float((dec2 & err[h2]).sum() / dec2.sum()), 4) if dec2.sum() else None},
+            'sel_budget': sel_budget,
             'gate': f'capture >=50% of {err2_n} @ abstain <= {args_capture[1]:.0%}',
             'pass': bool(cap2 >= math.ceil(0.5 * err2_n) and abst2 <= args_capture[1]),
         }

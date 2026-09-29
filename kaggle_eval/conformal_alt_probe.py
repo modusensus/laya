@@ -47,6 +47,9 @@ _ap.add_argument('--val-probs', default=_D + r'\val_probs_v7.json',
                  help='kernel val_probs for the p1 cross-check')
 _ap.add_argument('--rows', type=int, default=0, help='smoke-test cap (0 = all 1000)')
 _ap.add_argument('--skip-preds', action='store_true', help='re-analyze existing output')
+_ap.add_argument('--sel-budget', type=float, default=0.35,
+                 help='half1 SELECTION budget (V9 §6.2: pass 0.34 for a 1pp margin; '
+                      'the half2 GATE stays 0.35 -- pre-registered, not a gate change)')
 args = _ap.parse_args()
 
 R2 = {'false': 'A', 'true': 'B'}
@@ -164,7 +167,7 @@ def main():
     verdict = None
     adopted = []
     for name, s in scores.items():
-        c1 = scan(h1, s[h1], err[h1])
+        c1 = scan(h1, s[h1], err[h1], max_abstain=args.sel_budget)
         sel = None
         for direction in ('ge', 'le'):
             b = c1[direction]['selected']
@@ -186,7 +189,8 @@ def main():
                        'half2_ok_mean_score': round(float(s[h2][~err[h2]].mean()), 4)}
 
     out = {'protocol': {'split_seed': 20260928, 'n1': len(h1), 'n2': len(h2),
-                        'candidates': list(scores), 'selection': 'half1 max capture @ abstain<=0.35, both directions scanned',
+                        'candidates': list(scores), 'selection': f'half1 max capture @ abstain<={args.sel_budget:.0%} '
+                                  f'(V9 §6.2 sel budget; half2 gate still 0.35), both directions scanned',
                         'gate': 'half2 >=50% capture @ <=35% abstain',
                         'p1_kernel_crosscheck_maxdev': round(dev, 4) if dev is not None else None},
            'error_stats': stats,
