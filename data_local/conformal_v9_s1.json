@@ -5,32 +5,29 @@
     "real": "D:/laya/data_local/memory_conflict_realtest_v9.json"
   },
   "fit": {
+    "rule": "s1_maxconf (V9 §6 re-adjudication; scanned per §6.1/§6.2, maxconf LAC archived)",
+    "score_definition": "s1 = maxconf(p1) = max(p1, 1 - p1) on the row-original rendering; rows from conformal_alt_v9.json",
     "seed": 20260928,
     "n1": 500,
     "n2": 500,
     "half1_err": 45,
     "half2_err": 50,
-    "half1_acc": 0.91,
-    "half2_acc": 0.9,
-    "acc_gap_pp": 1.0,
-    "nominal": 0.9,
-    "k_order_stat": 451,
-    "qhat": 0.3299,
-    "threshold_T": 0.6701,
-    "half1_in_sample": {
-      "decide": 495,
-      "abstain": 0.01,
-      "captured_err": 1
+    "half1_selected": {
+      "direction": "ge",
+      "T": 0.9247,
+      "capture": 34,
+      "abstain": 0.276
     },
     "half2_report": {
-      "decide": 489,
-      "abstain": 0.022,
-      "capture": 4,
+      "decide": 341,
+      "abstain": 0.318,
+      "capture": 30,
       "capture_total": 50,
-      "write_error_rate": 0.0941
+      "write_error_rate": 0.0587
     },
+    "sel_budget": 0.34,
     "gate": "capture >=50% of 50 @ abstain <= 35%",
-    "pass": false
+    "pass": true
   },
   "fit_legacy_valsoft": {
     "set": "val_soft 300",
@@ -41,17 +38,17 @@
     "status": "archive: cross-set transfer collapsed in v5 (12/107@2.3% / 16/98@3.0%); superseded by same-distribution split-half fit"
   },
   "gates": {
-    "capture": 4,
+    "capture": 30,
     "capture_total": 50,
-    "abstain": 0.022,
+    "abstain": 0.318,
     "gate": ">=50% of report-half errors and <=35% abstain",
-    "pass": false
+    "pass": true
   },
   "main_val": {
-    "decide": 489,
-    "abstain": 0.022,
-    "capture": 4,
-    "write_error_rate": 0.0941,
+    "decide": 341,
+    "abstain": 0.318,
+    "capture": 30,
+    "write_error_rate": 0.0587,
     "aurc_maxconf_order": 0.03787,
     "aurc_oracle": 0.00471,
     "scope": "report half (split-half calibration; AURC over full main val, threshold-free)"
@@ -167,10 +164,38 @@
   "exchangeability_note": "val_soft(synthetic) fit -> main val(MNLI) = distribution shift; main-val numbers are TRANSFER PERFORMANCE, not a finite-sample guarantee; val_soft coverage 0.907 is the same-distribution check",
   "abstained_errors": [
     {
+      "idx": 785,
+      "known": "He pulled his cloak tighter and wished for a moment that he had not shaved his head.",
+      "new": "The man pulled his super hero cape around himself to show off.",
+      "p_true": 0.8925107717514038,
+      "gold": "false"
+    },
+    {
+      "idx": 781,
+      "known": "You're the Desert Ghost.",
+      "new": "You're a living desert camel.",
+      "p_true": 0.08606363832950592,
+      "gold": "true"
+    },
+    {
+      "idx": 945,
+      "known": "because i don't want to my mother was also a domineering type of personality because she had to take over the things that my dad fell short in",
+      "new": "My mother made me take over the things that my dad fell short it.",
+      "p_true": 0.15076859295368195,
+      "gold": "true"
+    },
+    {
       "idx": 640,
       "known": "Text Box 2.1: Gross Domestic Product and Gross National Product 48Text Box 4.1: How do the NIPA and federal unified budget concepts of",
       "new": "This text displays how GDP and GNP is calculated.",
       "p_true": 0.5192520022392273,
+      "gold": "false"
+    },
+    {
+      "idx": 859,
+      "known": "eThe number of deletions was negligible.",
+      "new": "The precise number of deletions was 71.",
+      "p_true": 0.8442261219024658,
       "gold": "false"
     },
     {
@@ -181,6 +206,34 @@
       "gold": "true"
     },
     {
+      "idx": 555,
+      "known": "And who should decide?",
+      "new": "No one is willing to make the decision.",
+      "p_true": 0.8845824599266052,
+      "gold": "false"
+    },
+    {
+      "idx": 313,
+      "known": "Conversely, an increase in government saving adds to the supply of resources available for investment and may put downward pressure on interest rates.",
+      "new": "Interest rates should increase to increase saving.",
+      "p_true": 0.12162640690803528,
+      "gold": "true"
+    },
+    {
+      "idx": 956,
+      "known": "yeah those yeah it was all bloodless and the good guys can get hit all day long and they have to shake it off they don't they don't you know get  epileptic fits or anything from getting hit on the head",
+      "new": "That was the goriest most true to life thing I've ever seen and I think that's gonna psychologically affect me for a long time.",
+      "p_true": 0.081314817070961,
+      "gold": "true"
+    },
+    {
+      "idx": 235,
+      "known": "Well, we've just got to get down to it, that's all.",
+      "new": "We should take a break from this.",
+      "p_true": 0.1660112589597702,
+      "gold": "true"
+    },
+    {
       "idx": 136,
       "known": "we wouldn't be expected to cast a ballet on the subject",
       "new": "We have been asked to vote on the subject.",
@@ -188,10 +241,136 @@
       "gold": "true"
     },
     {
+      "idx": 900,
+      "known": "Were you in company with anyone?",
+      "new": "Were you awake?",
+      "p_true": 0.24107766151428223,
+      "gold": "true"
+    },
+    {
+      "idx": 80,
+      "known": "Now suppose there is a private delivery firm in Cleveland that is competing with the postal service.",
+      "new": "Imagine a state-run delivery firm trying to phase out the postal service.",
+      "p_true": 0.11932357400655746,
+      "gold": "true"
+    },
+    {
+      "idx": 992,
+      "known": "is there still that type of music available",
+      "new": "I could care less if the music still existed.",
+      "p_true": 0.16409441828727722,
+      "gold": "true"
+    },
+    {
+      "idx": 830,
+      "known": "The two programs are currently housed in buildings about a block apart.",
+      "new": "The two buildings are on opposite sides of the city.",
+      "p_true": 0.08904983848333359,
+      "gold": "true"
+    },
+    {
+      "idx": 826,
+      "known": "Divers can explore the deeps but you can also snorkel here, or take a glass-bottom boat or submarine tour to get a glimpse of this watery world.",
+      "new": "Divers do not like to explore the deeps here.",
+      "p_true": 0.2023940086364746,
+      "gold": "true"
+    },
+    {
+      "idx": 940,
+      "known": "When we encounter the young woman again, she has taken a job as the live-in domestic at a huge and crumbling Roman townhouse belonging to an English loner named Jason Kinsky (David Thewlis).",
+      "new": "The chances of finding jobs in the field of live-in domestics is low.",
+      "p_true": 0.9054057598114014,
+      "gold": "false"
+    },
+    {
+      "idx": 474,
+      "known": "Just north of the Shalom Tower is the Yemenite Quarter, its main attractions being the bustling Carmel market and good Oriental restaurants.",
+      "new": "The Shalom Tower is north of the Yemenite Quarter.",
+      "p_true": 0.08285409212112427,
+      "gold": "true"
+    },
+    {
+      "idx": 642,
+      "known": "However, the WRAP States may unanimously petition the Administrator to determine that the total emissions of affected EGUs are reasonably projected to exceed 271,000 tons in 2018 or a later year and to make affected EGUs subject to the requirements of the new WRAP trading program.",
+      "new": "The WRAP States may unanimously petition the Administrator to overturn the smoking ban.",
+      "p_true": 0.702627420425415,
+      "gold": "false"
+    },
+    {
+      "idx": 122,
+      "known": "Boca da Corrida Encumeada (moderate; 5 hours): views of Curral das Freiras and the valley of Ribeiro do Poco.",
+      "new": "This chapter is in the advance category.",
+      "p_true": 0.08832963556051254,
+      "gold": "true"
+    },
+    {
+      "idx": 836,
+      "known": "One thing was worrying me dreadfully, but my heart gave a great throb of relief when I saw my ulster lying carelessly over the back of a chair.",
+      "new": "I was dreadfully worried about many things.",
+      "p_true": 0.08848728239536285,
+      "gold": "true"
+    },
+    {
+      "idx": 899,
+      "known": "The sooner we strike the better.\" He turned to Tuppence.",
+      "new": "He convinced Tuppence to hold off on their action plan.",
+      "p_true": 0.0920383557677269,
+      "gold": "true"
+    },
+    {
+      "idx": 972,
+      "known": "Although it's hard to disagree with James Surowiecki's roasting of Wade Cook in The Book on Cook, Surowiecki's assertion that the equity stock option market is simply a big casino that contribute[s] nothing to the smooth functioning of capital markets is both wrong and silly.",
+      "new": "Wade Cook wrote The Book on Cook.",
+      "p_true": 0.2104436755180359,
+      "gold": "true"
+    },
+    {
       "idx": 99,
       "known": "uh well i figured if i had it done in the garage at the Toyota dealer i would be looking at probably three or four hundred dollars",
       "new": "The cost at the dealer's garage is twice as much as what I paid.",
       "p_true": 0.5732550024986267,
+      "gold": "false"
+    },
+    {
+      "idx": 348,
+      "known": "Over most of the 1980s and 1990s, the U.S. was able to invest more than it saved by attracting financing from abroad.",
+      "new": "The US could save more than it invested in the 1980's and 90's.",
+      "p_true": 0.08998870104551315,
+      "gold": "true"
+    },
+    {
+      "idx": 137,
+      "known": "TEST ORGANISMS",
+      "new": "Trial Living Things",
+      "p_true": 0.8954663872718811,
+      "gold": "false"
+    },
+    {
+      "idx": 212,
+      "known": "yeah well my uh my uh probably one of the biggest decisions i think that was very strengthened for our family was rather than have one child make that decision",
+      "new": "Our children played a huge role in making this decision.",
+      "p_true": 0.9154120683670044,
+      "gold": "false"
+    },
+    {
+      "idx": 489,
+      "known": "'Don't worry,' he whispered.",
+      "new": "He was freaked out.",
+      "p_true": 0.22532309591770172,
+      "gold": "true"
+    },
+    {
+      "idx": 213,
+      "known": "Simpson through the tunnels of time.",
+      "new": "Simpson through the unpredictable nature of the what will happen.",
+      "p_true": 0.9179433584213257,
+      "gold": "false"
+    },
+    {
+      "idx": 984,
+      "known": "The word itself, tapa, is translated as  lid  and derives from the old custom of offering a bite of food along with a drink, the food being served on a saucer sitting on top of the glass like a lid.",
+      "new": "Tapas are only small in order for you to try a lot.",
+      "p_true": 0.9075521230697632,
       "gold": "false"
     }
   ]

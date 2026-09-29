@@ -4,7 +4,8 @@ shapes, on FRESH literals that never entered training (train_v9 / val /
 val_soft all excluded at state level) -- a held-out generalization reading
 for the two shapes block C/D added, complementing val_soft's holdout view.
 
-32 rows: per in-dist cat 1 waver + 1 change per language (gym_brand ZH-only).
+30 rows built: per in-dist cat 1 waver + 1 change per language (gym_brand ZH-only),
+so 7 cats x 2 langs x 2 shapes + gym_brand zh x 2 = 30.
 Semantic ZH question (same rendering family as the realtest battery).
 """
 import json

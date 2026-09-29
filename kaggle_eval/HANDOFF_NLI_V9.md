@@ -347,3 +347,9 @@ holdout 双读表(v4–v9 同表);极性 mean\|Δp\| 三集;τ 拟合值;逐族�
   3. **conformal**:34% 选点余量方案已验证有效(双规则过线),v10 直接沿用;s2 若日后采用需三渲染推理端成本入账;
   4. val_soft 0/300 与 in-dist 探针 30/30 说明 waver/变更形状补齐达标,该方向无遗留。
 - **口径注(承 §2.2)**:v6 起验收 35 案与训练语料零逐句交集;val/val_soft 与语料存在家族级句式共享(字段级 310 命中,v7/v8/v9 同量,非回归);barber holdout 与训练域重叠自 v5 起(44 行 v6 交付控制行在库)——跨轮对比按此读。
+
+### 9.5 复核侧补记(2026-09-30,复验后修订;只做事实性修正,§9.2 判定与计数不变)
+
+- **s1 真档修复**:原 `conformal_v9_s1.json` 由 `--rule maxconf` 分支产出,而该分支**不消费 `--alt-scores`**(帮助文本历来写 "required with --rule s2")⇒ 该文件与 `conformal_v9.json` 逐字节相同,并非 §6.4 所要的「s1 重裁档」。已给 `conformal_abstain.py` 增加 **`--rule s1_maxconf`** 扫描分支(s1 = maxconf(p1),与 s2 同套 half1 选点/`--sel-budget`/半2 判定,下游审计同形),并令 `--alt-scores` 在 `--rule maxconf` 下**报错而非静默忽略**;重生成真档:half1 选点 **T=0.9247 @ 27.6%**(capture 34/45)、half2 **30/50 = 60% @ 31.8% PASS**,与 `conformal_alt_v9.json` 的 s1 半2读数**逐值一致**。替换无损(旧文件内容 = `conformal_v9.json` 本身);s2 档与 maxconf 旧口径回归**逐字节不变**。§9.2 conformal 行维持原判(**PASS**,采用规则记 s1)。
+- **平局口径**:§6.1 原写「任一候选达标 ⇒ 该规则为本轮采用规则」,未定义 s1/s2 **同时达标**时的取舍;本轮记 s1(maxconf,推理端最简、弃权余量更大,与 §9.3 一致)。「平局优先 s1」将写进 v10 书 §6 预注册。
+- **文档小修**:`probe_indist_v9.py` docstring 行数陈述 32→30(实建 30 = 7 猫×2 语种×2 形状 + gym_brand 仅 ZH)。
