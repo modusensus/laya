@@ -1,0 +1,219 @@
+{
+  "input": {
+    "soft": "data_local/val_soft_probs_v7.json",
+    "main": "data_local/val_probs_v7.json",
+    "real": "data_local/memory_conflict_realtest_v7.json"
+  },
+  "fit": {
+    "seed": 20260928,
+    "n1": 500,
+    "n2": 500,
+    "half1_err": 46,
+    "half2_err": 51,
+    "half1_acc": 0.908,
+    "half2_acc": 0.898,
+    "acc_gap_pp": 1.0,
+    "nominal": 0.9,
+    "k_order_stat": 451,
+    "qhat": 0.275,
+    "threshold_T": 0.725,
+    "half1_in_sample": {
+      "decide": 492,
+      "abstain": 0.016,
+      "captured_err": 5
+    },
+    "half2_report": {
+      "decide": 486,
+      "abstain": 0.028,
+      "capture": 7,
+      "capture_total": 51,
+      "write_error_rate": 0.0905
+    },
+    "gate": "capture >=50% of 51 @ abstain <= 35%",
+    "pass": false
+  },
+  "fit_legacy_valsoft": {
+    "set": "val_soft 300",
+    "nominal": 0.9,
+    "k_order_stat": 271,
+    "qhat": 0.2228,
+    "threshold_T": 0.7772,
+    "status": "archive: cross-set transfer collapsed in v5 (12/107@2.3% / 16/98@3.0%); superseded by same-distribution split-half fit"
+  },
+  "gates": {
+    "capture": 7,
+    "capture_total": 51,
+    "abstain": 0.028,
+    "gate": ">=50% of report-half errors and <=35% abstain",
+    "pass": false
+  },
+  "main_val": {
+    "decide": 486,
+    "abstain": 0.028,
+    "capture": 7,
+    "write_error_rate": 0.0905,
+    "aurc_maxconf_order": 0.04648,
+    "aurc_oracle": 0.00491,
+    "scope": "report half (split-half calibration; AURC over full main val, threshold-free)"
+  },
+  "val_soft": {
+    "decide": 299,
+    "coverage": 0.9967,
+    "abstain": 0.0033,
+    "note": "same-distribution slice; nominal 90% guarantee applies here"
+  },
+  "realtest_35": {
+    "decide": 35,
+    "coverage_decide_and_ok": 1.0,
+    "abstain": 0.0
+  },
+  "diag_14": {
+    "n_p_found": 14,
+    "decide": 14
+  },
+  "budget_20pct": {
+    "envelope_capture": "48-49/99 (recompute note in V4.1); 50 unreachable at <=20%",
+    "verdict": "unreachable, report-only per V4.1"
+  },
+  "variants_migrated": {
+    "95%": {
+      "T": 0.7706,
+      "qhat": 0.2294,
+      "main_abstain": 0.034,
+      "main_capture": 18
+    },
+    "85%": {
+      "T": 0.7867,
+      "qhat": 0.2133,
+      "main_abstain": 0.04,
+      "main_capture": 20
+    },
+    "80%": {
+      "T": 0.8049,
+      "qhat": 0.1951,
+      "main_abstain": 0.044,
+      "main_capture": 20
+    }
+  },
+  "audit_table_main_val": {
+    "0.9200": {
+      "threshold": 0.92,
+      "write_rate": 0.802,
+      "write_error_rate": 0.0499,
+      "abstain_rate": 0.198,
+      "n_write": 802,
+      "n_write_err": 40
+    },
+    "0.7250": {
+      "threshold": 0.724964439868927,
+      "write_rate": 0.978,
+      "write_error_rate": 0.0869,
+      "abstain_rate": 0.022,
+      "n_write": 978,
+      "n_write_err": 85
+    },
+    "0.9225": {
+      "threshold": 0.9225,
+      "write_rate": 0.778,
+      "write_error_rate": 0.0476,
+      "abstain_rate": 0.222,
+      "n_write": 778,
+      "n_write_err": 37
+    },
+    "0.9000": {
+      "threshold": 0.9,
+      "write_rate": 0.878,
+      "write_error_rate": 0.0638,
+      "abstain_rate": 0.122,
+      "n_write": 878,
+      "n_write_err": 56
+    }
+  },
+  "audit_table_val_soft": {
+    "0.9200": {
+      "threshold": 0.92,
+      "write_rate": 0.2467,
+      "write_error_rate": 0.0,
+      "abstain_rate": 0.7533,
+      "n_write": 74,
+      "n_write_err": 0
+    },
+    "0.7250": {
+      "threshold": 0.724964439868927,
+      "write_rate": 0.9967,
+      "write_error_rate": 0.0,
+      "abstain_rate": 0.0033,
+      "n_write": 299,
+      "n_write_err": 0
+    },
+    "0.9225": {
+      "threshold": 0.9225,
+      "write_rate": 0.22,
+      "write_error_rate": 0.0,
+      "abstain_rate": 0.78,
+      "n_write": 66,
+      "n_write_err": 0
+    },
+    "0.9000": {
+      "threshold": 0.9,
+      "write_rate": 0.7167,
+      "write_error_rate": 0.0,
+      "abstain_rate": 0.2833,
+      "n_write": 215,
+      "n_write_err": 0
+    }
+  },
+  "tau_warning": "confidence band is a function of tau: sharpening tau 1.2176->0.7-0.8 lifts main-val write rate 87.1%->98.5%+ and write error rate 6.66%->9.4-9.5%; any tau change must pass the audit table first (V4.1 预核算 §5)",
+  "exchangeability_note": "val_soft(synthetic) fit -> main val(MNLI) = distribution shift; main-val numbers are TRANSFER PERFORMANCE, not a finite-sample guarantee; val_soft coverage 0.907 is the same-distribution check",
+  "abstained_errors": [
+    {
+      "idx": 900,
+      "known": "Were you in company with anyone?",
+      "new": "Were you awake?",
+      "p_true": 0.2974911034107208,
+      "gold": "true"
+    },
+    {
+      "idx": 569,
+      "known": "oh my  uh-huh uh-huh",
+      "new": "Oh wow, go on.",
+      "p_true": 0.6587812304496765,
+      "gold": "false"
+    },
+    {
+      "idx": 822,
+      "known": "What seems to be a special bargain price for just  one week only  could turn out to be a year-round con.",
+      "new": "Store owners are always honest.",
+      "p_true": 0.44931262731552124,
+      "gold": "true"
+    },
+    {
+      "idx": 441,
+      "known": "Many who fled have returned.",
+      "new": "They all ran and never looked back.",
+      "p_true": 0.48184889554977417,
+      "gold": "true"
+    },
+    {
+      "idx": 238,
+      "known": "What the judge really wants are the facts -- he wants to make a good decision, he said.",
+      "new": "In the end the judge made a bad decision since he imprisoned someone innocent.",
+      "p_true": 0.5918387770652771,
+      "gold": "false"
+    },
+    {
+      "idx": 833,
+      "known": "no North Carolina State",
+      "new": "North Carolina is a county",
+      "p_true": 0.42700573801994324,
+      "gold": "true"
+    },
+    {
+      "idx": 276,
+      "known": "Missouri was asked to continue its planning efforts and file a supplemental planning report with LSC on or before October 1, 1999.",
+      "new": "Missouri was happy to continue it's planning efforts.",
+      "p_true": 0.5005519390106201,
+      "gold": "false"
+    }
+  ]
+}
