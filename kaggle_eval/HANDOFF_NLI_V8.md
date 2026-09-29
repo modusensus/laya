@@ -186,10 +186,12 @@ barber holdout 与训练域重叠自 v5 起(§2.2 注);跨轮对比按此读。
 
 ## 8. 执行环境与命令(承 v7 §8 + 本机新坑)
 
-- ⚠️ **本机 torch 现被 Smart App Control 拦截**(2026-09-29 复核实测:`import torch` → WinError 4551;
-  pandas 更早已被拦)。本机全套复验(realtest / polarity / bias / probe / dump / band 均依赖 torch)
-  在此状态下**跑不了**。**开工先探测**:`"D:/Miniconda/envs/laya-ft/python.exe" -c "import torch; print('ok')"`;
-  若被拦 → **停下报告**(需先处理 SAC;训练在 Kaggle、生成器与离线复算不受影响)。
+- ⚠️ **本机 torch 受 Smart App Control 间歇性拦截**(2026-09-29 实测:上午正常、午后被拦
+  `WinError 4551`、随后又三连通过;全程 SAC = On。`pandas` 长期被拦,一律 `pyarrow`)。
+  **开工先探测**:`"D:/Miniconda/envs/laya-ft/python.exe" -c "import torch; print('ok')"`;
+  **被拦先隔几分钟重试若干轮**(已见同日翻覆),仍拦再停:**本机电池(realtest / polarity / bias /
+  probe / dump / band 均依赖 torch)整体待命,不硬凑、不换判定口径**;训练在 Kaggle、
+  生成器与离线复算不受影响。
   诊断:`wevtutil qe "Microsoft-Windows-CodeIntegrity/Operational" /c:200 /f:text /rd:true | grep "attempted to load"`。
 - Kaggle CLI 的 tmp 必须指 ASCII(`C:/kaggle_cfg/tmp`);**数据集总挂最新版**;README 改动也要出
   新版本号;**每次 push kernel 会从头重训**(CUDA 非确定性 ⇒ 权重不可位复现;本机留档副本为准);
