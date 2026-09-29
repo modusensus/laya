@@ -6,7 +6,7 @@
   },
   "fit": {
     "rule": "s2_surface_consistency (adopted per V7 §6 protocol; maxconf LAC archived)",
-    "score_definition": "s2 = 1 - (max(p1,p2,p3) - min(p1,p2,p3)) over three fixed renderings (row-original / neutral A-B / keep-supersede); rows from conformal_alt_v7.json",
+    "score_definition": "s2 = 1 - (max(p1,p2,p3) - min(p1,p2,p3)) over three fixed renderings (row-original / neutral A-B / keep-supersede); rows from conformal_alt_v8.json",
     "seed": 20260928,
     "n1": 500,
     "n2": 500,

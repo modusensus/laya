@@ -184,7 +184,8 @@ def main():
         split_info = {
             'rule': 's2_surface_consistency (adopted per V7 §6 protocol; maxconf LAC archived)',
             'score_definition': 's2 = 1 - (max(p1,p2,p3) - min(p1,p2,p3)) over three fixed renderings '
-                                '(row-original / neutral A-B / keep-supersede); rows from conformal_alt_v7.json',
+                                '(row-original / neutral A-B / keep-supersede); rows from '
+                                + args.alt_scores.replace('\\', '/').split('/')[-1],
             'seed': args.split_seed, 'n1': len(h1), 'n2': len(h2),
             'half1_err': int(err[h1].sum()), 'half2_err': err2_n,
             'half1_selected': {'direction': direction, 'T': round(t_sel, 4),
