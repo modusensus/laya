@@ -100,7 +100,7 @@ def main():
     ap.add_argument('--train-jsonl', required=True)
     ap.add_argument('--val-jsonl', required=True)
     ap.add_argument('--output-dir', required=True)
-    ap.add_argument('--expected-train', type=int, default=15300, help='assert exact train row count (guards against silent truncation)')
+    ap.add_argument('--expected-train', type=int, default=15420, help='assert exact train row count (guards against silent truncation)')
     ap.add_argument('--max-items', type=int, default=16000, help='loader cap; must exceed the train row count')
     ap.add_argument('--no-rl', action='store_true', help='arm B: pure soft CE (loss = loss_ce / GRAD_ACCUM), upstream laya#238 one-liner')
     ap.add_argument('--r-drop', type=float, default=0.0, help='arm C: R-Drop lambda (two-dropout KL); 0 disables')
