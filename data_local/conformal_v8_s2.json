@@ -1,0 +1,460 @@
+{
+  "input": {
+    "soft": "D:/laya/data_local/val_soft_probs_v8.json",
+    "main": "D:/laya/data_local/val_probs_v8.json",
+    "real": "D:/laya/data_local/memory_conflict_realtest_v8.json"
+  },
+  "fit": {
+    "rule": "s2_surface_consistency (adopted per V7 §6 protocol; maxconf LAC archived)",
+    "score_definition": "s2 = 1 - (max(p1,p2,p3) - min(p1,p2,p3)) over three fixed renderings (row-original / neutral A-B / keep-supersede); rows from conformal_alt_v7.json",
+    "seed": 20260928,
+    "n1": 500,
+    "n2": 500,
+    "half1_err": 50,
+    "half2_err": 54,
+    "half1_selected": {
+      "direction": "ge",
+      "T": 0.9934,
+      "capture": 41,
+      "abstain": 0.332
+    },
+    "half2_report": {
+      "decide": 323,
+      "abstain": 0.354,
+      "capture": 42,
+      "capture_total": 54,
+      "write_error_rate": 0.0372
+    },
+    "gate": "capture >=50% of 54 @ abstain <= 35%",
+    "pass": false
+  },
+  "fit_legacy_valsoft": {
+    "set": "val_soft 300",
+    "nominal": 0.9,
+    "k_order_stat": 271,
+    "qhat": 0.2272,
+    "threshold_T": 0.7728,
+    "status": "archive: cross-set transfer collapsed in v5 (12/107@2.3% / 16/98@3.0%); superseded by same-distribution split-half fit"
+  },
+  "gates": {
+    "capture": 42,
+    "capture_total": 54,
+    "abstain": 0.354,
+    "gate": ">=50% of report-half errors and <=35% abstain",
+    "pass": false
+  },
+  "main_val": {
+    "decide": 323,
+    "abstain": 0.354,
+    "capture": 42,
+    "write_error_rate": 0.0372,
+    "aurc_maxconf_order": 0.03324,
+    "aurc_oracle": 0.00566,
+    "scope": "report half (split-half calibration; AURC over full main val, threshold-free)"
+  },
+  "val_soft": {
+    "decide": 300,
+    "coverage": 0.9767,
+    "abstain": 0.0,
+    "note": "same-distribution slice; nominal 90% guarantee applies here"
+  },
+  "realtest_35": {
+    "decide": 35,
+    "coverage_decide_and_ok": 1.0,
+    "abstain": 0.0
+  },
+  "diag_14": {
+    "n_p_found": 14,
+    "decide": 14
+  },
+  "budget_20pct": {
+    "envelope_capture": "48-49/99 (recompute note in V4.1); 50 unreachable at <=20%",
+    "verdict": "unreachable, report-only per V4.1"
+  },
+  "variants_migrated": {
+    "95%": {
+      "T": 0.7565,
+      "qhat": 0.2435,
+      "main_abstain": 0.027,
+      "main_capture": 14
+    },
+    "85%": {
+      "T": 0.7824,
+      "qhat": 0.2176,
+      "main_abstain": 0.035,
+      "main_capture": 19
+    },
+    "80%": {
+      "T": 0.794,
+      "qhat": 0.206,
+      "main_abstain": 0.038,
+      "main_capture": 20
+    }
+  },
+  "audit_table_main_val": {
+    "0.9200": {
+      "threshold": 0.92,
+      "write_rate": 0.803,
+      "write_error_rate": 0.0473,
+      "abstain_rate": 0.197,
+      "n_write": 803,
+      "n_write_err": 38
+    },
+    "0.4597": {
+      "threshold": 0.4596874713897705,
+      "write_rate": 1.0,
+      "write_error_rate": 0.104,
+      "abstain_rate": 0.0,
+      "n_write": 1000,
+      "n_write_err": 104
+    },
+    "0.9225": {
+      "threshold": 0.9225,
+      "write_rate": 0.778,
+      "write_error_rate": 0.045,
+      "abstain_rate": 0.222,
+      "n_write": 778,
+      "n_write_err": 35
+    },
+    "0.9000": {
+      "threshold": 0.9,
+      "write_rate": 0.885,
+      "write_error_rate": 0.061,
+      "abstain_rate": 0.115,
+      "n_write": 885,
+      "n_write_err": 54
+    }
+  },
+  "audit_table_val_soft": {
+    "0.9200": {
+      "threshold": 0.92,
+      "write_rate": 0.2467,
+      "write_error_rate": 0.0,
+      "abstain_rate": 0.7533,
+      "n_write": 74,
+      "n_write_err": 0
+    },
+    "0.4597": {
+      "threshold": 0.4596874713897705,
+      "write_rate": 1.0,
+      "write_error_rate": 0.0233,
+      "abstain_rate": 0.0,
+      "n_write": 300,
+      "n_write_err": 7
+    },
+    "0.9225": {
+      "threshold": 0.9225,
+      "write_rate": 0.2033,
+      "write_error_rate": 0.0,
+      "abstain_rate": 0.7967,
+      "n_write": 61,
+      "n_write_err": 0
+    },
+    "0.9000": {
+      "threshold": 0.9,
+      "write_rate": 0.6767,
+      "write_error_rate": 0.0,
+      "abstain_rate": 0.3233,
+      "n_write": 203,
+      "n_write_err": 0
+    }
+  },
+  "tau_warning": "confidence band is a function of tau: sharpening tau 1.2176->0.7-0.8 lifts main-val write rate 87.1%->98.5%+ and write error rate 6.66%->9.4-9.5%; any tau change must pass the audit table first (V4.1 预核算 §5)",
+  "exchangeability_note": "val_soft(synthetic) fit -> main val(MNLI) = distribution shift; main-val numbers are TRANSFER PERFORMANCE, not a finite-sample guarantee; val_soft coverage 0.907 is the same-distribution check",
+  "abstained_errors": [
+    {
+      "idx": 781,
+      "known": "You're the Desert Ghost.",
+      "new": "You're a living desert camel.",
+      "p_true": 0.07797607779502869,
+      "gold": "true"
+    },
+    {
+      "idx": 640,
+      "known": "Text Box 2.1: Gross Domestic Product and Gross National Product 48Text Box 4.1: How do the NIPA and federal unified budget concepts of",
+      "new": "This text displays how GDP and GNP is calculated.",
+      "p_true": 0.9009366631507874,
+      "gold": "false"
+    },
+    {
+      "idx": 859,
+      "known": "eThe number of deletions was negligible.",
+      "new": "The precise number of deletions was 71.",
+      "p_true": 0.9261744022369385,
+      "gold": "false"
+    },
+    {
+      "idx": 555,
+      "known": "And who should decide?",
+      "new": "No one is willing to make the decision.",
+      "p_true": 0.9301419258117676,
+      "gold": "false"
+    },
+    {
+      "idx": 24,
+      "known": "Merrion Square West, Dublin 2.",
+      "new": "Across the street from a Burger King.",
+      "p_true": 0.833913266658783,
+      "gold": "false"
+    },
+    {
+      "idx": 313,
+      "known": "Conversely, an increase in government saving adds to the supply of resources available for investment and may put downward pressure on interest rates.",
+      "new": "Interest rates should increase to increase saving.",
+      "p_true": 0.4573214054107666,
+      "gold": "true"
+    },
+    {
+      "idx": 229,
+      "known": "What changed?",
+      "new": "What was unique?",
+      "p_true": 0.7778287529945374,
+      "gold": "false"
+    },
+    {
+      "idx": 697,
+      "known": "The Kal tangled both of Adrin's arms, keeping the blades far away.",
+      "new": "Adrin's arms were tangled, keeping his blades away from Kal.",
+      "p_true": 0.8469001650810242,
+      "gold": "false"
+    },
+    {
+      "idx": 956,
+      "known": "yeah those yeah it was all bloodless and the good guys can get hit all day long and they have to shake it off they don't they don't you know get  epileptic fits or anything from getting hit on the head",
+      "new": "That was the goriest most true to life thing I've ever seen and I think that's gonna psychologically affect me for a long time.",
+      "p_true": 0.0777684673666954,
+      "gold": "true"
+    },
+    {
+      "idx": 235,
+      "known": "Well, we've just got to get down to it, that's all.",
+      "new": "We should take a break from this.",
+      "p_true": 0.22303569316864014,
+      "gold": "true"
+    },
+    {
+      "idx": 534,
+      "known": "Justice Kennedy does not care what law librarians across the country do with all the Supreme Court Reporters from 1790 through 1998.",
+      "new": "Justice Kennedy doesn't care if the Supreme Court Reporters from 1790 to 1998 are thrown away.",
+      "p_true": 0.8588623404502869,
+      "gold": "false"
+    },
+    {
+      "idx": 900,
+      "known": "Were you in company with anyone?",
+      "new": "Were you awake?",
+      "p_true": 0.16281870007514954,
+      "gold": "true"
+    },
+    {
+      "idx": 760,
+      "known": "This town, which flourished between 6500 and 5500 b.c. , had flat-roofed houses of mud and timber decorated with wall-paintings, some of which show patterns that still appear on Anatolian kilims.",
+      "new": "This town is over 8000 years old.",
+      "p_true": 0.8086003065109253,
+      "gold": "false"
+    },
+    {
+      "idx": 543,
+      "known": "This testing of the marketplace may range from written or telephone contacts with knowledgeable federal and non-federal experts regarding similar or duplicate requirements and the results of any market test recently undertaken, to the more formal sources-sought announcements in pertinent publications (e.g.",
+      "new": "This marketplace testing ranges from informal to formal surveys.",
+      "p_true": 0.7977170944213867,
+      "gold": "false"
+    },
+    {
+      "idx": 55,
+      "known": "China could never trump the warhead blizzard Washington would send in retaliation against any atomic attack, though the country would be loath to cede to U.S. missile defenses the deterrence afforded by its handfuls of warheads.",
+      "new": "China had many more nuclear warhead than the US.",
+      "p_true": 0.06011516600847244,
+      "gold": "true"
+    },
+    {
+      "idx": 275,
+      "known": "The Leland Act  (1) simplify the household definition",
+      "new": "The Leland Act defines the legal definition of what a household is.",
+      "p_true": 0.8133943676948547,
+      "gold": "false"
+    },
+    {
+      "idx": 702,
+      "known": "yeah well the uh NC double A tournament's going on right now and uh i haven't watched it this year because Louisville's out of it this year",
+      "new": "I'll watch the basketball tournament next year.",
+      "p_true": 0.7613499164581299,
+      "gold": "false"
+    },
+    {
+      "idx": 80,
+      "known": "Now suppose there is a private delivery firm in Cleveland that is competing with the postal service.",
+      "new": "Imagine a state-run delivery firm trying to phase out the postal service.",
+      "p_true": 0.12182435393333435,
+      "gold": "true"
+    },
+    {
+      "idx": 587,
+      "known": "There may be a small savings at the factory showrooms in Manacor, where you'll have the biggest choice.",
+      "new": "The factory showrooms are only for vendors.",
+      "p_true": 0.08582004904747009,
+      "gold": "true"
+    },
+    {
+      "idx": 830,
+      "known": "The two programs are currently housed in buildings about a block apart.",
+      "new": "The two buildings are on opposite sides of the city.",
+      "p_true": 0.12367204576730728,
+      "gold": "true"
+    },
+    {
+      "idx": 140,
+      "known": "Through a friend who knows the lift boy here.",
+      "new": "Through my friend has not yet met the lift boy here.",
+      "p_true": 0.2209910750389099,
+      "gold": "true"
+    },
+    {
+      "idx": 995,
+      "known": "To the northwest of the chateau, the Grand Trianon palace, surrounded by pleasantly unpompous gardens, was the home of Louis XIV's mistress, Madame de Maintenon, where the aging king increasingly took refuge.",
+      "new": "Grand Trianon palace was the residence of Louis XIV.",
+      "p_true": 0.0952812060713768,
+      "gold": "true"
+    },
+    {
+      "idx": 826,
+      "known": "Divers can explore the deeps but you can also snorkel here, or take a glass-bottom boat or submarine tour to get a glimpse of this watery world.",
+      "new": "Divers do not like to explore the deeps here.",
+      "p_true": 0.12193186581134796,
+      "gold": "true"
+    },
+    {
+      "idx": 940,
+      "known": "When we encounter the young woman again, she has taken a job as the live-in domestic at a huge and crumbling Roman townhouse belonging to an English loner named Jason Kinsky (David Thewlis).",
+      "new": "The chances of finding jobs in the field of live-in domestics is low.",
+      "p_true": 0.9241595268249512,
+      "gold": "false"
+    },
+    {
+      "idx": 474,
+      "known": "Just north of the Shalom Tower is the Yemenite Quarter, its main attractions being the bustling Carmel market and good Oriental restaurants.",
+      "new": "The Shalom Tower is north of the Yemenite Quarter.",
+      "p_true": 0.1447531282901764,
+      "gold": "true"
+    },
+    {
+      "idx": 889,
+      "known": "you know even even into major things just to keep our car longer because i don't think we get the money that we put into them out of them in two years or three years and of course i was never in a position where i could trade my car off every two years",
+      "new": "I get a brand new car every couple of years.",
+      "p_true": 0.3927108645439148,
+      "gold": "true"
+    },
+    {
+      "idx": 122,
+      "known": "Boca da Corrida Encumeada (moderate; 5 hours): views of Curral das Freiras and the valley of Ribeiro do Poco.",
+      "new": "This chapter is in the advance category.",
+      "p_true": 0.1333121955394745,
+      "gold": "true"
+    },
+    {
+      "idx": 228,
+      "known": "Tax records show Waters earned around $65,000 in 2000.",
+      "new": "Waters' tax records show he earned a blue ribbon last year.",
+      "p_true": 0.11593279242515564,
+      "gold": "true"
+    },
+    {
+      "idx": 264,
+      "known": "Off El Hurriya Street you'll find the Neo-Classical facade of the Greco-Roman Museum with a fine collection of both Roman, Greek, and Ptolemaic artifacts found around the city and under the waters of the harbor, along with many ancient Egyptian pieces.",
+      "new": "Interestingly enough, every item is a vampire ward and keeps the vampires at bay.",
+      "p_true": 0.9209474325180054,
+      "gold": "false"
+    },
+    {
+      "idx": 836,
+      "known": "One thing was worrying me dreadfully, but my heart gave a great throb of relief when I saw my ulster lying carelessly over the back of a chair.",
+      "new": "I was dreadfully worried about many things.",
+      "p_true": 0.14851047098636627,
+      "gold": "true"
+    },
+    {
+      "idx": 899,
+      "known": "The sooner we strike the better.\" He turned to Tuppence.",
+      "new": "He convinced Tuppence to hold off on their action plan.",
+      "p_true": 0.10800942778587341,
+      "gold": "true"
+    },
+    {
+      "idx": 972,
+      "known": "Although it's hard to disagree with James Surowiecki's roasting of Wade Cook in The Book on Cook, Surowiecki's assertion that the equity stock option market is simply a big casino that contribute[s] nothing to the smooth functioning of capital markets is both wrong and silly.",
+      "new": "Wade Cook wrote The Book on Cook.",
+      "p_true": 0.07121080905199051,
+      "gold": "true"
+    },
+    {
+      "idx": 348,
+      "known": "Over most of the 1980s and 1990s, the U.S. was able to invest more than it saved by attracting financing from abroad.",
+      "new": "The US could save more than it invested in the 1980's and 90's.",
+      "p_true": 0.09599511325359344,
+      "gold": "true"
+    },
+    {
+      "idx": 669,
+      "known": "you sound like this girl that i talked to about books and we got into movies one night",
+      "new": "I found out about so many movies I had never heard of.",
+      "p_true": 0.915030300617218,
+      "gold": "false"
+    },
+    {
+      "idx": 212,
+      "known": "yeah well my uh my uh probably one of the biggest decisions i think that was very strengthened for our family was rather than have one child make that decision",
+      "new": "Our children played a huge role in making this decision.",
+      "p_true": 0.88868248462677,
+      "gold": "false"
+    },
+    {
+      "idx": 489,
+      "known": "'Don't worry,' he whispered.",
+      "new": "He was freaked out.",
+      "p_true": 0.348470538854599,
+      "gold": "true"
+    },
+    {
+      "idx": 0,
+      "known": "i'm kind of familiar with the weather out that way in west Texas but not in not in Lewisville",
+      "new": "I do not know the weather conditions in Lewisville.",
+      "p_true": 0.930113673210144,
+      "gold": "false"
+    },
+    {
+      "idx": 238,
+      "known": "What the judge really wants are the facts -- he wants to make a good decision, he said.",
+      "new": "In the end the judge made a bad decision since he imprisoned someone innocent.",
+      "p_true": 0.8284273147583008,
+      "gold": "false"
+    },
+    {
+      "idx": 213,
+      "known": "Simpson through the tunnels of time.",
+      "new": "Simpson through the unpredictable nature of the what will happen.",
+      "p_true": 0.6603038907051086,
+      "gold": "false"
+    },
+    {
+      "idx": 980,
+      "known": "Although all four categories of emissions are down substantially, they only achieve 50-75% of the proposed cap by 2007 (shown as the dotted horizontal line in each of the above figures).",
+      "new": "All of the emission categories experienced a downturn except for one.",
+      "p_true": 0.08431340754032135,
+      "gold": "true"
+    },
+    {
+      "idx": 276,
+      "known": "Missouri was asked to continue its planning efforts and file a supplemental planning report with LSC on or before October 1, 1999.",
+      "new": "Missouri was happy to continue it's planning efforts.",
+      "p_true": 0.8863624930381775,
+      "gold": "false"
+    },
+    {
+      "idx": 411,
+      "known": "Tracking down the tiger is a subtle affair, and requires a degree of dedication, calm, and stealth.",
+      "new": "You must be very silent when tracking tigers.",
+      "p_true": 0.923086941242218,
+      "gold": "false"
+    }
+  ]
+}

@@ -241,4 +241,53 @@ barber holdout 与训练域重叠自 v5 起(§2.2 注);跨轮对比按此读。
 
 ## 第 8 轮执行结果
 
-(执行者填写:执行与资产 / 硬门槛对照 / 关键读数 / 判定;格式照 v7 §7。)
+**结论:8 项硬门槛 PASS / 4 项 FAIL(本轮唯一目标 B2 未回收:p 0.8985→0.7491,方向对、剂量不够;另 val_soft 7>3、极性 val_soft 变化 +6、conformal 弃权 35.4% 超线 0.4pp)⇒ 无交付,v4 保持已交付,HF 未动(§7 未达标不动、不补推)。按 §4 止损线负结论照交,不叠第二轮修补,留 v9 决策。**
+
+### 8.1 执行与资产
+
+| 项 | 值 |
+|---|---|
+| 训练数据 | `nli_conflict_train_v8.jsonl` 15420 行;§3.3 断言(含升级泄漏断言:35 案 + diag 18 对逐字段)全过;`leak_audit.py` **0/35**(`data_local/leak_audit_v8.txt`);独立复算:diag 18 对 15 个唯一字段 vs 全 train 逐字段等值 **0 命中** |
+| 新块落数 | `attr_consistent` 120 逐格精确(assert):pet_name 40(zh 24/en 16)+ pet_benign 40(zh 24/en 16)= **pet_attr 80(zh 48/en 32)**;doctor_bg 40(zh 24/en 16)= **doctor_attr 40**;kind=compat,p(false) 抽样 0.9182–0.9441(TARGETS['compat'] 档内) |
+| 携带块验证 | v7 其余 15300 行 **state+gold 与 v8 逐字节等值**(同 seed rng 流同序重放,attr 块吃流尾;labelset 轮换随 15420 池重排,与 v6→v7 惯例同);val/val_soft 未重生成 |
+| 新字面抽查 | 「用户家小猫的名字是汤圆 \| 用户的猫是只灰猫」(pet_name,ZH)·「用户家的猫对鸡肉过敏 \| 用户家的猫今年两岁」(pet_benign,ZH)·「用户术后恢复期,医生叮嘱忌剧烈运动 \| 用户的病假条已经交给了公司」(doctor_bg,ZH)——与 B2「叫小白/是白色的」同形状字面异;禁词(小白/白色/开心果)断言 0 |
+| Kaggle | 数据集 **v13**(train 9502030 字节 = 本地逐字节;val/val_soft 冻结复核);kernel `laya-nli-conflict-ce` **v4(= 计账 kernel v13,纯 CE)**,日志内计时 ≈16.7 分钟(loss 0.3363→0.2729→0.2628→0.2607);`nli_kernel.py` 同步嵌 v8 脚本未执行 |
+| checkpoint | `D:\laya-kaggle-output\laya-nli-conflict-v8\`;model.safetensors SHA256 `bcd1b1583e2ada86edda7b5259d430b201a6f72c9c19f2b074ce85f718174088` |
+| τ(noul) | **1.1240**(按 §4 纪律直接读回 `rl_agent_config.json` temperature[2] = 1.1240078…;v4 1.2176 / v6 1.0905 / v7 1.1058) |
+| 复验产物 | 全套 `*_v8.json` + `conformal_v8.json`(maxconf 对半切,存档)、`conformal_v8_s2.json`(采用规则,`--alt-scores` 显式指 v8)、`conformal_alt_v8.json`(三候选逐行分数+曲线)、`conf_band_v8.txt`、`leak_audit_v8.txt`、`eval_v8.log` |
+
+### 8.2 硬门槛对照(§5)
+
+| 指标 | v4 | v6 | v7 | v8 实测 | 门槛 | 判定 |
+|---|---|---|---|---|---|---|
+| 主 val acc | 0.901 | 0.903 | 0.903 | **0.8960**(err 104) | ≥ 0.896 | **PASS**(压线) |
+| realtest 老 20 | 20/20 | 20/20 | 20/20 | **20/20** | 20/20 | **PASS** |
+| realtest 新 10 | 10/10 | 8/10 | 10/10 | **10/10**(伤病史 p=0.8887) | 10/10 | **PASS** |
+| realtest 否定 5 | 4/5 | 5/5 | 5/5 | **5/5** | 5/5 | **PASS** |
+| val_soft 错误数 | 3 | 5 | 1 | **7**(全部 holdout:degree 3 / barber 4;in_dist 0;逐条见 §8.3) | ≤ 3 | **FAIL** |
+| 偏置诊断 | 13/14 | 13/14 | 12/14 | **12/14**(B2 0.8985→**0.7491** 仍翻转;D2 0.8663→0.8777 持平) | ≥ 13/14 且 **B2 必须过** | **FAIL**(本轮唯一目标未回收) |
+| label-surface swap diff | 0 | 0 | 0 | **0** | 0 | **PASS** |
+| 极性 real/diag \|diff\| | ≤1 | 1,1/0,0 | 0/0 | **0/0**(mean\|Δp\| real 0.008/0.015,diag 0.0041/0.0147) | ≤1 | **PASS** |
+| 极性 val_soft 错误变化 | 3 | 5 | 1 | **7**(1→7,+6;err std/neutral/random = 7/9/10) | ≤1 | **FAIL**(与 val_soft 同源) |
+| 分离度 val_soft band | 0.28pp | 16.29pp | 16.64pp | **16.70pp**(q10 0.7761 / q90 0.9431);主 val band 5.63pp;consid 中位 0.7806 | ≥ 8pp | **PASS** |
+| conformal(采用 s2) | 58/99@29.4% | 4/54@2.8% | 34/51@33.4% | **42/54 = 77.8% @ 35.4%**(half1 T=0.9934 选点 @ 33.2%) | ≥50% @ ≤35% | **FAIL**(capture 强、弃权超线 0.4pp) |
+| 训练数据卫生 | 6/35 | 0/35 | 0/35 | **0/35**(断言升级含 diag 18 对,0 命中) | 0/35 | **PASS** |
+
+### 8.3 关键读数
+
+- **B2 剂量响应(本轮最重要的正面信息)**:B2 p_conflict 0.8985→**0.7491**(−15pp),是全 diag 唯一大位移对照(A1/C1/E1 稳定 0.906–0.912,B1 0.9058,A2/C2/E2 0.06–0.10,D2 持平)——v7 §7.5 的机制归因(「pet known + 宠物属性 new ⇒ true」偏置由 pet 族 140 true 行驱动、缺「属性一致 = false」侧)得到**方向性证实**;+80 pet_attr(其中与 B2 同形状的 pet_name 仅 40)把 p 拉回 0.75 但未过 0.5。修法形状有效、剂量不足。
+- **val_soft 7 错逐条(row_id 回查,v7 p 对照)**:row18 degree|true p 0.2942(v7 0.3074,遗留);row86/255 degree|consid p 0.8765/0.8643(v7 0.1948/0.1951,翻错);row215 barber|true p 0.2753(v7 0.8901,翻错);row231/263/291 barber|consid p 0.8733/0.8758/0.8223(v7 0.2314/0.2206/0.2238,翻错)。in_dist 0/200,holdout 7/100。attr 块零 barber/degree 行(v9 口径注:barber holdout 与训练域重叠自 v5 起),v5-B 历史同类 7 错——**归属跨 run 方差(holdout 域训练零行、纯泛化),非 attr 回归**;但门槛如实 FAIL。
+- **conformal s2**:capture 42/54 = 77.8%(≥50% 大幅达标;v7 66.7% → 判别力未退化),弃权 35.4% 超 35% 上限 0.4pp → FAIL。half1 选点 T=0.9934 @ 33.2% 本已贴线,half2 漂 +0.2pp 即破线(与 v7 s1 36.0% 超线 1pp 同款败因)。maxconf 对半切存档:`conformal_v8.json`(AURC 0.03324 vs oracle 0.00566)。
+- **主 val 0.8960 压线**:err 97→104;mean_conf 0.9179,高置信分箱 [0.92,0.96) n=803 err=38(0.047)。兼容侧 +120 未破坏单调性,但确有轻微让位。
+- dual-read v4–v8 同表(v4 3/v6 5/v7 1/v8 7 总错;in_dist 全轮 0):v8 = degree 3 + barber 4。
+- 训练曲线(4 epochs,2xT4):avg loss 0.3363 → 0.2729 → 0.2628 → 0.2607。
+
+### 8.4 判定与 v9 议题(不叠修补,如实交)
+
+- **判定**:达标条件(≥13/14 且 B2 过)未满足;叠加 val_soft / 极性变化 / conformal 三轴 FAIL ⇒ **无交付**。ckpt v8 留档(`D:\laya-kaggle-output\laya-nli-conflict-v8`,SHA256 见 §8.1),HF 未推,数据集 v13 / kernel ce v4 留档计账。B2 未回收,**不做第二轮修补**(§4/§9),v9 决策。
+- **v9 议题(仅列案,未立项)**:
+  1. **B2 剂量已证**:−15pp @ +80 pet_attr(同形状仅 40);粗线性外推再过 0.5 需显著加量或改 known 侧句式分布(如 pet_name known 换「用户的猫叫X」与 B1/B2 同构),需同时守住其余 12 对与 val_soft;
+  2. **holdout consid「要不要」形状跨 run 不稳**(v5-B 7 错 / v7 1 错 / v8 7 错):考虑 consid 档句式混排增稳,或立多 seed 复验协议后再谈门槛口径(先立协议,不事后放宽);
+  3. **conformal 贴线**:half1 选点可加「弃权 ≤34%」保守选点约束(协议内,不改 35% 门槛);
+  4. 极性 val_soft 变化轴与 val_soft 同源同批错行,val_soft 回稳则自动回稳。
+- **口径注(必读)**:v6 起验收 35 案与训练语料零逐句交集;barber holdout 与训练域重叠自 v5 起(§2.2 注)——v8 val_soft 的 barber 4 错按此读;跨轮对比按此口径。
