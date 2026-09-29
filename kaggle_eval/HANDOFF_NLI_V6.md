@@ -394,7 +394,7 @@ assert_no_case_leak(v6_train)   # 变量名以 v6 生成器为准(v5 里为 v5_t
 | 新块 | neg_unrelated 400 / cf_unrelated 300(supp「同话题无关补充」:mention = 75:25,逐族精确配额,全 28 桶(族×语言:neg 18 + cf 10)supp ≥74%);五形状 400(pet/never/relapse/dneg/nocar 各 80,按形状语义映射 neg_true 168/neg_false 104/neg_false_boundary 128,meta.shape 可查) |
 | Kaggle | 数据集 `daphnelaurent/nli-conflict-pairs` **v11**(val/val_soft 逐字节冻结,SHA256 复核一致);kernel `laya-nli-conflict-ce` **v2(= kernel v11,纯 CE 主臂)**,运行约 19 分钟 |
 | checkpoint | `D:\laya-kaggle-output\laya-nli-conflict-v6\`(1.3 GB);model.safetensors SHA256 `11facce681c4a99b7bce6e27b5b10a6034bd02eefeb5252089f5fcf35984b4e0` |
-| τ(noul) | **1.200**(v4 1.2176 / v5-A 1.138 / v5-B 1.065;报告项,未校准) |
+| τ(noul) | **1.0905**(v4 1.2176 / v5-A 1.138 / v5-B 1.065;报告项,未校准) |
 | 复验产物 | `val_probs_v6.json`、`val_soft_probs_v6.json`(带 row_id)、`polarity_nli_v6.json`、`memory_conflict_realtest_v6.json`、`noul_bias_diag_v6.json`、`label_swap_v6.json`、`conformal_v6.json`、`conf_band_v6.txt`、`leak_audit_v6.txt`、`eval_v6.log` |
 
 ### 6.2 硬门槛对照(§5.1)

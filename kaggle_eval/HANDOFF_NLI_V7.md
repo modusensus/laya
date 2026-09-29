@@ -352,11 +352,11 @@ v6 的 4 项 FAIL 全部修复(新 10、val_soft、极性、conformal——后�
 | 项 | 值 |
 |---|---|
 | 训练数据 | `nli_conflict_train_v7.jsonl` 15300 行;§3.5 七条断言 + §3.6 泄漏断言全过;`leak_audit.py` **0/35**(`data_local/leak_audit_v7.txt`) |
-| 新块落数 | HC pet 200 / doctor 200(逐族计数见生成器输出;kind 分派 pet:140/40/20、doctor:140/40/20 ≈ 70/20/10);alt_praise 240(city/job/gym_brand/coffee/car/cat_food 各 40,gym_brand/cat_food 仅 ZH——v3 无 EN 类别,语言偏斜照报);metric 160(true/consid/compat/unrelated 各 40,conflict 侧强制递增取值、meta.shape='metric_shift') |
+| 新块落数 | HC pet 200 / doctor 200(逐族计数见生成器输出;kind 分派 pet:140/40/20、doctor:140/40/20 ≈ 70/20/10);alt_praise 240(city/job/gym_brand/coffee/car/cat_food 各 40,**实渲染 240/240 为 ZH**——复验:双语分支未生效(`len(langs)==2` 恒假、`n_en` 恒 0;语言偏斜照报);metric 160(true/consid/compat/unrelated 各 40,conflict 侧强制递增取值、meta.shape='metric_shift') |
 | 新字面抽查(§3.1 双断言) | 8 条样例全为「形状同、字面异」,与猫粮/伤病史两案零逐字段等值(§3.6 断言覆盖);注:任务书 pet 族 act 示例「喂了它鸡胸肉零食」(狗对牛肉过敏)与约束不构成违背,执行侧按语义一致原则配对(act 喂过敏原) |
 | Kaggle | 数据集 **v12**;kernel `laya-nli-conflict-ce` **v3(= 计账 kernel v12,纯 CE)**,约 26 分钟;`nli_kernel.py` 同步嵌 v7 脚本未执行 |
 | checkpoint | `D:\laya-kaggle-output\laya-nli-conflict-v7\`;model.safetensors SHA256 `73a4c637bd946ce510919db1f308c66053f73a7064966f7723c8a3d6c523cee4` |
-| τ(noul) | **1.200**(v4 1.2176 / v6 1.200) |
+| τ(noul) | **1.1058**(v4 1.2176 / v6 1.0905) |
 | 复验产物 | 全套 `*_v7.json` + `conformal_v7.json`(maxconf 对半切,存档)、`conformal_v7_s2.json`(采用规则门槛)、`conformal_alt_v7.json`(三候选逐行分数+扫描曲线)、`conf_band_v7.txt`、`leak_audit_v7.txt`、`eval_v7.log` |
 
 ### 7.2 硬门槛对照(§5.1)
@@ -381,7 +381,7 @@ v6 的 4 项 FAIL 全部修复(新 10、val_soft、极性、conformal——后�
 - 划分:seed 20260928 对半,half1 err 46 / half2 err 50(probe CPU p1;门槛脚本用 kernel p1 为 46/51);
   p1 与 kernel val_probs 逐行交叉核对 max dev **0.016**(τ 处理一致)。
 - 三候选(half1 选方向+阈值:最大捕捉 @ 弃权 ≤35%;half2 报数):
-  - **s1 maxconf(基线)**:half1 T=0.9299(ge,cap 32 @ 35.0%)→ half2 **37/50(74%)@ 36.0% 弃权 ⇒ FAIL**(弃权超线 1pp;预注册门槛不动)。
+  - **s1 maxconf(基线)**:half1 T=0.9299(ge,cap 32 @ 34.6%)→ half2 **37/50(74%)@ 36.0% 弃权 ⇒ FAIL**(弃权超线 1pp;预注册门槛不动)。
   - **s2 表面一致性 = 1−(max−min)(三渲染:原渲染/中性 A-B/keep-supersede)**:half1 T=0.9912(ge,cap 29 @ 34%)→ half2 **33/50(66%)@ 33.4% ⇒ PASS**;门槛脚本复核(kernel p1)**34/51(66.7%)@ 33.4% ⇒ PASS**。分离度读数:s2 在错误行均值 0.89 vs 正确行 0.98(s1 为 0.86 vs 0.93)——错误行三渲染概率散开,表面一致性抓得住高置信错误,正是 v6 负结论要的信号。
   - **s3 act_probability**:辅助动作头在该 checkpoint 上**全饱和(1000/1000 行 = 1.0)**——只微调了 noul 头,动作头塌缩,无信息;字段语义已核实(`laya.agent._decode_answers`:`act` 为辅助动作头输出,`act_probability` = 其第 0 槽,挂每答案 `action` 扩展)。
 - **判定:采用 s2 规则**(§6)。已写进 `conformal_abstain.py --rule s2`(新模式;默认仍 `maxconf` 以保 v4–v6 数字可复现,v4 回归复核 58/99@29.4% 逐位不变);per-row s2 由 probe 落盘,p1/p2/p3 可确定性重导。
