@@ -101,6 +101,18 @@ VERSION MAP (checkpoints archived locally under D:\laya-kaggle-output\):
       val_soft 7 in v8.  --expected-train 15820 --max-items 16200 --no-rl.
       val/val_soft byte-identical.
 
+  kernel v15 x dataset v14 -> v10 S2 run (noise baseline): v9 corpus 15820
+      UNCHANGED, retrained (same config) -- with the existing v9 weights this
+      forms the same-config two-sample noise band that v10's verdicts read
+      against (V10 §4.2).  --expected-train 15820 --max-items 16200 --no-rl.
+  kernel v16 x dataset v15 -> v10 L1 run (single-lever main arm,
+      pre-registered delivery candidate): v10 corpus 15780 = v9's 15820 minus
+      block B (the 40 attr_contradiction rows; still generated then dropped,
+      carried 15780 state+gold byte-identical to v9).  --expected-train
+      15780 --max-items 16200 --no-rl.
+  kernel v17 x dataset v15 -> v10 L2 run: identical to L1 (stability rerun;
+      verdicts merged per §4.2; never substitutes L1's readings).
+
 v2 -> v3 on val_soft: soft-conflict 78%->99%, compat 87%->100%, change-intent
 44.6%->93.8%, unrelated-mention 50%->100%, holdout categories 95%. Known cost:
 one real case (spice-limitation "wants to try" intent) flipped to miss -- intent
