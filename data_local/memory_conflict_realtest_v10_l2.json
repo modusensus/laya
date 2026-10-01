@@ -1,0 +1,257 @@
+{
+  "checkpoint": "D:/laya-kaggle-output/laya-nli-conflict-v10-l2",
+  "cases": [
+    {
+      "note": "地点变更",
+      "expect": "true",
+      "got": "true",
+      "p_conflict": 0.9201,
+      "ok": true
+    },
+    {
+      "note": "偏好变更",
+      "expect": "true",
+      "got": "true",
+      "p_conflict": 0.9226,
+      "ok": true
+    },
+    {
+      "note": "时间变更",
+      "expect": "true",
+      "got": "true",
+      "p_conflict": 0.9196,
+      "ok": true
+    },
+    {
+      "note": "关键事实反转",
+      "expect": "true",
+      "got": "true",
+      "p_conflict": 0.8945,
+      "ok": true
+    },
+    {
+      "note": "部署变更",
+      "expect": "true",
+      "got": "true",
+      "p_conflict": 0.9202,
+      "ok": true
+    },
+    {
+      "note": "口味变更",
+      "expect": "true",
+      "got": "true",
+      "p_conflict": 0.9086,
+      "ok": true
+    },
+    {
+      "note": "名字矛盾",
+      "expect": "true",
+      "got": "true",
+      "p_conflict": 0.9194,
+      "ok": true
+    },
+    {
+      "note": "年龄矛盾",
+      "expect": "true",
+      "got": "true",
+      "p_conflict": 0.9214,
+      "ok": true
+    },
+    {
+      "note": "一致行为",
+      "expect": "false",
+      "got": "false",
+      "p_conflict": 0.1339,
+      "ok": true
+    },
+    {
+      "note": "补充细节",
+      "expect": "false",
+      "got": "false",
+      "p_conflict": 0.0571,
+      "ok": true
+    },
+    {
+      "note": "无关补充",
+      "expect": "false",
+      "got": "false",
+      "p_conflict": 0.116,
+      "ok": true
+    },
+    {
+      "note": "无关陈述",
+      "expect": "false",
+      "got": "false",
+      "p_conflict": 0.0495,
+      "ok": true
+    },
+    {
+      "note": "工作相关",
+      "expect": "false",
+      "got": "false",
+      "p_conflict": 0.0557,
+      "ok": true
+    },
+    {
+      "note": "习惯一致",
+      "expect": "false",
+      "got": "false",
+      "p_conflict": 0.3471,
+      "ok": true
+    },
+    {
+      "note": "偏好一致",
+      "expect": "false",
+      "got": "false",
+      "p_conflict": 0.1082,
+      "ok": true
+    },
+    {
+      "note": "兼容细节",
+      "expect": "false",
+      "got": "false",
+      "p_conflict": 0.0426,
+      "ok": true
+    },
+    {
+      "note": "临时的不违背偏好",
+      "expect": "false",
+      "got": "false",
+      "p_conflict": 0.2151,
+      "ok": true
+    },
+    {
+      "note": "饮食禁忌松动",
+      "expect": "true",
+      "got": "true",
+      "p_conflict": 0.8897,
+      "ok": true
+    },
+    {
+      "note": "家庭结构矛盾",
+      "expect": "true",
+      "got": "true",
+      "p_conflict": 0.9309,
+      "ok": true
+    },
+    {
+      "note": "子集关系",
+      "expect": "false",
+      "got": "false",
+      "p_conflict": 0.1821,
+      "ok": true
+    }
+  ],
+  "total": "20/20",
+  "negation_cases": [
+    {
+      "note": "否定-养宠物反转",
+      "expect": "true",
+      "got": "true",
+      "p_conflict": 0.8753,
+      "ok": true
+    },
+    {
+      "note": "否定-从不喝咖啡",
+      "expect": "true",
+      "got": "true",
+      "p_conflict": 0.902,
+      "ok": true
+    },
+    {
+      "note": "否定-戒烟后复吸",
+      "expect": "true",
+      "got": "true",
+      "p_conflict": 0.8915,
+      "ok": true
+    },
+    {
+      "note": "双重否定-一致",
+      "expect": "false",
+      "got": "false",
+      "p_conflict": 0.1737,
+      "ok": true
+    },
+    {
+      "note": "否定-无车与通勤兼容",
+      "expect": "false",
+      "got": "false",
+      "p_conflict": 0.1305,
+      "ok": true
+    }
+  ],
+  "negation_total": "5/5",
+  "new_cases": [
+    {
+      "note": "新-会议时间",
+      "expect": "true",
+      "got": "true",
+      "p_conflict": 0.9185,
+      "ok": true
+    },
+    {
+      "note": "新-订阅服务(否定句)",
+      "expect": "true",
+      "got": "false",
+      "p_conflict": 0.1384,
+      "ok": false
+    },
+    {
+      "note": "新-语言学习",
+      "expect": "true",
+      "got": "true",
+      "p_conflict": 0.9078,
+      "ok": true
+    },
+    {
+      "note": "新-通勤方式",
+      "expect": "false",
+      "got": "false",
+      "p_conflict": 0.1055,
+      "ok": true
+    },
+    {
+      "note": "新-宠物粮食(硬约束)",
+      "expect": "true",
+      "got": "true",
+      "p_conflict": 0.9132,
+      "ok": true
+    },
+    {
+      "note": "新-快递地址",
+      "expect": "false",
+      "got": "false",
+      "p_conflict": 0.1544,
+      "ok": true
+    },
+    {
+      "note": "新-音乐口味",
+      "expect": "false",
+      "got": "false",
+      "p_conflict": 0.0737,
+      "ok": true
+    },
+    {
+      "note": "新-室友",
+      "expect": "true",
+      "got": "true",
+      "p_conflict": 0.9299,
+      "ok": true
+    },
+    {
+      "note": "新-笔记本型号",
+      "expect": "false",
+      "got": "false",
+      "p_conflict": 0.0383,
+      "ok": true
+    },
+    {
+      "note": "新-运动伤病史(硬约束)",
+      "expect": "true",
+      "got": "true",
+      "p_conflict": 0.9033,
+      "ok": true
+    }
+  ],
+  "new_total": "9/10"
+}

@@ -1,0 +1,4 @@
+--- nli_conflict_train_v10.jsonl: 15780 rows
+  -> cases touched: 0/35
+train_v10 rows=15780 | diag fields=15 | field-equality hits=0
+independent diag scan: 0 hits

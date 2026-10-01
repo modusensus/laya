@@ -1,0 +1,44 @@
+== realtest (old20/neg5/new10) [l1] ==
+OK   新-运动伤病史(硬约束) true -> true 0.9037
+TOTAL old-20: 19/20 | NEGATION: 5/5 | NEW-10: 10/10
+saved: D:/laya/data_local/memory_conflict_realtest_v10_l1.json
+== dump val_soft [l1] ==
+300/300
+err 1/300 -> saved: D:/laya/data_local/val_soft_probs_v10_l1.json
+== polarity [l1] ==
+val_soft: acc std/neutral/random = 299/299/299, err = 1/1/1
+GATES: {'real_diag_diff_le_1': True, 'val_soft_err_change_le_1': True, 'verdict': 'PASS'}
+saved: D:/laya/data_local/polarity_nli_v10_l1.json
+== label swap [l1] ==
+LABEL-SWAP: PASS (gate: |diff| <= 1 per set)
+saved: D:/laya/data_local/label_swap_v10_l1.json
+== bias diag [l1] ==
+tracks_input=False not_pinned=True => BIAS DIAG: FAIL
+saved: D:/laya/data_local/noul_bias_diag_v10_l1.json
+== band [l1] ==
+consid 中位置信:consid(n=65)中位置信 = 0.8039(对照 v4 0.9239;由 dump row_id ↔ val_soft.meta.json 边车回查)
+
+主 val band 对照:v4 0.62pp / v5-A 1.62pp / v5-B 3.96pp
+
+
+val_soft band gate (>=8pp): PASS -> D:/laya/data_local/conf_band_v10_l1.txt
+== in-dist probe [l1] ==
+OK   change_done car en true -> true 0.9313
+waver(=false) in-dist: 15/15 | change-done(=true) in-dist: 15/15 | overall 30/30
+saved: D:/laya/data_local/indist_probe_v10_l1.json
+== conformal alt probe [l1] (sel budget 0.34) ==
+s1_maxconf: half1 sel ge T=0.9418 (cap 38 @ 34%) -> half2 cap 34/52 @ 35.8% => FAIL
+s2_surface_consistency: half1 sel ge T=0.9936 (cap 30 @ 32%) -> half2 cap 39/52 @ 33.0% => PASS
+s3_act_probability: half1 sel ge T=1.0 (cap 0 @ 0%) -> half2 cap 0/52 @ 0.0% => FAIL
+VERDICT: ADOPT s2_surface_consistency
+saved: D:/laya/data_local/conformal_alt_v10_l1.json
+== conformal maxconf archive [l1] ==
+abstained errors listed: 0
+saved: D:/laya/data_local/conformal_v10_l1.json
+== conformal s1 (pinned tie-break) [l1] ==
+abstained errors listed: 34
+saved: D:/laya/data_local/conformal_v10_l1_s1.json
+== conformal s2 [l1] ==
+abstained errors listed: 39
+saved: D:/laya/data_local/conformal_v10_l1_s2.json
+== done [l1] ==

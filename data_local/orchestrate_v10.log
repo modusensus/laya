@@ -1,0 +1,52 @@
+torch back (probe 47)
+== realtest (old20/neg5/new10) [l2] ==
+OK   新-运动伤病史(硬约束) true -> true 0.9033
+TOTAL old-20: 20/20 | NEGATION: 5/5 | NEW-10: 9/10
+saved: D:/laya/data_local/memory_conflict_realtest_v10_l2.json
+== dump val_soft [l2] ==
+300/300
+err 2/300 -> saved: D:/laya/data_local/val_soft_probs_v10_l2.json
+== polarity [l2] ==
+val_soft: acc std/neutral/random = 298/298/299, err = 2/2/1
+GATES: {'real_diag_diff_le_1': True, 'val_soft_err_change_le_1': True, 'verdict': 'PASS'}
+saved: D:/laya/data_local/polarity_nli_v10_l2.json
+== label swap [l2] ==
+LABEL-SWAP: PASS (gate: |diff| <= 1 per set)
+saved: D:/laya/data_local/label_swap_v10_l2.json
+== bias diag [l2] ==
+tracks_input=False not_pinned=True => BIAS DIAG: FAIL
+saved: D:/laya/data_local/noul_bias_diag_v10_l2.json
+== band [l2] ==
+consid 中位置信:consid(n=65)中位置信 = 0.7990(对照 v4 0.9239;由 dump row_id ↔ val_soft.meta.json 边车回查)
+
+主 val band 对照:v4 0.62pp / v5-A 1.62pp / v5-B 3.96pp
+
+
+val_soft band gate (>=8pp): PASS -> D:/laya/data_local/conf_band_v10_l2.txt
+== in-dist probe [l2] ==
+OK   change_done car en true -> true 0.9356
+waver(=false) in-dist: 15/15 | change-done(=true) in-dist: 15/15 | overall 30/30
+saved: D:/laya/data_local/indist_probe_v10_l2.json
+== conformal alt probe [l2] (sel budget 0.34) ==
+s1_maxconf: half1 sel ge T=0.9403 (cap 38 @ 30%) -> half2 cap 43/60 @ 30.4% => PASS
+s2_surface_consistency: half1 sel ge T=0.9918 (cap 36 @ 34%) -> half2 cap 42/60 @ 29.6% => PASS
+s3_act_probability: half1 sel ge T=1.0 (cap 0 @ 0%) -> half2 cap 0/60 @ 0.0% => FAIL
+VERDICT: ADOPT (tie: s1_maxconf,s2_surface_consistency)
+saved: D:/laya/data_local/conformal_alt_v10_l2.json
+== conformal maxconf archive [l2] ==
+abstained errors listed: 0
+saved: D:/laya/data_local/conformal_v10_l2.json
+== conformal s1 (pinned tie-break) [l2] ==
+abstained errors listed: 43
+saved: D:/laya/data_local/conformal_v10_l2_s1.json
+== conformal s2 [l2] ==
+abstained errors listed: 42
+saved: D:/laya/data_local/conformal_v10_l2_s2.json
+== done [l2] ==
+== L2 battery complete ==
+artifact present: D:/laya-kaggle-output/laya-nli-conflict-v10-l1/rl_agent_config.json
+== realtest (old20/neg5/new10) [l1] ==
+OK   新-运动伤病史(硬约束) true -> true 0.9037
+TOTAL old-20: 19/20 | NEGATION: 5/5 | NEW-10: 10/10
+saved: D:/laya/data_local/memory_conflict_realtest_v10_l1.json
+== dump val_soft [l1] ==
