@@ -1,0 +1,13 @@
+# SHA256 manifest — research archive uploads (2026-10-02)
+# One model.safetensors per undelivered round checkpoint, uploaded to
+# https://huggingface.co/Modusnsus/laya-nli-conflict-{v5,v5-ce,v6,v7,v8,v9,v10-l1,v10-l2,v10-s2}
+# Recompute locally: sha256sum <ckpt>/model.safetensors
+8ac971b15c1d3a0aaaba5061114a4d84b187c8132e8097751f5c7eda3e40f413  laya-nli-conflict-v5/model.safetensors
+997bd810bd7b7ffa13af0b4adba3ff2b1a31f84a2e9b0abce997238dbadb8717  laya-nli-conflict-v5-ce/model.safetensors
+11facce681c4a99b7bce6e27b5b10a6034bd02eefeb5252089f5fcf35984b4e0  laya-nli-conflict-v6/model.safetensors
+73a4c637bd946ce510919db1f308c66053f73a7064966f7723c8a3d6c523cee4  laya-nli-conflict-v7/model.safetensors
+bcd1b1583e2ada86edda7b5259d430b201a6f72c9c19f2b074ce85f718174088  laya-nli-conflict-v8/model.safetensors
+885f256f8d3a8f3bbe2a513419626f38465b56b3e2b7151574bfd71fdde606d6  laya-nli-conflict-v9/model.safetensors
+ed77fc7d39bb5b8a2416ada5a8e5783dc3bf0aa77dc2d411a2eab2b816aed7e7  laya-nli-conflict-v10-l1/model.safetensors
+e557d46bf488194fb517f472c07275af0342b7b680aaf2dd48c637a45ab98d15  laya-nli-conflict-v10-l2/model.safetensors
+5cbcc08350184ffe9a9fa0da42d7da151bdea09354a1203798d960f8a28724b6  laya-nli-conflict-v10-s2/model.safetensors
