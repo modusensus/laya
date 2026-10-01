@@ -1,0 +1,461 @@
+{
+  "input": {
+    "soft": "D:/laya/data_local/val_soft_probs_v10_s2.json",
+    "main": "D:/laya/data_local/val_probs_v10_s2.json",
+    "real": "D:/laya/data_local/memory_conflict_realtest_v10_s2.json"
+  },
+  "fit": {
+    "rule": "s2_surface_consistency (adopted per V7 §6 protocol; maxconf LAC archived)",
+    "score_definition": "s2 = 1 - (max(p1,p2,p3) - min(p1,p2,p3)) over three fixed renderings (row-original / neutral A-B / keep-supersede); rows from conformal_alt_v10_s2.json",
+    "seed": 20260928,
+    "n1": 500,
+    "n2": 500,
+    "half1_err": 48,
+    "half2_err": 58,
+    "half1_selected": {
+      "direction": "ge",
+      "T": 0.9926,
+      "capture": 30,
+      "abstain": 0.33
+    },
+    "half2_report": {
+      "decide": 319,
+      "abstain": 0.362,
+      "capture": 42,
+      "capture_total": 58,
+      "write_error_rate": 0.0502
+    },
+    "sel_budget": 0.34,
+    "gate": "capture >=50% of 58 @ abstain <= 35%",
+    "pass": false
+  },
+  "fit_legacy_valsoft": {
+    "set": "val_soft 300",
+    "nominal": 0.9,
+    "k_order_stat": 271,
+    "qhat": 0.2384,
+    "threshold_T": 0.7616,
+    "status": "archive: cross-set transfer collapsed in v5 (12/107@2.3% / 16/98@3.0%); superseded by same-distribution split-half fit"
+  },
+  "gates": {
+    "capture": 42,
+    "capture_total": 58,
+    "abstain": 0.362,
+    "gate": ">=50% of report-half errors and <=35% abstain",
+    "pass": false
+  },
+  "main_val": {
+    "decide": 319,
+    "abstain": 0.362,
+    "capture": 42,
+    "write_error_rate": 0.0502,
+    "aurc_maxconf_order": 0.05071,
+    "aurc_oracle": 0.00588,
+    "scope": "report half (split-half calibration; AURC over full main val, threshold-free)"
+  },
+  "val_soft": {
+    "decide": 299,
+    "coverage": 0.9933,
+    "abstain": 0.0033,
+    "note": "same-distribution slice; nominal 90% guarantee applies here"
+  },
+  "realtest_35": {
+    "decide": 35,
+    "coverage_decide_and_ok": 0.8857,
+    "abstain": 0.0
+  },
+  "diag_14": {
+    "n_p_found": 14,
+    "decide": 14
+  },
+  "budget_20pct": {
+    "envelope_capture": "48-49/99 (recompute note in V4.1); 50 unreachable at <=20%",
+    "verdict": "unreachable, report-only per V4.1"
+  },
+  "variants_migrated": {
+    "95%": {
+      "T": 0.7423,
+      "qhat": 0.2577,
+      "main_abstain": 0.035,
+      "main_capture": 20
+    },
+    "85%": {
+      "T": 0.7727,
+      "qhat": 0.2273,
+      "main_abstain": 0.042,
+      "main_capture": 21
+    },
+    "80%": {
+      "T": 0.7884,
+      "qhat": 0.2116,
+      "main_abstain": 0.043,
+      "main_capture": 22
+    }
+  },
+  "audit_table_main_val": {
+    "0.9200": {
+      "threshold": 0.92,
+      "write_rate": 0.6,
+      "write_error_rate": 0.0533,
+      "abstain_rate": 0.4,
+      "n_write": 600,
+      "n_write_err": 32
+    },
+    "0.5254": {
+      "threshold": 0.5254187881946564,
+      "write_rate": 0.997,
+      "write_error_rate": 0.1043,
+      "abstain_rate": 0.003,
+      "n_write": 997,
+      "n_write_err": 104
+    },
+    "0.9225": {
+      "threshold": 0.9225,
+      "write_rate": 0.511,
+      "write_error_rate": 0.045,
+      "abstain_rate": 0.489,
+      "n_write": 511,
+      "n_write_err": 23
+    },
+    "0.9000": {
+      "threshold": 0.9,
+      "write_rate": 0.857,
+      "write_error_rate": 0.0595,
+      "abstain_rate": 0.143,
+      "n_write": 857,
+      "n_write_err": 51
+    }
+  },
+  "audit_table_val_soft": {
+    "0.9200": {
+      "threshold": 0.92,
+      "write_rate": 0.1467,
+      "write_error_rate": 0.0,
+      "abstain_rate": 0.8533,
+      "n_write": 44,
+      "n_write_err": 0
+    },
+    "0.5254": {
+      "threshold": 0.5254187881946564,
+      "write_rate": 0.9967,
+      "write_error_rate": 0.0033,
+      "abstain_rate": 0.0033,
+      "n_write": 299,
+      "n_write_err": 1
+    },
+    "0.9225": {
+      "threshold": 0.9225,
+      "write_rate": 0.14,
+      "write_error_rate": 0.0,
+      "abstain_rate": 0.86,
+      "n_write": 42,
+      "n_write_err": 0
+    },
+    "0.9000": {
+      "threshold": 0.9,
+      "write_rate": 0.4133,
+      "write_error_rate": 0.0,
+      "abstain_rate": 0.5867,
+      "n_write": 124,
+      "n_write_err": 0
+    }
+  },
+  "tau_warning": "confidence band is a function of tau: sharpening tau 1.2176->0.7-0.8 lifts main-val write rate 87.1%->98.5%+ and write error rate 6.66%->9.4-9.5%; any tau change must pass the audit table first (V4.1 预核算 §5)",
+  "exchangeability_note": "val_soft(synthetic) fit -> main val(MNLI) = distribution shift; main-val numbers are TRANSFER PERFORMANCE, not a finite-sample guarantee; val_soft coverage 0.907 is the same-distribution check",
+  "abstained_errors": [
+    {
+      "idx": 458,
+      "known": "GAO's Web site (www.gao.gov) contains abstracts and full-text files ofcurrent reports and testimony and an expanding archive of older products.",
+      "new": "The GAO has received many complaints due to lack of a website.",
+      "p_true": 0.1386594921350479,
+      "gold": "true"
+    },
+    {
+      "idx": 785,
+      "known": "He pulled his cloak tighter and wished for a moment that he had not shaved his head.",
+      "new": "The man pulled his super hero cape around himself to show off.",
+      "p_true": 0.5084563493728638,
+      "gold": "false"
+    },
+    {
+      "idx": 781,
+      "known": "You're the Desert Ghost.",
+      "new": "You're a living desert camel.",
+      "p_true": 0.08180631697177887,
+      "gold": "true"
+    },
+    {
+      "idx": 945,
+      "known": "because i don't want to my mother was also a domineering type of personality because she had to take over the things that my dad fell short in",
+      "new": "My mother made me take over the things that my dad fell short it.",
+      "p_true": 0.07394665479660034,
+      "gold": "true"
+    },
+    {
+      "idx": 640,
+      "known": "Text Box 2.1: Gross Domestic Product and Gross National Product 48Text Box 4.1: How do the NIPA and federal unified budget concepts of",
+      "new": "This text displays how GDP and GNP is calculated.",
+      "p_true": 0.5705381035804749,
+      "gold": "false"
+    },
+    {
+      "idx": 859,
+      "known": "eThe number of deletions was negligible.",
+      "new": "The precise number of deletions was 71.",
+      "p_true": 0.9295458793640137,
+      "gold": "false"
+    },
+    {
+      "idx": 123,
+      "known": "Prior to 1986, the United States had been a net creditor because its holdings of foreign assets exceeded foreign holdings of U.S. assets.",
+      "new": "The US wasn't a net creditor until after 1986.",
+      "p_true": 0.44009026885032654,
+      "gold": "true"
+    },
+    {
+      "idx": 555,
+      "known": "And who should decide?",
+      "new": "No one is willing to make the decision.",
+      "p_true": 0.8228870034217834,
+      "gold": "false"
+    },
+    {
+      "idx": 24,
+      "known": "Merrion Square West, Dublin 2.",
+      "new": "Across the street from a Burger King.",
+      "p_true": 0.6484951972961426,
+      "gold": "false"
+    },
+    {
+      "idx": 229,
+      "known": "What changed?",
+      "new": "What was unique?",
+      "p_true": 0.8810528516769409,
+      "gold": "false"
+    },
+    {
+      "idx": 697,
+      "known": "The Kal tangled both of Adrin's arms, keeping the blades far away.",
+      "new": "Adrin's arms were tangled, keeping his blades away from Kal.",
+      "p_true": 0.8901440501213074,
+      "gold": "false"
+    },
+    {
+      "idx": 235,
+      "known": "Well, we've just got to get down to it, that's all.",
+      "new": "We should take a break from this.",
+      "p_true": 0.1523323953151703,
+      "gold": "true"
+    },
+    {
+      "idx": 136,
+      "known": "we wouldn't be expected to cast a ballet on the subject",
+      "new": "We have been asked to vote on the subject.",
+      "p_true": 0.3830355703830719,
+      "gold": "true"
+    },
+    {
+      "idx": 672,
+      "known": "The islands' names refer to the different force winds hitting them, not their topography.",
+      "new": "The way the islands are called is based on the force of the wins they experience.",
+      "p_true": 0.8403350710868835,
+      "gold": "false"
+    },
+    {
+      "idx": 55,
+      "known": "China could never trump the warhead blizzard Washington would send in retaliation against any atomic attack, though the country would be loath to cede to U.S. missile defenses the deterrence afforded by its handfuls of warheads.",
+      "new": "China had many more nuclear warhead than the US.",
+      "p_true": 0.07055462151765823,
+      "gold": "true"
+    },
+    {
+      "idx": 587,
+      "known": "There may be a small savings at the factory showrooms in Manacor, where you'll have the biggest choice.",
+      "new": "The factory showrooms are only for vendors.",
+      "p_true": 0.10997352749109268,
+      "gold": "true"
+    },
+    {
+      "idx": 992,
+      "known": "is there still that type of music available",
+      "new": "I could care less if the music still existed.",
+      "p_true": 0.479587197303772,
+      "gold": "true"
+    },
+    {
+      "idx": 830,
+      "known": "The two programs are currently housed in buildings about a block apart.",
+      "new": "The two buildings are on opposite sides of the city.",
+      "p_true": 0.15018951892852783,
+      "gold": "true"
+    },
+    {
+      "idx": 728,
+      "known": "you can get a hard copy of it and that's about it",
+      "new": "An email won't cut it.",
+      "p_true": 0.551908016204834,
+      "gold": "false"
+    },
+    {
+      "idx": 822,
+      "known": "What seems to be a special bargain price for just  one week only  could turn out to be a year-round con.",
+      "new": "Store owners are always honest.",
+      "p_true": 0.4650878310203552,
+      "gold": "true"
+    },
+    {
+      "idx": 826,
+      "known": "Divers can explore the deeps but you can also snorkel here, or take a glass-bottom boat or submarine tour to get a glimpse of this watery world.",
+      "new": "Divers do not like to explore the deeps here.",
+      "p_true": 0.1701667457818985,
+      "gold": "true"
+    },
+    {
+      "idx": 474,
+      "known": "Just north of the Shalom Tower is the Yemenite Quarter, its main attractions being the bustling Carmel market and good Oriental restaurants.",
+      "new": "The Shalom Tower is north of the Yemenite Quarter.",
+      "p_true": 0.07534503936767578,
+      "gold": "true"
+    },
+    {
+      "idx": 441,
+      "known": "Many who fled have returned.",
+      "new": "They all ran and never looked back.",
+      "p_true": 0.20558176934719086,
+      "gold": "true"
+    },
+    {
+      "idx": 889,
+      "known": "you know even even into major things just to keep our car longer because i don't think we get the money that we put into them out of them in two years or three years and of course i was never in a position where i could trade my car off every two years",
+      "new": "I get a brand new car every couple of years.",
+      "p_true": 0.07836983352899551,
+      "gold": "true"
+    },
+    {
+      "idx": 264,
+      "known": "Off El Hurriya Street you'll find the Neo-Classical facade of the Greco-Roman Museum with a fine collection of both Roman, Greek, and Ptolemaic artifacts found around the city and under the waters of the harbor, along with many ancient Egyptian pieces.",
+      "new": "Interestingly enough, every item is a vampire ward and keeps the vampires at bay.",
+      "p_true": 0.6061010956764221,
+      "gold": "false"
+    },
+    {
+      "idx": 836,
+      "known": "One thing was worrying me dreadfully, but my heart gave a great throb of relief when I saw my ulster lying carelessly over the back of a chair.",
+      "new": "I was dreadfully worried about many things.",
+      "p_true": 0.11202835291624069,
+      "gold": "true"
+    },
+    {
+      "idx": 899,
+      "known": "The sooner we strike the better.\" He turned to Tuppence.",
+      "new": "He convinced Tuppence to hold off on their action plan.",
+      "p_true": 0.08823388069868088,
+      "gold": "true"
+    },
+    {
+      "idx": 189,
+      "known": "You see, he said sadly, \"you have no instincts.\"",
+      "new": "He said that I had no instincts.",
+      "p_true": 0.8727670907974243,
+      "gold": "false"
+    },
+    {
+      "idx": 972,
+      "known": "Although it's hard to disagree with James Surowiecki's roasting of Wade Cook in The Book on Cook, Surowiecki's assertion that the equity stock option market is simply a big casino that contribute[s] nothing to the smooth functioning of capital markets is both wrong and silly.",
+      "new": "Wade Cook wrote The Book on Cook.",
+      "p_true": 0.09529805928468704,
+      "gold": "true"
+    },
+    {
+      "idx": 99,
+      "known": "uh well i figured if i had it done in the garage at the Toyota dealer i would be looking at probably three or four hundred dollars",
+      "new": "The cost at the dealer's garage is twice as much as what I paid.",
+      "p_true": 0.8791105151176453,
+      "gold": "false"
+    },
+    {
+      "idx": 348,
+      "known": "Over most of the 1980s and 1990s, the U.S. was able to invest more than it saved by attracting financing from abroad.",
+      "new": "The US could save more than it invested in the 1980's and 90's.",
+      "p_true": 0.08725430816411972,
+      "gold": "true"
+    },
+    {
+      "idx": 544,
+      "known": "well the channel eight when they came here thirteen fourteen years ago Dave Fox and Tracy Rowlett came together uh from Oklahoma City and apparently channel eight was way down and now they have turned it all around and done a pretty remarkable job and then",
+      "new": "Channel 8 came here fourteen years ago from OKC and it's doing great now.",
+      "p_true": 0.6552790999412537,
+      "gold": "false"
+    },
+    {
+      "idx": 137,
+      "known": "TEST ORGANISMS",
+      "new": "Trial Living Things",
+      "p_true": 0.8942349553108215,
+      "gold": "false"
+    },
+    {
+      "idx": 526,
+      "known": "substitute my my yeah my kid'll do uh four or five hours this week for me no problem",
+      "new": "I just can't make the time because of my job.",
+      "p_true": 0.9038344621658325,
+      "gold": "false"
+    },
+    {
+      "idx": 439,
+      "known": "Poirot remained lost in thought for a few minutes.",
+      "new": "Poirot didn't think.",
+      "p_true": 0.15783514082431793,
+      "gold": "true"
+    },
+    {
+      "idx": 489,
+      "known": "'Don't worry,' he whispered.",
+      "new": "He was freaked out.",
+      "p_true": 0.20642425119876862,
+      "gold": "true"
+    },
+    {
+      "idx": 0,
+      "known": "i'm kind of familiar with the weather out that way in west Texas but not in not in Lewisville",
+      "new": "I do not know the weather conditions in Lewisville.",
+      "p_true": 0.9229403734207153,
+      "gold": "false"
+    },
+    {
+      "idx": 213,
+      "known": "Simpson through the tunnels of time.",
+      "new": "Simpson through the unpredictable nature of the what will happen.",
+      "p_true": 0.6352725625038147,
+      "gold": "false"
+    },
+    {
+      "idx": 276,
+      "known": "Missouri was asked to continue its planning efforts and file a supplemental planning report with LSC on or before October 1, 1999.",
+      "new": "Missouri was happy to continue it's planning efforts.",
+      "p_true": 0.831444263458252,
+      "gold": "false"
+    },
+    {
+      "idx": 984,
+      "known": "The word itself, tapa, is translated as  lid  and derives from the old custom of offering a bite of food along with a drink, the food being served on a saucer sitting on top of the glass like a lid.",
+      "new": "Tapas are only small in order for you to try a lot.",
+      "p_true": 0.9043000936508179,
+      "gold": "false"
+    },
+    {
+      "idx": 411,
+      "known": "Tracking down the tiger is a subtle affair, and requires a degree of dedication, calm, and stealth.",
+      "new": "You must be very silent when tracking tigers.",
+      "p_true": 0.8857857584953308,
+      "gold": "false"
+    },
+    {
+      "idx": 343,
+      "known": "The contrast between the landscape of the central highlands and the south coast could not be more marked.",
+      "new": "The contrast between the highlands and the coast were easily marked.",
+      "p_true": 0.922283947467804,
+      "gold": "false"
+    }
+  ]
+}

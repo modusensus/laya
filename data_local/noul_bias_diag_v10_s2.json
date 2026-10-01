@@ -1,0 +1,110 @@
+{
+  "checkpoint": "D:/laya-kaggle-output/laya-nli-conflict-v10-s2",
+  "verdict": "PASS",
+  "accuracy": 0.9285714285714286,
+  "true_fraction": 0.6428571428571429,
+  "tracks_input": true,
+  "not_pinned": true,
+  "controls": [
+    {
+      "note": "对照A1 地点变更",
+      "expect": "true",
+      "got": "true",
+      "p_conflict": 0.8942,
+      "ok": true
+    },
+    {
+      "note": "对照A2 地点无关",
+      "expect": "false",
+      "got": "false",
+      "p_conflict": 0.0713,
+      "ok": true
+    },
+    {
+      "note": "对照B1 名字矛盾",
+      "expect": "true",
+      "got": "true",
+      "p_conflict": 0.8899,
+      "ok": true
+    },
+    {
+      "note": "对照B2 名字一致",
+      "expect": "false",
+      "got": "false",
+      "p_conflict": 0.3877,
+      "ok": true
+    },
+    {
+      "note": "对照C1 年龄矛盾",
+      "expect": "true",
+      "got": "true",
+      "p_conflict": 0.8983,
+      "ok": true
+    },
+    {
+      "note": "对照C2 年龄无关",
+      "expect": "false",
+      "got": "false",
+      "p_conflict": 0.0929,
+      "ok": true
+    },
+    {
+      "note": "对照D1 过敏反转",
+      "expect": "true",
+      "got": "true",
+      "p_conflict": 0.8717,
+      "ok": true
+    },
+    {
+      "note": "对照D2 其他坚果无关",
+      "expect": "false",
+      "got": "true",
+      "p_conflict": 0.8544,
+      "ok": false
+    },
+    {
+      "note": "对照E1 部署变更",
+      "expect": "true",
+      "got": "true",
+      "p_conflict": 0.8956,
+      "ok": true
+    },
+    {
+      "note": "对照E2 部署兼容",
+      "expect": "false",
+      "got": "false",
+      "p_conflict": 0.0678,
+      "ok": true
+    }
+  ],
+  "swaps": [
+    {
+      "note": "交换B1",
+      "expect": "true",
+      "got": "true",
+      "p_conflict": 0.8891,
+      "ok": true
+    },
+    {
+      "note": "交换A2",
+      "expect": "false",
+      "got": "false",
+      "p_conflict": 0.0981,
+      "ok": true
+    },
+    {
+      "note": "交换C1",
+      "expect": "true",
+      "got": "true",
+      "p_conflict": 0.9042,
+      "ok": true
+    },
+    {
+      "note": "交换A1",
+      "expect": "true",
+      "got": "true",
+      "p_conflict": 0.8942,
+      "ok": true
+    }
+  ]
+}
