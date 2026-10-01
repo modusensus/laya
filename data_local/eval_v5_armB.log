@@ -1,0 +1,18 @@
+== realtest ==
+OK   新-运动伤病史(硬约束) true -> true 0.6751
+TOTAL old-20: 19/20 | NEGATION: 4/5 | NEW-10: 10/10
+saved: D:/laya/data_local/memory_conflict_realtest_v5-ce.json
+== dump val_soft ==
+300/300
+err 7/300 -> saved: D:/laya/data_local/val_soft_probs_v5-ce.json
+== polarity ==
+val_soft: acc std/neutral/random = 293/293/291, err = 7/7/9
+GATES: {'real_diag_diff_le_1': True, 'val_soft_err_change_le_1': False, 'verdict': 'FAIL'}
+saved: D:/laya/data_local/polarity_nli_v5-ce.json
+== label swap ==
+LABEL-SWAP: PASS (gate: |diff| <= 1 per set)
+saved: D:/laya/data_local/label_swap_v5-ce.json
+== bias diag ==
+tracks_input=True not_pinned=True => BIAS DIAG: PASS
+saved: D:/laya/data_local/noul_bias_diag_v5-ce.json
+== done -ce ==
