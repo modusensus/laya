@@ -1,151 +1,224 @@
 # -*- coding: utf-8 -*-
-"""V11 DRAFT §1.2 protocol verdict tool (mechanizes the pre-registered
-multi-run readings; the Hermes final version may adjust thresholds — this
-script makes any such adjustment a visible diff).
+"""HANDOFF_NLI_V11.md §1.2 (FINAL) protocol verdict tool.
 
-Usage:
-  python protocol_verdict.py --tag-list v9,v10_s2,v10_l2 \
-      --main v9:val_probs_v9.json v10_s2:val_probs_v10_s2.json ... \
-      (files resolve under data_local/; per-run file names follow the
-       <prefix>_<tag>.json convention, see DEFAULTS below)
+Supersedes the draft-criteria version (commit 138c56c): the draft->final diff
+IS the preregistered change and is recorded in V11 §4 (main val all-3 -> median;
+B2 single-case clause -> 9-case family axis; polarity/band/hygiene gates made
+explicit).  Executors and reviewers must not modify these criteria after the
+first v11 run -- that is the entire point of preregistration.
 
-Gate numbers are the v9/v10 hard gates, UNCHANGED.  Variance axes use the
-draft's median readings.  One JSON verdict per axis + an overall verdict.
+Criteria (FINAL, gate numbers unchanged from v9/v10):
+  1  main val acc     : median over runs >= 0.896
+  2  old 20           : median == 20/20 AND no acceptance case missed in >=2 runs
+  3  new 10           : every run 10/10
+  4  negation 5       : every run 5/5
+  5  val_soft         : every run <=3 errors
+  6  swap             : every run PASS
+  7  polarity real·diag : every run <=1     (polarity_nli_<tag>.json gates)
+  8  polarity val_soft  : every run <=1
+  9  band             : every run >=8pp    (conf_band_<tag>.txt gate line)
+  10 conformal        : every run has an adopted rule >=50% capture @ <=35% abstain
+  11 bias diag        : >=2/3 runs >=13/14 (B2 single-case clause removed)
+  12 family (NEW)     : median over runs of family-mean p_conflict < 0.5,
+                        AND every run has <=1 case at p_conflict >= 0.9
+  13 hygiene          : leak_audit_v11.txt present and reports cases touched 0/35
+  -  tau(noul)        : report-only (from the ckpt's rl_agent_config.json)
+
+Usage: python protocol_verdict.py --tags v9,v10_s2,v10_l2     (v9 backtest)
+       python protocol_verdict.py --tags r1,r2,r3             (v11 verdict)
+Per-run artifacts resolve under data_local/ via the <prefix>_<tag>.json
+convention (v11 runs use --prefix v11_).
 """
 import argparse
 import json
 import os
 import statistics
 import sys
+from collections import Counter
 
 _D = os.path.join(os.path.dirname(os.path.abspath(__file__)), '..', 'data_local')
-
-HOLDOUT = {'email', 'desk_floor', 'degree', 'barber'}
+_OUT = r'D:\laya-kaggle-output'
 
 
 def load(path):
-    p = os.path.join(_D, path)
-    return json.load(open(p, encoding='utf-8'))
+    return json.load(open(os.path.join(_D, path), encoding='utf-8'))
 
 
-def main_val_acc(tag):
-    rows = load(f'val_probs_{tag}.json')
+def main_val_acc(tag, prefix):
+    rows = load(f'{prefix}val_probs_{tag}.json')
     err = sum(1 for r in rows if (r['p_true'] >= 0.5) != (r['gold'] == 1))
     return 1 - err / len(rows), err
 
 
-def realtest(tag):
-    d = load(f'memory_conflict_realtest_{tag}.json')
+def realtest(tag, prefix):
+    d = load(f'{prefix}memory_conflict_realtest_{tag}.json')
     old = sum(r['ok'] for r in d['cases'])
     neg = sum(r['ok'] for r in d['negation_cases'])
     new = sum(r['ok'] for r in d['new_cases'])
-    # per-case miss tracking for the old-20 repeated-miss reading
     misses = {r['note'] for r in d['cases'] if not r['ok']}
     return old, neg, new, misses
 
 
-def bias_diag(tag):
-    d = load(f'noul_bias_diag_{tag}.json')
+def bias_diag(tag, prefix):
+    d = load(f'{prefix}noul_bias_diag_{tag}.json')
     pairs = d['controls'] + d['swaps']
-    n_ok = sum(r['ok'] for r in pairs)
-    b2 = next(r for r in d['controls'] if r['note'].startswith('对照B2'))
-    return n_ok, len(pairs), b2['p_conflict']
+    return sum(r['ok'] for r in pairs), len(pairs)
 
 
-def val_soft_err(tag):
-    rows = load(f'val_soft_probs_{tag}.json')
+def val_soft_err(tag, prefix):
+    rows = load(f'{prefix}val_soft_probs_{tag}.json')
     return sum(1 for r in rows if ('true' if r['p_true'] >= 0.5 else 'false') != r['label'])
 
 
-def swap_diff(tag):
-    d = load(f'label_swap_{tag}.json')
-    return d.get('verdict', d.get('pass', None))
+def swap_verdict(tag, prefix):
+    d = load(f'{prefix}label_swap_{tag}.json')
+    return d.get('verdict', d.get('pass'))
 
 
-def conformal_adopted(tag):
-    # adopted file: <tag>_s1.json or <tag>_s2.json — pick the one whose
-    # 'fit.rule'/'input' says adopted; the eval flow writes both
+def polarity_gates(tag, prefix):
+    d = load(f'{prefix}polarity_nli_{tag}.json')
+    g = d.get('gates', {})
+    return g.get('real_diag_diff_le_1'), g.get('val_soft_err_change_le_1')
+
+
+def band_gate(tag, prefix):
+    p = os.path.join(_D, f'{prefix}conf_band_{tag}.txt')
+    if not os.path.exists(p):
+        return None
+    txt = open(p, encoding='utf-8').read()
+    if 'val_soft band gate (>=8pp): PASS' in txt:
+        return True
+    if 'val_soft band gate (>=8pp): FAIL' in txt:
+        return False
+    return None
+
+
+def family_diag(tag, prefix):
+    p = os.path.join(_D, f'{prefix}family_diag_{tag}.json')
+    if not os.path.exists(p):
+        return None, None  # pre-v11 runs have no family artifact -> axis FAILS
+    d = json.load(open(p, encoding='utf-8'))
+    return d['family_mean_p'], d['n_highconf']
+
+
+def conformal_adopted(tag, prefix):
+    out = []
     for rule in ('s1', 's2'):
-        p = os.path.join(_D, f'conformal_{tag}_{rule}.json')
+        p = os.path.join(_D, f'{prefix}conformal_{tag}_{rule}.json')
         if os.path.exists(p):
-            d = json.load(open(p, encoding='utf-8'))
-            g = d.get('gates', {})
+            g = load(f'{prefix}conformal_{tag}_{rule}.json').get('gates', {})
             if g:
-                yield rule, g.get('capture'), g.get('capture_total'), g.get('abstain'), g.get('pass')
+                out.append((rule, g.get('capture'), g.get('capture_total'), g.get('abstain'), g.get('pass')))
+    return out
+
+
+def tau_report(tag):
+    for name in (f'laya-nli-conflict-v11-{tag}', f'laya-nli-conflict-{tag}'):
+        p = os.path.join(_OUT, name, 'rl_agent_config.json')
+        if os.path.exists(p):
+            try:
+                return json.load(open(p, encoding='utf-8'))['temperature'][2]
+            except Exception:
+                return None
+    return None
 
 
 def main():
     ap = argparse.ArgumentParser()
-    ap.add_argument('--tags', required=True, help='comma-separated run tags (3+ runs)')
+    ap.add_argument('--tags', required=True, help='comma-separated run tags (3 runs)')
+    ap.add_argument('--prefix', default='', help='artifact filename prefix, e.g. v11_ '
+                                                 '(v9 backtest uses the bare convention)')
     args = ap.parse_args()
     tags = [t.strip() for t in args.tags.split(',') if t.strip()]
-    assert len(tags) >= 3, 'protocol requires >=3 runs'
+    pre = args.prefix
+    assert len(tags) == 3, 'v11 protocol fixes n=3'
 
-    print(f'== V11 DRAFT §1.2 protocol verdict over {len(tags)} runs: {tags} ==\n')
+    print(f'== V11 FINAL §1.2 protocol verdict over runs: {tags} (prefix "{pre}") ==\n')
     axes = {}
 
-    # --- hard axes: ALL runs must pass the unchanged gate numbers ---
-    accs = [main_val_acc(t) for t in tags]
-    axes['main_val(>=0.896, 3/3)'] = all(a >= 0.896 for a, _ in accs)
-    print('main val:', [(t, round(a, 4), e) for t, (a, e) in zip(tags, accs)])
+    # 1 main val: median >= 0.896
+    accs = [main_val_acc(t, pre) for t in tags]
+    med_acc = statistics.median(a for a, _ in accs)
+    axes['1 main_val(median>=0.896)'] = med_acc >= 0.896
+    print('main val:', [(t, round(a, 4), e) for t, (a, e) in zip(tags, accs)], '| median:', round(med_acc, 4))
 
+    # 2 old 20: median == 20 AND no case missed in >=2 runs
     olds, negs, news, miss_sets = [], [], [], []
     for t in tags:
-        old, neg, new, misses = realtest(t)
+        old, neg, new, misses = realtest(t, pre)
         olds.append(old); negs.append(neg); news.append(new); miss_sets.append(misses)
-    axes['old20(=20, 3/3)'] = all(o == 20 for o in olds)
-    axes['negation(=5, 3/3)'] = all(n == 5 for n in negs)
-    axes['new10(=10, 3/3)'] = all(n == 10 for n in news)
-    print('old20:', dict(zip(tags, olds)), '| negation:', dict(zip(tags, negs)), '| new10:', dict(zip(tags, news)))
+    miss_counter = Counter(n for ms in miss_sets for n in ms)
+    repeated = {k: v for k, v in miss_counter.items() if v >= 2}
+    med_old = statistics.median(olds)
+    axes['2 old20(median=20 AND no case missed in >=2 runs)'] = (med_old == 20 and not repeated)
+    print('old20:', dict(zip(tags, olds)), '| median:', med_old,
+          '| per-case miss counts:', dict(miss_counter) or '{}', '| repeated(>=2):', repeated or 'none')
 
-    vs = [val_soft_err(t) for t in tags]
-    axes['val_soft(<=3, 3/3)'] = all(v <= 3 for v in vs)
+    # 3/4/5/6: every-run hard gates
+    axes['3 new10(all=10)'] = all(n == 10 for n in news)
+    axes['4 negation(all=5)'] = all(n == 5 for n in negs)
+    print('negation:', dict(zip(tags, negs)), '| new10:', dict(zip(tags, news)))
+    vs = [val_soft_err(t, pre) for t in tags]
+    axes['5 val_soft(all<=3)'] = all(v <= 3 for v in vs)
     print('val_soft err:', dict(zip(tags, vs)))
-
-    sw = [swap_diff(t) for t in tags]
-    axes['swap(3/3)'] = all(s in (True, 'PASS', None) or s == 0 for s in sw)
+    sw = [swap_verdict(t, pre) for t in tags]
+    axes['6 swap(all PASS)'] = all(s in (True, 'PASS') or s == 0 for s in sw)
     print('swap:', dict(zip(tags, sw)))
 
-    # --- variance axes: median-based pre-registered readings ---
-    diags = [bias_diag(t) for t in tags]
-    b2s = [b2 for _, _, b2 in diags]
-    med_b2 = statistics.median(b2s)
-    n_diag_pass = sum(1 for n_ok, n, _ in diags if n_ok >= 13)
-    axes['bias_diag(median B2<0.5 AND >=2/3 runs >=13/14)'] = (med_b2 < 0.5 and n_diag_pass >= 2)
-    print('diag ok:', dict(zip(tags, [f'{n}/{m}' for n, m, _ in diags])),
-          '| B2:', [round(b, 4) for b in b2s], '| median B2:', round(med_b2, 4),
-          f'| runs >=13/14: {n_diag_pass}/3')
+    # 7/8 polarity
+    pols = [polarity_gates(t, pre) for t in tags]
+    axes['7 polarity real·diag(all<=1)'] = all(p[0] is True for p in pols)
+    axes['8 polarity val_soft(all<=1)'] = all(p[1] is True for p in pols)
+    print('polarity gates (real·diag, val_soft):', dict(zip(tags, pols)))
 
-    # old-20 median 20/20 AND no case missed in >=2 runs
-    from collections import Counter
-    miss_counter = Counter()
-    for ms in miss_sets:
-        for note in ms:
-            miss_counter[note] += 1
-    repeated = {k: v for k, v in miss_counter.items() if v >= 2}
-    import statistics as st
-    med_old = st.median(olds)
-    axes['old20_variance(median=20 AND no case missed in >=2 runs)'] = (med_old == 20 and not repeated)
-    print('old20 per-case miss counts:', dict(miss_counter), '| median:', med_old,
-          '| repeated(>=2 runs):', repeated or 'none')
+    # 9 band
+    bands = [band_gate(t, pre) for t in tags]
+    axes['9 band(all >=8pp)'] = all(b is True for b in bands)
+    print('band gate:', dict(zip(tags, bands)))
 
-    # conformal: all runs' adopted file passes
-    conf = {t: list(conformal_adopted(t)) for t in tags}
-    axes['conformal(adopted rule, 3/3 >=50%@<=35%)'] = all(
-        any(g_pass is True for _, _, _, _, g_pass in runs) for runs in conf.values())
+    # 10 conformal: every run's adopted rule passes
+    conf = {t: conformal_adopted(t, pre) for t in tags}
+    axes['10 conformal(adopted rule, all >=50%@<=35%)'] = all(
+        any(gp is True for _, _, _, _, gp in runs) for runs in conf.values())
     for t, runs in conf.items():
-        for rule, cap, tot, ab, g_pass in runs:
-            print(f'  conformal {t} [{rule}]: {cap}/{tot} @ {ab}' if tot else f'  conformal {t} [{rule}]: {cap} @ {ab}')
+        for rule, cap, tot, ab, gp in runs:
+            print(f'  conformal {t} [{rule}]: {cap}/{tot} @ {ab} -> {"PASS" if gp else "FAIL"}' if tot
+                  else f'  conformal {t} [{rule}]: {cap} @ {ab} -> {"PASS" if gp else "FAIL"}')
 
-    # --- hygiene/band/polarity: present but light (band file existence) ---
-    band_ok = all(os.path.exists(os.path.join(_D, f'conf_band_{t}.txt')) for t in tags)
-    axes['band_files(3/3 present)'] = band_ok
+    # 11 bias diag: >=2/3 runs >= 13/14 (B2 single-case clause removed)
+    diags = [bias_diag(t, pre) for t in tags]
+    n_diag_pass = sum(1 for n_ok, n in diags if n_ok >= 13)
+    axes['11 bias_diag(>=2/3 runs >=13/14)'] = n_diag_pass >= 2
+    print('diag ok:', dict(zip(tags, [f'{n}/{m}' for n, m in diags])), f'| runs >=13/14: {n_diag_pass}/3')
+
+    # 12 family (NEW)
+    fams = [family_diag(t, pre) for t in tags]
+    if any(fm is None for fm, _ in fams):
+        med_fam = None
+        axes['12 family(median mean-p<0.5 AND all runs <=1 case p>=0.9)'] = False
+        print('family: MISSING artifact for', [t for t, (fm, _) in zip(tags, fams) if fm is None],
+              '-> axis FAIL (v11 runs must emit family_diag_<tag>.json)')
+    else:
+        med_fam = statistics.median(fm for fm, _ in fams)
+        axes['12 family(median mean-p<0.5 AND all runs <=1 case p>=0.9)'] = (
+            med_fam < 0.5 and all(nh <= 1 for _, nh in fams))
+        print('family mean p:', [(t, fm) for t, (fm, _) in zip(tags, fams)], '| median:', round(med_fam, 4),
+              '| p>=0.9 cases per run:', dict(zip(tags, [nh for _, nh in fams])))
+
+    # 13 hygiene
+    hyg = os.path.join(_D, 'leak_audit_v11.txt')
+    ok_hyg = os.path.exists(hyg) and 'cases touched: 0/35' in open(hyg, encoding='utf-8').read()
+    axes['13 hygiene(0/35 + family cases 0 overlap asserted at gen)'] = ok_hyg
+    print('leak_audit_v11.txt:', 'present, 0/35' if ok_hyg else 'MISSING or nonzero')
+
+    # tau: report-only
+    print('tau(noul) report-only:', {t: tau_report(t) for t in tags})
 
     print()
     verdict = all(axes.values())
     for k, v in axes.items():
         print(f'  {"PASS" if v else "FAIL"}  {k}')
-    print(f'\nPROTOCOL VERDICT: {"PASS -> eligible for HF delivery" if verdict else "FAIL -> no delivery, HF untouched"}')
+    print(f'\nPROTOCOL VERDICT: {"PASS -> eligible for HF delivery (§1.3)" if verdict else "FAIL -> no delivery, HF untouched"}')
     return 0 if verdict else 1
 
 

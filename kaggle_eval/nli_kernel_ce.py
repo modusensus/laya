@@ -112,6 +112,14 @@ VERSION MAP (checkpoints archived locally under D:\laya-kaggle-output\):
       15780 --max-items 16200 --no-rl.
   kernel v17 x dataset v15 -> v10 L2 run: identical to L1 (stability rerun;
       verdicts merged per §4.2; never substitutes L1's readings).
+  kernel v18/v19/v20 x dataset v16 -> v11 r1/r2/r3 (HANDOFF_NLI_V11.md §1.1,
+      n=3 equal-status runs, pull-before-push between versions): v11 corpus
+      15914 = v9's 15820 carried VERBATIM (block B stays -- V10 §10.4) + 94
+      lever rows (lever 1: pet_name exact B2-isomorphic shape +34, 6->40;
+      lever 1b: unrel_supplement 30 + temp_preference 30, the two old-20
+      cases that repeat-missed in 2/3 same-config runs).  Config otherwise
+      identical to v9.  --expected-train 15914 --max-items 16200 --no-rl.
+      val (1000) / val_soft (300) byte-identical.
 
 v2 -> v3 on val_soft: soft-conflict 78%->99%, compat 87%->100%, change-intent
 44.6%->93.8%, unrelated-mention 50%->100%, holdout categories 95%. Known cost:
@@ -171,7 +179,7 @@ TRAIN_SCRIPT = cands_script[0]
 print('train script:', TRAIN_SCRIPT, flush=True)
 OUT = '/kaggle/working/laya-nli-conflict'
 cmd = ('torchrun --standalone --nproc_per_node=2 %s --model-dir %s --train-jsonl %s --val-jsonl %s --output-dir %s'
-       ' --expected-train 15780 --max-items 16200 --no-rl'
+       ' --expected-train 15914 --max-items 16200 --no-rl'
        % (TRAIN_SCRIPT, model_dir, train_jsonl, val_jsonl, OUT))
 print('RUN:', cmd, flush=True)
 r = subprocess.run(cmd, shell=True)
