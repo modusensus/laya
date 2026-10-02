@@ -55,12 +55,22 @@ def main():
     except Exception as e:
         print('collection unavailable(token 权限不足?),跳过合集,卡面改链 profile:', e, flush=True)
 
-    # 2) v4 卡面追加归档索引
+    # 2) v4 卡面:无归档节则补节;已有节且合集建成,则把 profile 尾链升级为合集链
     p = hf_hub_download(V4, 'README.md')
     with io.open(p, encoding='utf-8') as f:
         card = f.read()
     if ANCHOR in card:
-        print('v4 card already has the archive section; skip', flush=True)
+        old_tail = 'All repos are visible on [the Modusnsus profile](https://huggingface.co/Modusnsus).'
+        if cid and old_tail in card and 'collections/' not in card:
+            new_tail = ('The full index also lives in [the "Laya NLI memory-conflict head — '
+                        'v4 & three-run protocol" collection](https://huggingface.co/collections/'
+                        + cid + ').')
+            card = card.replace(old_tail, new_tail)
+            api.upload_file(path_or_fileobj=card.encode('utf-8'), path_in_repo='README.md',
+                            repo_id=V4, commit_message='Model card: link the three-run-protocol collection')
+            print('v4 card tail upgraded to collection link', flush=True)
+        else:
+            print('v4 card has the archive section; nothing to upgrade', flush=True)
         return
     tail = (f'\n\nAll ten repos are grouped in [the "Laya NLI memory-conflict head — rounds" collection](https://huggingface.co/collections/{cid}).'
             if cid else
