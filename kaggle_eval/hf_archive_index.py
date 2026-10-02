@@ -10,6 +10,13 @@ from huggingface_hub import HfApi, hf_hub_download
 
 V4 = 'Modusnsus/laya-nli-memory-conflict'
 COLL = 'Modusnsus/laya-nli-conflict-rounds'
+# 合集范围(用户拍板 2026-10-03):现役 v4 + 三跑协议核心样本(v9 / S2 / L2)
+COLLECTION_ITEMS = [
+    V4,
+    'Modusnsus/laya-nli-conflict-v9',
+    'Modusnsus/laya-nli-conflict-v10-s2',
+    'Modusnsus/laya-nli-conflict-v10-l2',
+]
 ARCHIVE = [
     ('laya-nli-conflict-v5', 'Round 5 arm A — RL+CE (v4 recipe); RL term clashed with graded soft targets'),
     ('laya-nli-conflict-v5-ce', 'Round 5 arm B — pure CE; val_soft/polarity gates failed'),
@@ -26,15 +33,16 @@ ANCHOR = '## Rounds 5–10 research archive'
 
 def main():
     api = HfApi()
-    items = [V4] + [f'Modusnsus/{n}' for n, _ in ARCHIVE]
+    items = COLLECTION_ITEMS
 
     # 1) collection(先建,卡面要用它的真实 slug;token 无 collections 权限时降级为不阻塞)
     cid = None
     try:
         col = api.create_collection(
-            'Laya NLI memory-conflict head — rounds',
+            'Laya NLI memory-conflict head — v4 & three-run protocol',
             namespace='Modusnsus',
-            description='Delivered head (v4) plus rounds 5-10 research archive checkpoints (NOT delivered).',
+            description='Delivered head (v4) plus the round-9/10 same-config runs that '
+                        'established the three-run noise band (v9 / S2 / L2).',
             exists_ok=True)
         cid = getattr(col, 'slug', None) or getattr(col, 'id', None)
         print('collection:', cid, flush=True)
