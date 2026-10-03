@@ -168,11 +168,25 @@ def tick():
             shutil.rmtree(pull, ignore_errors=True)
             os.makedirs(pull)
             sh_env([PY, '-m', 'kaggle', 'kernels', 'output', KAGGLE_ID, '-p', pull])
-            for f in ('model.safetensors', 'val_probs.json', 'metrics.json', 'rl_agent_config.json'):
-                assert os.path.exists(os.path.join(pull, f)), f'pull incomplete: missing {f}'
+            # Kaggle preserves the kernel's working subdir (laya-nli-conflict/);
+            # locate the artifact dir at either level (r1 fix, 2026-10-03)
+            cands = [pull] + [os.path.join(pull, d) for d in sorted(os.listdir(pull))
+                              if os.path.isdir(os.path.join(pull, d))]
+            art = next((c for c in cands
+                        if os.path.exists(os.path.join(c, 'model.safetensors'))), None)
+            assert art, f'pull incomplete: model.safetensors not found under {pull}'
+            assert os.path.getsize(os.path.join(art, 'model.safetensors')) == 643835524, \
+                'model.safetensors size != architecture size (truncated pull?)'
+            # version fingerprint: only the v11 corpus has 15914 rows
+            logs = [os.path.join(pull, f) for f in sorted(os.listdir(pull)) if f.endswith('.log')]
+            fp = any('15914 train items' in open(l, encoding='utf-8', errors='replace').read()
+                     for l in logs)
+            assert fp, f'version fingerprint missing (15914 train items) in {logs}'
+            for f in ('val_probs.json', 'metrics.json', 'rl_agent_config.json'):
+                assert os.path.exists(os.path.join(art, f)), f'pull incomplete: missing {f}'
             ckpt = os.path.join(OUT, f'laya-nli-conflict-v11-{tag}')
-            shutil.copytree(pull, ckpt, dirs_exist_ok=True)
-            log(f'{tag} pulled -> {ckpt}')
+            shutil.copytree(art, ckpt, dirs_exist_ok=True)
+            log(f'{tag} pulled from {art} -> {ckpt}')
             s['phase'] = f'eval_{tag}'
             save_state(s)
         if s['phase'] == f'eval_{tag}':
