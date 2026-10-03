@@ -165,8 +165,10 @@ def tick():
             save_state(s)
         if s['phase'] == f'pull_{tag}':
             pull = os.path.join(STAGE, f'kernel_v11_{tag}_out')
-            # Kaggle API flakes mid-download (IncompleteRead on the ~644MB
-            # weights; 2026-10-03 r1 precedent) -> retry with backoff
+            # failure taxonomy (2026-10-03 r1 lesson): NETWORK flakes (SSL EOF /
+            # IncompleteRead / RemoteDisconnected) retry within the tick and
+            # across ticks by LEAVING the phase unchanged; only INTEGRITY
+            # assertion failures below go to ERROR state.
             for attempt in range(1, 4):
                 shutil.rmtree(pull, ignore_errors=True)
                 os.makedirs(pull)
@@ -175,9 +177,11 @@ def tick():
                     break
                 except RuntimeError as e:
                     if attempt == 3:
-                        raise
-                    log(f'pull attempt {attempt}/3 failed; retry in 60s')
-                    time.sleep(60)
+                        log(f'pull network-flaked 3x this tick; phase stays {s["phase"]} '
+                            f'— next tick retries (not an ERROR)')
+                        return 0
+                    log(f'pull attempt {attempt}/3 network-failed; retry in 120s')
+                    time.sleep(120)
             # Kaggle preserves the kernel's working subdir (laya-nli-conflict/);
             # locate the artifact dir at either level (r1 fix, 2026-10-03)
             cands = [pull] + [os.path.join(pull, d) for d in sorted(os.listdir(pull))
