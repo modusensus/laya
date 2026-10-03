@@ -211,9 +211,9 @@ def tick():
                     break
                 log(f'torch blocked (probe {probe + 1}); retry in 120s')
                 time.sleep(120)
-            r = sh(['bash', 'C:/kaggle_cfg/stage/eval_arm_v11.sh',
+            r = sh([PY, 'eval_arm_v11.py',
                     os.path.join(OUT, f'laya-nli-conflict-v11-{tag}').replace('\\', '/'), tag],
-                   check=False)
+                   check=False, cwd=KAGGLE_EVAL)
             if r.returncode != 0:
                 s['phase'] = f'ERROR_eval_{tag}'
                 save_state(s)
