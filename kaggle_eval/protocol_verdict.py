@@ -44,14 +44,29 @@ def load(path):
     return json.load(open(os.path.join(_D, path), encoding='utf-8'))
 
 
+def art(name, tag, pre, ext='.json'):
+    """Resolve a per-run artifact path.  The battery emits <name>_v11_<tag>.json
+    while the spec convention reads <prefix><name>_<tag>.json; try both (plus
+    the bare <name>_<tag>.json used by the v9 backtest).  Gate logic never
+    depends on which spelling exists."""
+    cands = [f'{pre}{name}_{tag}{ext}',
+             f"{name}_{pre.rstrip('_')}_{tag}{ext}" if pre else f'{name}_{tag}{ext}',
+             f'{name}_{tag}{ext}']
+    for cand in dict.fromkeys(cands):
+        p = os.path.join(_D, cand)
+        if os.path.exists(p):
+            return p
+    return os.path.join(_D, cands[0])   # miss -> FileNotFoundError names the spec spelling
+
+
 def main_val_acc(tag, prefix):
-    rows = load(f'{prefix}val_probs_{tag}.json')
+    rows = load(art('val_probs', tag, prefix))
     err = sum(1 for r in rows if (r['p_true'] >= 0.5) != (r['gold'] == 1))
     return 1 - err / len(rows), err
 
 
 def realtest(tag, prefix):
-    d = load(f'{prefix}memory_conflict_realtest_{tag}.json')
+    d = load(art('memory_conflict_realtest', tag, prefix))
     old = sum(r['ok'] for r in d['cases'])
     neg = sum(r['ok'] for r in d['negation_cases'])
     new = sum(r['ok'] for r in d['new_cases'])
@@ -60,29 +75,29 @@ def realtest(tag, prefix):
 
 
 def bias_diag(tag, prefix):
-    d = load(f'{prefix}noul_bias_diag_{tag}.json')
+    d = load(art('noul_bias_diag', tag, prefix))
     pairs = d['controls'] + d['swaps']
     return sum(r['ok'] for r in pairs), len(pairs)
 
 
 def val_soft_err(tag, prefix):
-    rows = load(f'{prefix}val_soft_probs_{tag}.json')
+    rows = load(art('val_soft_probs', tag, prefix))
     return sum(1 for r in rows if ('true' if r['p_true'] >= 0.5 else 'false') != r['label'])
 
 
 def swap_verdict(tag, prefix):
-    d = load(f'{prefix}label_swap_{tag}.json')
+    d = load(art('label_swap', tag, prefix))
     return d.get('verdict', d.get('pass'))
 
 
 def polarity_gates(tag, prefix):
-    d = load(f'{prefix}polarity_nli_{tag}.json')
+    d = load(art('polarity_nli', tag, prefix))
     g = d.get('gates', {})
     return g.get('real_diag_diff_le_1'), g.get('val_soft_err_change_le_1')
 
 
 def band_gate(tag, prefix):
-    p = os.path.join(_D, f'{prefix}conf_band_{tag}.txt')
+    p = art('conf_band', tag, prefix, ext='.txt')
     if not os.path.exists(p):
         return None
     txt = open(p, encoding='utf-8').read()
@@ -98,7 +113,7 @@ def band_gate(tag, prefix):
 
 
 def family_diag(tag, prefix):
-    p = os.path.join(_D, f'{prefix}family_diag_{tag}.json')
+    p = art('family_diag', tag, prefix)
     if not os.path.exists(p):
         return None, None  # pre-v11 runs have no family artifact -> axis FAILS
     d = json.load(open(p, encoding='utf-8'))
@@ -108,9 +123,9 @@ def family_diag(tag, prefix):
 def conformal_adopted(tag, prefix):
     out = []
     for rule in ('s1', 's2'):
-        p = os.path.join(_D, f'{prefix}conformal_{tag}_{rule}.json')
+        p = art('conformal', f'{tag}_{rule}', prefix)
         if os.path.exists(p):
-            g = load(f'{prefix}conformal_{tag}_{rule}.json').get('gates', {})
+            g = json.load(open(p, encoding='utf-8')).get('gates', {})
             if g:
                 out.append((rule, g.get('capture'), g.get('capture_total'), g.get('abstain'), g.get('pass')))
     return out
