@@ -86,10 +86,14 @@ def band_gate(tag, prefix):
     if not os.path.exists(p):
         return None
     txt = open(p, encoding='utf-8').read()
-    if 'val_soft band gate (>=8pp): PASS' in txt:
+    if 'val_soft band gate (>=8pp): PASS' in txt:   # v10-era stdout phrasing
         return True
-    if 'val_soft band gate (>=8pp): FAIL' in txt:
-        return False
+    for line in txt.splitlines():                   # file phrasing (r1 observed)
+        if line.startswith('val_soft:') and '≥8pp' in line:
+            if '⇒ PASS' in line:
+                return True
+            if '⇒ FAIL' in line:
+                return False
     return None
 
 
