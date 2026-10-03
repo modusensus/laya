@@ -211,7 +211,7 @@ def tick():
                     break
                 log(f'torch blocked (probe {probe + 1}); retry in 120s')
                 time.sleep(120)
-            r = sh(['bash', r'C:\kaggle_cfg\stage\eval_arm_v11.sh',
+            r = sh(['bash', 'C:/kaggle_cfg/stage/eval_arm_v11.sh',
                     os.path.join(OUT, f'laya-nli-conflict-v11-{tag}').replace('\\', '/'), tag],
                    check=False)
             if r.returncode != 0:
