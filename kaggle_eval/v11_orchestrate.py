@@ -165,9 +165,19 @@ def tick():
             save_state(s)
         if s['phase'] == f'pull_{tag}':
             pull = os.path.join(STAGE, f'kernel_v11_{tag}_out')
-            shutil.rmtree(pull, ignore_errors=True)
-            os.makedirs(pull)
-            sh_env([PY, '-m', 'kaggle', 'kernels', 'output', KAGGLE_ID, '-p', pull])
+            # Kaggle API flakes mid-download (IncompleteRead on the ~644MB
+            # weights; 2026-10-03 r1 precedent) -> retry with backoff
+            for attempt in range(1, 4):
+                shutil.rmtree(pull, ignore_errors=True)
+                os.makedirs(pull)
+                try:
+                    sh_env([PY, '-m', 'kaggle', 'kernels', 'output', KAGGLE_ID, '-p', pull])
+                    break
+                except RuntimeError as e:
+                    if attempt == 3:
+                        raise
+                    log(f'pull attempt {attempt}/3 failed; retry in 60s')
+                    time.sleep(60)
             # Kaggle preserves the kernel's working subdir (laya-nli-conflict/);
             # locate the artifact dir at either level (r1 fix, 2026-10-03)
             cands = [pull] + [os.path.join(pull, d) for d in sorted(os.listdir(pull))
