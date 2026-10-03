@@ -20,7 +20,12 @@ P = r'D:\Miniconda\envs\laya-ft\python.exe'
 RC = 0
 
 
-def run(label, args, tails=3):
+def run(label, args, expect=None, tails=3):
+    """Gate scripts exit nonzero when their GATE fails (v9/v10 convention) —
+    that is informational: protocol_verdict.py owns gate verdicts. The battery
+    is "broken" only when an expected artifact is missing/empty (2026-10-03:
+    r1's only nonzero section was bias diag 12/14, a gate FAIL, which must
+    not abort the pipeline)."""
     global RC
     print(f'== {label} [{TAG}] ==', flush=True)
     r = subprocess.run([P] + args, capture_output=True, text=True,
@@ -29,8 +34,10 @@ def run(label, args, tails=3):
     for line in lines[-tails:]:
         print('   ' + line, flush=True)
     if r.returncode != 0:
+        print(f'   (section rc={r.returncode}; gate outcome -> verdict tool)', flush=True)
+    if expect is not None and not (os.path.exists(expect) and os.path.getsize(expect) > 0):
         RC = 1
-        print(f'   (section rc={r.returncode})', flush=True)
+        print(f'   (MISSING artifact: {expect})', flush=True)
 
 
 shutil.copy(os.path.join(CKPT, 'val_probs.json'),
