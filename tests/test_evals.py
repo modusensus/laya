@@ -20,9 +20,13 @@ from laya.evals import (
     ScoreMAE,
     ScoreWithin,
     assert_regression,
+    aurc,
+    brier,
     default_evaluators,
     ece,
     evaluate,
+    is_confidence_metric,
+    selective_accuracy,
 )
 
 Q = {"intent": {"type": "choice", "instructions": "?", "criteria": {"a": "x", "b": "y"}}}
@@ -92,6 +96,37 @@ def test_ece_on_known_inputs():
     assert ece([1.0, 1.0], [True, False]) == pytest.approx(0.5)
     assert ece([0.0, 0.0], [False, False]) == pytest.approx(0.0)
     assert ece([], []) is None
+
+
+def test_selective_metrics_on_known_inputs():
+    # Brier of confidence-as-P(correct)
+    assert brier([1.0, 0.0], [True, False]) == pytest.approx(0.0)
+    assert brier([1.0, 1.0], [True, False]) == pytest.approx(0.5)
+    assert brier([], []) is None
+    # A confidence that ranks right-from-wrong perfectly: top-2 both correct, bottom-2 both wrong.
+    conf, corr = [0.9, 0.8, 0.2, 0.1], [True, True, False, False]
+    # risk@coverage = 1 - cum_correct/k over k=1..4 -> [0, 0, 1/3, 1/2]; AURC = mean = 0.2083
+    assert aurc(conf, corr) == pytest.approx((0 + 0 + 1 / 3 + 1 / 2) / 4, abs=1e-6)
+    assert selective_accuracy(conf, corr, 0.5) == pytest.approx(1.0)   # top 2 are both correct
+    assert selective_accuracy(conf, corr, 1.0) == pytest.approx(0.5)   # all four -> 2/4
+    assert selective_accuracy([], [], 0.5) is None
+    assert selective_accuracy(conf, corr, 0.0) is None                 # coverage must be in (0, 1]
+    # a worse ranking has higher AURC on the same accuracy
+    assert aurc([0.1, 0.2, 0.9, 0.8], corr) > aurc(conf, corr)
+    for name in ("ece", "brier", "aurc", "selective_accuracy@50"):
+        assert is_confidence_metric(name)
+    assert not is_confidence_metric("choice_accuracy")
+
+
+def test_selective_metrics_reach_the_report():
+    # choice answers with a spread of confidence and correctness so the pairs exist
+    ds = Dataset([Example("s1", Q, {"intent": "a"}), Example("s2", Q, {"intent": "a"}),
+                  Example("s3", Q, {"intent": "a"}), Example("s4", Q, {"intent": "a"})])
+    answers = {"s1": {"intent": choice_answer("a", 0.95)}, "s2": {"intent": choice_answer("a", 0.80)},
+               "s3": {"intent": choice_answer("b", 0.60)}, "s4": {"intent": choice_answer("b", 0.30)}}
+    report = evaluate(StubRunner(answers), ds, evaluators=[ChoiceAccuracy()])
+    for name in ("ece", "brier", "aurc", "selective_accuracy@50", "selective_accuracy@80"):
+        assert name in report.overall, (name, sorted(report.overall))
 
 
 def test_percentiles_use_nearest_rank():
@@ -902,6 +937,34 @@ def test_compare_fails_when_a_baseline_metric_is_missing():
     ok, deltas = partial.compare({"overall": {"choice_accuracy": 0.9, "noul_accuracy": 0.8}})
     assert not ok and set(deltas) == {"choice_accuracy", "noul_accuracy"}
     assert "missing" not in deltas["choice_accuracy"] and deltas["noul_accuracy"]["missing"]
+
+
+def test_a_nan_metric_fails_every_gate():
+    """Every comparison with NaN is False, so a NaN metric used to pass --min, --max and the
+    baseline comparison alike."""
+    from laya import evals_cli
+
+    nan = float("nan")
+    report = EvalReport(overall={"score_mae": nan, "mean_confidence": nan})
+    failures = evals_cli._check_thresholds(report.overall, {"mean_confidence": 0.9}, {"score_mae": 0.1})
+    assert len(failures) == 2 and all("NaN" in failure for failure in failures)
+
+    ok, deltas = report.compare({"overall": {"score_mae": 0.05, "mean_confidence": 0.95}},
+                                {"score_mae": 0.1, "mean_confidence": 0.1})
+    assert not ok and set(deltas) == {"score_mae", "mean_confidence"}
+
+    # A NaN in the baseline, or as the tolerance, is the same case from the other side.
+    healthy = EvalReport(overall={"choice_accuracy": 0.9})
+    assert not healthy.compare({"overall": {"choice_accuracy": nan}}, {"choice_accuracy": 1.0})[0]
+    assert not healthy.compare({"overall": {"choice_accuracy": 0.9}}, {"choice_accuracy": nan})[0]
+    assert healthy.compare({"overall": {"choice_accuracy": 0.9}})[0]
+
+
+def test_cli_rejects_a_nan_limit_or_tolerance():
+    from laya import evals_cli
+
+    with pytest.raises(EvalError, match="not a number"):
+        evals_cli._parse_pairs(["choice_accuracy=nan"])
 
 
 def test_default_evaluators_cover_the_three_types():

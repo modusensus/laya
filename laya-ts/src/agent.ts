@@ -1,9 +1,12 @@
 import {
   TEMP_MAX,
   TEMP_MIN,
+  applyBinningMap,
   buildQuestionPrefix,
+  checkBinningMap,
   clampTemperature,
   collateItems,
+  collapsedOptions,
   confidenceFromProbs,
   answerConfidence,
   checkMinConfidence,
@@ -15,7 +18,7 @@ import {
   softmax,
   tempBucket,
 } from "./common.js";
-import type { SequenceStats } from "./common.js";
+import type { BinningMap, MinConfidence, OptionStats, SequenceStats } from "./common.js";
 import type { Batch, SessionProvider } from "./providers.js";
 import { encodeWithData, parseTokenizerJson, type TokenizerLike } from "./tokenizer.js";
 import { decide, type DecideOptions, type DecisionResult } from "./structured.js";
@@ -86,6 +89,9 @@ export interface SystemUsage {
   state_tokens_dropped?: number;
   truncated?: boolean;
   truncated_questions?: string[];
+  /** Present only when some question's options no longer have a token span each (issue #538,
+   * Python `collapsed_options`), keyed by question id. Absent when every option kept its own. */
+  options?: Record<string, OptionStats>;
 }
 
 export interface SystemOneResult {
@@ -99,6 +105,7 @@ export interface AgentCfg {
   head_max_len?: number;
   temperature?: unknown;
   temperature_by_options?: Record<string, unknown>;
+  binning_map?: BinningMap | null;
   [k: string]: unknown;
 }
 
@@ -112,6 +119,9 @@ export interface AgentOptions {
   head_max_len?: number;
   temperature?: unknown;
   temperature_by_options?: Record<string, unknown>;
+  /** Optional histogram-binning map applied to answer_confidence. */
+  binning_map?: BinningMap | null;
+  binningMap?: BinningMap | null;
   /**
    * Per-language temperature overrides, keyed by language code; keys are normalised to
    * their base subtag (`de-AT` -> `de`), matching Python `Agent(lang_temperatures=...)`.
@@ -146,10 +156,10 @@ export interface PredictOptions {
   headMaxLen?: number | null;
   /** predictBatch: cap on states per shared forward pass; null sends them all in one pass. */
   batchSize?: number | null;
-  /** Minimum confidence threshold in [0.0, 1.0]. Low confidence answers get `low_confidence: true`. */
-  minConfidence?: number | null;
+  /** Minimum confidence threshold in [0.0, 1.0] or per-bucket map. Low confidence answers get `low_confidence: true`. */
+  minConfidence?: MinConfidence | null;
   /** Python parity alias for minConfidence. */
-  min_confidence?: number | null;
+  min_confidence?: MinConfidence | null;
 }
 
 function qidStr(qid: string): string {
@@ -381,6 +391,7 @@ export class Agent extends HookRegistry {
   temperatureByOptionsRaw: Record<string, unknown>;
   temperature: number[];
   temperatureByOptions: Record<string, number>;
+  readonly binningMap: BinningMap | null;
   langTemperatures: Record<
     string,
     { temperature: number[]; temperatureByOptions: Record<string, number> }
@@ -399,10 +410,14 @@ export class Agent extends HookRegistry {
     if (opts.head_max_len !== undefined) cfg.head_max_len = opts.head_max_len;
     if (opts.temperature !== undefined) cfg.temperature = opts.temperature;
     if (opts.temperature_by_options !== undefined) cfg.temperature_by_options = opts.temperature_by_options;
+    if (opts.binning_map !== undefined) cfg.binning_map = opts.binning_map;
+    if (opts.binningMap !== undefined) cfg.binning_map = opts.binningMap;
     this.cfg = cfg;
     this.maxLen = Number(cfg.max_len ?? 512);
     this.headMaxLen = Number(cfg.head_max_len ?? 192);
     this.tok = opts.tok ?? defaultTokenizer();
+    const bmapRaw = cfg.binning_map;
+    this.binningMap = bmapRaw !== undefined && bmapRaw !== null ? checkBinningMap(bmapRaw) : null;
     const raw = (cfg.temperature ?? [1.0, 1.0, 1.0]) as unknown;
     this.temperatureRaw = raw;
     // The decode indexes this by question type, so refuse any other shape here, as Python's
@@ -675,6 +690,10 @@ export class Agent extends HookRegistry {
         // it from the length of the state it sent (issue #174, Python #181 parity).
         const st = built[s].stats;
         const dropped = st.reduce((a, x) => Math.max(a, x.state_tokens_dropped), 0);
+        // Only when a question actually lost options to the head budget, as Python's
+        // `Agent.predict_batch` does: an answer chosen from 42 distinguishable spans of 58 has a
+        // ceiling the caller cannot otherwise see.
+        const collapsed = collapsedOptions(ids, st);
         out.push({
           model: "laya-rl-agent",
           answers,
@@ -685,6 +704,7 @@ export class Agent extends HookRegistry {
             state_tokens_dropped: dropped,
             truncated: dropped > 0,
             truncated_questions: ids.filter((_, qi) => st[qi].truncated),
+            ...(Object.keys(collapsed).length ? { options: collapsed } : {}),
           },
         });
       }
@@ -715,7 +735,15 @@ export class Agent extends HookRegistry {
     const ext = { act_probability: r4(actP[0]) };
     // Same quantity on every question type (max(p)), so callers can gate across types on
     // one number; `confidence` stays as-is for existing callers (entropy for choice/score).
-    const ansConf = r4(answerConfidence(p));
+    // Histogram-binning recalibration (issue #871, Python parity) recalibrates ans_raw
+    // per temp_bucket unless a language override is active.
+    const ansRaw = answerConfidence(p);
+    const langOverride = Boolean(lang && lang.split("-")[0].toLowerCase() in this.langTemperatures);
+    const ansConf = r4(
+      this.binningMap && !langOverride
+        ? applyBinningMap(ansRaw, bucket, this.binningMap)
+        : ansRaw,
+    );
     if (q.t === "choice") {
       const keys = Object.keys(q.crit as Record<string, unknown>);
       let best = 0;

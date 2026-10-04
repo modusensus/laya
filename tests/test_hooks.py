@@ -7,6 +7,7 @@ with `_encode_state` / `_forward` / `_decode_answers` stubbed). The Router path 
 Run: python tests/test_hooks.py
 """
 import contextvars
+import inspect
 import os
 import sys
 import threading
@@ -428,6 +429,21 @@ check_true("hooks_installed/add_hook inside: and it is the one that was added",
 log.clear()
 f.predict_batch(["s0"], QUESTIONS)
 check("hooks_installed/add_hook inside: still fires after the block", log, ["added-inside"])
+
+# sequences are flattened, matching add_hook and the hooks= parameter
+log = []
+f = make_fake()
+with f.hooks_installed([Tag(log, "x"), Tag(log, "y")]):
+    f.predict_batch(["s0"], QUESTIONS)
+f.predict_batch(["s0"], QUESTIONS)
+check("hooks_installed/list of hooks fires during the block", log, ["x", "y"])
+check("hooks_installed/list of hooks removed after the block", len(f.hooks), 0)
+
+log = []
+f = make_fake()
+with f.hooks_installed((Tag(log, "a"),), Tag(log, "b")):
+    f.predict_batch(["s0"], QUESTIONS)
+check("hooks_installed/tuple arg and varargs mix in order", log, ["a", "b"])
 
 # and the same hook passed twice is the same case with no pre-install at all
 log = []
@@ -1478,31 +1494,42 @@ from laya.hooks import validate_timeout  # noqa: E402
 
 check_raises("timeout/zero is rejected", ValueError, lambda: validate_timeout(0))
 check_raises("timeout/negative is rejected", ValueError, lambda: validate_timeout(-0.5))
+check_raises("timeout/NaN is rejected", ValueError, lambda: validate_timeout(float("nan")))
+check_raises("timeout/infinity is rejected", ValueError, lambda: validate_timeout(float("inf")))
+check_raises("timeout/-infinity is rejected", ValueError, lambda: validate_timeout(float("-inf")))
 check("timeout/positive passes through", validate_timeout(1.5), 1.5)
 check("timeout/None means no limit", validate_timeout(None), None)
 
 f = make_fake()
 check_raises("timeout/zero per call is rejected", ValueError,
              lambda: f.predict_batch(["s0"], QUESTIONS, hooks_timeout=0))
+check_raises("timeout/NaN per call is rejected", ValueError,
+             lambda: f.predict_batch(["s0"], QUESTIONS, hooks_timeout=float("nan")))
+check_raises("timeout/infinity per call is rejected", ValueError,
+             lambda: f.predict_batch(["s0"], QUESTIONS, hooks_timeout=float("inf")))
 
 not_running = asyncio.new_event_loop()
 try:
+    c = _seven()
     check_raises("async/a non-running loop is rejected", ValueError,
-                 lambda: run_coroutine_sync(_seven(), loop=not_running))
+                 lambda: run_coroutine_sync(c, loop=not_running))
+    check_true("async/a non-running loop closes the coroutine",
+               inspect.getcoroutinestate(c) == "CORO_CLOSED")
 finally:
     not_running.close()
 
 
 async def _own_loop():
     own = asyncio.get_running_loop()
+    c = _seven()
     try:
-        run_coroutine_sync(_seven(), loop=own)
+        run_coroutine_sync(c, loop=own)
     except ValueError:
-        return "raised"
+        return "closed" if inspect.getcoroutinestate(c) == "CORO_CLOSED" else "raised"
     return "no"
 
 
-check("async/the calling thread's own loop is rejected", asyncio.run(_own_loop()), "raised")
+check("async/the calling thread's own loop is rejected", asyncio.run(_own_loop()), "closed")
 check_raises("async/AsyncHook rejects an object with no events", TypeError,
              lambda: AsyncHook(object()))
 

@@ -55,18 +55,36 @@ export {
   buildSequence,
   buildQuestionPrefix,
   sequenceWithState,
+  collapsedOptions,
   softmax,
   confidenceFromProbs,
   answerConfidence,
   checkMinConfidence,
+  checkMinConfidenceMap,
   flagLowConfidence,
+  optionBucket,
+  resolveMinConfidence,
   clampTemperature,
   tempBucket,
+  applyBinningMap,
+  checkBinningMap,
   collateItems,
   TEMP_MIN,
   TEMP_MAX,
 } from "./common.js";
-export type { QType, InternalQ, CollateItem, CollatedBatch, QuestionPrefix, SequenceStats } from "./common.js";
+export type {
+  QType,
+  InternalQ,
+  CollateItem,
+  CollatedBatch,
+  QuestionPrefix,
+  SequenceStats,
+  OptionStats,
+  MinConfidence,
+  MinConfidenceMap,
+  BinningEntry,
+  BinningMap,
+} from "./common.js";
 export { q, best, topK, isConfident } from "./dx.js";
 export { bpeEncode, metaspaceEncode, encodeWithData, parseTokenizerJson, loadTokenizerJson, CHECKPOINT_IDS, SPECIAL_ALIASES, METASPACE_REPLACEMENT } from "./tokenizer.js";
 export type { TokenizerLike, TokenizerData, TokenizerIds, PreTokenizerKind } from "./tokenizer.js";
