@@ -1,0 +1,35 @@
+== V11 FINAL §1.2 protocol verdict over runs: ['r1', 'r2', 'r3'] (prefix "v11_") ==
+
+main val: [('r1', 0.897, 103), ('r2', 0.895, 105), ('r3', 0.893, 107)] | median: 0.895
+old20: {'r1': 20, 'r2': 20, 'r3': 20} | median: 20 | per-case miss counts: {} | repeated(>=2): none
+negation: {'r1': 5, 'r2': 4, 'r3': 5} | new10: {'r1': 10, 'r2': 9, 'r3': 10}
+val_soft err: {'r1': 1, 'r2': 0, 'r3': 0}
+swap: {'r1': 'PASS', 'r2': 'PASS', 'r3': 'PASS'}
+polarity gates (real·diag, val_soft): {'r1': (True, True), 'r2': (True, True), 'r3': (True, True)}
+band gate: {'r1': True, 'r2': True, 'r3': True}
+  conformal r1 [s1]: 36/52 @ 0.334 -> PASS
+  conformal r1 [s2]: 35/52 @ 0.316 -> PASS
+  conformal r2 [s1]: 37/55 @ 0.322 -> PASS
+  conformal r2 [s2]: 38/55 @ 0.346 -> PASS
+  conformal r3 [s1]: 42/56 @ 0.342 -> PASS
+  conformal r3 [s2]: 33/56 @ 0.23 -> PASS
+diag ok: {'r1': '12/14', 'r2': '13/14', 'r3': '13/14'} | runs >=13/14: 2/3
+family mean p: [('r1', 0.2169), ('r2', 0.0939), ('r3', 0.0794)] | median: 0.0939 | p>=0.9 cases per run: {'r1': 0, 'r2': 0, 'r3': 0}
+leak_audit_v11.txt: present, 0/35
+tau(noul) report-only: {'r1': 1.0767544507980347, 'r2': 1.086992621421814, 'r3': 1.1041723489761353}
+
+  FAIL  1 main_val(median>=0.896)
+  PASS  2 old20(median=20 AND no case missed in >=2 runs)
+  FAIL  3 new10(all=10)
+  FAIL  4 negation(all=5)
+  PASS  5 val_soft(all<=3)
+  PASS  6 swap(all PASS)
+  PASS  7 polarity real·diag(all<=1)
+  PASS  8 polarity val_soft(all<=1)
+  PASS  9 band(all >=8pp)
+  PASS  10 conformal(adopted rule, all >=50%@<=35%)
+  PASS  11 bias_diag(>=2/3 runs >=13/14)
+  PASS  12 family(median mean-p<0.5 AND all runs <=1 case p>=0.9)
+  PASS  13 hygiene(0/35 + family cases 0 overlap asserted at gen)
+
+PROTOCOL VERDICT: FAIL -> no delivery, HF untouched

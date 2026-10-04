@@ -1,0 +1,461 @@
+{
+  "input": {
+    "soft": "D:\\laya\\data_local/val_soft_probs_v11_r3.json",
+    "main": "D:\\laya\\data_local/val_probs_v11_r3.json",
+    "real": "D:\\laya\\data_local/memory_conflict_realtest_v11_r3.json"
+  },
+  "fit": {
+    "rule": "s1_maxconf (V9 §6 re-adjudication; scanned per §6.1/§6.2, maxconf LAC archived)",
+    "score_definition": "s1 = maxconf(p1) = max(p1, 1 - p1) on the row-original rendering; rows from conformal_alt_v11_r3.json",
+    "seed": 20260928,
+    "n1": 500,
+    "n2": 500,
+    "half1_err": 51,
+    "half2_err": 56,
+    "half1_selected": {
+      "direction": "ge",
+      "T": 0.9313,
+      "capture": 42,
+      "abstain": 0.336
+    },
+    "half2_report": {
+      "decide": 329,
+      "abstain": 0.342,
+      "capture": 42,
+      "capture_total": 56,
+      "write_error_rate": 0.0426
+    },
+    "sel_budget": 0.34,
+    "gate": "capture >=50% of 56 @ abstain <= 35%",
+    "pass": true
+  },
+  "fit_legacy_valsoft": {
+    "set": "val_soft 300",
+    "nominal": 0.9,
+    "k_order_stat": 271,
+    "qhat": 0.2175,
+    "threshold_T": 0.7825,
+    "status": "archive: cross-set transfer collapsed in v5 (12/107@2.3% / 16/98@3.0%); superseded by same-distribution split-half fit"
+  },
+  "gates": {
+    "capture": 42,
+    "capture_total": 56,
+    "abstain": 0.342,
+    "gate": ">=50% of report-half errors and <=35% abstain",
+    "pass": true
+  },
+  "main_val": {
+    "decide": 329,
+    "abstain": 0.342,
+    "capture": 42,
+    "write_error_rate": 0.0426,
+    "aurc_maxconf_order": 0.03931,
+    "aurc_oracle": 0.00599,
+    "scope": "report half (split-half calibration; AURC over full main val, threshold-free)"
+  },
+  "val_soft": {
+    "decide": 300,
+    "coverage": 1.0,
+    "abstain": 0.0,
+    "note": "same-distribution slice; nominal 90% guarantee applies here"
+  },
+  "realtest_35": {
+    "decide": 35,
+    "coverage_decide_and_ok": 1.0,
+    "abstain": 0.0
+  },
+  "diag_14": {
+    "n_p_found": 14,
+    "decide": 14
+  },
+  "budget_20pct": {
+    "envelope_capture": "48-49/99 (recompute note in V4.1); 50 unreachable at <=20%",
+    "verdict": "unreachable, report-only per V4.1"
+  },
+  "variants_migrated": {
+    "95%": {
+      "T": 0.7752,
+      "qhat": 0.2248,
+      "main_abstain": 0.034,
+      "main_capture": 21
+    },
+    "85%": {
+      "T": 0.7888,
+      "qhat": 0.2112,
+      "main_abstain": 0.036,
+      "main_capture": 21
+    },
+    "80%": {
+      "T": 0.8023,
+      "qhat": 0.1977,
+      "main_abstain": 0.039,
+      "main_capture": 21
+    }
+  },
+  "audit_table_main_val": {
+    "0.9200": {
+      "threshold": 0.92,
+      "write_rate": 0.83,
+      "write_error_rate": 0.0554,
+      "abstain_rate": 0.17,
+      "n_write": 830,
+      "n_write_err": 46
+    },
+    "0.4339": {
+      "threshold": 0.43389129638671875,
+      "write_rate": 1.0,
+      "write_error_rate": 0.107,
+      "abstain_rate": 0.0,
+      "n_write": 1000,
+      "n_write_err": 107
+    },
+    "0.9225": {
+      "threshold": 0.9225,
+      "write_rate": 0.815,
+      "write_error_rate": 0.054,
+      "abstain_rate": 0.185,
+      "n_write": 815,
+      "n_write_err": 44
+    },
+    "0.9000": {
+      "threshold": 0.9,
+      "write_rate": 0.9,
+      "write_error_rate": 0.0689,
+      "abstain_rate": 0.1,
+      "n_write": 900,
+      "n_write_err": 62
+    }
+  },
+  "audit_table_val_soft": {
+    "0.9200": {
+      "threshold": 0.92,
+      "write_rate": 0.2533,
+      "write_error_rate": 0.0,
+      "abstain_rate": 0.7467,
+      "n_write": 76,
+      "n_write_err": 0
+    },
+    "0.4339": {
+      "threshold": 0.43389129638671875,
+      "write_rate": 1.0,
+      "write_error_rate": 0.0,
+      "abstain_rate": 0.0,
+      "n_write": 300,
+      "n_write_err": 0
+    },
+    "0.9225": {
+      "threshold": 0.9225,
+      "write_rate": 0.2233,
+      "write_error_rate": 0.0,
+      "abstain_rate": 0.7767,
+      "n_write": 67,
+      "n_write_err": 0
+    },
+    "0.9000": {
+      "threshold": 0.9,
+      "write_rate": 0.7233,
+      "write_error_rate": 0.0,
+      "abstain_rate": 0.2767,
+      "n_write": 217,
+      "n_write_err": 0
+    }
+  },
+  "tau_warning": "confidence band is a function of tau: sharpening tau 1.2176->0.7-0.8 lifts main-val write rate 87.1%->98.5%+ and write error rate 6.66%->9.4-9.5%; any tau change must pass the audit table first (V4.1 预核算 §5)",
+  "exchangeability_note": "val_soft(synthetic) fit -> main val(MNLI) = distribution shift; main-val numbers are TRANSFER PERFORMANCE, not a finite-sample guarantee; val_soft coverage 0.907 is the same-distribution check",
+  "abstained_errors": [
+    {
+      "idx": 785,
+      "known": "He pulled his cloak tighter and wished for a moment that he had not shaved his head.",
+      "new": "The man pulled his super hero cape around himself to show off.",
+      "p_true": 0.8934470415115356,
+      "gold": "false"
+    },
+    {
+      "idx": 781,
+      "known": "You're the Desert Ghost.",
+      "new": "You're a living desert camel.",
+      "p_true": 0.07555607706308365,
+      "gold": "true"
+    },
+    {
+      "idx": 640,
+      "known": "Text Box 2.1: Gross Domestic Product and Gross National Product 48Text Box 4.1: How do the NIPA and federal unified budget concepts of",
+      "new": "This text displays how GDP and GNP is calculated.",
+      "p_true": 0.7703593373298645,
+      "gold": "false"
+    },
+    {
+      "idx": 481,
+      "known": "Possibly three months.\"",
+      "new": "It could be two months.",
+      "p_true": 0.9294177889823914,
+      "gold": "false"
+    },
+    {
+      "idx": 859,
+      "known": "eThe number of deletions was negligible.",
+      "new": "The precise number of deletions was 71.",
+      "p_true": 0.9249635338783264,
+      "gold": "false"
+    },
+    {
+      "idx": 555,
+      "known": "And who should decide?",
+      "new": "No one is willing to make the decision.",
+      "p_true": 0.8137586116790771,
+      "gold": "false"
+    },
+    {
+      "idx": 235,
+      "known": "Well, we've just got to get down to it, that's all.",
+      "new": "We should take a break from this.",
+      "p_true": 0.14655330777168274,
+      "gold": "true"
+    },
+    {
+      "idx": 417,
+      "known": "Perhaps all we can say of great acting is that it involves assimilation rather than accumulation, that the performer isn't so much a surrogate as a vessel.",
+      "new": "An actor is judged solely on quality of performance.",
+      "p_true": 0.9266793131828308,
+      "gold": "false"
+    },
+    {
+      "idx": 136,
+      "known": "we wouldn't be expected to cast a ballet on the subject",
+      "new": "We have been asked to vote on the subject.",
+      "p_true": 0.10163586586713791,
+      "gold": "true"
+    },
+    {
+      "idx": 900,
+      "known": "Were you in company with anyone?",
+      "new": "Were you awake?",
+      "p_true": 0.0790809914469719,
+      "gold": "true"
+    },
+    {
+      "idx": 760,
+      "known": "This town, which flourished between 6500 and 5500 b.c. , had flat-roofed houses of mud and timber decorated with wall-paintings, some of which show patterns that still appear on Anatolian kilims.",
+      "new": "This town is over 8000 years old.",
+      "p_true": 0.7494323253631592,
+      "gold": "false"
+    },
+    {
+      "idx": 512,
+      "known": "Sultan Abdul Hamid II (1876 1909) tried to apply absolute rule to an empire staggering under a crushing foreign debt, with a fragmented population of hostile people, and succeeded only in creating ill will and dissatisfaction amongst the younger generation of educated Turks.",
+      "new": "Although he was disliked by educated young Turks, Sultan Abdul Hamid II was loved by the older generations.",
+      "p_true": 0.90956711769104,
+      "gold": "false"
+    },
+    {
+      "idx": 587,
+      "known": "There may be a small savings at the factory showrooms in Manacor, where you'll have the biggest choice.",
+      "new": "The factory showrooms are only for vendors.",
+      "p_true": 0.0803338959813118,
+      "gold": "true"
+    },
+    {
+      "idx": 830,
+      "known": "The two programs are currently housed in buildings about a block apart.",
+      "new": "The two buildings are on opposite sides of the city.",
+      "p_true": 0.14091411232948303,
+      "gold": "true"
+    },
+    {
+      "idx": 140,
+      "known": "Through a friend who knows the lift boy here.",
+      "new": "Through my friend has not yet met the lift boy here.",
+      "p_true": 0.16793306171894073,
+      "gold": "true"
+    },
+    {
+      "idx": 995,
+      "known": "To the northwest of the chateau, the Grand Trianon palace, surrounded by pleasantly unpompous gardens, was the home of Louis XIV's mistress, Madame de Maintenon, where the aging king increasingly took refuge.",
+      "new": "Grand Trianon palace was the residence of Louis XIV.",
+      "p_true": 0.08872885257005692,
+      "gold": "true"
+    },
+    {
+      "idx": 826,
+      "known": "Divers can explore the deeps but you can also snorkel here, or take a glass-bottom boat or submarine tour to get a glimpse of this watery world.",
+      "new": "Divers do not like to explore the deeps here.",
+      "p_true": 0.17248046398162842,
+      "gold": "true"
+    },
+    {
+      "idx": 940,
+      "known": "When we encounter the young woman again, she has taken a job as the live-in domestic at a huge and crumbling Roman townhouse belonging to an English loner named Jason Kinsky (David Thewlis).",
+      "new": "The chances of finding jobs in the field of live-in domestics is low.",
+      "p_true": 0.8924164772033691,
+      "gold": "false"
+    },
+    {
+      "idx": 474,
+      "known": "Just north of the Shalom Tower is the Yemenite Quarter, its main attractions being the bustling Carmel market and good Oriental restaurants.",
+      "new": "The Shalom Tower is north of the Yemenite Quarter.",
+      "p_true": 0.07577645033597946,
+      "gold": "true"
+    },
+    {
+      "idx": 119,
+      "known": "The stuff was strong, but somewhat brittle.",
+      "new": "It was incredibly strong and not brittle at all.",
+      "p_true": 0.4195316731929779,
+      "gold": "true"
+    },
+    {
+      "idx": 441,
+      "known": "Many who fled have returned.",
+      "new": "They all ran and never looked back.",
+      "p_true": 0.17994394898414612,
+      "gold": "true"
+    },
+    {
+      "idx": 889,
+      "known": "you know even even into major things just to keep our car longer because i don't think we get the money that we put into them out of them in two years or three years and of course i was never in a position where i could trade my car off every two years",
+      "new": "I get a brand new car every couple of years.",
+      "p_true": 0.08488970249891281,
+      "gold": "true"
+    },
+    {
+      "idx": 442,
+      "known": "7) Nonautomated First-Class and Standard-A mailers have the option of requesting that their mail be processed manually, even though the costs for such processing are substantially higher than mechanized processing.",
+      "new": "Nonautomated First-Class and Standard-A mailers cannot ask for their mail to be processed by hand because it costs the postal service more.",
+      "p_true": 0.4004800021648407,
+      "gold": "true"
+    },
+    {
+      "idx": 122,
+      "known": "Boca da Corrida Encumeada (moderate; 5 hours): views of Curral das Freiras and the valley of Ribeiro do Poco.",
+      "new": "This chapter is in the advance category.",
+      "p_true": 0.07160066068172455,
+      "gold": "true"
+    },
+    {
+      "idx": 208,
+      "known": "Load time is divided into elemental and coverage related load time.",
+      "new": "Load time is comprised of three parts.",
+      "p_true": 0.14800769090652466,
+      "gold": "true"
+    },
+    {
+      "idx": 264,
+      "known": "Off El Hurriya Street you'll find the Neo-Classical facade of the Greco-Roman Museum with a fine collection of both Roman, Greek, and Ptolemaic artifacts found around the city and under the waters of the harbor, along with many ancient Egyptian pieces.",
+      "new": "Interestingly enough, every item is a vampire ward and keeps the vampires at bay.",
+      "p_true": 0.9217243790626526,
+      "gold": "false"
+    },
+    {
+      "idx": 769,
+      "known": "it may be arrogant but i mean let them come to us",
+      "new": "It is definitely not arrogant to have them coming to us",
+      "p_true": 0.23843920230865479,
+      "gold": "true"
+    },
+    {
+      "idx": 836,
+      "known": "One thing was worrying me dreadfully, but my heart gave a great throb of relief when I saw my ulster lying carelessly over the back of a chair.",
+      "new": "I was dreadfully worried about many things.",
+      "p_true": 0.15084947645664215,
+      "gold": "true"
+    },
+    {
+      "idx": 99,
+      "known": "uh well i figured if i had it done in the garage at the Toyota dealer i would be looking at probably three or four hundred dollars",
+      "new": "The cost at the dealer's garage is twice as much as what I paid.",
+      "p_true": 0.6565744280815125,
+      "gold": "false"
+    },
+    {
+      "idx": 348,
+      "known": "Over most of the 1980s and 1990s, the U.S. was able to invest more than it saved by attracting financing from abroad.",
+      "new": "The US could save more than it invested in the 1980's and 90's.",
+      "p_true": 0.07664330303668976,
+      "gold": "true"
+    },
+    {
+      "idx": 669,
+      "known": "you sound like this girl that i talked to about books and we got into movies one night",
+      "new": "I found out about so many movies I had never heard of.",
+      "p_true": 0.5312459468841553,
+      "gold": "false"
+    },
+    {
+      "idx": 137,
+      "known": "TEST ORGANISMS",
+      "new": "Trial Living Things",
+      "p_true": 0.9032167196273804,
+      "gold": "false"
+    },
+    {
+      "idx": 212,
+      "known": "yeah well my uh my uh probably one of the biggest decisions i think that was very strengthened for our family was rather than have one child make that decision",
+      "new": "Our children played a huge role in making this decision.",
+      "p_true": 0.8854156136512756,
+      "gold": "false"
+    },
+    {
+      "idx": 572,
+      "known": "Sorry but that's how it is.",
+      "new": "This is how things are and there are no apologies about it.",
+      "p_true": 0.3422766625881195,
+      "gold": "true"
+    },
+    {
+      "idx": 439,
+      "known": "Poirot remained lost in thought for a few minutes.",
+      "new": "Poirot didn't think.",
+      "p_true": 0.0727611854672432,
+      "gold": "true"
+    },
+    {
+      "idx": 723,
+      "known": "The red moon made her skin glow.",
+      "new": "Her skin was falling off because of the red moon.",
+      "p_true": 0.2687106430530548,
+      "gold": "true"
+    },
+    {
+      "idx": 489,
+      "known": "'Don't worry,' he whispered.",
+      "new": "He was freaked out.",
+      "p_true": 0.33710962533950806,
+      "gold": "true"
+    },
+    {
+      "idx": 0,
+      "known": "i'm kind of familiar with the weather out that way in west Texas but not in not in Lewisville",
+      "new": "I do not know the weather conditions in Lewisville.",
+      "p_true": 0.9260004162788391,
+      "gold": "false"
+    },
+    {
+      "idx": 213,
+      "known": "Simpson through the tunnels of time.",
+      "new": "Simpson through the unpredictable nature of the what will happen.",
+      "p_true": 0.924563467502594,
+      "gold": "false"
+    },
+    {
+      "idx": 984,
+      "known": "The word itself, tapa, is translated as  lid  and derives from the old custom of offering a bite of food along with a drink, the food being served on a saucer sitting on top of the glass like a lid.",
+      "new": "Tapas are only small in order for you to try a lot.",
+      "p_true": 0.7528910040855408,
+      "gold": "false"
+    },
+    {
+      "idx": 637,
+      "known": "She has believed that the sleeping draught she administered was perfectly harmless, but there is no doubt that for one terrible moment she must have feared that Mrs. Inglethorp's death lay at her door.",
+      "new": "The sleeping draught was not harmless, as it gave her violent diarrhoea.",
+      "p_true": 0.8621031641960144,
+      "gold": "false"
+    },
+    {
+      "idx": 703,
+      "known": "um-hum yeah right uh is yours a is it a a slab foundation or pier and beam",
+      "new": "Your foundation is being beamed away.",
+      "p_true": 0.0837554782629013,
+      "gold": "true"
+    }
+  ]
+}

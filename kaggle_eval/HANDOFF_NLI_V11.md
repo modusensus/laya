@@ -121,4 +121,63 @@ p_true 口径与现行 bias_diag 一致(noul 头对「冲突/true」类概率);�
 
 ---
 ## 第 11 轮执行结果
-(三跑完成后由执行者按 §1.2 逐轴填写;先回测 §4-4,再跑 r1/r2/r3)
+
+**结论:按 §1.2 预注册判定,三跑 13 轴 10 PASS / 3 FAIL ⇒ PROTOCOL VERDICT: FAIL — no delivery,v4 保持已交付,HF 未动,不叠修补(§1.3)。FAIL 轴:①主 val 三跑中位 0.895 < 0.896(差 1 例);③新 10 r2 = 9/10;④否定 r2 = 4/5——后两轴为「三跑全满分」薄边口径下的 r2 单例翻转(r1/r3 双满分)。机制正信息:同构家族轴三跑全绿(mean p 0.2169 / 0.0939 / 0.0794,中位 0.0939,每跑 p≥0.9 案 0),而旧单案 B2 读数三跑摆幅 0.544↔0.107——家族率仪器设计被三跑实证;老 20 三跑 60/60(杠杆 1b 根治回测暴露的两案真实弱点)。**
+
+(2026-10-04 落盘,执行 ZCode;dsh 于 2026-10-04/05 独立复读全表核对一致,本节按其 round-11 收尾缺口清单补写。)
+
+### 11.0 判定依据(必读)
+
+- 判定命令:`protocol_verdict.py --tags r1,r2,r3 --prefix v11_`;日志 `data_local/protocol_verdict_v11.log`。
+- **首跑 verdict rc=1 是崩溃非 FAIL**:工件名解析只认 `<prefix><name>_<tag>` 而电池实际输出 `<name>_<prefix>_<tag>`(v9 回测无前缀故未暴露),9d5d348 改双约定后重跑,判定以现存日志为准。
+- 逐跑明细与 44 件产物均在 `data_local/`(本轮收尾入库);语料 `*.jsonl` 按设计不入库(.gitignore:86)。
+
+### 11.1 前置回测(§4-4)
+
+v9 按定稿口径重放 = **FAIL 七轴**(`data_local/protocol_backtest_v11.log`):主 val 中位 0.894;老 20 中位 18 且「无关补充」「临时的不违背偏好」两案 2/3 跑重复 miss(= v9 语料真实弱点,v10 轮「run 方差」归因就此修正);new10 l2 9/10;negation s2 4/5;band 旧格式不可读;偏置 1/3 跑 ≥13;家族无产物。协议对历史不合格者有区分度,非橡皮图章。
+
+### 11.2 三跑逐轴读数(§1.2)
+
+逐跑读数已对原始工件复核:τ 取 ckpt `rl_agent_config.json`(noul 桶);band 取 `conf_band_v11_*.txt`;swap / 否定 / 新 10 取 `label_swap_v11_*` / `memory_conflict_realtest_v11_*`;主 val 与家族/conformal 取 verdict 日志。
+
+| 轴 | r1 / r2 / r3 | 聚合 | 判定 |
+|---|---|---|---|
+| 1 主 val(err,n=1000) | 0.897(103) / 0.895(105) / 0.893(107) | 中位 0.895 | **FAIL**(≥0.896,差 1 例) |
+| 2 老 20 | 20 / 20 / 20(repeated≥2:无) | 中位 20 | PASS |
+| 3 新 10 | 10 / **9** / 10 | 三跑全 10 | **FAIL**(r2 miss = 新-订阅服务(否定句),p 0.3344) |
+| 4 否定 5 | 5 / **4** / 5 | 三跑全 5 | **FAIL**(r2 miss = 否定-养宠物反转,p 0.3498) |
+| 5 val_soft(err,n=300) | 1 / 0 / 0 | 三跑全 ≤3 | PASS |
+| 6 swap(real/diag) | 0/0 / 0/0 / 0/0 | 三跑全 0 | PASS |
+| 7 极性 real·diag | PASS / PASS / PASS | 三跑全 ≤1 翻转 | PASS |
+| 8 极性 val_soft | PASS / PASS / PASS | 三跑全 ≤1 | PASS |
+| 9 band(val_soft q90−q10) | 16.26pp / 16.07pp / 16.21pp | 三跑全 ≥8pp | PASS |
+| 10 conformal | s1 36/52@33.4% + s2 35/52@31.6% / s1 37/55@32.2% + s2 38/55@34.6% / s1 42/56@34.2% + s2 33/56@23.0% | 六档全 ≥50%@≤35% | PASS |
+| 11 偏置诊断 | 12/14 / 13/14 / 13/14 | ≥2/3 跑 ≥13/14 | PASS |
+| 12 同构家族 mean p | 0.2169 / 0.0939 / 0.0794 | 中位 0.0939;p≥0.9 案 0/0/0 | PASS |
+| 13 卫生 | leak_audit 0/35(+家族 9 案零交) | — | PASS |
+| τ(noul)(非门控,照报) | 1.0768 / 1.0870 / 1.1042 | — | — |
+
+- **A.4 回填(实测联合)**:12 个门控轴在 r1/r3 全过,r2 挂 2 轴(新 10/否定)——FAIL 事件集中于单坏跑,与 §A.4「同坏跑强相关」预判一致。
+- 给 v12 的事实登记(不改判定):r2 两处薄边 miss 均为否定句式案例(养宠物反转、订阅服务(否定句)),p_conflict 0.3498 / 0.3344 双双跌破 0.5;薄边绑定约束的修复方向(家族扩容 / 协议中位化)登记于 ONBOARDING.md §8。
+- 极性轴逐面明细在 `polarity_nli_v11_r{1,2,3}.json`;门控口径以 protocol_verdict 为准。
+
+### 11.3 执行与资产
+
+| 项 | 值 |
+|---|---|
+| 训练数据 | `nli_conflict_train_v11.jsonl` 15914 行 = v9 15820 逐字节 verbatim(块 B 保留)+ 94 杠杆行(杠杆 1:pet_name 严格成对 +34;杠杆 1b:unrel_supplement 30 + temp_preference 30,zh/en 混合);Kaggle 数据集 **v16** |
+| Kaggle | kernel `laya-nli-conflict-ce` r1/r2/r3 = **version 9/10/11**(任务书全局叙事 v18/19/20 为跨 kernel 累计口径);三推三成,推序纪律 = 拉完上一版输出才推下一版;~17 分钟/跑(免费 GPU 提速 ~19×) |
+| checkpoint | `D:\laya-kaggle-output\laya-nli-conflict-v11-r{1,2,3}`(kernel 直出;编排器自校验:权重 643,835,524 字节 + kernel log「15914 train items」指纹) |
+| 编排器 | `v11_orchestrate.py`(init→wait_reset→push/wait/pull/eval×3→verdict;锁互斥、ERROR 即停、拉完再推),七修 b1cf722→1a04e2c + verdict 工件名 9d5d348;定时任务 automation-f6e9077a done 后待删 |
+
+### 11.4 执行偏差披露
+
+- **r3 评测曾随会话结束被杀**(2026-10-03 16:25,进程死但无 ERROR 态,陈旧锁由 TTL 接管);2026-10-04 00:48 幂等重跑 rc=0。
+- **rc 政策(⑥,9c68a7f)**:eval 电池 rc = 工件存在性,gate FAIL 的非零 rc 仅 informational,裁决权在 protocol_verdict(r1 电池 rc=1 实为偏置 12/14 的 gate 退出,不该停机)。
+- **expect= 定义补上 + band 解析器改实际句式(⑦,1a04e2c)**:此前脚本化 str.replace 补丁在定义处静默 no-op、调用点全改,曾致 r2 电池崩溃(TypeError: unexpected 'expect');教训入库——补丁必须 grep 验证落地。
+- 网络坏窗口(2026-10-03 12:43–13:13)连断 6 次:失败分类(⑤,570f05c)留相位跨 tick 重试,未冻结流水线。
+- bash 电池在编排器子进程环境不可靠(路径/CRLF 整类问题)⇒ 电池移植 python `eval_arm_v11.py`(59f4dbd)为权威,bash 版留 stage 弃用。
+
+### 11.5 §1.4 claims 包:有意省略(决定,非遗漏)
+
+claims_v11.json + verify_claims_v11.py 是 **hf_publish 的推前门**(§1.3/§1.4:exit 0 才准推卡)。本轮 verdict FAIL ⇒ 无卡面可推 ⇒ 门不触发,省略是协议结果的必然。若未来任一 v11 ckpt 需推 HF(当前协议下不会发生),须先补齐 claims 包并 exit 0。

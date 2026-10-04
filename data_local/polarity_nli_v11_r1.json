@@ -1,0 +1,6125 @@
+{
+  "checkpoint": "D:/laya-kaggle-output/laya-nli-conflict-v11-r1",
+  "seed": 20260928,
+  "random_rule": {
+    "alphabet": "consonants+digits (no vowels/ambiguous)",
+    "len": 8,
+    "per_case": true
+  },
+  "real": {
+    "per_variant": {
+      "std": [
+        {
+          "note": "地点变更",
+          "expect": "true",
+          "p_true": 0.9207,
+          "got": "true"
+        },
+        {
+          "note": "偏好变更",
+          "expect": "true",
+          "p_true": 0.9191,
+          "got": "true"
+        },
+        {
+          "note": "时间变更",
+          "expect": "true",
+          "p_true": 0.9123,
+          "got": "true"
+        },
+        {
+          "note": "关键事实反转",
+          "expect": "true",
+          "p_true": 0.8879,
+          "got": "true"
+        },
+        {
+          "note": "部署变更",
+          "expect": "true",
+          "p_true": 0.9185,
+          "got": "true"
+        },
+        {
+          "note": "口味变更",
+          "expect": "true",
+          "p_true": 0.922,
+          "got": "true"
+        },
+        {
+          "note": "名字矛盾",
+          "expect": "true",
+          "p_true": 0.9167,
+          "got": "true"
+        },
+        {
+          "note": "年龄矛盾",
+          "expect": "true",
+          "p_true": 0.9267,
+          "got": "true"
+        },
+        {
+          "note": "一致行为",
+          "expect": "false",
+          "p_true": 0.1099,
+          "got": "false"
+        },
+        {
+          "note": "补充细节",
+          "expect": "false",
+          "p_true": 0.0625,
+          "got": "false"
+        },
+        {
+          "note": "无关补充",
+          "expect": "false",
+          "p_true": 0.2139,
+          "got": "false"
+        },
+        {
+          "note": "无关陈述",
+          "expect": "false",
+          "p_true": 0.0543,
+          "got": "false"
+        },
+        {
+          "note": "工作相关",
+          "expect": "false",
+          "p_true": 0.0765,
+          "got": "false"
+        },
+        {
+          "note": "习惯一致",
+          "expect": "false",
+          "p_true": 0.2429,
+          "got": "false"
+        },
+        {
+          "note": "偏好一致",
+          "expect": "false",
+          "p_true": 0.1165,
+          "got": "false"
+        },
+        {
+          "note": "兼容细节",
+          "expect": "false",
+          "p_true": 0.0476,
+          "got": "false"
+        },
+        {
+          "note": "临时的不违背偏好",
+          "expect": "false",
+          "p_true": 0.2164,
+          "got": "false"
+        },
+        {
+          "note": "饮食禁忌松动",
+          "expect": "true",
+          "p_true": 0.8898,
+          "got": "true"
+        },
+        {
+          "note": "家庭结构矛盾",
+          "expect": "true",
+          "p_true": 0.9252,
+          "got": "true"
+        },
+        {
+          "note": "子集关系",
+          "expect": "false",
+          "p_true": 0.0949,
+          "got": "false"
+        }
+      ],
+      "neutral": [
+        {
+          "note": "地点变更",
+          "expect": "true",
+          "p_true": 0.921,
+          "got": "true"
+        },
+        {
+          "note": "偏好变更",
+          "expect": "true",
+          "p_true": 0.9219,
+          "got": "true"
+        },
+        {
+          "note": "时间变更",
+          "expect": "true",
+          "p_true": 0.916,
+          "got": "true"
+        },
+        {
+          "note": "关键事实反转",
+          "expect": "true",
+          "p_true": 0.8967,
+          "got": "true"
+        },
+        {
+          "note": "部署变更",
+          "expect": "true",
+          "p_true": 0.9186,
+          "got": "true"
+        },
+        {
+          "note": "口味变更",
+          "expect": "true",
+          "p_true": 0.9208,
+          "got": "true"
+        },
+        {
+          "note": "名字矛盾",
+          "expect": "true",
+          "p_true": 0.9203,
+          "got": "true"
+        },
+        {
+          "note": "年龄矛盾",
+          "expect": "true",
+          "p_true": 0.9243,
+          "got": "true"
+        },
+        {
+          "note": "一致行为",
+          "expect": "false",
+          "p_true": 0.1002,
+          "got": "false"
+        },
+        {
+          "note": "补充细节",
+          "expect": "false",
+          "p_true": 0.0603,
+          "got": "false"
+        },
+        {
+          "note": "无关补充",
+          "expect": "false",
+          "p_true": 0.1913,
+          "got": "false"
+        },
+        {
+          "note": "无关陈述",
+          "expect": "false",
+          "p_true": 0.0543,
+          "got": "false"
+        },
+        {
+          "note": "工作相关",
+          "expect": "false",
+          "p_true": 0.0757,
+          "got": "false"
+        },
+        {
+          "note": "习惯一致",
+          "expect": "false",
+          "p_true": 0.1807,
+          "got": "false"
+        },
+        {
+          "note": "偏好一致",
+          "expect": "false",
+          "p_true": 0.1104,
+          "got": "false"
+        },
+        {
+          "note": "兼容细节",
+          "expect": "false",
+          "p_true": 0.0476,
+          "got": "false"
+        },
+        {
+          "note": "临时的不违背偏好",
+          "expect": "false",
+          "p_true": 0.2101,
+          "got": "false"
+        },
+        {
+          "note": "饮食禁忌松动",
+          "expect": "true",
+          "p_true": 0.8839,
+          "got": "true"
+        },
+        {
+          "note": "家庭结构矛盾",
+          "expect": "true",
+          "p_true": 0.9264,
+          "got": "true"
+        },
+        {
+          "note": "子集关系",
+          "expect": "false",
+          "p_true": 0.0867,
+          "got": "false"
+        }
+      ],
+      "random": [
+        {
+          "note": "地点变更",
+          "expect": "true",
+          "p_true": 0.9186,
+          "got": "true"
+        },
+        {
+          "note": "偏好变更",
+          "expect": "true",
+          "p_true": 0.922,
+          "got": "true"
+        },
+        {
+          "note": "时间变更",
+          "expect": "true",
+          "p_true": 0.9037,
+          "got": "true"
+        },
+        {
+          "note": "关键事实反转",
+          "expect": "true",
+          "p_true": 0.9023,
+          "got": "true"
+        },
+        {
+          "note": "部署变更",
+          "expect": "true",
+          "p_true": 0.9174,
+          "got": "true"
+        },
+        {
+          "note": "口味变更",
+          "expect": "true",
+          "p_true": 0.9224,
+          "got": "true"
+        },
+        {
+          "note": "名字矛盾",
+          "expect": "true",
+          "p_true": 0.9175,
+          "got": "true"
+        },
+        {
+          "note": "年龄矛盾",
+          "expect": "true",
+          "p_true": 0.9278,
+          "got": "true"
+        },
+        {
+          "note": "一致行为",
+          "expect": "false",
+          "p_true": 0.0988,
+          "got": "false"
+        },
+        {
+          "note": "补充细节",
+          "expect": "false",
+          "p_true": 0.0763,
+          "got": "false"
+        },
+        {
+          "note": "无关补充",
+          "expect": "false",
+          "p_true": 0.2427,
+          "got": "false"
+        },
+        {
+          "note": "无关陈述",
+          "expect": "false",
+          "p_true": 0.0587,
+          "got": "false"
+        },
+        {
+          "note": "工作相关",
+          "expect": "false",
+          "p_true": 0.0972,
+          "got": "false"
+        },
+        {
+          "note": "习惯一致",
+          "expect": "false",
+          "p_true": 0.16,
+          "got": "false"
+        },
+        {
+          "note": "偏好一致",
+          "expect": "false",
+          "p_true": 0.1233,
+          "got": "false"
+        },
+        {
+          "note": "兼容细节",
+          "expect": "false",
+          "p_true": 0.0501,
+          "got": "false"
+        },
+        {
+          "note": "临时的不违背偏好",
+          "expect": "false",
+          "p_true": 0.2255,
+          "got": "false"
+        },
+        {
+          "note": "饮食禁忌松动",
+          "expect": "true",
+          "p_true": 0.8856,
+          "got": "true"
+        },
+        {
+          "note": "家庭结构矛盾",
+          "expect": "true",
+          "p_true": 0.923,
+          "got": "true"
+        },
+        {
+          "note": "子集关系",
+          "expect": "false",
+          "p_true": 0.0786,
+          "got": "false"
+        }
+      ]
+    },
+    "summary": {
+      "acc": {
+        "neutral": 20,
+        "random": 20,
+        "std": 20
+      },
+      "err": {
+        "std": 0,
+        "neutral": 0,
+        "random": 0
+      },
+      "mean_abs_dp": {},
+      "neutral": {
+        "diff": 0,
+        "flips": [],
+        "mean_abs_dp": 0.0074
+      },
+      "random": {
+        "diff": 0,
+        "flips": [],
+        "mean_abs_dp": 0.0117
+      }
+    }
+  },
+  "diag": {
+    "per_variant": {
+      "std": [
+        {
+          "note": "对照A1 地点变更",
+          "expect": "true",
+          "p_true": 0.9207,
+          "got": "true"
+        },
+        {
+          "note": "对照A2 地点无关",
+          "expect": "false",
+          "p_true": 0.0528,
+          "got": "false"
+        },
+        {
+          "note": "对照B1 名字矛盾",
+          "expect": "true",
+          "p_true": 0.9167,
+          "got": "true"
+        },
+        {
+          "note": "对照B2 名字一致",
+          "expect": "false",
+          "p_true": 0.5444,
+          "got": "true"
+        },
+        {
+          "note": "对照C1 年龄矛盾",
+          "expect": "true",
+          "p_true": 0.9225,
+          "got": "true"
+        },
+        {
+          "note": "对照C2 年龄无关",
+          "expect": "false",
+          "p_true": 0.0883,
+          "got": "false"
+        },
+        {
+          "note": "对照D1 过敏反转",
+          "expect": "true",
+          "p_true": 0.8879,
+          "got": "true"
+        },
+        {
+          "note": "对照D2 其他坚果无关",
+          "expect": "false",
+          "p_true": 0.8876,
+          "got": "true"
+        },
+        {
+          "note": "对照E1 部署变更",
+          "expect": "true",
+          "p_true": 0.9185,
+          "got": "true"
+        },
+        {
+          "note": "对照E2 部署兼容",
+          "expect": "false",
+          "p_true": 0.0636,
+          "got": "false"
+        },
+        {
+          "note": "交换B1",
+          "expect": "true",
+          "p_true": 0.9215,
+          "got": "true"
+        },
+        {
+          "note": "交换A2",
+          "expect": "false",
+          "p_true": 0.0688,
+          "got": "false"
+        },
+        {
+          "note": "交换C1",
+          "expect": "true",
+          "p_true": 0.9261,
+          "got": "true"
+        },
+        {
+          "note": "交换A1",
+          "expect": "true",
+          "p_true": 0.9207,
+          "got": "true"
+        }
+      ],
+      "neutral": [
+        {
+          "note": "对照A1 地点变更",
+          "expect": "true",
+          "p_true": 0.921,
+          "got": "true"
+        },
+        {
+          "note": "对照A2 地点无关",
+          "expect": "false",
+          "p_true": 0.0509,
+          "got": "false"
+        },
+        {
+          "note": "对照B1 名字矛盾",
+          "expect": "true",
+          "p_true": 0.9203,
+          "got": "true"
+        },
+        {
+          "note": "对照B2 名字一致",
+          "expect": "false",
+          "p_true": 0.8266,
+          "got": "true"
+        },
+        {
+          "note": "对照C1 年龄矛盾",
+          "expect": "true",
+          "p_true": 0.9197,
+          "got": "true"
+        },
+        {
+          "note": "对照C2 年龄无关",
+          "expect": "false",
+          "p_true": 0.0879,
+          "got": "false"
+        },
+        {
+          "note": "对照D1 过敏反转",
+          "expect": "true",
+          "p_true": 0.8967,
+          "got": "true"
+        },
+        {
+          "note": "对照D2 其他坚果无关",
+          "expect": "false",
+          "p_true": 0.8903,
+          "got": "true"
+        },
+        {
+          "note": "对照E1 部署变更",
+          "expect": "true",
+          "p_true": 0.9186,
+          "got": "true"
+        },
+        {
+          "note": "对照E2 部署兼容",
+          "expect": "false",
+          "p_true": 0.0623,
+          "got": "false"
+        },
+        {
+          "note": "交换B1",
+          "expect": "true",
+          "p_true": 0.9241,
+          "got": "true"
+        },
+        {
+          "note": "交换A2",
+          "expect": "false",
+          "p_true": 0.0681,
+          "got": "false"
+        },
+        {
+          "note": "交换C1",
+          "expect": "true",
+          "p_true": 0.9243,
+          "got": "true"
+        },
+        {
+          "note": "交换A1",
+          "expect": "true",
+          "p_true": 0.921,
+          "got": "true"
+        }
+      ],
+      "random": [
+        {
+          "note": "对照A1 地点变更",
+          "expect": "true",
+          "p_true": 0.9168,
+          "got": "true"
+        },
+        {
+          "note": "对照A2 地点无关",
+          "expect": "false",
+          "p_true": 0.056,
+          "got": "false"
+        },
+        {
+          "note": "对照B1 名字矛盾",
+          "expect": "true",
+          "p_true": 0.9198,
+          "got": "true"
+        },
+        {
+          "note": "对照B2 名字一致",
+          "expect": "false",
+          "p_true": 0.89,
+          "got": "true"
+        },
+        {
+          "note": "对照C1 年龄矛盾",
+          "expect": "true",
+          "p_true": 0.9232,
+          "got": "true"
+        },
+        {
+          "note": "对照C2 年龄无关",
+          "expect": "false",
+          "p_true": 0.087,
+          "got": "false"
+        },
+        {
+          "note": "对照D1 过敏反转",
+          "expect": "true",
+          "p_true": 0.8977,
+          "got": "true"
+        },
+        {
+          "note": "对照D2 其他坚果无关",
+          "expect": "false",
+          "p_true": 0.8955,
+          "got": "true"
+        },
+        {
+          "note": "对照E1 部署变更",
+          "expect": "true",
+          "p_true": 0.9159,
+          "got": "true"
+        },
+        {
+          "note": "对照E2 部署兼容",
+          "expect": "false",
+          "p_true": 0.0631,
+          "got": "false"
+        },
+        {
+          "note": "交换B1",
+          "expect": "true",
+          "p_true": 0.9152,
+          "got": "true"
+        },
+        {
+          "note": "交换A2",
+          "expect": "false",
+          "p_true": 0.0697,
+          "got": "false"
+        },
+        {
+          "note": "交换C1",
+          "expect": "true",
+          "p_true": 0.9231,
+          "got": "true"
+        },
+        {
+          "note": "交换A1",
+          "expect": "true",
+          "p_true": 0.9191,
+          "got": "true"
+        }
+      ]
+    },
+    "summary": {
+      "acc": {
+        "neutral": 12,
+        "random": 12,
+        "std": 12
+      },
+      "err": {
+        "std": 2,
+        "neutral": 2,
+        "random": 2
+      },
+      "mean_abs_dp": {},
+      "neutral": {
+        "diff": 0,
+        "flips": [],
+        "mean_abs_dp": 0.0221
+      },
+      "random": {
+        "diff": 0,
+        "flips": [],
+        "mean_abs_dp": 0.0279
+      }
+    }
+  },
+  "val_soft": {
+    "per_variant": {
+      "std": [
+        {
+          "note": "vs000",
+          "expect": "true",
+          "p_true": 0.9232,
+          "got": "true"
+        },
+        {
+          "note": "vs001",
+          "expect": "true",
+          "p_true": 0.9185,
+          "got": "true"
+        },
+        {
+          "note": "vs002",
+          "expect": "true",
+          "p_true": 0.9216,
+          "got": "true"
+        },
+        {
+          "note": "vs003",
+          "expect": "true",
+          "p_true": 0.9172,
+          "got": "true"
+        },
+        {
+          "note": "vs004",
+          "expect": "false",
+          "p_true": 0.1047,
+          "got": "false"
+        },
+        {
+          "note": "vs005",
+          "expect": "false",
+          "p_true": 0.101,
+          "got": "false"
+        },
+        {
+          "note": "vs006",
+          "expect": "false",
+          "p_true": 0.0844,
+          "got": "false"
+        },
+        {
+          "note": "vs007",
+          "expect": "false",
+          "p_true": 0.0828,
+          "got": "false"
+        },
+        {
+          "note": "vs008",
+          "expect": "true",
+          "p_true": 0.9206,
+          "got": "true"
+        },
+        {
+          "note": "vs009",
+          "expect": "true",
+          "p_true": 0.918,
+          "got": "true"
+        },
+        {
+          "note": "vs010",
+          "expect": "false",
+          "p_true": 0.0809,
+          "got": "false"
+        },
+        {
+          "note": "vs011",
+          "expect": "false",
+          "p_true": 0.2209,
+          "got": "false"
+        },
+        {
+          "note": "vs012",
+          "expect": "false",
+          "p_true": 0.0972,
+          "got": "false"
+        },
+        {
+          "note": "vs013",
+          "expect": "false",
+          "p_true": 0.2299,
+          "got": "false"
+        },
+        {
+          "note": "vs014",
+          "expect": "false",
+          "p_true": 0.2379,
+          "got": "false"
+        },
+        {
+          "note": "vs015",
+          "expect": "false",
+          "p_true": 0.1054,
+          "got": "false"
+        },
+        {
+          "note": "vs016",
+          "expect": "false",
+          "p_true": 0.0483,
+          "got": "false"
+        },
+        {
+          "note": "vs017",
+          "expect": "false",
+          "p_true": 0.0802,
+          "got": "false"
+        },
+        {
+          "note": "vs018",
+          "expect": "true",
+          "p_true": 0.2609,
+          "got": "false"
+        },
+        {
+          "note": "vs019",
+          "expect": "false",
+          "p_true": 0.0882,
+          "got": "false"
+        },
+        {
+          "note": "vs020",
+          "expect": "false",
+          "p_true": 0.0632,
+          "got": "false"
+        },
+        {
+          "note": "vs021",
+          "expect": "false",
+          "p_true": 0.1761,
+          "got": "false"
+        },
+        {
+          "note": "vs022",
+          "expect": "false",
+          "p_true": 0.2134,
+          "got": "false"
+        },
+        {
+          "note": "vs023",
+          "expect": "false",
+          "p_true": 0.0979,
+          "got": "false"
+        },
+        {
+          "note": "vs024",
+          "expect": "false",
+          "p_true": 0.2134,
+          "got": "false"
+        },
+        {
+          "note": "vs025",
+          "expect": "false",
+          "p_true": 0.0455,
+          "got": "false"
+        },
+        {
+          "note": "vs026",
+          "expect": "true",
+          "p_true": 0.9165,
+          "got": "true"
+        },
+        {
+          "note": "vs027",
+          "expect": "false",
+          "p_true": 0.0834,
+          "got": "false"
+        },
+        {
+          "note": "vs028",
+          "expect": "true",
+          "p_true": 0.9227,
+          "got": "true"
+        },
+        {
+          "note": "vs029",
+          "expect": "true",
+          "p_true": 0.9253,
+          "got": "true"
+        },
+        {
+          "note": "vs030",
+          "expect": "false",
+          "p_true": 0.0805,
+          "got": "false"
+        },
+        {
+          "note": "vs031",
+          "expect": "false",
+          "p_true": 0.2538,
+          "got": "false"
+        },
+        {
+          "note": "vs032",
+          "expect": "false",
+          "p_true": 0.2038,
+          "got": "false"
+        },
+        {
+          "note": "vs033",
+          "expect": "false",
+          "p_true": 0.1974,
+          "got": "false"
+        },
+        {
+          "note": "vs034",
+          "expect": "false",
+          "p_true": 0.0559,
+          "got": "false"
+        },
+        {
+          "note": "vs035",
+          "expect": "false",
+          "p_true": 0.1014,
+          "got": "false"
+        },
+        {
+          "note": "vs036",
+          "expect": "false",
+          "p_true": 0.0561,
+          "got": "false"
+        },
+        {
+          "note": "vs037",
+          "expect": "false",
+          "p_true": 0.0816,
+          "got": "false"
+        },
+        {
+          "note": "vs038",
+          "expect": "false",
+          "p_true": 0.2134,
+          "got": "false"
+        },
+        {
+          "note": "vs039",
+          "expect": "false",
+          "p_true": 0.0424,
+          "got": "false"
+        },
+        {
+          "note": "vs040",
+          "expect": "false",
+          "p_true": 0.0435,
+          "got": "false"
+        },
+        {
+          "note": "vs041",
+          "expect": "true",
+          "p_true": 0.9186,
+          "got": "true"
+        },
+        {
+          "note": "vs042",
+          "expect": "false",
+          "p_true": 0.0488,
+          "got": "false"
+        },
+        {
+          "note": "vs043",
+          "expect": "true",
+          "p_true": 0.9183,
+          "got": "true"
+        },
+        {
+          "note": "vs044",
+          "expect": "false",
+          "p_true": 0.0892,
+          "got": "false"
+        },
+        {
+          "note": "vs045",
+          "expect": "false",
+          "p_true": 0.2048,
+          "got": "false"
+        },
+        {
+          "note": "vs046",
+          "expect": "false",
+          "p_true": 0.2162,
+          "got": "false"
+        },
+        {
+          "note": "vs047",
+          "expect": "false",
+          "p_true": 0.0761,
+          "got": "false"
+        },
+        {
+          "note": "vs048",
+          "expect": "true",
+          "p_true": 0.9198,
+          "got": "true"
+        },
+        {
+          "note": "vs049",
+          "expect": "false",
+          "p_true": 0.0733,
+          "got": "false"
+        },
+        {
+          "note": "vs050",
+          "expect": "false",
+          "p_true": 0.0659,
+          "got": "false"
+        },
+        {
+          "note": "vs051",
+          "expect": "true",
+          "p_true": 0.9202,
+          "got": "true"
+        },
+        {
+          "note": "vs052",
+          "expect": "false",
+          "p_true": 0.0478,
+          "got": "false"
+        },
+        {
+          "note": "vs053",
+          "expect": "false",
+          "p_true": 0.2209,
+          "got": "false"
+        },
+        {
+          "note": "vs054",
+          "expect": "false",
+          "p_true": 0.1994,
+          "got": "false"
+        },
+        {
+          "note": "vs055",
+          "expect": "false",
+          "p_true": 0.0783,
+          "got": "false"
+        },
+        {
+          "note": "vs056",
+          "expect": "true",
+          "p_true": 0.9195,
+          "got": "true"
+        },
+        {
+          "note": "vs057",
+          "expect": "false",
+          "p_true": 0.1954,
+          "got": "false"
+        },
+        {
+          "note": "vs058",
+          "expect": "false",
+          "p_true": 0.1952,
+          "got": "false"
+        },
+        {
+          "note": "vs059",
+          "expect": "true",
+          "p_true": 0.9164,
+          "got": "true"
+        },
+        {
+          "note": "vs060",
+          "expect": "false",
+          "p_true": 0.0818,
+          "got": "false"
+        },
+        {
+          "note": "vs061",
+          "expect": "false",
+          "p_true": 0.08,
+          "got": "false"
+        },
+        {
+          "note": "vs062",
+          "expect": "true",
+          "p_true": 0.9225,
+          "got": "true"
+        },
+        {
+          "note": "vs063",
+          "expect": "false",
+          "p_true": 0.2153,
+          "got": "false"
+        },
+        {
+          "note": "vs064",
+          "expect": "false",
+          "p_true": 0.2049,
+          "got": "false"
+        },
+        {
+          "note": "vs065",
+          "expect": "true",
+          "p_true": 0.9214,
+          "got": "true"
+        },
+        {
+          "note": "vs066",
+          "expect": "false",
+          "p_true": 0.0651,
+          "got": "false"
+        },
+        {
+          "note": "vs067",
+          "expect": "false",
+          "p_true": 0.0831,
+          "got": "false"
+        },
+        {
+          "note": "vs068",
+          "expect": "false",
+          "p_true": 0.201,
+          "got": "false"
+        },
+        {
+          "note": "vs069",
+          "expect": "false",
+          "p_true": 0.0888,
+          "got": "false"
+        },
+        {
+          "note": "vs070",
+          "expect": "false",
+          "p_true": 0.0496,
+          "got": "false"
+        },
+        {
+          "note": "vs071",
+          "expect": "false",
+          "p_true": 0.0745,
+          "got": "false"
+        },
+        {
+          "note": "vs072",
+          "expect": "false",
+          "p_true": 0.2224,
+          "got": "false"
+        },
+        {
+          "note": "vs073",
+          "expect": "true",
+          "p_true": 0.9156,
+          "got": "true"
+        },
+        {
+          "note": "vs074",
+          "expect": "false",
+          "p_true": 0.0656,
+          "got": "false"
+        },
+        {
+          "note": "vs075",
+          "expect": "true",
+          "p_true": 0.9242,
+          "got": "true"
+        },
+        {
+          "note": "vs076",
+          "expect": "true",
+          "p_true": 0.9182,
+          "got": "true"
+        },
+        {
+          "note": "vs077",
+          "expect": "false",
+          "p_true": 0.0834,
+          "got": "false"
+        },
+        {
+          "note": "vs078",
+          "expect": "false",
+          "p_true": 0.0808,
+          "got": "false"
+        },
+        {
+          "note": "vs079",
+          "expect": "false",
+          "p_true": 0.0989,
+          "got": "false"
+        },
+        {
+          "note": "vs080",
+          "expect": "false",
+          "p_true": 0.2104,
+          "got": "false"
+        },
+        {
+          "note": "vs081",
+          "expect": "true",
+          "p_true": 0.9196,
+          "got": "true"
+        },
+        {
+          "note": "vs082",
+          "expect": "false",
+          "p_true": 0.2167,
+          "got": "false"
+        },
+        {
+          "note": "vs083",
+          "expect": "false",
+          "p_true": 0.0613,
+          "got": "false"
+        },
+        {
+          "note": "vs084",
+          "expect": "false",
+          "p_true": 0.0597,
+          "got": "false"
+        },
+        {
+          "note": "vs085",
+          "expect": "false",
+          "p_true": 0.0678,
+          "got": "false"
+        },
+        {
+          "note": "vs086",
+          "expect": "false",
+          "p_true": 0.2128,
+          "got": "false"
+        },
+        {
+          "note": "vs087",
+          "expect": "false",
+          "p_true": 0.0637,
+          "got": "false"
+        },
+        {
+          "note": "vs088",
+          "expect": "false",
+          "p_true": 0.092,
+          "got": "false"
+        },
+        {
+          "note": "vs089",
+          "expect": "false",
+          "p_true": 0.1011,
+          "got": "false"
+        },
+        {
+          "note": "vs090",
+          "expect": "false",
+          "p_true": 0.2292,
+          "got": "false"
+        },
+        {
+          "note": "vs091",
+          "expect": "false",
+          "p_true": 0.0751,
+          "got": "false"
+        },
+        {
+          "note": "vs092",
+          "expect": "false",
+          "p_true": 0.0899,
+          "got": "false"
+        },
+        {
+          "note": "vs093",
+          "expect": "false",
+          "p_true": 0.0808,
+          "got": "false"
+        },
+        {
+          "note": "vs094",
+          "expect": "true",
+          "p_true": 0.9157,
+          "got": "true"
+        },
+        {
+          "note": "vs095",
+          "expect": "true",
+          "p_true": 0.9194,
+          "got": "true"
+        },
+        {
+          "note": "vs096",
+          "expect": "true",
+          "p_true": 0.922,
+          "got": "true"
+        },
+        {
+          "note": "vs097",
+          "expect": "false",
+          "p_true": 0.1089,
+          "got": "false"
+        },
+        {
+          "note": "vs098",
+          "expect": "true",
+          "p_true": 0.923,
+          "got": "true"
+        },
+        {
+          "note": "vs099",
+          "expect": "false",
+          "p_true": 0.087,
+          "got": "false"
+        },
+        {
+          "note": "vs100",
+          "expect": "true",
+          "p_true": 0.9222,
+          "got": "true"
+        },
+        {
+          "note": "vs101",
+          "expect": "true",
+          "p_true": 0.9239,
+          "got": "true"
+        },
+        {
+          "note": "vs102",
+          "expect": "true",
+          "p_true": 0.9221,
+          "got": "true"
+        },
+        {
+          "note": "vs103",
+          "expect": "false",
+          "p_true": 0.2094,
+          "got": "false"
+        },
+        {
+          "note": "vs104",
+          "expect": "false",
+          "p_true": 0.2157,
+          "got": "false"
+        },
+        {
+          "note": "vs105",
+          "expect": "false",
+          "p_true": 0.2029,
+          "got": "false"
+        },
+        {
+          "note": "vs106",
+          "expect": "false",
+          "p_true": 0.2133,
+          "got": "false"
+        },
+        {
+          "note": "vs107",
+          "expect": "true",
+          "p_true": 0.9175,
+          "got": "true"
+        },
+        {
+          "note": "vs108",
+          "expect": "false",
+          "p_true": 0.0436,
+          "got": "false"
+        },
+        {
+          "note": "vs109",
+          "expect": "false",
+          "p_true": 0.0707,
+          "got": "false"
+        },
+        {
+          "note": "vs110",
+          "expect": "false",
+          "p_true": 0.0445,
+          "got": "false"
+        },
+        {
+          "note": "vs111",
+          "expect": "true",
+          "p_true": 0.9194,
+          "got": "true"
+        },
+        {
+          "note": "vs112",
+          "expect": "false",
+          "p_true": 0.0892,
+          "got": "false"
+        },
+        {
+          "note": "vs113",
+          "expect": "false",
+          "p_true": 0.2053,
+          "got": "false"
+        },
+        {
+          "note": "vs114",
+          "expect": "false",
+          "p_true": 0.2135,
+          "got": "false"
+        },
+        {
+          "note": "vs115",
+          "expect": "false",
+          "p_true": 0.1935,
+          "got": "false"
+        },
+        {
+          "note": "vs116",
+          "expect": "false",
+          "p_true": 0.0801,
+          "got": "false"
+        },
+        {
+          "note": "vs117",
+          "expect": "false",
+          "p_true": 0.0551,
+          "got": "false"
+        },
+        {
+          "note": "vs118",
+          "expect": "true",
+          "p_true": 0.9138,
+          "got": "true"
+        },
+        {
+          "note": "vs119",
+          "expect": "false",
+          "p_true": 0.196,
+          "got": "false"
+        },
+        {
+          "note": "vs120",
+          "expect": "true",
+          "p_true": 0.9186,
+          "got": "true"
+        },
+        {
+          "note": "vs121",
+          "expect": "true",
+          "p_true": 0.9212,
+          "got": "true"
+        },
+        {
+          "note": "vs122",
+          "expect": "true",
+          "p_true": 0.9227,
+          "got": "true"
+        },
+        {
+          "note": "vs123",
+          "expect": "true",
+          "p_true": 0.921,
+          "got": "true"
+        },
+        {
+          "note": "vs124",
+          "expect": "true",
+          "p_true": 0.9122,
+          "got": "true"
+        },
+        {
+          "note": "vs125",
+          "expect": "true",
+          "p_true": 0.9176,
+          "got": "true"
+        },
+        {
+          "note": "vs126",
+          "expect": "true",
+          "p_true": 0.9172,
+          "got": "true"
+        },
+        {
+          "note": "vs127",
+          "expect": "false",
+          "p_true": 0.0493,
+          "got": "false"
+        },
+        {
+          "note": "vs128",
+          "expect": "true",
+          "p_true": 0.9144,
+          "got": "true"
+        },
+        {
+          "note": "vs129",
+          "expect": "true",
+          "p_true": 0.9243,
+          "got": "true"
+        },
+        {
+          "note": "vs130",
+          "expect": "false",
+          "p_true": 0.0833,
+          "got": "false"
+        },
+        {
+          "note": "vs131",
+          "expect": "false",
+          "p_true": 0.2156,
+          "got": "false"
+        },
+        {
+          "note": "vs132",
+          "expect": "false",
+          "p_true": 0.2233,
+          "got": "false"
+        },
+        {
+          "note": "vs133",
+          "expect": "true",
+          "p_true": 0.9176,
+          "got": "true"
+        },
+        {
+          "note": "vs134",
+          "expect": "false",
+          "p_true": 0.0507,
+          "got": "false"
+        },
+        {
+          "note": "vs135",
+          "expect": "false",
+          "p_true": 0.0752,
+          "got": "false"
+        },
+        {
+          "note": "vs136",
+          "expect": "true",
+          "p_true": 0.9196,
+          "got": "true"
+        },
+        {
+          "note": "vs137",
+          "expect": "true",
+          "p_true": 0.9167,
+          "got": "true"
+        },
+        {
+          "note": "vs138",
+          "expect": "false",
+          "p_true": 0.0703,
+          "got": "false"
+        },
+        {
+          "note": "vs139",
+          "expect": "false",
+          "p_true": 0.2199,
+          "got": "false"
+        },
+        {
+          "note": "vs140",
+          "expect": "true",
+          "p_true": 0.9313,
+          "got": "true"
+        },
+        {
+          "note": "vs141",
+          "expect": "false",
+          "p_true": 0.0476,
+          "got": "false"
+        },
+        {
+          "note": "vs142",
+          "expect": "false",
+          "p_true": 0.04,
+          "got": "false"
+        },
+        {
+          "note": "vs143",
+          "expect": "false",
+          "p_true": 0.0793,
+          "got": "false"
+        },
+        {
+          "note": "vs144",
+          "expect": "false",
+          "p_true": 0.1988,
+          "got": "false"
+        },
+        {
+          "note": "vs145",
+          "expect": "false",
+          "p_true": 0.0804,
+          "got": "false"
+        },
+        {
+          "note": "vs146",
+          "expect": "true",
+          "p_true": 0.9215,
+          "got": "true"
+        },
+        {
+          "note": "vs147",
+          "expect": "false",
+          "p_true": 0.0463,
+          "got": "false"
+        },
+        {
+          "note": "vs148",
+          "expect": "false",
+          "p_true": 0.1942,
+          "got": "false"
+        },
+        {
+          "note": "vs149",
+          "expect": "true",
+          "p_true": 0.9189,
+          "got": "true"
+        },
+        {
+          "note": "vs150",
+          "expect": "false",
+          "p_true": 0.2123,
+          "got": "false"
+        },
+        {
+          "note": "vs151",
+          "expect": "false",
+          "p_true": 0.1,
+          "got": "false"
+        },
+        {
+          "note": "vs152",
+          "expect": "true",
+          "p_true": 0.9131,
+          "got": "true"
+        },
+        {
+          "note": "vs153",
+          "expect": "false",
+          "p_true": 0.0547,
+          "got": "false"
+        },
+        {
+          "note": "vs154",
+          "expect": "false",
+          "p_true": 0.1064,
+          "got": "false"
+        },
+        {
+          "note": "vs155",
+          "expect": "false",
+          "p_true": 0.0741,
+          "got": "false"
+        },
+        {
+          "note": "vs156",
+          "expect": "false",
+          "p_true": 0.0683,
+          "got": "false"
+        },
+        {
+          "note": "vs157",
+          "expect": "false",
+          "p_true": 0.0839,
+          "got": "false"
+        },
+        {
+          "note": "vs158",
+          "expect": "false",
+          "p_true": 0.2285,
+          "got": "false"
+        },
+        {
+          "note": "vs159",
+          "expect": "false",
+          "p_true": 0.0475,
+          "got": "false"
+        },
+        {
+          "note": "vs160",
+          "expect": "true",
+          "p_true": 0.9258,
+          "got": "true"
+        },
+        {
+          "note": "vs161",
+          "expect": "false",
+          "p_true": 0.0789,
+          "got": "false"
+        },
+        {
+          "note": "vs162",
+          "expect": "false",
+          "p_true": 0.0785,
+          "got": "false"
+        },
+        {
+          "note": "vs163",
+          "expect": "false",
+          "p_true": 0.0654,
+          "got": "false"
+        },
+        {
+          "note": "vs164",
+          "expect": "false",
+          "p_true": 0.1841,
+          "got": "false"
+        },
+        {
+          "note": "vs165",
+          "expect": "false",
+          "p_true": 0.2114,
+          "got": "false"
+        },
+        {
+          "note": "vs166",
+          "expect": "false",
+          "p_true": 0.0869,
+          "got": "false"
+        },
+        {
+          "note": "vs167",
+          "expect": "false",
+          "p_true": 0.0491,
+          "got": "false"
+        },
+        {
+          "note": "vs168",
+          "expect": "false",
+          "p_true": 0.0506,
+          "got": "false"
+        },
+        {
+          "note": "vs169",
+          "expect": "false",
+          "p_true": 0.0921,
+          "got": "false"
+        },
+        {
+          "note": "vs170",
+          "expect": "true",
+          "p_true": 0.9187,
+          "got": "true"
+        },
+        {
+          "note": "vs171",
+          "expect": "false",
+          "p_true": 0.2008,
+          "got": "false"
+        },
+        {
+          "note": "vs172",
+          "expect": "true",
+          "p_true": 0.9176,
+          "got": "true"
+        },
+        {
+          "note": "vs173",
+          "expect": "true",
+          "p_true": 0.923,
+          "got": "true"
+        },
+        {
+          "note": "vs174",
+          "expect": "false",
+          "p_true": 0.0767,
+          "got": "false"
+        },
+        {
+          "note": "vs175",
+          "expect": "true",
+          "p_true": 0.9188,
+          "got": "true"
+        },
+        {
+          "note": "vs176",
+          "expect": "true",
+          "p_true": 0.9201,
+          "got": "true"
+        },
+        {
+          "note": "vs177",
+          "expect": "false",
+          "p_true": 0.0702,
+          "got": "false"
+        },
+        {
+          "note": "vs178",
+          "expect": "false",
+          "p_true": 0.0713,
+          "got": "false"
+        },
+        {
+          "note": "vs179",
+          "expect": "false",
+          "p_true": 0.0864,
+          "got": "false"
+        },
+        {
+          "note": "vs180",
+          "expect": "false",
+          "p_true": 0.0677,
+          "got": "false"
+        },
+        {
+          "note": "vs181",
+          "expect": "true",
+          "p_true": 0.9177,
+          "got": "true"
+        },
+        {
+          "note": "vs182",
+          "expect": "false",
+          "p_true": 0.0856,
+          "got": "false"
+        },
+        {
+          "note": "vs183",
+          "expect": "true",
+          "p_true": 0.9307,
+          "got": "true"
+        },
+        {
+          "note": "vs184",
+          "expect": "false",
+          "p_true": 0.2172,
+          "got": "false"
+        },
+        {
+          "note": "vs185",
+          "expect": "true",
+          "p_true": 0.9214,
+          "got": "true"
+        },
+        {
+          "note": "vs186",
+          "expect": "true",
+          "p_true": 0.9171,
+          "got": "true"
+        },
+        {
+          "note": "vs187",
+          "expect": "true",
+          "p_true": 0.9145,
+          "got": "true"
+        },
+        {
+          "note": "vs188",
+          "expect": "true",
+          "p_true": 0.9272,
+          "got": "true"
+        },
+        {
+          "note": "vs189",
+          "expect": "true",
+          "p_true": 0.9256,
+          "got": "true"
+        },
+        {
+          "note": "vs190",
+          "expect": "true",
+          "p_true": 0.9169,
+          "got": "true"
+        },
+        {
+          "note": "vs191",
+          "expect": "false",
+          "p_true": 0.072,
+          "got": "false"
+        },
+        {
+          "note": "vs192",
+          "expect": "false",
+          "p_true": 0.0669,
+          "got": "false"
+        },
+        {
+          "note": "vs193",
+          "expect": "true",
+          "p_true": 0.9189,
+          "got": "true"
+        },
+        {
+          "note": "vs194",
+          "expect": "true",
+          "p_true": 0.9156,
+          "got": "true"
+        },
+        {
+          "note": "vs195",
+          "expect": "true",
+          "p_true": 0.924,
+          "got": "true"
+        },
+        {
+          "note": "vs196",
+          "expect": "false",
+          "p_true": 0.0679,
+          "got": "false"
+        },
+        {
+          "note": "vs197",
+          "expect": "false",
+          "p_true": 0.0643,
+          "got": "false"
+        },
+        {
+          "note": "vs198",
+          "expect": "false",
+          "p_true": 0.2063,
+          "got": "false"
+        },
+        {
+          "note": "vs199",
+          "expect": "false",
+          "p_true": 0.0632,
+          "got": "false"
+        },
+        {
+          "note": "vs200",
+          "expect": "false",
+          "p_true": 0.2153,
+          "got": "false"
+        },
+        {
+          "note": "vs201",
+          "expect": "false",
+          "p_true": 0.0458,
+          "got": "false"
+        },
+        {
+          "note": "vs202",
+          "expect": "true",
+          "p_true": 0.9237,
+          "got": "true"
+        },
+        {
+          "note": "vs203",
+          "expect": "false",
+          "p_true": 0.0645,
+          "got": "false"
+        },
+        {
+          "note": "vs204",
+          "expect": "false",
+          "p_true": 0.0655,
+          "got": "false"
+        },
+        {
+          "note": "vs205",
+          "expect": "false",
+          "p_true": 0.0461,
+          "got": "false"
+        },
+        {
+          "note": "vs206",
+          "expect": "false",
+          "p_true": 0.1011,
+          "got": "false"
+        },
+        {
+          "note": "vs207",
+          "expect": "true",
+          "p_true": 0.9182,
+          "got": "true"
+        },
+        {
+          "note": "vs208",
+          "expect": "false",
+          "p_true": 0.0674,
+          "got": "false"
+        },
+        {
+          "note": "vs209",
+          "expect": "false",
+          "p_true": 0.2074,
+          "got": "false"
+        },
+        {
+          "note": "vs210",
+          "expect": "true",
+          "p_true": 0.922,
+          "got": "true"
+        },
+        {
+          "note": "vs211",
+          "expect": "false",
+          "p_true": 0.0844,
+          "got": "false"
+        },
+        {
+          "note": "vs212",
+          "expect": "true",
+          "p_true": 0.9262,
+          "got": "true"
+        },
+        {
+          "note": "vs213",
+          "expect": "false",
+          "p_true": 0.2843,
+          "got": "false"
+        },
+        {
+          "note": "vs214",
+          "expect": "false",
+          "p_true": 0.0733,
+          "got": "false"
+        },
+        {
+          "note": "vs215",
+          "expect": "true",
+          "p_true": 0.9178,
+          "got": "true"
+        },
+        {
+          "note": "vs216",
+          "expect": "true",
+          "p_true": 0.922,
+          "got": "true"
+        },
+        {
+          "note": "vs217",
+          "expect": "false",
+          "p_true": 0.2073,
+          "got": "false"
+        },
+        {
+          "note": "vs218",
+          "expect": "false",
+          "p_true": 0.0386,
+          "got": "false"
+        },
+        {
+          "note": "vs219",
+          "expect": "false",
+          "p_true": 0.0462,
+          "got": "false"
+        },
+        {
+          "note": "vs220",
+          "expect": "false",
+          "p_true": 0.208,
+          "got": "false"
+        },
+        {
+          "note": "vs221",
+          "expect": "false",
+          "p_true": 0.1864,
+          "got": "false"
+        },
+        {
+          "note": "vs222",
+          "expect": "false",
+          "p_true": 0.0823,
+          "got": "false"
+        },
+        {
+          "note": "vs223",
+          "expect": "false",
+          "p_true": 0.0862,
+          "got": "false"
+        },
+        {
+          "note": "vs224",
+          "expect": "false",
+          "p_true": 0.0562,
+          "got": "false"
+        },
+        {
+          "note": "vs225",
+          "expect": "false",
+          "p_true": 0.079,
+          "got": "false"
+        },
+        {
+          "note": "vs226",
+          "expect": "false",
+          "p_true": 0.2013,
+          "got": "false"
+        },
+        {
+          "note": "vs227",
+          "expect": "true",
+          "p_true": 0.921,
+          "got": "true"
+        },
+        {
+          "note": "vs228",
+          "expect": "true",
+          "p_true": 0.9111,
+          "got": "true"
+        },
+        {
+          "note": "vs229",
+          "expect": "true",
+          "p_true": 0.9246,
+          "got": "true"
+        },
+        {
+          "note": "vs230",
+          "expect": "true",
+          "p_true": 0.9203,
+          "got": "true"
+        },
+        {
+          "note": "vs231",
+          "expect": "false",
+          "p_true": 0.2464,
+          "got": "false"
+        },
+        {
+          "note": "vs232",
+          "expect": "false",
+          "p_true": 0.0551,
+          "got": "false"
+        },
+        {
+          "note": "vs233",
+          "expect": "true",
+          "p_true": 0.9169,
+          "got": "true"
+        },
+        {
+          "note": "vs234",
+          "expect": "false",
+          "p_true": 0.2134,
+          "got": "false"
+        },
+        {
+          "note": "vs235",
+          "expect": "true",
+          "p_true": 0.9159,
+          "got": "true"
+        },
+        {
+          "note": "vs236",
+          "expect": "false",
+          "p_true": 0.0461,
+          "got": "false"
+        },
+        {
+          "note": "vs237",
+          "expect": "true",
+          "p_true": 0.9223,
+          "got": "true"
+        },
+        {
+          "note": "vs238",
+          "expect": "false",
+          "p_true": 0.2433,
+          "got": "false"
+        },
+        {
+          "note": "vs239",
+          "expect": "false",
+          "p_true": 0.2122,
+          "got": "false"
+        },
+        {
+          "note": "vs240",
+          "expect": "false",
+          "p_true": 0.1078,
+          "got": "false"
+        },
+        {
+          "note": "vs241",
+          "expect": "false",
+          "p_true": 0.0452,
+          "got": "false"
+        },
+        {
+          "note": "vs242",
+          "expect": "true",
+          "p_true": 0.9219,
+          "got": "true"
+        },
+        {
+          "note": "vs243",
+          "expect": "true",
+          "p_true": 0.9167,
+          "got": "true"
+        },
+        {
+          "note": "vs244",
+          "expect": "false",
+          "p_true": 0.0605,
+          "got": "false"
+        },
+        {
+          "note": "vs245",
+          "expect": "true",
+          "p_true": 0.9213,
+          "got": "true"
+        },
+        {
+          "note": "vs246",
+          "expect": "true",
+          "p_true": 0.924,
+          "got": "true"
+        },
+        {
+          "note": "vs247",
+          "expect": "true",
+          "p_true": 0.9153,
+          "got": "true"
+        },
+        {
+          "note": "vs248",
+          "expect": "false",
+          "p_true": 0.0508,
+          "got": "false"
+        },
+        {
+          "note": "vs249",
+          "expect": "false",
+          "p_true": 0.1918,
+          "got": "false"
+        },
+        {
+          "note": "vs250",
+          "expect": "false",
+          "p_true": 0.0752,
+          "got": "false"
+        },
+        {
+          "note": "vs251",
+          "expect": "false",
+          "p_true": 0.0786,
+          "got": "false"
+        },
+        {
+          "note": "vs252",
+          "expect": "true",
+          "p_true": 0.9179,
+          "got": "true"
+        },
+        {
+          "note": "vs253",
+          "expect": "false",
+          "p_true": 0.0779,
+          "got": "false"
+        },
+        {
+          "note": "vs254",
+          "expect": "false",
+          "p_true": 0.0558,
+          "got": "false"
+        },
+        {
+          "note": "vs255",
+          "expect": "false",
+          "p_true": 0.2109,
+          "got": "false"
+        },
+        {
+          "note": "vs256",
+          "expect": "false",
+          "p_true": 0.0398,
+          "got": "false"
+        },
+        {
+          "note": "vs257",
+          "expect": "false",
+          "p_true": 0.2234,
+          "got": "false"
+        },
+        {
+          "note": "vs258",
+          "expect": "false",
+          "p_true": 0.083,
+          "got": "false"
+        },
+        {
+          "note": "vs259",
+          "expect": "false",
+          "p_true": 0.0873,
+          "got": "false"
+        },
+        {
+          "note": "vs260",
+          "expect": "false",
+          "p_true": 0.2247,
+          "got": "false"
+        },
+        {
+          "note": "vs261",
+          "expect": "false",
+          "p_true": 0.0496,
+          "got": "false"
+        },
+        {
+          "note": "vs262",
+          "expect": "false",
+          "p_true": 0.0699,
+          "got": "false"
+        },
+        {
+          "note": "vs263",
+          "expect": "false",
+          "p_true": 0.258,
+          "got": "false"
+        },
+        {
+          "note": "vs264",
+          "expect": "false",
+          "p_true": 0.0535,
+          "got": "false"
+        },
+        {
+          "note": "vs265",
+          "expect": "true",
+          "p_true": 0.9176,
+          "got": "true"
+        },
+        {
+          "note": "vs266",
+          "expect": "false",
+          "p_true": 0.0467,
+          "got": "false"
+        },
+        {
+          "note": "vs267",
+          "expect": "true",
+          "p_true": 0.9166,
+          "got": "true"
+        },
+        {
+          "note": "vs268",
+          "expect": "true",
+          "p_true": 0.9236,
+          "got": "true"
+        },
+        {
+          "note": "vs269",
+          "expect": "true",
+          "p_true": 0.9212,
+          "got": "true"
+        },
+        {
+          "note": "vs270",
+          "expect": "false",
+          "p_true": 0.0956,
+          "got": "false"
+        },
+        {
+          "note": "vs271",
+          "expect": "true",
+          "p_true": 0.9193,
+          "got": "true"
+        },
+        {
+          "note": "vs272",
+          "expect": "false",
+          "p_true": 0.0904,
+          "got": "false"
+        },
+        {
+          "note": "vs273",
+          "expect": "true",
+          "p_true": 0.915,
+          "got": "true"
+        },
+        {
+          "note": "vs274",
+          "expect": "true",
+          "p_true": 0.9209,
+          "got": "true"
+        },
+        {
+          "note": "vs275",
+          "expect": "false",
+          "p_true": 0.0765,
+          "got": "false"
+        },
+        {
+          "note": "vs276",
+          "expect": "true",
+          "p_true": 0.9225,
+          "got": "true"
+        },
+        {
+          "note": "vs277",
+          "expect": "false",
+          "p_true": 0.0437,
+          "got": "false"
+        },
+        {
+          "note": "vs278",
+          "expect": "true",
+          "p_true": 0.9201,
+          "got": "true"
+        },
+        {
+          "note": "vs279",
+          "expect": "false",
+          "p_true": 0.0878,
+          "got": "false"
+        },
+        {
+          "note": "vs280",
+          "expect": "true",
+          "p_true": 0.9198,
+          "got": "true"
+        },
+        {
+          "note": "vs281",
+          "expect": "false",
+          "p_true": 0.1086,
+          "got": "false"
+        },
+        {
+          "note": "vs282",
+          "expect": "true",
+          "p_true": 0.9274,
+          "got": "true"
+        },
+        {
+          "note": "vs283",
+          "expect": "false",
+          "p_true": 0.08,
+          "got": "false"
+        },
+        {
+          "note": "vs284",
+          "expect": "false",
+          "p_true": 0.2117,
+          "got": "false"
+        },
+        {
+          "note": "vs285",
+          "expect": "true",
+          "p_true": 0.9168,
+          "got": "true"
+        },
+        {
+          "note": "vs286",
+          "expect": "false",
+          "p_true": 0.2289,
+          "got": "false"
+        },
+        {
+          "note": "vs287",
+          "expect": "false",
+          "p_true": 0.081,
+          "got": "false"
+        },
+        {
+          "note": "vs288",
+          "expect": "false",
+          "p_true": 0.186,
+          "got": "false"
+        },
+        {
+          "note": "vs289",
+          "expect": "true",
+          "p_true": 0.9219,
+          "got": "true"
+        },
+        {
+          "note": "vs290",
+          "expect": "true",
+          "p_true": 0.9226,
+          "got": "true"
+        },
+        {
+          "note": "vs291",
+          "expect": "false",
+          "p_true": 0.2252,
+          "got": "false"
+        },
+        {
+          "note": "vs292",
+          "expect": "false",
+          "p_true": 0.0419,
+          "got": "false"
+        },
+        {
+          "note": "vs293",
+          "expect": "false",
+          "p_true": 0.0472,
+          "got": "false"
+        },
+        {
+          "note": "vs294",
+          "expect": "false",
+          "p_true": 0.0584,
+          "got": "false"
+        },
+        {
+          "note": "vs295",
+          "expect": "true",
+          "p_true": 0.9219,
+          "got": "true"
+        },
+        {
+          "note": "vs296",
+          "expect": "false",
+          "p_true": 0.204,
+          "got": "false"
+        },
+        {
+          "note": "vs297",
+          "expect": "false",
+          "p_true": 0.0431,
+          "got": "false"
+        },
+        {
+          "note": "vs298",
+          "expect": "false",
+          "p_true": 0.0874,
+          "got": "false"
+        },
+        {
+          "note": "vs299",
+          "expect": "true",
+          "p_true": 0.9145,
+          "got": "true"
+        }
+      ],
+      "neutral": [
+        {
+          "note": "vs000",
+          "expect": "true",
+          "p_true": 0.9226,
+          "got": "true"
+        },
+        {
+          "note": "vs001",
+          "expect": "true",
+          "p_true": 0.9189,
+          "got": "true"
+        },
+        {
+          "note": "vs002",
+          "expect": "true",
+          "p_true": 0.9219,
+          "got": "true"
+        },
+        {
+          "note": "vs003",
+          "expect": "true",
+          "p_true": 0.9209,
+          "got": "true"
+        },
+        {
+          "note": "vs004",
+          "expect": "false",
+          "p_true": 0.0967,
+          "got": "false"
+        },
+        {
+          "note": "vs005",
+          "expect": "false",
+          "p_true": 0.1026,
+          "got": "false"
+        },
+        {
+          "note": "vs006",
+          "expect": "false",
+          "p_true": 0.0844,
+          "got": "false"
+        },
+        {
+          "note": "vs007",
+          "expect": "false",
+          "p_true": 0.0782,
+          "got": "false"
+        },
+        {
+          "note": "vs008",
+          "expect": "true",
+          "p_true": 0.9215,
+          "got": "true"
+        },
+        {
+          "note": "vs009",
+          "expect": "true",
+          "p_true": 0.9209,
+          "got": "true"
+        },
+        {
+          "note": "vs010",
+          "expect": "false",
+          "p_true": 0.0781,
+          "got": "false"
+        },
+        {
+          "note": "vs011",
+          "expect": "false",
+          "p_true": 0.2111,
+          "got": "false"
+        },
+        {
+          "note": "vs012",
+          "expect": "false",
+          "p_true": 0.0745,
+          "got": "false"
+        },
+        {
+          "note": "vs013",
+          "expect": "false",
+          "p_true": 0.2295,
+          "got": "false"
+        },
+        {
+          "note": "vs014",
+          "expect": "false",
+          "p_true": 0.221,
+          "got": "false"
+        },
+        {
+          "note": "vs015",
+          "expect": "false",
+          "p_true": 0.0901,
+          "got": "false"
+        },
+        {
+          "note": "vs016",
+          "expect": "false",
+          "p_true": 0.0482,
+          "got": "false"
+        },
+        {
+          "note": "vs017",
+          "expect": "false",
+          "p_true": 0.0801,
+          "got": "false"
+        },
+        {
+          "note": "vs018",
+          "expect": "true",
+          "p_true": 0.1559,
+          "got": "false"
+        },
+        {
+          "note": "vs019",
+          "expect": "false",
+          "p_true": 0.0903,
+          "got": "false"
+        },
+        {
+          "note": "vs020",
+          "expect": "false",
+          "p_true": 0.0667,
+          "got": "false"
+        },
+        {
+          "note": "vs021",
+          "expect": "false",
+          "p_true": 0.1757,
+          "got": "false"
+        },
+        {
+          "note": "vs022",
+          "expect": "false",
+          "p_true": 0.2196,
+          "got": "false"
+        },
+        {
+          "note": "vs023",
+          "expect": "false",
+          "p_true": 0.0892,
+          "got": "false"
+        },
+        {
+          "note": "vs024",
+          "expect": "false",
+          "p_true": 0.2172,
+          "got": "false"
+        },
+        {
+          "note": "vs025",
+          "expect": "false",
+          "p_true": 0.0482,
+          "got": "false"
+        },
+        {
+          "note": "vs026",
+          "expect": "true",
+          "p_true": 0.9164,
+          "got": "true"
+        },
+        {
+          "note": "vs027",
+          "expect": "false",
+          "p_true": 0.072,
+          "got": "false"
+        },
+        {
+          "note": "vs028",
+          "expect": "true",
+          "p_true": 0.9244,
+          "got": "true"
+        },
+        {
+          "note": "vs029",
+          "expect": "true",
+          "p_true": 0.9266,
+          "got": "true"
+        },
+        {
+          "note": "vs030",
+          "expect": "false",
+          "p_true": 0.0786,
+          "got": "false"
+        },
+        {
+          "note": "vs031",
+          "expect": "false",
+          "p_true": 0.2439,
+          "got": "false"
+        },
+        {
+          "note": "vs032",
+          "expect": "false",
+          "p_true": 0.2088,
+          "got": "false"
+        },
+        {
+          "note": "vs033",
+          "expect": "false",
+          "p_true": 0.1796,
+          "got": "false"
+        },
+        {
+          "note": "vs034",
+          "expect": "false",
+          "p_true": 0.0517,
+          "got": "false"
+        },
+        {
+          "note": "vs035",
+          "expect": "false",
+          "p_true": 0.1026,
+          "got": "false"
+        },
+        {
+          "note": "vs036",
+          "expect": "false",
+          "p_true": 0.0612,
+          "got": "false"
+        },
+        {
+          "note": "vs037",
+          "expect": "false",
+          "p_true": 0.0773,
+          "got": "false"
+        },
+        {
+          "note": "vs038",
+          "expect": "false",
+          "p_true": 0.201,
+          "got": "false"
+        },
+        {
+          "note": "vs039",
+          "expect": "false",
+          "p_true": 0.0434,
+          "got": "false"
+        },
+        {
+          "note": "vs040",
+          "expect": "false",
+          "p_true": 0.0455,
+          "got": "false"
+        },
+        {
+          "note": "vs041",
+          "expect": "true",
+          "p_true": 0.9196,
+          "got": "true"
+        },
+        {
+          "note": "vs042",
+          "expect": "false",
+          "p_true": 0.05,
+          "got": "false"
+        },
+        {
+          "note": "vs043",
+          "expect": "true",
+          "p_true": 0.9207,
+          "got": "true"
+        },
+        {
+          "note": "vs044",
+          "expect": "false",
+          "p_true": 0.0884,
+          "got": "false"
+        },
+        {
+          "note": "vs045",
+          "expect": "false",
+          "p_true": 0.1967,
+          "got": "false"
+        },
+        {
+          "note": "vs046",
+          "expect": "false",
+          "p_true": 0.2102,
+          "got": "false"
+        },
+        {
+          "note": "vs047",
+          "expect": "false",
+          "p_true": 0.0728,
+          "got": "false"
+        },
+        {
+          "note": "vs048",
+          "expect": "true",
+          "p_true": 0.9257,
+          "got": "true"
+        },
+        {
+          "note": "vs049",
+          "expect": "false",
+          "p_true": 0.0702,
+          "got": "false"
+        },
+        {
+          "note": "vs050",
+          "expect": "false",
+          "p_true": 0.0618,
+          "got": "false"
+        },
+        {
+          "note": "vs051",
+          "expect": "true",
+          "p_true": 0.9183,
+          "got": "true"
+        },
+        {
+          "note": "vs052",
+          "expect": "false",
+          "p_true": 0.0474,
+          "got": "false"
+        },
+        {
+          "note": "vs053",
+          "expect": "false",
+          "p_true": 0.215,
+          "got": "false"
+        },
+        {
+          "note": "vs054",
+          "expect": "false",
+          "p_true": 0.1911,
+          "got": "false"
+        },
+        {
+          "note": "vs055",
+          "expect": "false",
+          "p_true": 0.0754,
+          "got": "false"
+        },
+        {
+          "note": "vs056",
+          "expect": "true",
+          "p_true": 0.9187,
+          "got": "true"
+        },
+        {
+          "note": "vs057",
+          "expect": "false",
+          "p_true": 0.2031,
+          "got": "false"
+        },
+        {
+          "note": "vs058",
+          "expect": "false",
+          "p_true": 0.1804,
+          "got": "false"
+        },
+        {
+          "note": "vs059",
+          "expect": "true",
+          "p_true": 0.9146,
+          "got": "true"
+        },
+        {
+          "note": "vs060",
+          "expect": "false",
+          "p_true": 0.0767,
+          "got": "false"
+        },
+        {
+          "note": "vs061",
+          "expect": "false",
+          "p_true": 0.0769,
+          "got": "false"
+        },
+        {
+          "note": "vs062",
+          "expect": "true",
+          "p_true": 0.9245,
+          "got": "true"
+        },
+        {
+          "note": "vs063",
+          "expect": "false",
+          "p_true": 0.2168,
+          "got": "false"
+        },
+        {
+          "note": "vs064",
+          "expect": "false",
+          "p_true": 0.2023,
+          "got": "false"
+        },
+        {
+          "note": "vs065",
+          "expect": "true",
+          "p_true": 0.9224,
+          "got": "true"
+        },
+        {
+          "note": "vs066",
+          "expect": "false",
+          "p_true": 0.0646,
+          "got": "false"
+        },
+        {
+          "note": "vs067",
+          "expect": "false",
+          "p_true": 0.08,
+          "got": "false"
+        },
+        {
+          "note": "vs068",
+          "expect": "false",
+          "p_true": 0.1958,
+          "got": "false"
+        },
+        {
+          "note": "vs069",
+          "expect": "false",
+          "p_true": 0.0837,
+          "got": "false"
+        },
+        {
+          "note": "vs070",
+          "expect": "false",
+          "p_true": 0.0534,
+          "got": "false"
+        },
+        {
+          "note": "vs071",
+          "expect": "false",
+          "p_true": 0.0794,
+          "got": "false"
+        },
+        {
+          "note": "vs072",
+          "expect": "false",
+          "p_true": 0.2218,
+          "got": "false"
+        },
+        {
+          "note": "vs073",
+          "expect": "true",
+          "p_true": 0.919,
+          "got": "true"
+        },
+        {
+          "note": "vs074",
+          "expect": "false",
+          "p_true": 0.0613,
+          "got": "false"
+        },
+        {
+          "note": "vs075",
+          "expect": "true",
+          "p_true": 0.9262,
+          "got": "true"
+        },
+        {
+          "note": "vs076",
+          "expect": "true",
+          "p_true": 0.9185,
+          "got": "true"
+        },
+        {
+          "note": "vs077",
+          "expect": "false",
+          "p_true": 0.0839,
+          "got": "false"
+        },
+        {
+          "note": "vs078",
+          "expect": "false",
+          "p_true": 0.0763,
+          "got": "false"
+        },
+        {
+          "note": "vs079",
+          "expect": "false",
+          "p_true": 0.0941,
+          "got": "false"
+        },
+        {
+          "note": "vs080",
+          "expect": "false",
+          "p_true": 0.2175,
+          "got": "false"
+        },
+        {
+          "note": "vs081",
+          "expect": "true",
+          "p_true": 0.9226,
+          "got": "true"
+        },
+        {
+          "note": "vs082",
+          "expect": "false",
+          "p_true": 0.2091,
+          "got": "false"
+        },
+        {
+          "note": "vs083",
+          "expect": "false",
+          "p_true": 0.0624,
+          "got": "false"
+        },
+        {
+          "note": "vs084",
+          "expect": "false",
+          "p_true": 0.0587,
+          "got": "false"
+        },
+        {
+          "note": "vs085",
+          "expect": "false",
+          "p_true": 0.0672,
+          "got": "false"
+        },
+        {
+          "note": "vs086",
+          "expect": "false",
+          "p_true": 0.2087,
+          "got": "false"
+        },
+        {
+          "note": "vs087",
+          "expect": "false",
+          "p_true": 0.0625,
+          "got": "false"
+        },
+        {
+          "note": "vs088",
+          "expect": "false",
+          "p_true": 0.0863,
+          "got": "false"
+        },
+        {
+          "note": "vs089",
+          "expect": "false",
+          "p_true": 0.0946,
+          "got": "false"
+        },
+        {
+          "note": "vs090",
+          "expect": "false",
+          "p_true": 0.2385,
+          "got": "false"
+        },
+        {
+          "note": "vs091",
+          "expect": "false",
+          "p_true": 0.0754,
+          "got": "false"
+        },
+        {
+          "note": "vs092",
+          "expect": "false",
+          "p_true": 0.086,
+          "got": "false"
+        },
+        {
+          "note": "vs093",
+          "expect": "false",
+          "p_true": 0.0801,
+          "got": "false"
+        },
+        {
+          "note": "vs094",
+          "expect": "true",
+          "p_true": 0.9203,
+          "got": "true"
+        },
+        {
+          "note": "vs095",
+          "expect": "true",
+          "p_true": 0.9199,
+          "got": "true"
+        },
+        {
+          "note": "vs096",
+          "expect": "true",
+          "p_true": 0.9245,
+          "got": "true"
+        },
+        {
+          "note": "vs097",
+          "expect": "false",
+          "p_true": 0.1027,
+          "got": "false"
+        },
+        {
+          "note": "vs098",
+          "expect": "true",
+          "p_true": 0.9244,
+          "got": "true"
+        },
+        {
+          "note": "vs099",
+          "expect": "false",
+          "p_true": 0.0853,
+          "got": "false"
+        },
+        {
+          "note": "vs100",
+          "expect": "true",
+          "p_true": 0.9249,
+          "got": "true"
+        },
+        {
+          "note": "vs101",
+          "expect": "true",
+          "p_true": 0.921,
+          "got": "true"
+        },
+        {
+          "note": "vs102",
+          "expect": "true",
+          "p_true": 0.924,
+          "got": "true"
+        },
+        {
+          "note": "vs103",
+          "expect": "false",
+          "p_true": 0.2149,
+          "got": "false"
+        },
+        {
+          "note": "vs104",
+          "expect": "false",
+          "p_true": 0.2168,
+          "got": "false"
+        },
+        {
+          "note": "vs105",
+          "expect": "false",
+          "p_true": 0.1964,
+          "got": "false"
+        },
+        {
+          "note": "vs106",
+          "expect": "false",
+          "p_true": 0.2054,
+          "got": "false"
+        },
+        {
+          "note": "vs107",
+          "expect": "true",
+          "p_true": 0.9204,
+          "got": "true"
+        },
+        {
+          "note": "vs108",
+          "expect": "false",
+          "p_true": 0.0453,
+          "got": "false"
+        },
+        {
+          "note": "vs109",
+          "expect": "false",
+          "p_true": 0.0691,
+          "got": "false"
+        },
+        {
+          "note": "vs110",
+          "expect": "false",
+          "p_true": 0.0487,
+          "got": "false"
+        },
+        {
+          "note": "vs111",
+          "expect": "true",
+          "p_true": 0.9237,
+          "got": "true"
+        },
+        {
+          "note": "vs112",
+          "expect": "false",
+          "p_true": 0.086,
+          "got": "false"
+        },
+        {
+          "note": "vs113",
+          "expect": "false",
+          "p_true": 0.1938,
+          "got": "false"
+        },
+        {
+          "note": "vs114",
+          "expect": "false",
+          "p_true": 0.2102,
+          "got": "false"
+        },
+        {
+          "note": "vs115",
+          "expect": "false",
+          "p_true": 0.1899,
+          "got": "false"
+        },
+        {
+          "note": "vs116",
+          "expect": "false",
+          "p_true": 0.0754,
+          "got": "false"
+        },
+        {
+          "note": "vs117",
+          "expect": "false",
+          "p_true": 0.0536,
+          "got": "false"
+        },
+        {
+          "note": "vs118",
+          "expect": "true",
+          "p_true": 0.9189,
+          "got": "true"
+        },
+        {
+          "note": "vs119",
+          "expect": "false",
+          "p_true": 0.1965,
+          "got": "false"
+        },
+        {
+          "note": "vs120",
+          "expect": "true",
+          "p_true": 0.9221,
+          "got": "true"
+        },
+        {
+          "note": "vs121",
+          "expect": "true",
+          "p_true": 0.9232,
+          "got": "true"
+        },
+        {
+          "note": "vs122",
+          "expect": "true",
+          "p_true": 0.9246,
+          "got": "true"
+        },
+        {
+          "note": "vs123",
+          "expect": "true",
+          "p_true": 0.928,
+          "got": "true"
+        },
+        {
+          "note": "vs124",
+          "expect": "true",
+          "p_true": 0.916,
+          "got": "true"
+        },
+        {
+          "note": "vs125",
+          "expect": "true",
+          "p_true": 0.9157,
+          "got": "true"
+        },
+        {
+          "note": "vs126",
+          "expect": "true",
+          "p_true": 0.9207,
+          "got": "true"
+        },
+        {
+          "note": "vs127",
+          "expect": "false",
+          "p_true": 0.0482,
+          "got": "false"
+        },
+        {
+          "note": "vs128",
+          "expect": "true",
+          "p_true": 0.9177,
+          "got": "true"
+        },
+        {
+          "note": "vs129",
+          "expect": "true",
+          "p_true": 0.9209,
+          "got": "true"
+        },
+        {
+          "note": "vs130",
+          "expect": "false",
+          "p_true": 0.0806,
+          "got": "false"
+        },
+        {
+          "note": "vs131",
+          "expect": "false",
+          "p_true": 0.213,
+          "got": "false"
+        },
+        {
+          "note": "vs132",
+          "expect": "false",
+          "p_true": 0.2194,
+          "got": "false"
+        },
+        {
+          "note": "vs133",
+          "expect": "true",
+          "p_true": 0.9181,
+          "got": "true"
+        },
+        {
+          "note": "vs134",
+          "expect": "false",
+          "p_true": 0.0521,
+          "got": "false"
+        },
+        {
+          "note": "vs135",
+          "expect": "false",
+          "p_true": 0.0718,
+          "got": "false"
+        },
+        {
+          "note": "vs136",
+          "expect": "true",
+          "p_true": 0.9222,
+          "got": "true"
+        },
+        {
+          "note": "vs137",
+          "expect": "true",
+          "p_true": 0.9183,
+          "got": "true"
+        },
+        {
+          "note": "vs138",
+          "expect": "false",
+          "p_true": 0.0721,
+          "got": "false"
+        },
+        {
+          "note": "vs139",
+          "expect": "false",
+          "p_true": 0.2072,
+          "got": "false"
+        },
+        {
+          "note": "vs140",
+          "expect": "true",
+          "p_true": 0.9341,
+          "got": "true"
+        },
+        {
+          "note": "vs141",
+          "expect": "false",
+          "p_true": 0.0463,
+          "got": "false"
+        },
+        {
+          "note": "vs142",
+          "expect": "false",
+          "p_true": 0.0423,
+          "got": "false"
+        },
+        {
+          "note": "vs143",
+          "expect": "false",
+          "p_true": 0.0742,
+          "got": "false"
+        },
+        {
+          "note": "vs144",
+          "expect": "false",
+          "p_true": 0.1948,
+          "got": "false"
+        },
+        {
+          "note": "vs145",
+          "expect": "false",
+          "p_true": 0.0809,
+          "got": "false"
+        },
+        {
+          "note": "vs146",
+          "expect": "true",
+          "p_true": 0.9178,
+          "got": "true"
+        },
+        {
+          "note": "vs147",
+          "expect": "false",
+          "p_true": 0.045,
+          "got": "false"
+        },
+        {
+          "note": "vs148",
+          "expect": "false",
+          "p_true": 0.1995,
+          "got": "false"
+        },
+        {
+          "note": "vs149",
+          "expect": "true",
+          "p_true": 0.9182,
+          "got": "true"
+        },
+        {
+          "note": "vs150",
+          "expect": "false",
+          "p_true": 0.1983,
+          "got": "false"
+        },
+        {
+          "note": "vs151",
+          "expect": "false",
+          "p_true": 0.0954,
+          "got": "false"
+        },
+        {
+          "note": "vs152",
+          "expect": "true",
+          "p_true": 0.9135,
+          "got": "true"
+        },
+        {
+          "note": "vs153",
+          "expect": "false",
+          "p_true": 0.0493,
+          "got": "false"
+        },
+        {
+          "note": "vs154",
+          "expect": "false",
+          "p_true": 0.0894,
+          "got": "false"
+        },
+        {
+          "note": "vs155",
+          "expect": "false",
+          "p_true": 0.0733,
+          "got": "false"
+        },
+        {
+          "note": "vs156",
+          "expect": "false",
+          "p_true": 0.0677,
+          "got": "false"
+        },
+        {
+          "note": "vs157",
+          "expect": "false",
+          "p_true": 0.0779,
+          "got": "false"
+        },
+        {
+          "note": "vs158",
+          "expect": "false",
+          "p_true": 0.2234,
+          "got": "false"
+        },
+        {
+          "note": "vs159",
+          "expect": "false",
+          "p_true": 0.047,
+          "got": "false"
+        },
+        {
+          "note": "vs160",
+          "expect": "true",
+          "p_true": 0.9252,
+          "got": "true"
+        },
+        {
+          "note": "vs161",
+          "expect": "false",
+          "p_true": 0.0725,
+          "got": "false"
+        },
+        {
+          "note": "vs162",
+          "expect": "false",
+          "p_true": 0.0783,
+          "got": "false"
+        },
+        {
+          "note": "vs163",
+          "expect": "false",
+          "p_true": 0.0602,
+          "got": "false"
+        },
+        {
+          "note": "vs164",
+          "expect": "false",
+          "p_true": 0.1857,
+          "got": "false"
+        },
+        {
+          "note": "vs165",
+          "expect": "false",
+          "p_true": 0.2071,
+          "got": "false"
+        },
+        {
+          "note": "vs166",
+          "expect": "false",
+          "p_true": 0.0849,
+          "got": "false"
+        },
+        {
+          "note": "vs167",
+          "expect": "false",
+          "p_true": 0.0472,
+          "got": "false"
+        },
+        {
+          "note": "vs168",
+          "expect": "false",
+          "p_true": 0.0504,
+          "got": "false"
+        },
+        {
+          "note": "vs169",
+          "expect": "false",
+          "p_true": 0.0987,
+          "got": "false"
+        },
+        {
+          "note": "vs170",
+          "expect": "true",
+          "p_true": 0.9202,
+          "got": "true"
+        },
+        {
+          "note": "vs171",
+          "expect": "false",
+          "p_true": 0.1935,
+          "got": "false"
+        },
+        {
+          "note": "vs172",
+          "expect": "true",
+          "p_true": 0.9177,
+          "got": "true"
+        },
+        {
+          "note": "vs173",
+          "expect": "true",
+          "p_true": 0.9261,
+          "got": "true"
+        },
+        {
+          "note": "vs174",
+          "expect": "false",
+          "p_true": 0.0683,
+          "got": "false"
+        },
+        {
+          "note": "vs175",
+          "expect": "true",
+          "p_true": 0.9211,
+          "got": "true"
+        },
+        {
+          "note": "vs176",
+          "expect": "true",
+          "p_true": 0.924,
+          "got": "true"
+        },
+        {
+          "note": "vs177",
+          "expect": "false",
+          "p_true": 0.0683,
+          "got": "false"
+        },
+        {
+          "note": "vs178",
+          "expect": "false",
+          "p_true": 0.071,
+          "got": "false"
+        },
+        {
+          "note": "vs179",
+          "expect": "false",
+          "p_true": 0.0801,
+          "got": "false"
+        },
+        {
+          "note": "vs180",
+          "expect": "false",
+          "p_true": 0.0671,
+          "got": "false"
+        },
+        {
+          "note": "vs181",
+          "expect": "true",
+          "p_true": 0.9178,
+          "got": "true"
+        },
+        {
+          "note": "vs182",
+          "expect": "false",
+          "p_true": 0.0859,
+          "got": "false"
+        },
+        {
+          "note": "vs183",
+          "expect": "true",
+          "p_true": 0.9285,
+          "got": "true"
+        },
+        {
+          "note": "vs184",
+          "expect": "false",
+          "p_true": 0.2117,
+          "got": "false"
+        },
+        {
+          "note": "vs185",
+          "expect": "true",
+          "p_true": 0.9209,
+          "got": "true"
+        },
+        {
+          "note": "vs186",
+          "expect": "true",
+          "p_true": 0.9207,
+          "got": "true"
+        },
+        {
+          "note": "vs187",
+          "expect": "true",
+          "p_true": 0.9164,
+          "got": "true"
+        },
+        {
+          "note": "vs188",
+          "expect": "true",
+          "p_true": 0.9286,
+          "got": "true"
+        },
+        {
+          "note": "vs189",
+          "expect": "true",
+          "p_true": 0.9215,
+          "got": "true"
+        },
+        {
+          "note": "vs190",
+          "expect": "true",
+          "p_true": 0.9153,
+          "got": "true"
+        },
+        {
+          "note": "vs191",
+          "expect": "false",
+          "p_true": 0.0768,
+          "got": "false"
+        },
+        {
+          "note": "vs192",
+          "expect": "false",
+          "p_true": 0.0686,
+          "got": "false"
+        },
+        {
+          "note": "vs193",
+          "expect": "true",
+          "p_true": 0.9226,
+          "got": "true"
+        },
+        {
+          "note": "vs194",
+          "expect": "true",
+          "p_true": 0.9176,
+          "got": "true"
+        },
+        {
+          "note": "vs195",
+          "expect": "true",
+          "p_true": 0.9227,
+          "got": "true"
+        },
+        {
+          "note": "vs196",
+          "expect": "false",
+          "p_true": 0.0671,
+          "got": "false"
+        },
+        {
+          "note": "vs197",
+          "expect": "false",
+          "p_true": 0.0612,
+          "got": "false"
+        },
+        {
+          "note": "vs198",
+          "expect": "false",
+          "p_true": 0.1983,
+          "got": "false"
+        },
+        {
+          "note": "vs199",
+          "expect": "false",
+          "p_true": 0.0635,
+          "got": "false"
+        },
+        {
+          "note": "vs200",
+          "expect": "false",
+          "p_true": 0.2135,
+          "got": "false"
+        },
+        {
+          "note": "vs201",
+          "expect": "false",
+          "p_true": 0.0473,
+          "got": "false"
+        },
+        {
+          "note": "vs202",
+          "expect": "true",
+          "p_true": 0.9198,
+          "got": "true"
+        },
+        {
+          "note": "vs203",
+          "expect": "false",
+          "p_true": 0.0672,
+          "got": "false"
+        },
+        {
+          "note": "vs204",
+          "expect": "false",
+          "p_true": 0.0615,
+          "got": "false"
+        },
+        {
+          "note": "vs205",
+          "expect": "false",
+          "p_true": 0.0456,
+          "got": "false"
+        },
+        {
+          "note": "vs206",
+          "expect": "false",
+          "p_true": 0.0945,
+          "got": "false"
+        },
+        {
+          "note": "vs207",
+          "expect": "true",
+          "p_true": 0.9216,
+          "got": "true"
+        },
+        {
+          "note": "vs208",
+          "expect": "false",
+          "p_true": 0.0638,
+          "got": "false"
+        },
+        {
+          "note": "vs209",
+          "expect": "false",
+          "p_true": 0.204,
+          "got": "false"
+        },
+        {
+          "note": "vs210",
+          "expect": "true",
+          "p_true": 0.9247,
+          "got": "true"
+        },
+        {
+          "note": "vs211",
+          "expect": "false",
+          "p_true": 0.0806,
+          "got": "false"
+        },
+        {
+          "note": "vs212",
+          "expect": "true",
+          "p_true": 0.9249,
+          "got": "true"
+        },
+        {
+          "note": "vs213",
+          "expect": "false",
+          "p_true": 0.2376,
+          "got": "false"
+        },
+        {
+          "note": "vs214",
+          "expect": "false",
+          "p_true": 0.0742,
+          "got": "false"
+        },
+        {
+          "note": "vs215",
+          "expect": "true",
+          "p_true": 0.9112,
+          "got": "true"
+        },
+        {
+          "note": "vs216",
+          "expect": "true",
+          "p_true": 0.9257,
+          "got": "true"
+        },
+        {
+          "note": "vs217",
+          "expect": "false",
+          "p_true": 0.2053,
+          "got": "false"
+        },
+        {
+          "note": "vs218",
+          "expect": "false",
+          "p_true": 0.0388,
+          "got": "false"
+        },
+        {
+          "note": "vs219",
+          "expect": "false",
+          "p_true": 0.0461,
+          "got": "false"
+        },
+        {
+          "note": "vs220",
+          "expect": "false",
+          "p_true": 0.1999,
+          "got": "false"
+        },
+        {
+          "note": "vs221",
+          "expect": "false",
+          "p_true": 0.1844,
+          "got": "false"
+        },
+        {
+          "note": "vs222",
+          "expect": "false",
+          "p_true": 0.0815,
+          "got": "false"
+        },
+        {
+          "note": "vs223",
+          "expect": "false",
+          "p_true": 0.0781,
+          "got": "false"
+        },
+        {
+          "note": "vs224",
+          "expect": "false",
+          "p_true": 0.0582,
+          "got": "false"
+        },
+        {
+          "note": "vs225",
+          "expect": "false",
+          "p_true": 0.077,
+          "got": "false"
+        },
+        {
+          "note": "vs226",
+          "expect": "false",
+          "p_true": 0.1958,
+          "got": "false"
+        },
+        {
+          "note": "vs227",
+          "expect": "true",
+          "p_true": 0.9229,
+          "got": "true"
+        },
+        {
+          "note": "vs228",
+          "expect": "true",
+          "p_true": 0.9134,
+          "got": "true"
+        },
+        {
+          "note": "vs229",
+          "expect": "true",
+          "p_true": 0.9298,
+          "got": "true"
+        },
+        {
+          "note": "vs230",
+          "expect": "true",
+          "p_true": 0.9217,
+          "got": "true"
+        },
+        {
+          "note": "vs231",
+          "expect": "false",
+          "p_true": 0.2331,
+          "got": "false"
+        },
+        {
+          "note": "vs232",
+          "expect": "false",
+          "p_true": 0.0587,
+          "got": "false"
+        },
+        {
+          "note": "vs233",
+          "expect": "true",
+          "p_true": 0.9169,
+          "got": "true"
+        },
+        {
+          "note": "vs234",
+          "expect": "false",
+          "p_true": 0.2081,
+          "got": "false"
+        },
+        {
+          "note": "vs235",
+          "expect": "true",
+          "p_true": 0.9166,
+          "got": "true"
+        },
+        {
+          "note": "vs236",
+          "expect": "false",
+          "p_true": 0.0476,
+          "got": "false"
+        },
+        {
+          "note": "vs237",
+          "expect": "true",
+          "p_true": 0.9254,
+          "got": "true"
+        },
+        {
+          "note": "vs238",
+          "expect": "false",
+          "p_true": 0.232,
+          "got": "false"
+        },
+        {
+          "note": "vs239",
+          "expect": "false",
+          "p_true": 0.2045,
+          "got": "false"
+        },
+        {
+          "note": "vs240",
+          "expect": "false",
+          "p_true": 0.0995,
+          "got": "false"
+        },
+        {
+          "note": "vs241",
+          "expect": "false",
+          "p_true": 0.045,
+          "got": "false"
+        },
+        {
+          "note": "vs242",
+          "expect": "true",
+          "p_true": 0.9203,
+          "got": "true"
+        },
+        {
+          "note": "vs243",
+          "expect": "true",
+          "p_true": 0.919,
+          "got": "true"
+        },
+        {
+          "note": "vs244",
+          "expect": "false",
+          "p_true": 0.0613,
+          "got": "false"
+        },
+        {
+          "note": "vs245",
+          "expect": "true",
+          "p_true": 0.9218,
+          "got": "true"
+        },
+        {
+          "note": "vs246",
+          "expect": "true",
+          "p_true": 0.9257,
+          "got": "true"
+        },
+        {
+          "note": "vs247",
+          "expect": "true",
+          "p_true": 0.9162,
+          "got": "true"
+        },
+        {
+          "note": "vs248",
+          "expect": "false",
+          "p_true": 0.05,
+          "got": "false"
+        },
+        {
+          "note": "vs249",
+          "expect": "false",
+          "p_true": 0.1979,
+          "got": "false"
+        },
+        {
+          "note": "vs250",
+          "expect": "false",
+          "p_true": 0.0748,
+          "got": "false"
+        },
+        {
+          "note": "vs251",
+          "expect": "false",
+          "p_true": 0.0738,
+          "got": "false"
+        },
+        {
+          "note": "vs252",
+          "expect": "true",
+          "p_true": 0.9204,
+          "got": "true"
+        },
+        {
+          "note": "vs253",
+          "expect": "false",
+          "p_true": 0.0787,
+          "got": "false"
+        },
+        {
+          "note": "vs254",
+          "expect": "false",
+          "p_true": 0.0606,
+          "got": "false"
+        },
+        {
+          "note": "vs255",
+          "expect": "false",
+          "p_true": 0.2023,
+          "got": "false"
+        },
+        {
+          "note": "vs256",
+          "expect": "false",
+          "p_true": 0.0421,
+          "got": "false"
+        },
+        {
+          "note": "vs257",
+          "expect": "false",
+          "p_true": 0.2135,
+          "got": "false"
+        },
+        {
+          "note": "vs258",
+          "expect": "false",
+          "p_true": 0.08,
+          "got": "false"
+        },
+        {
+          "note": "vs259",
+          "expect": "false",
+          "p_true": 0.079,
+          "got": "false"
+        },
+        {
+          "note": "vs260",
+          "expect": "false",
+          "p_true": 0.2157,
+          "got": "false"
+        },
+        {
+          "note": "vs261",
+          "expect": "false",
+          "p_true": 0.05,
+          "got": "false"
+        },
+        {
+          "note": "vs262",
+          "expect": "false",
+          "p_true": 0.0681,
+          "got": "false"
+        },
+        {
+          "note": "vs263",
+          "expect": "false",
+          "p_true": 0.2481,
+          "got": "false"
+        },
+        {
+          "note": "vs264",
+          "expect": "false",
+          "p_true": 0.0511,
+          "got": "false"
+        },
+        {
+          "note": "vs265",
+          "expect": "true",
+          "p_true": 0.919,
+          "got": "true"
+        },
+        {
+          "note": "vs266",
+          "expect": "false",
+          "p_true": 0.0468,
+          "got": "false"
+        },
+        {
+          "note": "vs267",
+          "expect": "true",
+          "p_true": 0.9181,
+          "got": "true"
+        },
+        {
+          "note": "vs268",
+          "expect": "true",
+          "p_true": 0.9231,
+          "got": "true"
+        },
+        {
+          "note": "vs269",
+          "expect": "true",
+          "p_true": 0.9259,
+          "got": "true"
+        },
+        {
+          "note": "vs270",
+          "expect": "false",
+          "p_true": 0.087,
+          "got": "false"
+        },
+        {
+          "note": "vs271",
+          "expect": "true",
+          "p_true": 0.9194,
+          "got": "true"
+        },
+        {
+          "note": "vs272",
+          "expect": "false",
+          "p_true": 0.0845,
+          "got": "false"
+        },
+        {
+          "note": "vs273",
+          "expect": "true",
+          "p_true": 0.9162,
+          "got": "true"
+        },
+        {
+          "note": "vs274",
+          "expect": "true",
+          "p_true": 0.9215,
+          "got": "true"
+        },
+        {
+          "note": "vs275",
+          "expect": "false",
+          "p_true": 0.0742,
+          "got": "false"
+        },
+        {
+          "note": "vs276",
+          "expect": "true",
+          "p_true": 0.9167,
+          "got": "true"
+        },
+        {
+          "note": "vs277",
+          "expect": "false",
+          "p_true": 0.0459,
+          "got": "false"
+        },
+        {
+          "note": "vs278",
+          "expect": "true",
+          "p_true": 0.8981,
+          "got": "true"
+        },
+        {
+          "note": "vs279",
+          "expect": "false",
+          "p_true": 0.0893,
+          "got": "false"
+        },
+        {
+          "note": "vs280",
+          "expect": "true",
+          "p_true": 0.9161,
+          "got": "true"
+        },
+        {
+          "note": "vs281",
+          "expect": "false",
+          "p_true": 0.0975,
+          "got": "false"
+        },
+        {
+          "note": "vs282",
+          "expect": "true",
+          "p_true": 0.9287,
+          "got": "true"
+        },
+        {
+          "note": "vs283",
+          "expect": "false",
+          "p_true": 0.0786,
+          "got": "false"
+        },
+        {
+          "note": "vs284",
+          "expect": "false",
+          "p_true": 0.2024,
+          "got": "false"
+        },
+        {
+          "note": "vs285",
+          "expect": "true",
+          "p_true": 0.9185,
+          "got": "true"
+        },
+        {
+          "note": "vs286",
+          "expect": "false",
+          "p_true": 0.224,
+          "got": "false"
+        },
+        {
+          "note": "vs287",
+          "expect": "false",
+          "p_true": 0.0747,
+          "got": "false"
+        },
+        {
+          "note": "vs288",
+          "expect": "false",
+          "p_true": 0.1792,
+          "got": "false"
+        },
+        {
+          "note": "vs289",
+          "expect": "true",
+          "p_true": 0.9272,
+          "got": "true"
+        },
+        {
+          "note": "vs290",
+          "expect": "true",
+          "p_true": 0.9276,
+          "got": "true"
+        },
+        {
+          "note": "vs291",
+          "expect": "false",
+          "p_true": 0.2173,
+          "got": "false"
+        },
+        {
+          "note": "vs292",
+          "expect": "false",
+          "p_true": 0.0424,
+          "got": "false"
+        },
+        {
+          "note": "vs293",
+          "expect": "false",
+          "p_true": 0.0478,
+          "got": "false"
+        },
+        {
+          "note": "vs294",
+          "expect": "false",
+          "p_true": 0.0542,
+          "got": "false"
+        },
+        {
+          "note": "vs295",
+          "expect": "true",
+          "p_true": 0.9233,
+          "got": "true"
+        },
+        {
+          "note": "vs296",
+          "expect": "false",
+          "p_true": 0.205,
+          "got": "false"
+        },
+        {
+          "note": "vs297",
+          "expect": "false",
+          "p_true": 0.0448,
+          "got": "false"
+        },
+        {
+          "note": "vs298",
+          "expect": "false",
+          "p_true": 0.0844,
+          "got": "false"
+        },
+        {
+          "note": "vs299",
+          "expect": "true",
+          "p_true": 0.9176,
+          "got": "true"
+        }
+      ],
+      "random": [
+        {
+          "note": "vs000",
+          "expect": "true",
+          "p_true": 0.9172,
+          "got": "true"
+        },
+        {
+          "note": "vs001",
+          "expect": "true",
+          "p_true": 0.92,
+          "got": "true"
+        },
+        {
+          "note": "vs002",
+          "expect": "true",
+          "p_true": 0.9193,
+          "got": "true"
+        },
+        {
+          "note": "vs003",
+          "expect": "true",
+          "p_true": 0.9197,
+          "got": "true"
+        },
+        {
+          "note": "vs004",
+          "expect": "false",
+          "p_true": 0.1131,
+          "got": "false"
+        },
+        {
+          "note": "vs005",
+          "expect": "false",
+          "p_true": 0.0993,
+          "got": "false"
+        },
+        {
+          "note": "vs006",
+          "expect": "false",
+          "p_true": 0.0892,
+          "got": "false"
+        },
+        {
+          "note": "vs007",
+          "expect": "false",
+          "p_true": 0.0777,
+          "got": "false"
+        },
+        {
+          "note": "vs008",
+          "expect": "true",
+          "p_true": 0.9245,
+          "got": "true"
+        },
+        {
+          "note": "vs009",
+          "expect": "true",
+          "p_true": 0.9143,
+          "got": "true"
+        },
+        {
+          "note": "vs010",
+          "expect": "false",
+          "p_true": 0.0919,
+          "got": "false"
+        },
+        {
+          "note": "vs011",
+          "expect": "false",
+          "p_true": 0.2221,
+          "got": "false"
+        },
+        {
+          "note": "vs012",
+          "expect": "false",
+          "p_true": 0.0875,
+          "got": "false"
+        },
+        {
+          "note": "vs013",
+          "expect": "false",
+          "p_true": 0.2397,
+          "got": "false"
+        },
+        {
+          "note": "vs014",
+          "expect": "false",
+          "p_true": 0.2625,
+          "got": "false"
+        },
+        {
+          "note": "vs015",
+          "expect": "false",
+          "p_true": 0.1018,
+          "got": "false"
+        },
+        {
+          "note": "vs016",
+          "expect": "false",
+          "p_true": 0.0536,
+          "got": "false"
+        },
+        {
+          "note": "vs017",
+          "expect": "false",
+          "p_true": 0.0803,
+          "got": "false"
+        },
+        {
+          "note": "vs018",
+          "expect": "true",
+          "p_true": 0.2307,
+          "got": "false"
+        },
+        {
+          "note": "vs019",
+          "expect": "false",
+          "p_true": 0.0886,
+          "got": "false"
+        },
+        {
+          "note": "vs020",
+          "expect": "false",
+          "p_true": 0.0707,
+          "got": "false"
+        },
+        {
+          "note": "vs021",
+          "expect": "false",
+          "p_true": 0.1481,
+          "got": "false"
+        },
+        {
+          "note": "vs022",
+          "expect": "false",
+          "p_true": 0.2138,
+          "got": "false"
+        },
+        {
+          "note": "vs023",
+          "expect": "false",
+          "p_true": 0.0931,
+          "got": "false"
+        },
+        {
+          "note": "vs024",
+          "expect": "false",
+          "p_true": 0.224,
+          "got": "false"
+        },
+        {
+          "note": "vs025",
+          "expect": "false",
+          "p_true": 0.0508,
+          "got": "false"
+        },
+        {
+          "note": "vs026",
+          "expect": "true",
+          "p_true": 0.914,
+          "got": "true"
+        },
+        {
+          "note": "vs027",
+          "expect": "false",
+          "p_true": 0.0786,
+          "got": "false"
+        },
+        {
+          "note": "vs028",
+          "expect": "true",
+          "p_true": 0.9225,
+          "got": "true"
+        },
+        {
+          "note": "vs029",
+          "expect": "true",
+          "p_true": 0.9219,
+          "got": "true"
+        },
+        {
+          "note": "vs030",
+          "expect": "false",
+          "p_true": 0.0833,
+          "got": "false"
+        },
+        {
+          "note": "vs031",
+          "expect": "false",
+          "p_true": 0.2451,
+          "got": "false"
+        },
+        {
+          "note": "vs032",
+          "expect": "false",
+          "p_true": 0.2115,
+          "got": "false"
+        },
+        {
+          "note": "vs033",
+          "expect": "false",
+          "p_true": 0.2058,
+          "got": "false"
+        },
+        {
+          "note": "vs034",
+          "expect": "false",
+          "p_true": 0.0488,
+          "got": "false"
+        },
+        {
+          "note": "vs035",
+          "expect": "false",
+          "p_true": 0.1074,
+          "got": "false"
+        },
+        {
+          "note": "vs036",
+          "expect": "false",
+          "p_true": 0.0581,
+          "got": "false"
+        },
+        {
+          "note": "vs037",
+          "expect": "false",
+          "p_true": 0.0761,
+          "got": "false"
+        },
+        {
+          "note": "vs038",
+          "expect": "false",
+          "p_true": 0.2192,
+          "got": "false"
+        },
+        {
+          "note": "vs039",
+          "expect": "false",
+          "p_true": 0.0449,
+          "got": "false"
+        },
+        {
+          "note": "vs040",
+          "expect": "false",
+          "p_true": 0.0601,
+          "got": "false"
+        },
+        {
+          "note": "vs041",
+          "expect": "true",
+          "p_true": 0.9167,
+          "got": "true"
+        },
+        {
+          "note": "vs042",
+          "expect": "false",
+          "p_true": 0.0503,
+          "got": "false"
+        },
+        {
+          "note": "vs043",
+          "expect": "true",
+          "p_true": 0.9133,
+          "got": "true"
+        },
+        {
+          "note": "vs044",
+          "expect": "false",
+          "p_true": 0.0853,
+          "got": "false"
+        },
+        {
+          "note": "vs045",
+          "expect": "false",
+          "p_true": 0.2012,
+          "got": "false"
+        },
+        {
+          "note": "vs046",
+          "expect": "false",
+          "p_true": 0.245,
+          "got": "false"
+        },
+        {
+          "note": "vs047",
+          "expect": "false",
+          "p_true": 0.0806,
+          "got": "false"
+        },
+        {
+          "note": "vs048",
+          "expect": "true",
+          "p_true": 0.9168,
+          "got": "true"
+        },
+        {
+          "note": "vs049",
+          "expect": "false",
+          "p_true": 0.0694,
+          "got": "false"
+        },
+        {
+          "note": "vs050",
+          "expect": "false",
+          "p_true": 0.0725,
+          "got": "false"
+        },
+        {
+          "note": "vs051",
+          "expect": "true",
+          "p_true": 0.9198,
+          "got": "true"
+        },
+        {
+          "note": "vs052",
+          "expect": "false",
+          "p_true": 0.0438,
+          "got": "false"
+        },
+        {
+          "note": "vs053",
+          "expect": "false",
+          "p_true": 0.22,
+          "got": "false"
+        },
+        {
+          "note": "vs054",
+          "expect": "false",
+          "p_true": 0.2011,
+          "got": "false"
+        },
+        {
+          "note": "vs055",
+          "expect": "false",
+          "p_true": 0.0777,
+          "got": "false"
+        },
+        {
+          "note": "vs056",
+          "expect": "true",
+          "p_true": 0.9194,
+          "got": "true"
+        },
+        {
+          "note": "vs057",
+          "expect": "false",
+          "p_true": 0.2265,
+          "got": "false"
+        },
+        {
+          "note": "vs058",
+          "expect": "false",
+          "p_true": 0.1549,
+          "got": "false"
+        },
+        {
+          "note": "vs059",
+          "expect": "true",
+          "p_true": 0.9158,
+          "got": "true"
+        },
+        {
+          "note": "vs060",
+          "expect": "false",
+          "p_true": 0.0938,
+          "got": "false"
+        },
+        {
+          "note": "vs061",
+          "expect": "false",
+          "p_true": 0.0812,
+          "got": "false"
+        },
+        {
+          "note": "vs062",
+          "expect": "true",
+          "p_true": 0.9208,
+          "got": "true"
+        },
+        {
+          "note": "vs063",
+          "expect": "false",
+          "p_true": 0.2116,
+          "got": "false"
+        },
+        {
+          "note": "vs064",
+          "expect": "false",
+          "p_true": 0.2087,
+          "got": "false"
+        },
+        {
+          "note": "vs065",
+          "expect": "true",
+          "p_true": 0.9181,
+          "got": "true"
+        },
+        {
+          "note": "vs066",
+          "expect": "false",
+          "p_true": 0.0638,
+          "got": "false"
+        },
+        {
+          "note": "vs067",
+          "expect": "false",
+          "p_true": 0.0793,
+          "got": "false"
+        },
+        {
+          "note": "vs068",
+          "expect": "false",
+          "p_true": 0.2161,
+          "got": "false"
+        },
+        {
+          "note": "vs069",
+          "expect": "false",
+          "p_true": 0.0908,
+          "got": "false"
+        },
+        {
+          "note": "vs070",
+          "expect": "false",
+          "p_true": 0.0518,
+          "got": "false"
+        },
+        {
+          "note": "vs071",
+          "expect": "false",
+          "p_true": 0.0823,
+          "got": "false"
+        },
+        {
+          "note": "vs072",
+          "expect": "false",
+          "p_true": 0.2164,
+          "got": "false"
+        },
+        {
+          "note": "vs073",
+          "expect": "true",
+          "p_true": 0.9108,
+          "got": "true"
+        },
+        {
+          "note": "vs074",
+          "expect": "false",
+          "p_true": 0.0752,
+          "got": "false"
+        },
+        {
+          "note": "vs075",
+          "expect": "true",
+          "p_true": 0.9176,
+          "got": "true"
+        },
+        {
+          "note": "vs076",
+          "expect": "true",
+          "p_true": 0.9207,
+          "got": "true"
+        },
+        {
+          "note": "vs077",
+          "expect": "false",
+          "p_true": 0.0795,
+          "got": "false"
+        },
+        {
+          "note": "vs078",
+          "expect": "false",
+          "p_true": 0.0732,
+          "got": "false"
+        },
+        {
+          "note": "vs079",
+          "expect": "false",
+          "p_true": 0.0882,
+          "got": "false"
+        },
+        {
+          "note": "vs080",
+          "expect": "false",
+          "p_true": 0.2183,
+          "got": "false"
+        },
+        {
+          "note": "vs081",
+          "expect": "true",
+          "p_true": 0.9254,
+          "got": "true"
+        },
+        {
+          "note": "vs082",
+          "expect": "false",
+          "p_true": 0.213,
+          "got": "false"
+        },
+        {
+          "note": "vs083",
+          "expect": "false",
+          "p_true": 0.0653,
+          "got": "false"
+        },
+        {
+          "note": "vs084",
+          "expect": "false",
+          "p_true": 0.0683,
+          "got": "false"
+        },
+        {
+          "note": "vs085",
+          "expect": "false",
+          "p_true": 0.0682,
+          "got": "false"
+        },
+        {
+          "note": "vs086",
+          "expect": "false",
+          "p_true": 0.2038,
+          "got": "false"
+        },
+        {
+          "note": "vs087",
+          "expect": "false",
+          "p_true": 0.0621,
+          "got": "false"
+        },
+        {
+          "note": "vs088",
+          "expect": "false",
+          "p_true": 0.085,
+          "got": "false"
+        },
+        {
+          "note": "vs089",
+          "expect": "false",
+          "p_true": 0.0922,
+          "got": "false"
+        },
+        {
+          "note": "vs090",
+          "expect": "false",
+          "p_true": 0.2368,
+          "got": "false"
+        },
+        {
+          "note": "vs091",
+          "expect": "false",
+          "p_true": 0.0808,
+          "got": "false"
+        },
+        {
+          "note": "vs092",
+          "expect": "false",
+          "p_true": 0.0831,
+          "got": "false"
+        },
+        {
+          "note": "vs093",
+          "expect": "false",
+          "p_true": 0.0923,
+          "got": "false"
+        },
+        {
+          "note": "vs094",
+          "expect": "true",
+          "p_true": 0.9126,
+          "got": "true"
+        },
+        {
+          "note": "vs095",
+          "expect": "true",
+          "p_true": 0.9175,
+          "got": "true"
+        },
+        {
+          "note": "vs096",
+          "expect": "true",
+          "p_true": 0.9215,
+          "got": "true"
+        },
+        {
+          "note": "vs097",
+          "expect": "false",
+          "p_true": 0.0957,
+          "got": "false"
+        },
+        {
+          "note": "vs098",
+          "expect": "true",
+          "p_true": 0.9211,
+          "got": "true"
+        },
+        {
+          "note": "vs099",
+          "expect": "false",
+          "p_true": 0.0879,
+          "got": "false"
+        },
+        {
+          "note": "vs100",
+          "expect": "true",
+          "p_true": 0.9201,
+          "got": "true"
+        },
+        {
+          "note": "vs101",
+          "expect": "true",
+          "p_true": 0.9175,
+          "got": "true"
+        },
+        {
+          "note": "vs102",
+          "expect": "true",
+          "p_true": 0.9232,
+          "got": "true"
+        },
+        {
+          "note": "vs103",
+          "expect": "false",
+          "p_true": 0.2225,
+          "got": "false"
+        },
+        {
+          "note": "vs104",
+          "expect": "false",
+          "p_true": 0.2282,
+          "got": "false"
+        },
+        {
+          "note": "vs105",
+          "expect": "false",
+          "p_true": 0.2054,
+          "got": "false"
+        },
+        {
+          "note": "vs106",
+          "expect": "false",
+          "p_true": 0.2243,
+          "got": "false"
+        },
+        {
+          "note": "vs107",
+          "expect": "true",
+          "p_true": 0.9173,
+          "got": "true"
+        },
+        {
+          "note": "vs108",
+          "expect": "false",
+          "p_true": 0.0466,
+          "got": "false"
+        },
+        {
+          "note": "vs109",
+          "expect": "false",
+          "p_true": 0.0752,
+          "got": "false"
+        },
+        {
+          "note": "vs110",
+          "expect": "false",
+          "p_true": 0.0433,
+          "got": "false"
+        },
+        {
+          "note": "vs111",
+          "expect": "true",
+          "p_true": 0.9214,
+          "got": "true"
+        },
+        {
+          "note": "vs112",
+          "expect": "false",
+          "p_true": 0.0932,
+          "got": "false"
+        },
+        {
+          "note": "vs113",
+          "expect": "false",
+          "p_true": 0.2098,
+          "got": "false"
+        },
+        {
+          "note": "vs114",
+          "expect": "false",
+          "p_true": 0.2202,
+          "got": "false"
+        },
+        {
+          "note": "vs115",
+          "expect": "false",
+          "p_true": 0.2015,
+          "got": "false"
+        },
+        {
+          "note": "vs116",
+          "expect": "false",
+          "p_true": 0.0899,
+          "got": "false"
+        },
+        {
+          "note": "vs117",
+          "expect": "false",
+          "p_true": 0.0516,
+          "got": "false"
+        },
+        {
+          "note": "vs118",
+          "expect": "true",
+          "p_true": 0.9141,
+          "got": "true"
+        },
+        {
+          "note": "vs119",
+          "expect": "false",
+          "p_true": 0.2179,
+          "got": "false"
+        },
+        {
+          "note": "vs120",
+          "expect": "true",
+          "p_true": 0.9226,
+          "got": "true"
+        },
+        {
+          "note": "vs121",
+          "expect": "true",
+          "p_true": 0.918,
+          "got": "true"
+        },
+        {
+          "note": "vs122",
+          "expect": "true",
+          "p_true": 0.92,
+          "got": "true"
+        },
+        {
+          "note": "vs123",
+          "expect": "true",
+          "p_true": 0.9218,
+          "got": "true"
+        },
+        {
+          "note": "vs124",
+          "expect": "true",
+          "p_true": 0.9222,
+          "got": "true"
+        },
+        {
+          "note": "vs125",
+          "expect": "true",
+          "p_true": 0.9155,
+          "got": "true"
+        },
+        {
+          "note": "vs126",
+          "expect": "true",
+          "p_true": 0.9287,
+          "got": "true"
+        },
+        {
+          "note": "vs127",
+          "expect": "false",
+          "p_true": 0.0477,
+          "got": "false"
+        },
+        {
+          "note": "vs128",
+          "expect": "true",
+          "p_true": 0.9137,
+          "got": "true"
+        },
+        {
+          "note": "vs129",
+          "expect": "true",
+          "p_true": 0.9197,
+          "got": "true"
+        },
+        {
+          "note": "vs130",
+          "expect": "false",
+          "p_true": 0.095,
+          "got": "false"
+        },
+        {
+          "note": "vs131",
+          "expect": "false",
+          "p_true": 0.2256,
+          "got": "false"
+        },
+        {
+          "note": "vs132",
+          "expect": "false",
+          "p_true": 0.2355,
+          "got": "false"
+        },
+        {
+          "note": "vs133",
+          "expect": "true",
+          "p_true": 0.9191,
+          "got": "true"
+        },
+        {
+          "note": "vs134",
+          "expect": "false",
+          "p_true": 0.0504,
+          "got": "false"
+        },
+        {
+          "note": "vs135",
+          "expect": "false",
+          "p_true": 0.0759,
+          "got": "false"
+        },
+        {
+          "note": "vs136",
+          "expect": "true",
+          "p_true": 0.9177,
+          "got": "true"
+        },
+        {
+          "note": "vs137",
+          "expect": "true",
+          "p_true": 0.9168,
+          "got": "true"
+        },
+        {
+          "note": "vs138",
+          "expect": "false",
+          "p_true": 0.0722,
+          "got": "false"
+        },
+        {
+          "note": "vs139",
+          "expect": "false",
+          "p_true": 0.2183,
+          "got": "false"
+        },
+        {
+          "note": "vs140",
+          "expect": "true",
+          "p_true": 0.9302,
+          "got": "true"
+        },
+        {
+          "note": "vs141",
+          "expect": "false",
+          "p_true": 0.0493,
+          "got": "false"
+        },
+        {
+          "note": "vs142",
+          "expect": "false",
+          "p_true": 0.0431,
+          "got": "false"
+        },
+        {
+          "note": "vs143",
+          "expect": "false",
+          "p_true": 0.0701,
+          "got": "false"
+        },
+        {
+          "note": "vs144",
+          "expect": "false",
+          "p_true": 0.2071,
+          "got": "false"
+        },
+        {
+          "note": "vs145",
+          "expect": "false",
+          "p_true": 0.0852,
+          "got": "false"
+        },
+        {
+          "note": "vs146",
+          "expect": "true",
+          "p_true": 0.9199,
+          "got": "true"
+        },
+        {
+          "note": "vs147",
+          "expect": "false",
+          "p_true": 0.0497,
+          "got": "false"
+        },
+        {
+          "note": "vs148",
+          "expect": "false",
+          "p_true": 0.1894,
+          "got": "false"
+        },
+        {
+          "note": "vs149",
+          "expect": "true",
+          "p_true": 0.9163,
+          "got": "true"
+        },
+        {
+          "note": "vs150",
+          "expect": "false",
+          "p_true": 0.2047,
+          "got": "false"
+        },
+        {
+          "note": "vs151",
+          "expect": "false",
+          "p_true": 0.0953,
+          "got": "false"
+        },
+        {
+          "note": "vs152",
+          "expect": "true",
+          "p_true": 0.9082,
+          "got": "true"
+        },
+        {
+          "note": "vs153",
+          "expect": "false",
+          "p_true": 0.0488,
+          "got": "false"
+        },
+        {
+          "note": "vs154",
+          "expect": "false",
+          "p_true": 0.102,
+          "got": "false"
+        },
+        {
+          "note": "vs155",
+          "expect": "false",
+          "p_true": 0.0743,
+          "got": "false"
+        },
+        {
+          "note": "vs156",
+          "expect": "false",
+          "p_true": 0.0643,
+          "got": "false"
+        },
+        {
+          "note": "vs157",
+          "expect": "false",
+          "p_true": 0.0908,
+          "got": "false"
+        },
+        {
+          "note": "vs158",
+          "expect": "false",
+          "p_true": 0.2155,
+          "got": "false"
+        },
+        {
+          "note": "vs159",
+          "expect": "false",
+          "p_true": 0.0516,
+          "got": "false"
+        },
+        {
+          "note": "vs160",
+          "expect": "true",
+          "p_true": 0.9182,
+          "got": "true"
+        },
+        {
+          "note": "vs161",
+          "expect": "false",
+          "p_true": 0.0644,
+          "got": "false"
+        },
+        {
+          "note": "vs162",
+          "expect": "false",
+          "p_true": 0.0848,
+          "got": "false"
+        },
+        {
+          "note": "vs163",
+          "expect": "false",
+          "p_true": 0.0631,
+          "got": "false"
+        },
+        {
+          "note": "vs164",
+          "expect": "false",
+          "p_true": 0.219,
+          "got": "false"
+        },
+        {
+          "note": "vs165",
+          "expect": "false",
+          "p_true": 0.2105,
+          "got": "false"
+        },
+        {
+          "note": "vs166",
+          "expect": "false",
+          "p_true": 0.0875,
+          "got": "false"
+        },
+        {
+          "note": "vs167",
+          "expect": "false",
+          "p_true": 0.0504,
+          "got": "false"
+        },
+        {
+          "note": "vs168",
+          "expect": "false",
+          "p_true": 0.0551,
+          "got": "false"
+        },
+        {
+          "note": "vs169",
+          "expect": "false",
+          "p_true": 0.0948,
+          "got": "false"
+        },
+        {
+          "note": "vs170",
+          "expect": "true",
+          "p_true": 0.9119,
+          "got": "true"
+        },
+        {
+          "note": "vs171",
+          "expect": "false",
+          "p_true": 0.1934,
+          "got": "false"
+        },
+        {
+          "note": "vs172",
+          "expect": "true",
+          "p_true": 0.9166,
+          "got": "true"
+        },
+        {
+          "note": "vs173",
+          "expect": "true",
+          "p_true": 0.9287,
+          "got": "true"
+        },
+        {
+          "note": "vs174",
+          "expect": "false",
+          "p_true": 0.0806,
+          "got": "false"
+        },
+        {
+          "note": "vs175",
+          "expect": "true",
+          "p_true": 0.921,
+          "got": "true"
+        },
+        {
+          "note": "vs176",
+          "expect": "true",
+          "p_true": 0.9228,
+          "got": "true"
+        },
+        {
+          "note": "vs177",
+          "expect": "false",
+          "p_true": 0.0778,
+          "got": "false"
+        },
+        {
+          "note": "vs178",
+          "expect": "false",
+          "p_true": 0.0675,
+          "got": "false"
+        },
+        {
+          "note": "vs179",
+          "expect": "false",
+          "p_true": 0.0851,
+          "got": "false"
+        },
+        {
+          "note": "vs180",
+          "expect": "false",
+          "p_true": 0.0668,
+          "got": "false"
+        },
+        {
+          "note": "vs181",
+          "expect": "true",
+          "p_true": 0.9179,
+          "got": "true"
+        },
+        {
+          "note": "vs182",
+          "expect": "false",
+          "p_true": 0.086,
+          "got": "false"
+        },
+        {
+          "note": "vs183",
+          "expect": "true",
+          "p_true": 0.9324,
+          "got": "true"
+        },
+        {
+          "note": "vs184",
+          "expect": "false",
+          "p_true": 0.2272,
+          "got": "false"
+        },
+        {
+          "note": "vs185",
+          "expect": "true",
+          "p_true": 0.9195,
+          "got": "true"
+        },
+        {
+          "note": "vs186",
+          "expect": "true",
+          "p_true": 0.9112,
+          "got": "true"
+        },
+        {
+          "note": "vs187",
+          "expect": "true",
+          "p_true": 0.9081,
+          "got": "true"
+        },
+        {
+          "note": "vs188",
+          "expect": "true",
+          "p_true": 0.9259,
+          "got": "true"
+        },
+        {
+          "note": "vs189",
+          "expect": "true",
+          "p_true": 0.9203,
+          "got": "true"
+        },
+        {
+          "note": "vs190",
+          "expect": "true",
+          "p_true": 0.9177,
+          "got": "true"
+        },
+        {
+          "note": "vs191",
+          "expect": "false",
+          "p_true": 0.0738,
+          "got": "false"
+        },
+        {
+          "note": "vs192",
+          "expect": "false",
+          "p_true": 0.0738,
+          "got": "false"
+        },
+        {
+          "note": "vs193",
+          "expect": "true",
+          "p_true": 0.9217,
+          "got": "true"
+        },
+        {
+          "note": "vs194",
+          "expect": "true",
+          "p_true": 0.9127,
+          "got": "true"
+        },
+        {
+          "note": "vs195",
+          "expect": "true",
+          "p_true": 0.9284,
+          "got": "true"
+        },
+        {
+          "note": "vs196",
+          "expect": "false",
+          "p_true": 0.0744,
+          "got": "false"
+        },
+        {
+          "note": "vs197",
+          "expect": "false",
+          "p_true": 0.0669,
+          "got": "false"
+        },
+        {
+          "note": "vs198",
+          "expect": "false",
+          "p_true": 0.2205,
+          "got": "false"
+        },
+        {
+          "note": "vs199",
+          "expect": "false",
+          "p_true": 0.0625,
+          "got": "false"
+        },
+        {
+          "note": "vs200",
+          "expect": "false",
+          "p_true": 0.1986,
+          "got": "false"
+        },
+        {
+          "note": "vs201",
+          "expect": "false",
+          "p_true": 0.0455,
+          "got": "false"
+        },
+        {
+          "note": "vs202",
+          "expect": "true",
+          "p_true": 0.9213,
+          "got": "true"
+        },
+        {
+          "note": "vs203",
+          "expect": "false",
+          "p_true": 0.0686,
+          "got": "false"
+        },
+        {
+          "note": "vs204",
+          "expect": "false",
+          "p_true": 0.0731,
+          "got": "false"
+        },
+        {
+          "note": "vs205",
+          "expect": "false",
+          "p_true": 0.0475,
+          "got": "false"
+        },
+        {
+          "note": "vs206",
+          "expect": "false",
+          "p_true": 0.0951,
+          "got": "false"
+        },
+        {
+          "note": "vs207",
+          "expect": "true",
+          "p_true": 0.9222,
+          "got": "true"
+        },
+        {
+          "note": "vs208",
+          "expect": "false",
+          "p_true": 0.0614,
+          "got": "false"
+        },
+        {
+          "note": "vs209",
+          "expect": "false",
+          "p_true": 0.2327,
+          "got": "false"
+        },
+        {
+          "note": "vs210",
+          "expect": "true",
+          "p_true": 0.9186,
+          "got": "true"
+        },
+        {
+          "note": "vs211",
+          "expect": "false",
+          "p_true": 0.091,
+          "got": "false"
+        },
+        {
+          "note": "vs212",
+          "expect": "true",
+          "p_true": 0.9172,
+          "got": "true"
+        },
+        {
+          "note": "vs213",
+          "expect": "false",
+          "p_true": 0.2846,
+          "got": "false"
+        },
+        {
+          "note": "vs214",
+          "expect": "false",
+          "p_true": 0.0711,
+          "got": "false"
+        },
+        {
+          "note": "vs215",
+          "expect": "true",
+          "p_true": 0.9133,
+          "got": "true"
+        },
+        {
+          "note": "vs216",
+          "expect": "true",
+          "p_true": 0.9185,
+          "got": "true"
+        },
+        {
+          "note": "vs217",
+          "expect": "false",
+          "p_true": 0.2076,
+          "got": "false"
+        },
+        {
+          "note": "vs218",
+          "expect": "false",
+          "p_true": 0.0409,
+          "got": "false"
+        },
+        {
+          "note": "vs219",
+          "expect": "false",
+          "p_true": 0.0463,
+          "got": "false"
+        },
+        {
+          "note": "vs220",
+          "expect": "false",
+          "p_true": 0.2019,
+          "got": "false"
+        },
+        {
+          "note": "vs221",
+          "expect": "false",
+          "p_true": 0.2226,
+          "got": "false"
+        },
+        {
+          "note": "vs222",
+          "expect": "false",
+          "p_true": 0.0814,
+          "got": "false"
+        },
+        {
+          "note": "vs223",
+          "expect": "false",
+          "p_true": 0.081,
+          "got": "false"
+        },
+        {
+          "note": "vs224",
+          "expect": "false",
+          "p_true": 0.0615,
+          "got": "false"
+        },
+        {
+          "note": "vs225",
+          "expect": "false",
+          "p_true": 0.0737,
+          "got": "false"
+        },
+        {
+          "note": "vs226",
+          "expect": "false",
+          "p_true": 0.1967,
+          "got": "false"
+        },
+        {
+          "note": "vs227",
+          "expect": "true",
+          "p_true": 0.9254,
+          "got": "true"
+        },
+        {
+          "note": "vs228",
+          "expect": "true",
+          "p_true": 0.9083,
+          "got": "true"
+        },
+        {
+          "note": "vs229",
+          "expect": "true",
+          "p_true": 0.92,
+          "got": "true"
+        },
+        {
+          "note": "vs230",
+          "expect": "true",
+          "p_true": 0.917,
+          "got": "true"
+        },
+        {
+          "note": "vs231",
+          "expect": "false",
+          "p_true": 0.2545,
+          "got": "false"
+        },
+        {
+          "note": "vs232",
+          "expect": "false",
+          "p_true": 0.0549,
+          "got": "false"
+        },
+        {
+          "note": "vs233",
+          "expect": "true",
+          "p_true": 0.9087,
+          "got": "true"
+        },
+        {
+          "note": "vs234",
+          "expect": "false",
+          "p_true": 0.2251,
+          "got": "false"
+        },
+        {
+          "note": "vs235",
+          "expect": "true",
+          "p_true": 0.9098,
+          "got": "true"
+        },
+        {
+          "note": "vs236",
+          "expect": "false",
+          "p_true": 0.0519,
+          "got": "false"
+        },
+        {
+          "note": "vs237",
+          "expect": "true",
+          "p_true": 0.9228,
+          "got": "true"
+        },
+        {
+          "note": "vs238",
+          "expect": "false",
+          "p_true": 0.2914,
+          "got": "false"
+        },
+        {
+          "note": "vs239",
+          "expect": "false",
+          "p_true": 0.2118,
+          "got": "false"
+        },
+        {
+          "note": "vs240",
+          "expect": "false",
+          "p_true": 0.1003,
+          "got": "false"
+        },
+        {
+          "note": "vs241",
+          "expect": "false",
+          "p_true": 0.0487,
+          "got": "false"
+        },
+        {
+          "note": "vs242",
+          "expect": "true",
+          "p_true": 0.9223,
+          "got": "true"
+        },
+        {
+          "note": "vs243",
+          "expect": "true",
+          "p_true": 0.92,
+          "got": "true"
+        },
+        {
+          "note": "vs244",
+          "expect": "false",
+          "p_true": 0.0757,
+          "got": "false"
+        },
+        {
+          "note": "vs245",
+          "expect": "true",
+          "p_true": 0.9196,
+          "got": "true"
+        },
+        {
+          "note": "vs246",
+          "expect": "true",
+          "p_true": 0.9211,
+          "got": "true"
+        },
+        {
+          "note": "vs247",
+          "expect": "true",
+          "p_true": 0.9157,
+          "got": "true"
+        },
+        {
+          "note": "vs248",
+          "expect": "false",
+          "p_true": 0.0514,
+          "got": "false"
+        },
+        {
+          "note": "vs249",
+          "expect": "false",
+          "p_true": 0.2159,
+          "got": "false"
+        },
+        {
+          "note": "vs250",
+          "expect": "false",
+          "p_true": 0.0713,
+          "got": "false"
+        },
+        {
+          "note": "vs251",
+          "expect": "false",
+          "p_true": 0.0728,
+          "got": "false"
+        },
+        {
+          "note": "vs252",
+          "expect": "true",
+          "p_true": 0.9146,
+          "got": "true"
+        },
+        {
+          "note": "vs253",
+          "expect": "false",
+          "p_true": 0.0727,
+          "got": "false"
+        },
+        {
+          "note": "vs254",
+          "expect": "false",
+          "p_true": 0.0583,
+          "got": "false"
+        },
+        {
+          "note": "vs255",
+          "expect": "false",
+          "p_true": 0.1985,
+          "got": "false"
+        },
+        {
+          "note": "vs256",
+          "expect": "false",
+          "p_true": 0.0413,
+          "got": "false"
+        },
+        {
+          "note": "vs257",
+          "expect": "false",
+          "p_true": 0.2216,
+          "got": "false"
+        },
+        {
+          "note": "vs258",
+          "expect": "false",
+          "p_true": 0.0863,
+          "got": "false"
+        },
+        {
+          "note": "vs259",
+          "expect": "false",
+          "p_true": 0.0776,
+          "got": "false"
+        },
+        {
+          "note": "vs260",
+          "expect": "false",
+          "p_true": 0.2172,
+          "got": "false"
+        },
+        {
+          "note": "vs261",
+          "expect": "false",
+          "p_true": 0.0501,
+          "got": "false"
+        },
+        {
+          "note": "vs262",
+          "expect": "false",
+          "p_true": 0.0726,
+          "got": "false"
+        },
+        {
+          "note": "vs263",
+          "expect": "false",
+          "p_true": 0.2835,
+          "got": "false"
+        },
+        {
+          "note": "vs264",
+          "expect": "false",
+          "p_true": 0.0508,
+          "got": "false"
+        },
+        {
+          "note": "vs265",
+          "expect": "true",
+          "p_true": 0.93,
+          "got": "true"
+        },
+        {
+          "note": "vs266",
+          "expect": "false",
+          "p_true": 0.0429,
+          "got": "false"
+        },
+        {
+          "note": "vs267",
+          "expect": "true",
+          "p_true": 0.9177,
+          "got": "true"
+        },
+        {
+          "note": "vs268",
+          "expect": "true",
+          "p_true": 0.9197,
+          "got": "true"
+        },
+        {
+          "note": "vs269",
+          "expect": "true",
+          "p_true": 0.923,
+          "got": "true"
+        },
+        {
+          "note": "vs270",
+          "expect": "false",
+          "p_true": 0.1089,
+          "got": "false"
+        },
+        {
+          "note": "vs271",
+          "expect": "true",
+          "p_true": 0.9173,
+          "got": "true"
+        },
+        {
+          "note": "vs272",
+          "expect": "false",
+          "p_true": 0.088,
+          "got": "false"
+        },
+        {
+          "note": "vs273",
+          "expect": "true",
+          "p_true": 0.9185,
+          "got": "true"
+        },
+        {
+          "note": "vs274",
+          "expect": "true",
+          "p_true": 0.9204,
+          "got": "true"
+        },
+        {
+          "note": "vs275",
+          "expect": "false",
+          "p_true": 0.0802,
+          "got": "false"
+        },
+        {
+          "note": "vs276",
+          "expect": "true",
+          "p_true": 0.9154,
+          "got": "true"
+        },
+        {
+          "note": "vs277",
+          "expect": "false",
+          "p_true": 0.0604,
+          "got": "false"
+        },
+        {
+          "note": "vs278",
+          "expect": "true",
+          "p_true": 0.9061,
+          "got": "true"
+        },
+        {
+          "note": "vs279",
+          "expect": "false",
+          "p_true": 0.0934,
+          "got": "false"
+        },
+        {
+          "note": "vs280",
+          "expect": "true",
+          "p_true": 0.9124,
+          "got": "true"
+        },
+        {
+          "note": "vs281",
+          "expect": "false",
+          "p_true": 0.114,
+          "got": "false"
+        },
+        {
+          "note": "vs282",
+          "expect": "true",
+          "p_true": 0.9191,
+          "got": "true"
+        },
+        {
+          "note": "vs283",
+          "expect": "false",
+          "p_true": 0.0726,
+          "got": "false"
+        },
+        {
+          "note": "vs284",
+          "expect": "false",
+          "p_true": 0.2021,
+          "got": "false"
+        },
+        {
+          "note": "vs285",
+          "expect": "true",
+          "p_true": 0.9199,
+          "got": "true"
+        },
+        {
+          "note": "vs286",
+          "expect": "false",
+          "p_true": 0.2234,
+          "got": "false"
+        },
+        {
+          "note": "vs287",
+          "expect": "false",
+          "p_true": 0.0755,
+          "got": "false"
+        },
+        {
+          "note": "vs288",
+          "expect": "false",
+          "p_true": 0.1954,
+          "got": "false"
+        },
+        {
+          "note": "vs289",
+          "expect": "true",
+          "p_true": 0.9221,
+          "got": "true"
+        },
+        {
+          "note": "vs290",
+          "expect": "true",
+          "p_true": 0.9211,
+          "got": "true"
+        },
+        {
+          "note": "vs291",
+          "expect": "false",
+          "p_true": 0.2169,
+          "got": "false"
+        },
+        {
+          "note": "vs292",
+          "expect": "false",
+          "p_true": 0.0448,
+          "got": "false"
+        },
+        {
+          "note": "vs293",
+          "expect": "false",
+          "p_true": 0.0467,
+          "got": "false"
+        },
+        {
+          "note": "vs294",
+          "expect": "false",
+          "p_true": 0.055,
+          "got": "false"
+        },
+        {
+          "note": "vs295",
+          "expect": "true",
+          "p_true": 0.9239,
+          "got": "true"
+        },
+        {
+          "note": "vs296",
+          "expect": "false",
+          "p_true": 0.2042,
+          "got": "false"
+        },
+        {
+          "note": "vs297",
+          "expect": "false",
+          "p_true": 0.0448,
+          "got": "false"
+        },
+        {
+          "note": "vs298",
+          "expect": "false",
+          "p_true": 0.0799,
+          "got": "false"
+        },
+        {
+          "note": "vs299",
+          "expect": "true",
+          "p_true": 0.9171,
+          "got": "true"
+        }
+      ]
+    },
+    "summary": {
+      "acc": {
+        "neutral": 299,
+        "random": 299,
+        "std": 299
+      },
+      "err": {
+        "std": 1,
+        "neutral": 1,
+        "random": 1
+      },
+      "mean_abs_dp": {},
+      "neutral": {
+        "diff": 0,
+        "flips": [],
+        "mean_abs_dp": 0.0042
+      },
+      "random": {
+        "diff": 0,
+        "flips": [],
+        "mean_abs_dp": 0.0058
+      }
+    }
+  },
+  "gates": {
+    "real_diag_diff_le_1": true,
+    "val_soft_err_change_le_1": true,
+    "verdict": "PASS"
+  }
+}

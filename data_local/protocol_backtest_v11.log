@@ -1,0 +1,35 @@
+== V11 FINAL §1.2 protocol verdict over runs: ['v9', 'v10_s2', 'v10_l2'] (prefix "") ==
+
+main val: [('v9', 0.905, 95), ('v10_s2', 0.894, 106), ('v10_l2', 0.889, 111)] | median: 0.894
+old20: {'v9': 18, 'v10_s2': 17, 'v10_l2': 20} | median: 18 | per-case miss counts: {'临时的不违背偏好': 2, '无关补充': 2, '习惯一致': 1} | repeated(>=2): {'临时的不违背偏好': 2, '无关补充': 2}
+negation: {'v9': 5, 'v10_s2': 4, 'v10_l2': 5} | new10: {'v9': 10, 'v10_s2': 10, 'v10_l2': 9}
+val_soft err: {'v9': 0, 'v10_s2': 1, 'v10_l2': 2}
+swap: {'v9': 'PASS', 'v10_s2': 'PASS', 'v10_l2': 'PASS'}
+polarity gates (real·diag, val_soft): {'v9': (True, True), 'v10_s2': (True, True), 'v10_l2': (True, True)}
+band gate: {'v9': None, 'v10_s2': None, 'v10_l2': None}
+  conformal v9 [s1]: 30/50 @ 0.318 -> PASS
+  conformal v9 [s2]: 32/50 @ 0.326 -> PASS
+  conformal v10_s2 [s1]: 36/58 @ 0.324 -> PASS
+  conformal v10_s2 [s2]: 42/58 @ 0.362 -> FAIL
+  conformal v10_l2 [s1]: 43/60 @ 0.304 -> PASS
+  conformal v10_l2 [s2]: 42/60 @ 0.296 -> PASS
+diag ok: {'v9': '12/14', 'v10_s2': '13/14', 'v10_l2': '12/14'} | runs >=13/14: 1/3
+family: MISSING artifact for ['v9', 'v10_s2', 'v10_l2'] -> axis FAIL (v11 runs must emit family_diag_<tag>.json)
+leak_audit_v11.txt: MISSING or nonzero
+tau(noul) report-only: {'v9': 1.1233258247375488, 'v10_s2': None, 'v10_l2': None}
+
+  FAIL  1 main_val(median>=0.896)
+  FAIL  2 old20(median=20 AND no case missed in >=2 runs)
+  FAIL  3 new10(all=10)
+  FAIL  4 negation(all=5)
+  PASS  5 val_soft(all<=3)
+  PASS  6 swap(all PASS)
+  PASS  7 polarity real·diag(all<=1)
+  PASS  8 polarity val_soft(all<=1)
+  FAIL  9 band(all >=8pp)
+  PASS  10 conformal(adopted rule, all >=50%@<=35%)
+  FAIL  11 bias_diag(>=2/3 runs >=13/14)
+  FAIL  12 family(median mean-p<0.5 AND all runs <=1 case p>=0.9)
+  FAIL  13 hygiene(0/35 + family cases 0 overlap asserted at gen)
+
+PROTOCOL VERDICT: FAIL -> no delivery, HF untouched
