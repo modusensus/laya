@@ -105,7 +105,7 @@
 
 ## 8. 当前计划与待办（2026-10-04）
 
-1. **v12（已立项，任务书定稿 2026-10-06）**：`HANDOFF_NLI_V12.md` = 否定冲突杠杆 36 行 + 新 10/否定 5 聚合口径中位化 + 否定家族 8 案新仪器（轴 #13，卫生断言扩 0/51）。两项开放决策已由用户按推荐拍板（§4）。待执行（ZCode）：gen 语料 v17 → verdict 工具升级 → v11 前置回测 → 三跑（kernel version 12/13/14）。
+1. **v12（执行中,2026-10-06）**：`HANDOFF_NLI_V12.md` = 否定冲突杠杆 36 行 + 新 10/否定 5 聚合口径中位化 + 否定家族 8 案新仪器（轴 #13，卫生断言扩 0/51）。两项开放决策已由用户按推荐拍板（§4）。**准备全部完成（commit 63048f1）**：语料 `nli_conflict_train_v12.jsonl` 15950 行（v11 逐字节携带+36 行否定已知冲突杠杆,zh24/en12,6 域;0/51 断言+leak_audit_v12 0/35 全绿）;`negfam_diag.py` 8 案仪器（模板与杠杆行刻意不相交,防模板背诵）;`protocol_verdict.py --protocol v12`（14 轴;默认 v11 口径冻结可复现）;前置回测 `protocol_backtest_v12.log` = v11 工件按 v12 口径 FAIL 于轴 1（主 val 中位 0.895 照旧）+轴 13（negfam 工件结构性缺失）,轴 3/4 中位口径下转 PASS（=口径改动的预注册演示）;Kaggle 数据集 **v17** 已推+HF 镜像已同步;kernel expected-train 15950;`v12_orchestrate.py`（锁/拉完再推/失败分类全承 v11,无复位门）。三跑 = kernel laya-nli-conflict-ce 自身 version 12/13/14,编排 tick 推进,判定落 `protocol_verdict_v12.log`,HF 交付仍人工门。
 2. **待用户拍板**：v1/v2/v2-e3/v3 早期 ckpt 与 typed_decisions 目录是否补传 HF 归档。
 3. **已清理（2026-10-06）**：定时任务 automation-f6e9077a 已删除。
 4. **可选**：上游 tag v0.3.24/25/26 已 fetch 到本地，是否推 fork 待定。
