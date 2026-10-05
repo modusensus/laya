@@ -105,8 +105,8 @@
 
 ## 8. 当前计划与待办（2026-10-04）
 
-1. **v12 议题（任务书讨论阶段，未立项）**：绑定约束 = 薄边轴「三跑全满分」+ 主 val 中位差 1 例。候选方向：薄边家族扩容增稳（承杠杆 1b 思路）或协议中位化（承主 val 先例）。杠杆 1b（同形换面控制行）与家族轴已验证为正确方向。
+1. **v12（已立项，任务书定稿 2026-10-06）**：`HANDOFF_NLI_V12.md` = 否定冲突杠杆 36 行 + 新 10/否定 5 聚合口径中位化 + 否定家族 8 案新仪器（轴 #13，卫生断言扩 0/51）。两项开放决策已由用户按推荐拍板（§4）。待执行（ZCode）：gen 语料 v17 → verdict 工具升级 → v11 前置回测 → 三跑（kernel version 12/13/14）。
 2. **待用户拍板**：v1/v2/v2-e3/v3 早期 ckpt 与 typed_decisions 目录是否补传 HF 归档。
-3. **待清理**：每 30 分钟的定时任务 automation-f6e9077a 在 v11 done 后已无作用，待用户删除（现只空转汇报）。
+3. **已清理（2026-10-06）**：定时任务 automation-f6e9077a 已删除。
 4. **可选**：上游 tag v0.3.24/25/26 已 fetch 到本地，是否推 fork 待定。
 5. **上游新能力评估（0.3.24–0.3.26）**：`LAYA_JEV_STRICT`（serve 端严格 Jev wire contract）、selective-classification 评测指标（Brier/AURC）、histogram-binning 置信重校准、`tests/test_conformal_abstention.py`——与 v12 方向的相关性待评估。
