@@ -15,7 +15,7 @@ HERE = os.path.dirname(os.path.abspath(__file__))
 SRC = sys.argv[1] if len(sys.argv) > 1 else r'D:\kaggle_pull\nli-conflict-pairs-v15'
 CARD = os.path.join(HERE, 'dataset_card_nli_conflict_pairs.md')
 FILES = ['nli_conflict_train.jsonl', 'nli_conflict_val.jsonl', 'nli_conflict_val_soft.jsonl']
-EXPECTED_ROWS = {'nli_conflict_train.jsonl': 15780, 'nli_conflict_val.jsonl': 1000,
+EXPECTED_ROWS = {'nli_conflict_train.jsonl': 15950, 'nli_conflict_val.jsonl': 1000,
                  'nli_conflict_val_soft.jsonl': 300}
 
 

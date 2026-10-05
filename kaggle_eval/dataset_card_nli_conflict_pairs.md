@@ -33,7 +33,7 @@ MultiNLI-derived pairs + template-generated soft-conflict blocks; contains no pe
 
 | file | rows | content |
 |---|---|---|
-| `nli_conflict_train.jsonl` | 15,914 | v16 train = v11 arm: v9's 15,820 rows carried VERBATIM (block B kept) + 94 lever rows (lever 1: pet_name exact B2-isomorphic shape 6→40; lever 1b: unrel_supplement 30 + temp_preference 30) |
+| `nli_conflict_train.jsonl` | 15,950 | v17 train = v12 arm (Kaggle dataset v17): v11's 15,914 rows carried VERBATIM + 36 negation-known-conflict lever rows (6 domains × 6, zh 24 / en 12, gold=true; the two chronic acceptance texts stay out of training) per [`HANDOFF_NLI_V12.md`](https://github.com/modusensus/laya/blob/main/kaggle_eval/HANDOFF_NLI_V12.md) §2.1 |
 | `nli_conflict_val.jsonl` | 1,000 | frozen main val (byte-frozen across rounds) |
 | `nli_conflict_val_soft.jsonl` | 300 | frozen soft val (graded soft targets) |
 | `kaggle_README.md` | — | the Kaggle dataset description, incl. the full v1→v15 version table |
@@ -58,7 +58,8 @@ Contradiction:non-contradiction ≈ 1:2. Soft gold is graded (`0.95/0.05` style)
 - Models trained on this data: [`Modusnsus/laya-nli-memory-conflict`](https://huggingface.co/Modusnsus/laya-nli-memory-conflict) (delivered head) and the rounds 5–10 research-archive repos (see the archive index on the v4 model card).
 - Data generators, acceptance/diagnostic sets and the full gate protocol: [`modusensus/laya` → `kaggle_eval/`](https://github.com/modusensus/laya/tree/main/kaggle_eval)
 - The 35 acceptance cases and 18 diagnostic contrast pairs are **not** in this dataset (they live in the eval code in `kaggle_eval/` and share zero verbatim overlap with the training corpus by enforced assertion).
-- Round 11 (Kaggle version v16) will add: B2-isomorphic upsampling (lever 1), unrelated-supplement / temporary-preference control rows (lever 1b) and a 9-case isomorphic family diagnostic — per [`HANDOFF_NLI_V11.md`](https://github.com/modusensus/laya/blob/main/kaggle_eval/HANDOFF_NLI_V11.md).
+- Round 11 (Kaggle version v16) added: B2-isomorphic upsampling (lever 1), unrelated-supplement / temporary-preference control rows (lever 1b) and a 9-case isomorphic family diagnostic — per [`HANDOFF_NLI_V11.md`](https://github.com/modusensus/laya/blob/main/kaggle_eval/HANDOFF_NLI_V11.md).
+- Round 12 (Kaggle version v17) adds: a single negation-known-conflict lever (36 rows) plus an 8-case negation-family diagnostic (eval-side, never in train), and preregistered median aggregation for the thin-edge new10/negation5 axes — per [`HANDOFF_NLI_V12.md`](https://github.com/modusensus/laya/blob/main/kaggle_eval/HANDOFF_NLI_V12.md).
 
 ## License
 

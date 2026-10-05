@@ -26,8 +26,19 @@ Criteria (FINAL, gate numbers unchanged from v9/v10):
 
 Usage: python protocol_verdict.py --tags v9,v10_s2,v10_l2     (v9 backtest)
        python protocol_verdict.py --tags r1,r2,r3             (v11 verdict)
+       python protocol_verdict.py --protocol v12 --tags r1,r2,r3  (v12 verdict)
 Per-run artifacts resolve under data_local/ via the <prefix>_<tag>.json
-convention (v11 runs use --prefix v11_).
+convention (v11/v12 runs use --prefix v11_/v12_; the resolver accepts the
+battery's actual <name>_<prefix>_<tag>.json spelling too).
+
+v12 protocol deltas (HANDOFF_NLI_V12.md §1.2, preregistered 2026-10-06):
+  #3/#4 new10/negation5: median over runs = full AND no case missed in >=2 runs
+  #13 negfam (NEW, 8 cases gold=true): median family-mean p_conflict >= 0.5,
+      AND every run has <=1 case at p_conflict < 0.5
+  #14 hygiene: leak_audit_v12.txt 0/35 (gen asserts 0/51 with both families)
+  report-only additions: automation@5% per run (max coverage at <=5% selective
+      error from val_probs; v11 baseline 74.3/78.6/79.3), tau(noul)
+The default protocol stays v11 so the frozen v11 verdict remains reproducible.
 """
 import argparse
 import json
@@ -70,8 +81,10 @@ def realtest(tag, prefix):
     old = sum(r['ok'] for r in d['cases'])
     neg = sum(r['ok'] for r in d['negation_cases'])
     new = sum(r['ok'] for r in d['new_cases'])
-    misses = {r['note'] for r in d['cases'] if not r['ok']}
-    return old, neg, new, misses
+    miss_old = {r['note'] for r in d['cases'] if not r['ok']}
+    miss_neg = {r['note'] for r in d['negation_cases'] if not r['ok']}
+    miss_new = {r['note'] for r in d['new_cases'] if not r['ok']}
+    return old, neg, new, miss_old, miss_neg, miss_new
 
 
 def bias_diag(tag, prefix):
@@ -120,6 +133,29 @@ def family_diag(tag, prefix):
     return d['family_mean_p'], d['n_highconf']
 
 
+def negfam_diag(tag, prefix):
+    p = art('negfam_diag', tag, prefix)
+    if not os.path.exists(p):
+        return None, None  # runs without the v12 instrument -> axis FAILS
+    d = json.load(open(p, encoding='utf-8'))
+    return d['family_mean_p'], d['n_lowconf']
+
+
+def automation5(tag, prefix):
+    """Report-only: max coverage at <=5% selective error, from val_probs
+    (confidence = distance from 0.5, descending)."""
+    rows = load(art('val_probs', tag, prefix))
+    conf = sorted(((max(r['p_true'], 1 - r['p_true']), (r['p_true'] >= 0.5) == (r['gold'] == 1))
+                   for r in rows), reverse=True)
+    best, err = 0, 0
+    for k, (_c, ok) in enumerate(conf, 1):
+        if not ok:
+            err += 1
+        if err / k <= 0.05:
+            best = k
+    return best / len(rows)
+
+
 def conformal_adopted(tag, prefix):
     out = []
     for rule in ('s1', 's2'):
@@ -132,7 +168,8 @@ def conformal_adopted(tag, prefix):
 
 
 def tau_report(tag):
-    for name in (f'laya-nli-conflict-v11-{tag}', f'laya-nli-conflict-{tag}'):
+    for name in (f'laya-nli-conflict-v12-{tag}', f'laya-nli-conflict-v11-{tag}',
+                 f'laya-nli-conflict-{tag}'):
         p = os.path.join(_OUT, name, 'rl_agent_config.json')
         if os.path.exists(p):
             try:
@@ -147,12 +184,16 @@ def main():
     ap.add_argument('--tags', required=True, help='comma-separated run tags (3 runs)')
     ap.add_argument('--prefix', default='', help='artifact filename prefix, e.g. v11_ '
                                                  '(v9 backtest uses the bare convention)')
+    ap.add_argument('--protocol', default='v11', choices=('v11', 'v12'),
+                    help='v11 = frozen HANDOFF_NLI_V11 criteria; v12 = HANDOFF_NLI_V12 §1.2 '
+                         '(median new10/negation5 + negfam axis + 0/51 hygiene)')
     args = ap.parse_args()
     tags = [t.strip() for t in args.tags.split(',') if t.strip()]
     pre = args.prefix
-    assert len(tags) == 3, 'v11 protocol fixes n=3'
+    proto = args.protocol
+    assert len(tags) == 3, 'v11/v12 protocol fixes n=3'
 
-    print(f'== V11 FINAL §1.2 protocol verdict over runs: {tags} (prefix "{pre}") ==\n')
+    print(f'== {proto.upper()} §1.2 protocol verdict over runs: {tags} (prefix "{pre}") ==\n')
     axes = {}
 
     # 1 main val: median >= 0.896
@@ -162,20 +203,33 @@ def main():
     print('main val:', [(t, round(a, 4), e) for t, (a, e) in zip(tags, accs)], '| median:', round(med_acc, 4))
 
     # 2 old 20: median == 20 AND no case missed in >=2 runs
-    olds, negs, news, miss_sets = [], [], [], []
+    olds, negs, news = [], [], []
+    miss_old_all, miss_neg_all, miss_new_all = [], [], []
     for t in tags:
-        old, neg, new, misses = realtest(t, pre)
-        olds.append(old); negs.append(neg); news.append(new); miss_sets.append(misses)
-    miss_counter = Counter(n for ms in miss_sets for n in ms)
+        old, neg, new, mo, mn, mnw = realtest(t, pre)
+        olds.append(old); negs.append(neg); news.append(new)
+        miss_old_all.append(mo); miss_neg_all.append(mn); miss_new_all.append(mnw)
+    miss_counter = Counter(n for ms in miss_old_all for n in ms)
     repeated = {k: v for k, v in miss_counter.items() if v >= 2}
     med_old = statistics.median(olds)
     axes['2 old20(median=20 AND no case missed in >=2 runs)'] = (med_old == 20 and not repeated)
     print('old20:', dict(zip(tags, olds)), '| median:', med_old,
           '| per-case miss counts:', dict(miss_counter) or '{}', '| repeated(>=2):', repeated or 'none')
 
-    # 3/4/5/6: every-run hard gates
-    axes['3 new10(all=10)'] = all(n == 10 for n in news)
-    axes['4 negation(all=5)'] = all(n == 5 for n in negs)
+    # 3/4: v11 = every-run hard gates; v12 = median full + no case missed in >=2 runs
+    if proto == 'v11':
+        axes['3 new10(all=10)'] = all(n == 10 for n in news)
+        axes['4 negation(all=5)'] = all(n == 5 for n in negs)
+    else:
+        cnt_new = Counter(n for ms in miss_new_all for n in ms)
+        rep_new = {k: v for k, v in cnt_new.items() if v >= 2}
+        cnt_neg = Counter(n for ms in miss_neg_all for n in ms)
+        rep_neg = {k: v for k, v in cnt_neg.items() if v >= 2}
+        axes['3 new10(median=10 AND no case missed in >=2 runs)'] = (
+            statistics.median(news) == 10 and not rep_new)
+        axes['4 negation(median=5 AND no case missed in >=2 runs)'] = (
+            statistics.median(negs) == 5 and not rep_neg)
+        print('new10 repeated(>=2):', rep_new or 'none', '| negation repeated(>=2):', rep_neg or 'none')
     print('negation:', dict(zip(tags, negs)), '| new10:', dict(zip(tags, news)))
     vs = [val_soft_err(t, pre) for t in tags]
     axes['5 val_soft(all<=3)'] = all(v <= 3 for v in vs)
@@ -210,13 +264,13 @@ def main():
     axes['11 bias_diag(>=2/3 runs >=13/14)'] = n_diag_pass >= 2
     print('diag ok:', dict(zip(tags, [f'{n}/{m}' for n, m in diags])), f'| runs >=13/14: {n_diag_pass}/3')
 
-    # 12 family (NEW)
+    # 12 family (v11 gate; v12 regression guard)
     fams = [family_diag(t, pre) for t in tags]
     if any(fm is None for fm, _ in fams):
         med_fam = None
         axes['12 family(median mean-p<0.5 AND all runs <=1 case p>=0.9)'] = False
         print('family: MISSING artifact for', [t for t, (fm, _) in zip(tags, fams) if fm is None],
-              '-> axis FAIL (v11 runs must emit family_diag_<tag>.json)')
+              '-> axis FAIL (v11+ runs must emit family_diag_<tag>.json)')
     else:
         med_fam = statistics.median(fm for fm, _ in fams)
         axes['12 family(median mean-p<0.5 AND all runs <=1 case p>=0.9)'] = (
@@ -224,14 +278,34 @@ def main():
         print('family mean p:', [(t, fm) for t, (fm, _) in zip(tags, fams)], '| median:', round(med_fam, 4),
               '| p>=0.9 cases per run:', dict(zip(tags, [nh for _, nh in fams])))
 
-    # 13 hygiene
-    hyg = os.path.join(_D, 'leak_audit_v11.txt')
-    ok_hyg = os.path.exists(hyg) and 'cases touched: 0/35' in open(hyg, encoding='utf-8').read()
-    axes['13 hygiene(0/35 + family cases 0 overlap asserted at gen)'] = ok_hyg
-    print('leak_audit_v11.txt:', 'present, 0/35' if ok_hyg else 'MISSING or nonzero')
+    if proto == 'v12':
+        # 13 negfam (NEW v12 instrument, 8 cases gold=true)
+        nf = [negfam_diag(t, pre) for t in tags]
+        if any(fm is None for fm, _ in nf):
+            axes['13 negfam(median mean-p>=0.5 AND all runs <=1 case p<0.5)'] = False
+            print('negfam: MISSING artifact for', [t for t, (fm, _) in zip(tags, nf) if fm is None],
+                  '-> axis FAIL (v12 runs must emit negfam_diag_<tag>.json)')
+        else:
+            med_nf = statistics.median(fm for fm, _ in nf)
+            axes['13 negfam(median mean-p>=0.5 AND all runs <=1 case p<0.5)'] = (
+                med_nf >= 0.5 and all(nl <= 1 for _, nl in nf))
+            print('negfam mean p:', [(t, fm) for t, (fm, _) in zip(tags, nf)], '| median:', round(med_nf, 4),
+                  '| p<0.5 cases per run:', dict(zip(tags, [nl for _, nl in nf])))
+        hyg_name, hyg_axis = 'leak_audit_v12.txt', '14 hygiene(0/35 + family 9+8=17 cases 0 overlap asserted at gen)'
+    else:
+        hyg_name, hyg_axis = 'leak_audit_v11.txt', '13 hygiene(0/35 + family cases 0 overlap asserted at gen)'
 
-    # tau: report-only
+    # hygiene (last numbered axis of the protocol)
+    hyg = os.path.join(_D, hyg_name)
+    ok_hyg = os.path.exists(hyg) and 'cases touched: 0/35' in open(hyg, encoding='utf-8').read()
+    axes[hyg_axis] = ok_hyg
+    print(f'{hyg_name}:', 'present, 0/35' if ok_hyg else 'MISSING or nonzero')
+
+    # report-only
     print('tau(noul) report-only:', {t: tau_report(t) for t in tags})
+    if proto == 'v12':
+        print('automation@5% report-only (v11 baseline 0.743/0.786/0.793):',
+              {t: round(automation5(t, pre), 3) for t in tags})
 
     print()
     verdict = all(axes.values())
