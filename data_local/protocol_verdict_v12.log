@@ -1,0 +1,39 @@
+== V12 §1.2 protocol verdict over runs: ['r1', 'r2', 'r3'] (prefix "v12_") ==
+
+main val: [('r1', 0.904, 96), ('r2', 0.903, 97), ('r3', 0.907, 93)] | median: 0.904
+old20: {'r1': 19, 'r2': 20, 'r3': 20} | median: 20 | per-case miss counts: {'子集关系': 1} | repeated(>=2): none
+new10 repeated(>=2): none | negation repeated(>=2): none
+negation: {'r1': 5, 'r2': 5, 'r3': 4} | new10: {'r1': 10, 'r2': 10, 'r3': 10}
+val_soft err: {'r1': 2, 'r2': 1, 'r3': 1}
+swap: {'r1': 'PASS', 'r2': 'PASS', 'r3': 'PASS'}
+polarity gates (real·diag, val_soft): {'r1': (True, True), 'r2': (True, True), 'r3': (True, True)}
+band gate: {'r1': True, 'r2': True, 'r3': True}
+  conformal r1 [s1]: 36/50 @ 0.342 -> PASS
+  conformal r1 [s2]: 32/50 @ 0.3 -> PASS
+  conformal r2 [s1]: 34/50 @ 0.334 -> PASS
+  conformal r2 [s2]: 34/50 @ 0.328 -> PASS
+  conformal r3 [s1]: 33/47 @ 0.34 -> PASS
+  conformal r3 [s2]: 30/47 @ 0.346 -> PASS
+diag ok: {'r1': '13/14', 'r2': '13/14', 'r3': '13/14'} | runs >=13/14: 3/3
+family mean p: [('r1', 0.0806), ('r2', 0.0919), ('r3', 0.0814)] | median: 0.0814 | p>=0.9 cases per run: {'r1': 0, 'r2': 0, 'r3': 0}
+negfam mean p: [('r1', 0.7872), ('r2', 0.8022), ('r3', 0.793)] | median: 0.793 | p<0.5 cases per run: {'r1': 1, 'r2': 1, 'r3': 1}
+leak_audit_v12.txt: present, 0/35
+tau(noul) report-only: {'r1': 1.08872389793396, 'r2': 1.09141206741333, 'r3': 1.1079639196395874}
+automation@5% report-only (v11 baseline 0.743/0.786/0.793): {'r1': 0.814, 'r2': 0.781, 'r3': 0.781}
+
+  PASS  1 main_val(median>=0.896)
+  PASS  2 old20(median=20 AND no case missed in >=2 runs)
+  PASS  3 new10(median=10 AND no case missed in >=2 runs)
+  PASS  4 negation(median=5 AND no case missed in >=2 runs)
+  PASS  5 val_soft(all<=3)
+  PASS  6 swap(all PASS)
+  PASS  7 polarity real·diag(all<=1)
+  PASS  8 polarity val_soft(all<=1)
+  PASS  9 band(all >=8pp)
+  PASS  10 conformal(adopted rule, all >=50%@<=35%)
+  PASS  11 bias_diag(>=2/3 runs >=13/14)
+  PASS  12 family(median mean-p<0.5 AND all runs <=1 case p>=0.9)
+  PASS  13 negfam(median mean-p>=0.5 AND all runs <=1 case p<0.5)
+  PASS  14 hygiene(0/35 + family 9+8=17 cases 0 overlap asserted at gen)
+
+PROTOCOL VERDICT: PASS -> eligible for HF delivery (§1.3)

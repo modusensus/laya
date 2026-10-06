@@ -1,0 +1,57 @@
+  OK  main_val_r1: claimed 0.904 | derived 0.904
+  OK  main_val_r2: claimed 0.903 | derived 0.903
+  OK  main_val_r3: claimed 0.907 | derived 0.907
+  OK  main_val_median: claimed 0.904 | derived 0.904
+  OK  old20_r1: claimed 19 | derived 19
+  OK  old20_r2: claimed 20 | derived 20
+  OK  old20_r3: claimed 20 | derived 20
+  OK  negation5_r1: claimed 5 | derived 5
+  OK  negation5_r2: claimed 5 | derived 5
+  OK  negation5_r3: claimed 4 | derived 4
+  OK  new10_r1: claimed 10 | derived 10
+  OK  new10_r2: claimed 10 | derived 10
+  OK  new10_r3: claimed 10 | derived 10
+  OK  val_soft_err_r1: claimed 2 | derived 2
+  OK  val_soft_err_r2: claimed 1 | derived 1
+  OK  val_soft_err_r3: claimed 1 | derived 1
+  OK  swap_r1: claimed 'PASS' | derived 'PASS'
+  OK  swap_r2: claimed 'PASS' | derived 'PASS'
+  OK  swap_r3: claimed 'PASS' | derived 'PASS'
+  OK  polarity_real_diag_r1: claimed True | derived True
+  OK  polarity_real_diag_r2: claimed True | derived True
+  OK  polarity_real_diag_r3: claimed True | derived True
+  OK  polarity_val_soft_r1: claimed True | derived True
+  OK  polarity_val_soft_r2: claimed True | derived True
+  OK  polarity_val_soft_r3: claimed True | derived True
+  OK  band_r1: claimed 'PASS' | derived 'PASS'
+  OK  band_r2: claimed 'PASS' | derived 'PASS'
+  OK  band_r3: claimed 'PASS' | derived 'PASS'
+  OK  conformal_r1_s1: claimed '36/50 @ 0.342 PASS' | derived '36/50 @ 0.342 PASS'
+  OK  conformal_r1_s2: claimed '32/50 @ 0.300 PASS' | derived '32/50 @ 0.300 PASS'
+  OK  conformal_r2_s1: claimed '34/50 @ 0.334 PASS' | derived '34/50 @ 0.334 PASS'
+  OK  conformal_r2_s2: claimed '34/50 @ 0.328 PASS' | derived '34/50 @ 0.328 PASS'
+  OK  conformal_r3_s1: claimed '33/47 @ 0.340 PASS' | derived '33/47 @ 0.340 PASS'
+  OK  conformal_r3_s2: claimed '30/47 @ 0.346 PASS' | derived '30/47 @ 0.346 PASS'
+  OK  diag_r1: claimed '13/14' | derived '13/14'
+  OK  diag_r2: claimed '13/14' | derived '13/14'
+  OK  diag_r3: claimed '13/14' | derived '13/14'
+  OK  family_mean_r1: claimed 0.0806 | derived 0.0806
+  OK  family_mean_r2: claimed 0.0919 | derived 0.0919
+  OK  family_mean_r3: claimed 0.0814 | derived 0.0814
+  OK  family_highconf_all: claimed '0/0/0' | derived '0/0/0'
+  OK  negfam_mean_r1: claimed 0.7872 | derived 0.7872
+  OK  negfam_mean_r2: claimed 0.8022 | derived 0.8022
+  OK  negfam_mean_r3: claimed 0.793 | derived 0.793
+  OK  negfam_lowconf_all: claimed '1/1/1' | derived '1/1/1'
+  OK  hygiene: claimed 'cases touched: 0/35' | derived 'cases touched: 0/35'
+  OK  tau_r1: claimed 1.08872389793396 | derived 1.08872389793396
+  OK  tau_r2: claimed 1.09141206741333 | derived 1.09141206741333
+  OK  tau_r3: claimed 1.1079639196395874 | derived 1.1079639196395874
+  OK  automation5_r1: claimed 0.814 | derived 0.814
+  OK  automation5_r2: claimed 0.781 | derived 0.781
+  OK  automation5_r3: claimed 0.781 | derived 0.781
+  OK  corpus_rows: claimed 15950 | derived 15950
+  OK  verdict: claimed 'PROTOCOL VERDICT: PASS' | derived 'PROTOCOL VERDICT: PASS'
+
+54 claims checked, 0 failures
+VERIFY: exit 0 — claims pack matches artifacts; hf_publish permitted (§1.3)

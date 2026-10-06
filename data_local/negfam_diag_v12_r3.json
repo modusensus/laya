@@ -1,0 +1,72 @@
+{
+  "checkpoint": "D:/laya-kaggle-output/laya-nli-conflict-v12-r3",
+  "cases": [
+    {
+      "note": "否定家族N1 宠物",
+      "expect": "true",
+      "got": "true",
+      "p_conflict": 0.8792,
+      "ok": true,
+      "is_chronic_domain": true
+    },
+    {
+      "note": "否定家族N2 pet (en)",
+      "expect": "true",
+      "got": "true",
+      "p_conflict": 0.8874,
+      "ok": true,
+      "is_chronic_domain": true
+    },
+    {
+      "note": "否定家族N3 订阅",
+      "expect": "true",
+      "got": "true",
+      "p_conflict": 0.8754,
+      "ok": true,
+      "is_chronic_domain": true
+    },
+    {
+      "note": "否定家族N4 subscription (en)",
+      "expect": "true",
+      "got": "true",
+      "p_conflict": 0.8977,
+      "ok": true,
+      "is_chronic_domain": true
+    },
+    {
+      "note": "否定家族N5 饮食",
+      "expect": "true",
+      "got": "true",
+      "p_conflict": 0.8863,
+      "ok": true,
+      "is_chronic_domain": false
+    },
+    {
+      "note": "否定家族N6 commute (en)",
+      "expect": "true",
+      "got": "true",
+      "p_conflict": 0.8934,
+      "ok": true,
+      "is_chronic_domain": false
+    },
+    {
+      "note": "否定家族N7 日程",
+      "expect": "true",
+      "got": "true",
+      "p_conflict": 0.904,
+      "ok": true,
+      "is_chronic_domain": false
+    },
+    {
+      "note": "否定家族N8 device (en)",
+      "expect": "true",
+      "got": "false",
+      "p_conflict": 0.1206,
+      "ok": false,
+      "is_chronic_domain": false
+    }
+  ],
+  "family_mean_p": 0.793,
+  "n_lowconf": 1,
+  "n_ok": 7
+}
