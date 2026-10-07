@@ -168,8 +168,8 @@ def conformal_adopted(tag, prefix):
 
 
 def tau_report(tag):
-    for name in (f'laya-nli-conflict-v12-{tag}', f'laya-nli-conflict-v11-{tag}',
-                 f'laya-nli-conflict-{tag}'):
+    for name in (f'laya-nli-conflict-v13-{tag}', f'laya-nli-conflict-v12-{tag}',
+                 f'laya-nli-conflict-v11-{tag}', f'laya-nli-conflict-{tag}'):
         p = os.path.join(_OUT, name, 'rl_agent_config.json')
         if os.path.exists(p):
             try:
@@ -184,9 +184,10 @@ def main():
     ap.add_argument('--tags', required=True, help='comma-separated run tags (3 runs)')
     ap.add_argument('--prefix', default='', help='artifact filename prefix, e.g. v11_ '
                                                  '(v9 backtest uses the bare convention)')
-    ap.add_argument('--protocol', default='v11', choices=('v11', 'v12'),
+    ap.add_argument('--protocol', default='v11', choices=('v11', 'v12', 'v13'),
                     help='v11 = frozen HANDOFF_NLI_V11 criteria; v12 = HANDOFF_NLI_V12 §1.2 '
-                         '(median new10/negation5 + negfam axis + 0/51 hygiene)')
+                         '(median new10/negation5 + negfam axis + 0/51 hygiene); '
+                         'v13 = HANDOFF_NLI_V13 (main-val gate re-estimated to 0.900, else v12)')
     args = ap.parse_args()
     tags = [t.strip() for t in args.tags.split(',') if t.strip()]
     pre = args.prefix
@@ -196,11 +197,13 @@ def main():
     print(f'== {proto.upper()} §1.2 protocol verdict over runs: {tags} (prefix "{pre}") ==\n')
     axes = {}
 
-    # 1 main val: median >= 0.896
+    # 1 main val: median >= 0.896 (v11/v12) / 0.900 (v13 re-estimate, HANDOFF_NLI_V13 §3-1)
+    gate_val = 0.900 if proto == 'v13' else 0.896
     accs = [main_val_acc(t, pre) for t in tags]
     med_acc = statistics.median(a for a, _ in accs)
-    axes['1 main_val(median>=0.896)'] = med_acc >= 0.896
-    print('main val:', [(t, round(a, 4), e) for t, (a, e) in zip(tags, accs)], '| median:', round(med_acc, 4))
+    axes[f'1 main_val(median>={gate_val})'] = med_acc >= gate_val
+    print('main val:', [(t, round(a, 4), e) for t, (a, e) in zip(tags, accs)], '| median:', round(med_acc, 4),
+          f'| gate: {gate_val}')
 
     # 2 old 20: median == 20 AND no case missed in >=2 runs
     olds, negs, news = [], [], []
@@ -278,20 +281,21 @@ def main():
         print('family mean p:', [(t, fm) for t, (fm, _) in zip(tags, fams)], '| median:', round(med_fam, 4),
               '| p>=0.9 cases per run:', dict(zip(tags, [nh for _, nh in fams])))
 
-    if proto == 'v12':
-        # 13 negfam (NEW v12 instrument, 8 cases gold=true)
+    if proto in ('v12', 'v13'):
+        # 13 negfam (v12+ instrument, 8 cases gold=true)
         nf = [negfam_diag(t, pre) for t in tags]
         if any(fm is None for fm, _ in nf):
             axes['13 negfam(median mean-p>=0.5 AND all runs <=1 case p<0.5)'] = False
             print('negfam: MISSING artifact for', [t for t, (fm, _) in zip(tags, nf) if fm is None],
-                  '-> axis FAIL (v12 runs must emit negfam_diag_<tag>.json)')
+                  '-> axis FAIL (v12+ runs must emit negfam_diag_<tag>.json)')
         else:
             med_nf = statistics.median(fm for fm, _ in nf)
             axes['13 negfam(median mean-p>=0.5 AND all runs <=1 case p<0.5)'] = (
                 med_nf >= 0.5 and all(nl <= 1 for _, nl in nf))
             print('negfam mean p:', [(t, fm) for t, (fm, _) in zip(tags, nf)], '| median:', round(med_nf, 4),
                   '| p<0.5 cases per run:', dict(zip(tags, [nl for _, nl in nf])))
-        hyg_name, hyg_axis = 'leak_audit_v12.txt', '14 hygiene(0/35 + family 9+8=17 cases 0 overlap asserted at gen)'
+        hyg_name = f'leak_audit_{proto}.txt'
+        hyg_axis = '14 hygiene(0/35 + family 9+8=17 cases 0 overlap asserted at gen)'
     else:
         hyg_name, hyg_axis = 'leak_audit_v11.txt', '13 hygiene(0/35 + family cases 0 overlap asserted at gen)'
 
@@ -303,7 +307,7 @@ def main():
 
     # report-only
     print('tau(noul) report-only:', {t: tau_report(t) for t in tags})
-    if proto == 'v12':
+    if proto in ('v12', 'v13'):
         print('automation@5% report-only (v11 baseline 0.743/0.786/0.793):',
               {t: round(automation5(t, pre), 3) for t in tags})
 
