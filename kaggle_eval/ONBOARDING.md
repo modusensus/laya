@@ -38,7 +38,7 @@
 
 ## 3. 环境速查（本机）
 
-- 仓库：`D:\laya`（origin = GitHub fork `modusensus/laya`，SSH over 443；upstream = `NandhaKishorM/laya`）。**`C:\Users\石晴\Desktop\laya` 是 C 盘空壳，别用。**
+- 仓库：`D:\laya`（origin = GitHub fork `modusensus/laya`，SSH over 443；upstream = `NandhaKishorM/laya`）。**`%USERPROFILE%\Desktop\laya` 是 C 盘空壳，别用。**
 - Python：一律 `D:\Miniconda\envs\laya-ft\python.exe`（torch CPU + transformers + datasets + laya 可编辑安装）。
 - **C 盘空间敏感**：大文件一律放 D 盘；例外 `C:\kaggle_cfg\` 是 ASCII 路径暂存区，Kaggle 工具链依赖它。
 - 凭据：Kaggle `C:\kaggle_cfg\kaggle.json`（经环境变量使用，值不落盘不进日志）；HF 已 `hf auth login`（classic write token，注意两处同步：`~/.cache/huggingface/token` 与 `D:\hf_cache\token`，HF_HOME 指向后者）。
