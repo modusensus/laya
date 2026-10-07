@@ -103,10 +103,11 @@
 - 对 `laya/` 核心代码的修改遵循上游 `AGENTS.md`（英文 conventional commit、CI gates、不整文件重排版）。fork 内 `kaggle_eval/` 的提交同样用 conventional 风格：`feat/fix/docs(kaggle-eval): ...`。
 - **文档同步纪律**：状态变更要更新 HANDOFF 对应轮次 + 本文 §4 快照；只写进私有记忆 = 下一个 agent 看不见。
 
-## 8. 当前计划与待办（2026-10-04）
+## 8. 当前计划与待办（2026-10-07）
 
-1. **v12（执行中,2026-10-06）**：`HANDOFF_NLI_V12.md` = 否定冲突杠杆 36 行 + 新 10/否定 5 聚合口径中位化 + 否定家族 8 案新仪器（轴 #13，卫生断言扩 0/51）。两项开放决策已由用户按推荐拍板（§4）。**准备全部完成（commit 63048f1）**：语料 `nli_conflict_train_v12.jsonl` 15950 行（v11 逐字节携带+36 行否定已知冲突杠杆,zh24/en12,6 域;0/51 断言+leak_audit_v12 0/35 全绿）;`negfam_diag.py` 8 案仪器（模板与杠杆行刻意不相交,防模板背诵）;`protocol_verdict.py --protocol v12`（14 轴;默认 v11 口径冻结可复现）;前置回测 `protocol_backtest_v12.log` = v11 工件按 v12 口径 FAIL 于轴 1（主 val 中位 0.895 照旧）+轴 13（negfam 工件结构性缺失）,轴 3/4 中位口径下转 PASS（=口径改动的预注册演示）;Kaggle 数据集 **v17** 已推+HF 镜像已同步;kernel expected-train 15950;`v12_orchestrate.py`（锁/拉完再推/失败分类全承 v11,无复位门）。三跑 = kernel laya-nli-conflict-ce 自身 version 12/13/14,编排 tick 推进,判定落 `protocol_verdict_v12.log`,HF 交付仍人工门。
-2. **待用户拍板**：v1/v2/v2-e3/v3 早期 ckpt 与 typed_decisions 目录是否补传 HF 归档。
-3. **已清理（2026-10-06）**：定时任务 automation-f6e9077a 已删除。
-4. **可选**：上游 tag v0.3.24/25/26 已 fetch 到本地，是否推 fork 待定。
-5. **上游新能力评估（0.3.24–0.3.26）**：`LAYA_JEV_STRICT`（serve 端严格 Jev wire contract）、selective-classification 评测指标（Brier/AURC）、histogram-binning 置信重校准、`tests/test_conformal_abstention.py`——与 v12 方向的相关性待评估。
+1. **v12 已交付（2026-10-07,b558d6b）**：14/14 轴全 PASS（项目史首次过完整协议）,交付头 = **r2**（`Modusnsus/laya-nli-conflict-v12`,SHA 6648d892…;选择标准=唯一三验收段全满分的跑）,r1/r3 同批归档（`-v12-r1`/`-v12-r3`）,v4 卡面已加 superseded 注记,合集 5 项含 v12。claims 包 54 条 verify exit 0（§1.3 推前门）。执行波折：r1 本地评测曾因 Windows 应用控制策略拦 torch DLL（WinError 4551）进 ERROR_eval_r1 ~2.5h,SAC 自行放行后人工解冻（状态文件有 manual_thaw 审计记录）。
+2. **v13 草案 v2 待拍板（2026-10-07,c07a6e4 + 1dbaa57）**：`HANDOFF_NLI_V13.md` = 主 val 门槛重估 + 残余单点清账 + conformal 压线登记,**纯协议轮**（数据/配方/评测面零改动）。v1→v2 修订（ZCode 复核,用户授权直改）：①残余 miss 实为 gold=false 兼容案「否定-无车与通勤兼容」贴线翻（p 0.50–0.53,q≈0.2）,v1 杠杆极性写反已撤;②例数算术修正（0.900=4 例余量、0.902=2 例）,主 val 门推荐改 **0.900**;③0.896 门出处=v5 时代非 v9;④数据集维持 v17。**附录 B 四项待用户拍板后定稿**:主 val 门（推荐 0.900）/conformal 维持/τ 不转正/杠杆 0 行。定稿后执行前置:protocol_verdict --protocol v13 + 前置回测 + orchestrate 改前缀。
+3. **待用户拍板**：v1/v2/v2-e3/v3 早期 ckpt 与 typed_decisions 目录是否补传 HF 归档。
+4. **已清理**：定时任务 automation-f6e9077a（v11）、automation-331e565f（v12,用户已删）。
+5. **可选**：上游 tag v0.3.24/25/26 已 fetch 到本地，是否推 fork 待定。
+6. **上游新能力评估（0.3.24–0.3.26）**：`LAYA_JEV_STRICT`（serve 端严格 Jev wire contract）、selective-classification 评测指标（Brier/AURC）、histogram-binning 置信重校准、`tests/test_conformal_abstention.py`——与 v13+ 方向的相关性待评估。
