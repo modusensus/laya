@@ -106,7 +106,7 @@
 ## 8. 当前计划与待办（2026-10-07）
 
 1. **v12 已交付（2026-10-07,b558d6b）**：14/14 轴全 PASS（项目史首次过完整协议）,交付头 = **r2**（`Modusnsus/laya-nli-conflict-v12`,SHA 6648d892…;选择标准=唯一三验收段全满分的跑）,r1/r3 同批归档（`-v12-r1`/`-v12-r3`）,v4 卡面已加 superseded 注记,合集 5 项含 v12。claims 包 54 条 verify exit 0（§1.3 推前门）。执行波折：r1 本地评测曾因 Windows 应用控制策略拦 torch DLL（WinError 4551）进 ERROR_eval_r1 ~2.5h,SAC 自行放行后人工解冻（状态文件有 manual_thaw 审计记录）。
-2. **v13 草案 v2 待拍板（2026-10-07,c07a6e4 + 1dbaa57）**：`HANDOFF_NLI_V13.md` = 主 val 门槛重估 + 残余单点清账 + conformal 压线登记,**纯协议轮**（数据/配方/评测面零改动）。v1→v2 修订（ZCode 复核,用户授权直改）：①残余 miss 实为 gold=false 兼容案「否定-无车与通勤兼容」贴线翻（p 0.50–0.53,q≈0.2）,v1 杠杆极性写反已撤;②例数算术修正（0.900=4 例余量、0.902=2 例）,主 val 门推荐改 **0.900**;③0.896 门出处=v5 时代非 v9;④数据集维持 v17。**附录 B 四项待用户拍板后定稿**:主 val 门（推荐 0.900）/conformal 维持/τ 不转正/杠杆 0 行。定稿后执行前置:protocol_verdict --protocol v13 + 前置回测 + orchestrate 改前缀。
+2. **v13 已定稿并开跑（2026-10-07）**：`HANDOFF_NLI_V13.md` 定稿（用户拍板附录 B 四项推荐值：主 val 门 **0.900** / conformal 维持 / τ 不转正 / **杠杆 0 行纯协议轮**）。准备全绿（commit dff8724）：`protocol_verdict.py --protocol v13`（主 val 门 0.900，其余承 v12）;前置回测 `protocol_backtest_v13.log` = **v12 工件按 v13 口径 14/14 全 PASS**（不追溯杀旧头演示）+ v12 冻结记录复现;`leak_audit_v13.txt` 0/35（审计 v12 语料文件，逐字节同）;`eval_arm_v13.py`/`v13_orchestrate.py` 前缀移植;语料/数据集（v17）/kernel **零改动**。三跑 = kernel laya-nli-conflict-ce version **15/16/17**,r1 已推（22:31）,cron automation-7eef5deb 编排,判定落 `protocol_verdict_v13.log`,PASS 后 claims_v13 包→人工门交付。
 3. **待用户拍板**：v1/v2/v2-e3/v3 早期 ckpt 与 typed_decisions 目录是否补传 HF 归档。
 4. **已清理**：定时任务 automation-f6e9077a（v11）、automation-331e565f（v12,用户已删）。
 5. **可选**：上游 tag v0.3.24/25/26 已 fetch 到本地，是否推 fork 待定。
