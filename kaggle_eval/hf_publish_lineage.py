@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 """Publish the per-round training-corpus lineage as the Hub dataset
-Modusnsus/nli-conflict-train-lineage.
+slow-stack/nli-conflict-train-lineage.
 
 One jsonl per round (v3..v12) from data_local, each with row count + SHA256
 computed here and rendered into the card (single source of truth).  This
@@ -19,7 +19,7 @@ import os
 
 from huggingface_hub import HfApi, create_repo, hf_hub_download
 
-REPO = 'Modusnsus/nli-conflict-train-lineage'
+REPO = 'slow-stack/nli-conflict-train-lineage'
 HERE = os.path.dirname(os.path.abspath(__file__))
 D = os.path.join(HERE, '..', 'data_local')
 
@@ -28,28 +28,28 @@ ROUNDS = [
     ('nli_conflict_train_v3.jsonl', 'v3 (round 3)',
      '— (v3 ckpt not published; MNLI-extraction source for later gens)', ''),
     ('nli_conflict_train_v4.jsonl', 'v4 (round 4)',
-     '[Modusnsus/laya-nli-memory-conflict](https://huggingface.co/Modusnsus/laya-nli-memory-conflict) (delivered)',
+     '[slow-stack/laya-nli-memory-conflict](https://huggingface.co/slow-stack/laya-nli-memory-conflict) (delivered)',
      'MNLI re-rotation + v4 additions'),
     ('nli_conflict_train_v5.jsonl', 'v5 (round 5)',
-     '[laya-nli-conflict-v5](https://huggingface.co/Modusnsus/laya-nli-conflict-v5), '
-     '[v5-ce](https://huggingface.co/Modusnsus/laya-nli-conflict-v5-ce)',
+     '[laya-nli-conflict-v5](https://huggingface.co/slow-stack/laya-nli-conflict-v5), '
+     '[v5-ce](https://huggingface.co/slow-stack/laya-nli-conflict-v5-ce)',
      'v5 lever blocks; both arms trained on this corpus'),
     ('nli_conflict_train_v6.jsonl', 'v6 (round 6)',
-     '[laya-nli-conflict-v6](https://huggingface.co/Modusnsus/laya-nli-conflict-v6)',
+     '[laya-nli-conflict-v6](https://huggingface.co/slow-stack/laya-nli-conflict-v6)',
      'data-hygiene reset: 35 acceptance sentences cleared (leak 0/35 from here)'),
     ('nli_conflict_train_v7.jsonl', 'v7 (round 7)',
-     '[laya-nli-conflict-v7](https://huggingface.co/Modusnsus/laya-nli-conflict-v7)',
+     '[laya-nli-conflict-v7](https://huggingface.co/slow-stack/laya-nli-conflict-v7)',
      '+ bare-intent HC, alt-praise, metric blocks'),
     ('nli_conflict_train_v8.jsonl', 'v8 (round 8)',
-     '[laya-nli-conflict-v8](https://huggingface.co/Modusnsus/laya-nli-conflict-v8)',
+     '[laya-nli-conflict-v8](https://huggingface.co/slow-stack/laya-nli-conflict-v8)',
      '+120 same-subject attribute-consistent rows (B2 dose-response)'),
     ('nli_conflict_train_v9.jsonl', 'v9 (round 9)',
-     '[laya-nli-conflict-v9](https://huggingface.co/Modusnsus/laya-nli-conflict-v9), '
-     '[v10-s2](https://huggingface.co/Modusnsus/laya-nli-conflict-v10-s2) (S-arm reuses v9 verbatim)',
+     '[laya-nli-conflict-v9](https://huggingface.co/slow-stack/laya-nli-conflict-v9), '
+     '[v10-s2](https://huggingface.co/slow-stack/laya-nli-conflict-v10-s2) (S-arm reuses v9 verbatim)',
      '+400 attr-add/attr-contra/waver/change rows'),
     ('nli_conflict_train_v10.jsonl', 'v10 (round 10)',
-     '[v10-l1](https://huggingface.co/Modusnsus/laya-nli-conflict-v10-l1), '
-     '[v10-l2](https://huggingface.co/Modusnsus/laya-nli-conflict-v10-l2)',
+     '[v10-l1](https://huggingface.co/slow-stack/laya-nli-conflict-v10-l1), '
+     '[v10-l2](https://huggingface.co/slow-stack/laya-nli-conflict-v10-l2)',
      '= v9 minus exactly the 40 attr_contradiction rows (carried rows byte-identical)'),
     ('nli_conflict_train_v11.jsonl', 'v11 (round 11, r1-r3)',
      '— (verdict FAIL, no delivery; Kaggle dataset v16)',
@@ -139,9 +139,9 @@ Corpora are deterministic outputs of the `gen_soft_conflicts_v*.py` scripts
 (fixed seeds, hard leak asserts: zero field-level overlap with the 35
 acceptance cases from v6 onward, val/val_soft byte-frozen). The frozen
 evaluation sets live in
-[Modusnsus/laya-nli-conflict-eval](https://huggingface.co/datasets/Modusnsus/laya-nli-conflict-eval);
+[slow-stack/laya-nli-conflict-eval](https://huggingface.co/datasets/slow-stack/laya-nli-conflict-eval);
 the current round's corpus is also mirrored (rolling) at
-[Modusnsus/nli-conflict-pairs](https://huggingface.co/datasets/Modusnsus/nli-conflict-pairs).
+[slow-stack/nli-conflict-pairs](https://huggingface.co/datasets/slow-stack/nli-conflict-pairs).
 
 %%TABLE%%
 

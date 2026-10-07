@@ -1,6 +1,6 @@
 # SHA256 manifest — research archive uploads (2026-10-02)
 # One model.safetensors per undelivered round checkpoint, uploaded to
-# https://huggingface.co/Modusnsus/laya-nli-conflict-{v5,v5-ce,v6,v7,v8,v9,v10-l1,v10-l2,v10-s2}
+# https://huggingface.co/slow-stack/laya-nli-conflict-{v5,v5-ce,v6,v7,v8,v9,v10-l1,v10-l2,v10-s2}
 # Recompute locally: sha256sum <ckpt>/model.safetensors
 8ac971b15c1d3a0aaaba5061114a4d84b187c8132e8097751f5c7eda3e40f413  laya-nli-conflict-v5/model.safetensors
 997bd810bd7b7ffa13af0b4adba3ff2b1a31f84a2e9b0abce997238dbadb8717  laya-nli-conflict-v5-ce/model.safetensors

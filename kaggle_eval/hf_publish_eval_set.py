@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 """Publish the frozen evaluation face of the multi-run protocol as the Hub
-dataset Modusnsus/laya-nli-conflict-eval.
+dataset slow-stack/laya-nli-conflict-eval.
 
 One row per case, exported PROGRAMMATICALLY from the instrument modules (no
 hand transcription): realtest_v2.CASES/NEGATION_CASES, realtest_v4.NEW_CASES,
@@ -27,7 +27,7 @@ from noul_bias_diag import CONTROL_PAIRS, SWAP_PAIRS, QUESTION
 from family_diag import FAMILY_CASES
 from negfam_diag import NEGFAM_CASES
 
-REPO = 'Modusnsus/laya-nli-conflict-eval'
+REPO = 'slow-stack/laya-nli-conflict-eval'
 D = os.path.join(HERE, '..', 'data_local')
 CJK = re.compile(r'[\u4e00-\u9fff]')
 

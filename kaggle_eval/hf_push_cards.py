@@ -7,9 +7,9 @@ from huggingface_hub import HfApi
 
 JOBS = [
     (r'D:\laya\kaggle_eval\hf_model_card.md',
-     'Modusnsus/laya-typed-decisions-multilingual'),
+     'slow-stack/laya-typed-decisions-multilingual'),
     (r'D:\laya\kaggle_eval\hf_model_card_nli_conflict.md',
-     'Modusnsus/laya-nli-memory-conflict'),
+     'slow-stack/laya-nli-memory-conflict'),
 ]
 
 api = HfApi()

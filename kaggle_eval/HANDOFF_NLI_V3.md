@@ -220,7 +220,7 @@ cfg 值、由 `train_local.py:fit_temperatures()` 在 held-out 切片上后训�
 - 脚本:`kaggle_eval/gen_soft_conflicts_v4.py`(seed 20260930)、`label_swap_check.py`、
   `realtest_v4.py`、`temperature_sweep.py`(ECE 未过项的收尾实测);calib_report.py 加了 v4 列
 - 附:`data_local/val_probs_v4.json`(复杂 val 1000 的逐条概率,供温度扫描/复算用)
-- HF 发布(2026-09-27 完成):**https://huggingface.co/Modusnsus/laya-nli-memory-conflict**
+- HF 发布(2026-09-27 完成):**https://huggingface.co/slow-stack/laya-nli-memory-conflict**
   (公开,apache-2.0 与基座一致,8 文件含模型卡/权重/config/metrics/encoder/tokenizer,
   `hf_publish.py` 回读校验通过;权重与本地交付同源,SHA256 见上)
 - 本机 SSH:hf.co 专用密钥 `~/.ssh/id_ed25519_hf` 已生成并写入 config(Host hf.co);
@@ -234,7 +234,7 @@ cfg 值、由 `train_local.py:fit_temperatures()` 在 held-out 切片上后训�
   (p_conflict 四位小数全等,20/20 + 4/5 + 10/10)→ 已发布文件集自足、可加载、行为与交付版一致。
   **未完成**:整包 647MB 从本机下载(镜像→Xet/CDN 均在 ~1MB 处断流,属本机到 HF 的链路问题);
   网络恢复后补端到端:
-  `HF_ENDPOINT=https://hf-mirror.com python kaggle_eval/realtest_v4.py Modusnsus/laya-nli-memory-conflict <out>.json`
+  `HF_ENDPOINT=https://hf-mirror.com python kaggle_eval/realtest_v4.py slow-stack/laya-nli-memory-conflict <out>.json`
 - 无被否决的 v4 候选(v4-ce 未跑),无 `-v4-alt` 需要清理;v3 头留档于
   `laya-nli-conflict-v3`(上一交付版),v2 头留档于 `laya-nli-conflict-v2`
 

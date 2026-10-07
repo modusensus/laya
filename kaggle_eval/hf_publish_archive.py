@@ -20,15 +20,15 @@ CARDS = os.path.join(HERE, 'archive_cards')
 
 # repo_id -> (local checkpoint dir, card file name)
 ARCHIVE = {
-    'Modusnsus/laya-nli-conflict-v5':    (rf'{OUT}\laya-nli-conflict-v5\laya-nli-conflict', 'v5.md'),
-    'Modusnsus/laya-nli-conflict-v5-ce': (rf'{OUT}\laya-nli-conflict-v5-ce\laya-nli-conflict', 'v5-ce.md'),
-    'Modusnsus/laya-nli-conflict-v6':    (rf'{OUT}\laya-nli-conflict-v6', 'v6.md'),
-    'Modusnsus/laya-nli-conflict-v7':    (rf'{OUT}\laya-nli-conflict-v7', 'v7.md'),
-    'Modusnsus/laya-nli-conflict-v8':    (rf'{OUT}\laya-nli-conflict-v8', 'v8.md'),
-    'Modusnsus/laya-nli-conflict-v9':    (rf'{OUT}\laya-nli-conflict-v9', 'v9.md'),
-    'Modusnsus/laya-nli-conflict-v10-l1': (rf'{OUT}\laya-nli-conflict-v10-l1', 'v10-l1.md'),
-    'Modusnsus/laya-nli-conflict-v10-l2': (rf'{OUT}\laya-nli-conflict-v10-l2', 'v10-l2.md'),
-    'Modusnsus/laya-nli-conflict-v10-s2': (rf'{OUT}\laya-nli-conflict-v10-s2', 'v10-s2.md'),
+    'slow-stack/laya-nli-conflict-v5':    (rf'{OUT}\laya-nli-conflict-v5\laya-nli-conflict', 'v5.md'),
+    'slow-stack/laya-nli-conflict-v5-ce': (rf'{OUT}\laya-nli-conflict-v5-ce\laya-nli-conflict', 'v5-ce.md'),
+    'slow-stack/laya-nli-conflict-v6':    (rf'{OUT}\laya-nli-conflict-v6', 'v6.md'),
+    'slow-stack/laya-nli-conflict-v7':    (rf'{OUT}\laya-nli-conflict-v7', 'v7.md'),
+    'slow-stack/laya-nli-conflict-v8':    (rf'{OUT}\laya-nli-conflict-v8', 'v8.md'),
+    'slow-stack/laya-nli-conflict-v9':    (rf'{OUT}\laya-nli-conflict-v9', 'v9.md'),
+    'slow-stack/laya-nli-conflict-v10-l1': (rf'{OUT}\laya-nli-conflict-v10-l1', 'v10-l1.md'),
+    'slow-stack/laya-nli-conflict-v10-l2': (rf'{OUT}\laya-nli-conflict-v10-l2', 'v10-l2.md'),
+    'slow-stack/laya-nli-conflict-v10-s2': (rf'{OUT}\laya-nli-conflict-v10-s2', 'v10-s2.md'),
 }
 FILES = ['model.safetensors', 'rl_agent_config.json', 'metrics.json', 'val_probs.json']
 DIRS = ['encoder', 'tokenizer']

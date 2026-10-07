@@ -71,7 +71,7 @@ Four candidates over the same frozen eval sets. **v4 is the delivered head**
 ```python
 import laya
 
-agent = laya.load('Modusnsus/laya-nli-memory-conflict', device='cpu')
+agent = laya.load('slow-stack/laya-nli-memory-conflict', device='cpu')
 
 QUESTION = {
     'type': 'noul',

@@ -2,9 +2,9 @@
 """HANDOFF_NLI_V12.md §1.3 delivery: publish the v12 head.
 
 Three repos in one pass (user decision 2026-10-07):
-  - Modusnsus/laya-nli-conflict-v12      = r2, DELIVERED head (supersedes v4)
-  - Modusnsus/laya-nli-conflict-v12-r1   = sibling research archive (NOT delivered)
-  - Modusnsus/laya-nli-conflict-v12-r3   = sibling research archive (NOT delivered)
+  - slow-stack/laya-nli-conflict-v12      = r2, DELIVERED head (supersedes v4)
+  - slow-stack/laya-nli-conflict-v12-r1   = sibling research archive (NOT delivered)
+  - slow-stack/laya-nli-conflict-v12-r3   = sibling research archive (NOT delivered)
 
 Gate: verify_claims_v12.py must have exited 0 before this script runs.
 Readback: file sizes for all three repos; full weight SHA256 re-download for the
@@ -20,14 +20,14 @@ from huggingface_hub import HfApi, add_collection_item, hf_hub_download
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 OUT = r'D:\laya-kaggle-output'
-COLLECTION = 'Modusnsus/laya-nli-memory-conflict-head-v4-and-three-run-protocol-6ac03c397eb43e9e3ecf87f0'
+COLLECTION = 'slow-stack/laya-nli-memory-conflict-head-v4-and-three-run-protocol-6ac03c397eb43e9e3ecf87f0'
 R2_SHA = '6648d892449c13f81107b0b5891aca260293d176567ccbe432b8a6ef4af3f72b'
 FILES = ['model.safetensors', 'rl_agent_config.json', 'metrics.json', 'val_probs.json',
          'encoder/config.json', 'tokenizer/tokenizer.json', 'tokenizer/tokenizer_config.json']
 REPOS = {
-    'Modusnsus/laya-nli-conflict-v12': (rf'{OUT}\laya-nli-conflict-v12-r2', os.path.join(HERE, 'delivery_card_v12.md')),
-    'Modusnsus/laya-nli-conflict-v12-r1': (rf'{OUT}\laya-nli-conflict-v12-r1', os.path.join(HERE, 'archive_cards', 'v12-r1.md')),
-    'Modusnsus/laya-nli-conflict-v12-r3': (rf'{OUT}\laya-nli-conflict-v12-r3', os.path.join(HERE, 'archive_cards', 'v12-r3.md')),
+    'slow-stack/laya-nli-conflict-v12': (rf'{OUT}\laya-nli-conflict-v12-r2', os.path.join(HERE, 'delivery_card_v12.md')),
+    'slow-stack/laya-nli-conflict-v12-r1': (rf'{OUT}\laya-nli-conflict-v12-r1', os.path.join(HERE, 'archive_cards', 'v12-r1.md')),
+    'slow-stack/laya-nli-conflict-v12-r3': (rf'{OUT}\laya-nli-conflict-v12-r3', os.path.join(HERE, 'archive_cards', 'v12-r3.md')),
 }
 
 
@@ -61,16 +61,16 @@ def main():
         print(f'OK {repo}: {len(remote)} files, sizes verified', flush=True)
 
     # delivered repo: full weight readback hash
-    back = hf_hub_download('Modusnsus/laya-nli-conflict-v12', 'model.safetensors', repo_type='model')
+    back = hf_hub_download('slow-stack/laya-nli-conflict-v12', 'model.safetensors', repo_type='model')
     got = sha256(back)
     assert got == R2_SHA, (got, R2_SHA)
     print(f'delivered weight readback SHA256 OK: {got}', flush=True)
 
     # v4 card: append the superseded note (idempotent)
-    v4 = 'Modusnsus/laya-nli-memory-conflict'
+    v4 = 'slow-stack/laya-nli-memory-conflict'
     p = hf_hub_download(v4, 'README.md', repo_type='model')
     txt = open(p, encoding='utf-8').read()
-    note = ('\n> **Superseded (2026-10-07)**: [`Modusnsus/laya-nli-conflict-v12`](https://huggingface.co/Modusnsus/laya-nli-conflict-v12)'
+    note = ('\n> **Superseded (2026-10-07)**: [`slow-stack/laya-nli-conflict-v12`](https://huggingface.co/slow-stack/laya-nli-conflict-v12)'
             ' — the first head to pass the full preregistered 14-axis three-run protocol — is now the delivered head.'
             ' v4 remains published for reference.\n')
     if 'Superseded (2026-10-07)' not in txt:
@@ -80,7 +80,7 @@ def main():
     else:
         print('v4 card: note already present', flush=True)
 
-    add_collection_item(COLLECTION, item_id='Modusnsus/laya-nli-conflict-v12',
+    add_collection_item(COLLECTION, item_id='slow-stack/laya-nli-conflict-v12',
                         item_type='model', exists_ok=True)
     print('collection: v12 delivered head added', flush=True)
     print('DELIVERY COMPLETE', flush=True)

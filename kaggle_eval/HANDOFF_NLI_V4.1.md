@@ -296,7 +296,7 @@ ONNX 导出、Ollaya 式打包渠道。
 | 模型 | 规模/底座 | acc | ECE/Brier | 要点 | 链接 |
 |---|---|---|---|---|---|
 | convaiinnovations/laya-typed-decisions(官方) | 421M ModernBERT | 0.766 | 0.213 | RLCD 配方 | <https://huggingface.co/convaiinnovations/laya-typed-decisions> |
-| **我们 typed-decisions-multilingual** | 322M mmBERT | **0.7875** | 0.159 | 比官方 +2.1 分;per-language 欠账 | <https://huggingface.co/Modusnsus/laya-typed-decisions-multilingual> |
+| **我们 typed-decisions-multilingual** | 322M mmBERT | **0.7875** | 0.159 | 比官方 +2.1 分;per-language 欠账 | <https://huggingface.co/slow-stack/laya-typed-decisions-multilingual> |
 | LakoreAI/sev | 421M laya | **0.7885** | Brier 0.0495 / NLL 0.8581 | 纯 soft CE 打败 RLCD,见 C-1 | <https://huggingface.co/LakoreAI/sev> |
 | manjunathshiva/opendecider-nano | 400M ettin | **0.796** | 0.092 | specialist 最优,17 ms/L40S | <https://huggingface.co/manjunathshiva/opendecider-nano> |
 | codepawl/tacet-sonata | 144M mmBERT-small | 0.7625 | 0.095 | 211 vs 14.9 req/s | <https://huggingface.co/codepawl/tacet-sonata> |

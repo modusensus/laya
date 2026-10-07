@@ -2,14 +2,14 @@
   "round": "v12 (three-run protocol r1/r2/r3, HANDOFF_NLI_V12.md §1.2, verdict PASS 2026-10-06)",
   "shipped_head": {
     "run": "r2",
-    "repo": "Modusnsus/laya-nli-conflict-v12",
+    "repo": "slow-stack/laya-nli-conflict-v12",
     "selection_rule": "the only run with all three acceptance batteries at full marks (old-20 20/20, negation-5 5/5, new-10 10/10); all other readings at or near the three-run median",
     "sha256_model": "6648d892449c13f81107b0b5891aca260293d176567ccbe432b8a6ef4af3f72b",
     "weights_bytes": 643835524
   },
   "sibling_archives": {
-    "r1": {"repo": "Modusnsus/laya-nli-conflict-v12-r1", "sha256_model": "4269ec6bf8a64eee8aed9693395ac2f3d37119531f7d582869b05f048a27dc9b"},
-    "r3": {"repo": "Modusnsus/laya-nli-conflict-v12-r3", "sha256_model": "b2bf87bee5a0d379a1f8a633458389c389ceee7e61fe532ff52203d37d79f9f8"}
+    "r1": {"repo": "slow-stack/laya-nli-conflict-v12-r1", "sha256_model": "4269ec6bf8a64eee8aed9693395ac2f3d37119531f7d582869b05f048a27dc9b"},
+    "r3": {"repo": "slow-stack/laya-nli-conflict-v12-r3", "sha256_model": "b2bf87bee5a0d379a1f8a633458389c389ceee7e61fe532ff52203d37d79f9f8"}
   },
   "claims": [
     {"id": "main_val_r1", "value": 0.904, "source": "data_local/val_probs_v12_r1.json", "derive": "1 - mean((p_true>=0.5) != (gold==1))"},

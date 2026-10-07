@@ -55,7 +55,7 @@ Contradiction:non-contradiction ≈ 1:2. Soft gold is graded (`0.95/0.05` style)
 
 ## Provenance
 
-- Models trained on this data: [`Modusnsus/laya-nli-memory-conflict`](https://huggingface.co/Modusnsus/laya-nli-memory-conflict) (delivered head) and the rounds 5–10 research-archive repos (see the archive index on the v4 model card).
+- Models trained on this data: [`slow-stack/laya-nli-memory-conflict`](https://huggingface.co/slow-stack/laya-nli-memory-conflict) (delivered head) and the rounds 5–10 research-archive repos (see the archive index on the v4 model card).
 - Data generators, acceptance/diagnostic sets and the full gate protocol: [`modusensus/laya` → `kaggle_eval/`](https://github.com/modusensus/laya/tree/main/kaggle_eval)
 - The 35 acceptance cases and 18 diagnostic contrast pairs are **not** in this dataset (they live in the eval code in `kaggle_eval/` and share zero verbatim overlap with the training corpus by enforced assertion).
 - Round 11 (Kaggle version v16) added: B2-isomorphic upsampling (lever 1), unrelated-supplement / temporary-preference control rows (lever 1b) and a 9-case isomorphic family diagnostic — per [`HANDOFF_NLI_V11.md`](https://github.com/modusensus/laya/blob/main/kaggle_eval/HANDOFF_NLI_V11.md).

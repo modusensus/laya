@@ -5,7 +5,7 @@ baseline rerun on the official LocalLLaMA/typed-decisions all/test (400 cases),
 then choice-question option-name renames (neutral A/B..., per-question random
 strings) mapped back through the position bijection; flips + McNemar.
 
-Model pinned: Modusnsus/laya-typed-decisions-multilingual revision
+Model pinned: slow-stack/laya-typed-decisions-multilingual revision
 d4385065972ea1f5b0a8495fac40016233a02b8e (weights sha256 8bb8cdd4…2718).
 Dataset pinned: LocalLLaMA/typed-decisions all/test parquet at main
 (f7a2487e…; data files unchanged since 2026-09-16).
@@ -70,7 +70,7 @@ def main():
     # NOTE: PyPI laya 0.3.20 load() has no `revision` kwarg (local editable build does);
     # hub default resolves to the latest revision d438506…, identity pinned by the
     # weights SHA256 recorded on the card (8bb8cdd4…2718).
-    agent = laya.load('Modusnsus/laya-typed-decisions-multilingual', device=device)
+    agent = laya.load('slow-stack/laya-typed-decisions-multilingual', device=device)
 
     base, type_stats = {}, {}
     for i, case in enumerate(cases):

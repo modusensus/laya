@@ -50,6 +50,6 @@ column states; reference implementations: `realtest_v2.py`/`realtest_v4.py`,
 - Case sources (exported programmatically, no hand transcription): `realtest_v2.py`,
   `realtest_v4.py`, `noul_bias_diag.py`, `family_diag.py`, `negfam_diag.py`.
 - Companion datasets: training corpora mirror
-  [Modusnsus/nli-conflict-pairs](https://huggingface.co/datasets/Modusnsus/nli-conflict-pairs);
-  per-round corpus lineage [Modusnsus/nli-conflict-train-lineage](https://huggingface.co/datasets/Modusnsus/nli-conflict-train-lineage).
+  [slow-stack/nli-conflict-pairs](https://huggingface.co/datasets/slow-stack/nli-conflict-pairs);
+  per-round corpus lineage [slow-stack/nli-conflict-train-lineage](https://huggingface.co/datasets/slow-stack/nli-conflict-train-lineage).
 - All content is synthetic; no personal or real-user data. License: CC0-1.0.

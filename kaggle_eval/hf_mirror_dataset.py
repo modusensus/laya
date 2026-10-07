@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 """Mirror the Kaggle dataset daphnelaurent/nli-conflict-pairs to the Hub as
-Modusnsus/nli-conflict-pairs (dataset repo) with a proper dataset card.
+slow-stack/nli-conflict-pairs (dataset repo) with a proper dataset card.
 
 Prereq: `python -m kaggle datasets download daphnelaurent/nli-conflict-pairs
 --unzip -p <dir>` already run. Idempotent: re-upload overwrites in place.
@@ -10,7 +10,7 @@ import sys
 
 from huggingface_hub import HfApi, create_repo
 
-REPO = 'Modusnsus/nli-conflict-pairs'
+REPO = 'slow-stack/nli-conflict-pairs'
 HERE = os.path.dirname(os.path.abspath(__file__))
 SRC = sys.argv[1] if len(sys.argv) > 1 else r'D:\kaggle_pull\nli-conflict-pairs-v15'
 CARD = os.path.join(HERE, 'dataset_card_nli_conflict_pairs.md')

@@ -13,9 +13,9 @@ tags:
 - fine-tuned
 datasets:
 - nyu-mll/multi_nli
-- Modusnsus/nli-conflict-pairs
-- Modusnsus/nli-conflict-train-lineage
-- Modusnsus/laya-nli-conflict-eval
+- slow-stack/nli-conflict-pairs
+- slow-stack/nli-conflict-train-lineage
+- slow-stack/laya-nli-conflict-eval
 metrics:
 - accuracy
 - ece
@@ -46,13 +46,13 @@ memory be superseded by what the user just said, or not?". Built for memory plug
 must decide whether to update a user's stored facts, preferences and constraints.
 
 **This is the delivered head as of 2026-10-07, superseding
-[`Modusnsus/laya-nli-memory-conflict`](https://huggingface.co/Modusnsus/laya-nli-memory-conflict) (v4).**
+[`slow-stack/laya-nli-memory-conflict`](https://huggingface.co/slow-stack/laya-nli-memory-conflict) (v4).**
 It is run **r2** of a preregistered n=3 equal-status training protocol
 ([HANDOFF_NLI_V12.md](https://github.com/modusensus/laya/blob/main/kaggle_eval/HANDOFF_NLI_V12.md))
 whose 14 gate axes **all passed** — the first round to clear the full protocol. The weights
 in this repo are r2's; r1/r3 are published unmodified as sibling archives
-([v12-r1](https://huggingface.co/Modusnsus/laya-nli-conflict-v12-r1) /
-[v12-r3](https://huggingface.co/Modusnsus/laya-nli-conflict-v12-r3)).
+([v12-r1](https://huggingface.co/slow-stack/laya-nli-conflict-v12-r1) /
+[v12-r3](https://huggingface.co/slow-stack/laya-nli-conflict-v12-r3)).
 
 ## Why r2 ships
 
@@ -112,8 +112,8 @@ bimodal thin-edge behaviour the preregistered median aggregation models.
 | repo | run | model.safetensors SHA256 |
 |---|---|---|
 | **this repo** | **r2** | `6648d892449c13f81107b0b5891aca260293d176567ccbe432b8a6ef4af3f72b` |
-| [v12-r1](https://huggingface.co/Modusnsus/laya-nli-conflict-v12-r1) | r1 | `4269ec6bf8a64eee8aed9693395ac2f3d37119531f7d582869b05f048a27dc9b` |
-| [v12-r3](https://huggingface.co/Modusnsus/laya-nli-conflict-v12-r3) | r3 | `b2bf87bee5a0d379a1f8a633458389c389ceee7e61fe532ff52203d37d79f9f8` |
+| [v12-r1](https://huggingface.co/slow-stack/laya-nli-conflict-v12-r1) | r1 | `4269ec6bf8a64eee8aed9693395ac2f3d37119531f7d582869b05f048a27dc9b` |
+| [v12-r3](https://huggingface.co/slow-stack/laya-nli-conflict-v12-r3) | r3 | `b2bf87bee5a0d379a1f8a633458389c389ceee7e61fe532ff52203d37d79f9f8` |
 
 All three weights are 643,835,524 bytes (same architecture).
 
@@ -122,7 +122,7 @@ All three weights are 643,835,524 bytes (same architecture).
 ```python
 import laya, json
 
-agent = laya.load('Modusnsus/laya-nli-conflict-v12')   # or a local checkpoint dir
+agent = laya.load('slow-stack/laya-nli-conflict-v12')   # or a local checkpoint dir
 q = {"type": "noul",
      "instructions": "新信息(new)与已有记忆(known)是否冲突？冲突=矛盾需更新旧记忆，兼容=一致或无关",
      "labels": {"false": "兼容", "true": "冲突"}}
@@ -137,11 +137,11 @@ polarity is part of the wire contract (see the handoffs' polarity notes).
 ## Provenance
 
 - Training corpora (v3–v12, one per round, SHA256 manifest):
-  [Modusnsus/nli-conflict-train-lineage](https://huggingface.co/datasets/Modusnsus/nli-conflict-train-lineage) ·
-  current-round rolling mirror: [Modusnsus/nli-conflict-pairs](https://huggingface.co/datasets/Modusnsus/nli-conflict-pairs)
+  [slow-stack/nli-conflict-train-lineage](https://huggingface.co/datasets/slow-stack/nli-conflict-train-lineage) ·
+  current-round rolling mirror: [slow-stack/nli-conflict-pairs](https://huggingface.co/datasets/slow-stack/nli-conflict-pairs)
 - Frozen evaluation set (66 cases, 7 instruments, scoring recipe):
-  [Modusnsus/laya-nli-conflict-eval](https://huggingface.co/datasets/Modusnsus/laya-nli-conflict-eval)
-- Full index: [the "Laya NLI memory-conflict head — v4 & three-run protocol" collection](https://huggingface.co/collections/Modusnsus/laya-nli-memory-conflict-head-v4-and-three-run-protocol-6ac03c397eb43e9e3ecf87f0)
+  [slow-stack/laya-nli-conflict-eval](https://huggingface.co/datasets/slow-stack/laya-nli-conflict-eval)
+- Full index: [the "Laya NLI memory-conflict head — v4 & three-run protocol" collection](https://huggingface.co/collections/slow-stack/laya-nli-memory-conflict-head-v4-and-three-run-protocol-6ac03c397eb43e9e3ecf87f0)
 - Base model: [`convaiinnovations/laya-multilingual`](https://huggingface.co/convaiinnovations/laya-multilingual);
   tooling & handoffs: [kaggle_eval/](https://github.com/modusensus/laya/tree/main/kaggle_eval)
 - All content synthetic; no personal or real-user data.

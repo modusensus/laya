@@ -67,7 +67,7 @@ scaling——降级为离线重标定实验(runtime 不支持纯配置实现,依
 | 模型 | 规模/底座 | acc | ECE/Brier | 要点 | 链接 |
 |---|---|---|---|---|---|
 | convaiinnovations/laya-typed-decisions(官方) | 421M ModernBERT | 0.766 | 0.213 | RLCD 配方;软 acc 落后 Jev(0.471 vs 0.580) | <https://huggingface.co/convaiinnovations/laya-typed-decisions> |
-| **我们 typed-decisions-multilingual** | 322M mmBERT | **0.7875** | 0.159 | 比官方 +2.1 分;per-language 欠账 | <https://huggingface.co/Modusnsus/laya-typed-decisions-multilingual> |
+| **我们 typed-decisions-multilingual** | 322M mmBERT | **0.7875** | 0.159 | 比官方 +2.1 分;per-language 欠账 | <https://huggingface.co/slow-stack/laya-typed-decisions-multilingual> |
 | LakoreAI/sev(= minhleduc CE 复刻) | 421M laya | **0.7885** | Brier 0.0495 / NLL 0.8581 | 纯 soft CE 打败 RLCD,见 C-1 | <https://huggingface.co/LakoreAI/sev> |
 | manjunathshiva/opendecider-nano | 400M ettin 编码器 | **0.796** | 0.092 | 10+ 数据集混合;17 ms/L40S,当前 specialist 最优 | <https://huggingface.co/manjunathshiva/opendecider-nano> |
 | codepawl/tacet-sonata | 144M mmBERT-small | 0.7625 | 0.095 | 与官方打平但 211 vs 14.9 req/s | <https://huggingface.co/codepawl/tacet-sonata> |

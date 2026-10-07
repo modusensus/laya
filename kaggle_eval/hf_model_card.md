@@ -93,7 +93,7 @@ Run verbatim (output below is from this exact snippet):
 ```python
 import laya  # pip install laya
 
-agent = laya.load("Modusnsus/laya-typed-decisions-multilingual")
+agent = laya.load("slow-stack/laya-typed-decisions-multilingual")
 state = {"task": "Rotate the expired TLS certificate on the staging load balancer.",
          "constraints": ["Do not exceed a $50 spend on cloud resources"],
          "trace_summary": {"steps": 11, "duration_s": 32.5, "tool_errors": 0,
@@ -136,7 +136,7 @@ the published English-encoder checkpoint on the official split.
 
 ## Sibling head
 
-[`Modusnsus/laya-nli-memory-conflict`](https://huggingface.co/Modusnsus/laya-nli-memory-conflict) —
+[`slow-stack/laya-nli-memory-conflict`](https://huggingface.co/slow-stack/laya-nli-memory-conflict) —
 a memory-conflict noul head (v4) trained to detect when new information contradicts stored memory;
 the two models share the Laya base and API but answer different questions.
 

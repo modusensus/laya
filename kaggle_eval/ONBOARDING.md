@@ -32,7 +32,7 @@
 | 工具链 | `kaggle_eval/*.py`（gen_* 语料生成、eval_kernel、conformal_abstain、family_diag、leak_audit、band_report、hf_publish、hf_archive_index 等） | 脚本即文档，改动走 commit |
 | 语料真值源 | `data_local/nli_conflict_train_v11.jsonl`（15914 行）；Kaggle 数据集 `daphnelaurent/nli-conflict-pairs` v16 | 携带链与卫生断言见 V11 交接书 |
 | 本机 checkpoint | `D:\laya-kaggle-output\`（v4 现役 + v5–v11 各臂） | SHA256 见 `kaggle_eval/archive_sha256_manifest.txt` |
-| 公开发布 | HF `Modusnsus/laya-nli-memory-conflict`（v4 现役）+ v5–v10 九个归档仓 + 合集 | 归档卡面数字取自本地 metrics 真值源 |
+| 公开发布 | HF `slow-stack/laya-nli-memory-conflict`（v4 现役）+ v5–v10 九个归档仓 + 合集 | 归档卡面数字取自本地 metrics 真值源 |
 | 工作日志 | 本 fork 独有的提交历史（round-N task book → execution → record 节奏） | `git log` 就是流水账 |
 | AI 私有记忆 | 各 agent 自管（如 ZCode 在 `~/.zcode/cli/memories/`） | **不共享**。重要结论必须落盘到 HANDOFF 或本文档 |
 
@@ -42,12 +42,12 @@
 - Python：一律 `D:\Miniconda\envs\laya-ft\python.exe`（torch CPU + transformers + datasets + laya 可编辑安装）。
 - **C 盘空间敏感**：大文件一律放 D 盘；例外 `C:\kaggle_cfg\` 是 ASCII 路径暂存区，Kaggle 工具链依赖它。
 - 凭据：Kaggle `C:\kaggle_cfg\kaggle.json`（经环境变量使用，值不落盘不进日志）；HF 已 `hf auth login`（classic write token，注意两处同步：`~/.cache/huggingface/token` 与 `D:\hf_cache\token`，HF_HOME 指向后者）。
-- 账号：GitHub `modusensus`、HF `Modusnsus`、Kaggle `daphnelaurent`（均为公开身份）。
+- 账号：GitHub `modusensus`、HF `Modusnsus`（**仓库已于 2026-10-08 全部迁入组织 `slow-stack`**，新地址 `slow-stack/<repo>`，旧地址 307 跳转）、Kaggle `daphnelaurent`（均为公开身份）。
 - 已知坑：Git Bash 自带 ssh 读不到 `~/.ssh/config`（中文用户名路径编码 bug），hf.co 的 git 操作要用 Windows OpenSSH（`C:\Windows\System32\OpenSSH\ssh.exe`）。
 
 ## 4. 现状快照（2026-10-04）
 
-- **v4 现役**：HF `Modusnsus/laya-nli-memory-conflict`（公开，apache-2.0）。软冲突 p_true 置信天花板 ≈0.92——下游把头接进记忆插件时，自动写入阈值不得 >0.92。
+- **v4 现役**：HF `slow-stack/laya-nli-memory-conflict`（公开，apache-2.0）。软冲突 p_true 置信天花板 ≈0.92——下游把头接进记忆插件时，自动写入阈值不得 >0.92。
 - **v11 三跑协议判定 FAIL（终局，2026-10-04 落盘）**：13 轴 10 PASS / 3 FAIL。
   - FAIL：轴 1 主 val 三跑中位 0.895 < 0.896（差 1 例）；轴 3 new10（r2=9/10）；轴 4 negation（r2=4/5）——后两轴是「三跑全满分」口径下的薄边单例翻转。
   - PASS 亮点：老 20 三跑 60/60（杠杆 1b 根治）；**家族轴三跑全绿**（family mean p 0.2169 / 0.0939 / 0.0794，中位 0.0939，零高置信案）vs 旧单案 B2 读数摆幅 0.544↔0.107——家族率仪器设计被三跑实证；conformal 六档全过。
@@ -105,7 +105,7 @@
 
 ## 8. 当前计划与待办（2026-10-07）
 
-1. **v12 已交付（2026-10-07,b558d6b）**：14/14 轴全 PASS（项目史首次过完整协议）,交付头 = **r2**（`Modusnsus/laya-nli-conflict-v12`,SHA 6648d892…;选择标准=唯一三验收段全满分的跑）,r1/r3 同批归档（`-v12-r1`/`-v12-r3`）,v4 卡面已加 superseded 注记,合集 5 项含 v12。claims 包 54 条 verify exit 0（§1.3 推前门）。执行波折：r1 本地评测曾因 Windows 应用控制策略拦 torch DLL（WinError 4551）进 ERROR_eval_r1 ~2.5h,SAC 自行放行后人工解冻（状态文件有 manual_thaw 审计记录）。
+1. **v12 已交付（2026-10-07,b558d6b）**：14/14 轴全 PASS（项目史首次过完整协议）,交付头 = **r2**（`slow-stack/laya-nli-conflict-v12`,SHA 6648d892…;选择标准=唯一三验收段全满分的跑）,r1/r3 同批归档（`-v12-r1`/`-v12-r3`）,v4 卡面已加 superseded 注记,合集 5 项含 v12。claims 包 54 条 verify exit 0（§1.3 推前门）。执行波折：r1 本地评测曾因 Windows 应用控制策略拦 torch DLL（WinError 4551）进 ERROR_eval_r1 ~2.5h,SAC 自行放行后人工解冻（状态文件有 manual_thaw 审计记录）。
 2. **v13 执行完毕判 FAIL(2026-10-08 02:16,phase=done,verdict_rc=1)**:纯协议轮(语料/kernel/数据集零改动),三跑 = kernel version 15/16/17。14 轴 **11 PASS / 3 FAIL**——轴 1 主 val 中位 0.899 < 0.900(r1 0.910 历轮最高/r2 0.899/r3 0.898,差 1 例);轴 10 conformal r2 弃权 0.352–0.354 超 35% 门 0.2–0.4pp(v12 六跑全过,方差性压线破);轴 13 negfam r1/r2 各 2 案低置信(r3 1 案;N8 device en 连续 4 跑低置信,均值 0.712–0.785)。验收三段三跑全稳(old20 20/19/20 零重复、neg 5/5/5、new 10/10/10)。**负结论照交:v12 交付头不动、HF 不动、不叠修补(§1.3)**;claims_v13 有意省略(承 §1.4 先例)。**v14 议题候选**(判定后讨论,不 gate-shopping):①negfam N3/N8 案面审查(仪器修订议题,须用户仲裁预注册);②主 val 门 0.900 的定位(重估「恢复筛选力」的代价演示——v13 FAIL 是门在工作不是事故);③conformal 弃权侧方差重裁(v10 §6 先例)。编排 cron automation-7eef5deb 已无作用可删。
 3. **待用户拍板**：v1/v2/v2-e3/v3 早期 ckpt 与 typed_decisions 目录是否补传 HF 归档。
 4. **已清理**：定时任务 automation-f6e9077a（v11）、automation-331e565f（v12,用户已删）。

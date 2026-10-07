@@ -8,14 +8,14 @@ import sys
 
 from huggingface_hub import HfApi, hf_hub_download
 
-V4 = 'Modusnsus/laya-nli-memory-conflict'
-COLL = 'Modusnsus/laya-nli-conflict-rounds'
+V4 = 'slow-stack/laya-nli-memory-conflict'
+COLL = 'slow-stack/laya-nli-conflict-rounds'
 # 合集范围(用户拍板 2026-10-03):现役 v4 + 三跑协议核心样本(v9 / S2 / L2)
 COLLECTION_ITEMS = [
     V4,
-    'Modusnsus/laya-nli-conflict-v9',
-    'Modusnsus/laya-nli-conflict-v10-s2',
-    'Modusnsus/laya-nli-conflict-v10-l2',
+    'slow-stack/laya-nli-conflict-v9',
+    'slow-stack/laya-nli-conflict-v10-s2',
+    'slow-stack/laya-nli-conflict-v10-l2',
 ]
 ARCHIVE = [
     ('laya-nli-conflict-v5', 'Round 5 arm A — RL+CE (v4 recipe); RL term clashed with graded soft targets'),
@@ -40,7 +40,7 @@ def main():
     try:
         col = api.create_collection(
             'Laya NLI memory-conflict head — v4 & three-run protocol',
-            namespace='Modusnsus',
+            namespace='slow-stack',
             description='Delivered head (v4) plus the round-9/10 same-config runs that '
                         'established the three-run noise band (v9 / S2 / L2).',
             exists_ok=True)
@@ -60,7 +60,7 @@ def main():
     with io.open(p, encoding='utf-8') as f:
         card = f.read()
     if ANCHOR in card:
-        old_tail = 'All repos are visible on [the Modusnsus profile](https://huggingface.co/Modusnsus).'
+        old_tail = 'All repos are visible on [the slow-stack organization](https://huggingface.co/slow-stack).'
         if cid and old_tail in card and 'collections/' not in card:
             new_tail = ('The full index also lives in [the "Laya NLI memory-conflict head — '
                         'v4 & three-run protocol" collection](https://huggingface.co/collections/'
@@ -74,12 +74,12 @@ def main():
         return
     tail = (f'\n\nAll ten repos are grouped in [the "Laya NLI memory-conflict head — rounds" collection](https://huggingface.co/collections/{cid}).'
             if cid else
-            '\n\nAll repos are visible on [the Modusnsus profile](https://huggingface.co/Modusnsus).')
+            '\n\nAll repos are visible on [the slow-stack organization](https://huggingface.co/slow-stack).')
     section = f'\n\n{ANCHOR}\n\n' \
         'Rounds 5–10 did not pass their acceptance gates, so **v4 remains the delivered head**. ' \
         'Each round checkpoint is preserved as a separate research-archive repo (NOT delivered; ' \
         'every card lists the failed gates, weight SHA256 and provenance):\n\n' + '\n'.join(
-            f'- [`Modusnsus/{n}`](https://huggingface.co/Modusnsus/{n}) — {d}' for n, d in ARCHIVE
+            f'- [`slow-stack/{n}`](https://huggingface.co/slow-stack/{n}) — {d}' for n, d in ARCHIVE
         ) + tail
     api.upload_file(path_or_fileobj=(card + section).encode('utf-8'), path_in_repo='README.md',
                     repo_id=V4, commit_message='Add rounds 5-10 research archive index to model card')
