@@ -3,7 +3,7 @@
 > 给新加入的 AI 协作者（以及未来的我们自己）：这一页是进入项目的入口。
 > 权威数字一律以 §2「信息地图」列出的真值源为准，本文快照只做定位。
 >
-> 最后更新：2026-10-04（v11 三跑协议判定 FAIL 落盘后）。
+> 最后更新：2026-10-11（v12 交付 + v13 判定 FAIL + fork 同步上游 0.4.2 之后）。
 > **状态变更时更新本文档对应小节，不要只写各 agent 的私有记忆**——私有记忆不共享。
 
 ## 0. 一分钟概览
@@ -12,7 +12,7 @@
 
 工作方式：数据与评测工具在本仓 `kaggle_eval/`，语料推 Kaggle 数据集，训练跑 Kaggle 免费 GPU kernel，产物回本机评测，按**预注册验收协议**逐轴判定；达标才交付（推 Hugging Face），否则负结论照交、现役版本不动。
 
-**当前状态一句话**：v4 已交付并公开在 HF（现役）；v5–v11 共 7 轮迭代未达交付门槛；最新 v11 走完三跑预注册协议，13 轴 10 PASS / 3 FAIL 判 FAIL——协议在正确工作，不是事故。
+**当前状态一句话**：现役交付头是 **v12**（HF `slow-stack/laya-nli-conflict-v12`，2026-10-07 交付，14 轴 14 PASS，取代 v4）；v5–v11 七轮未达门槛（权重已归档）；v13 是纯协议复刻轮、判 FAIL 11/14，按 §1.3「负结论照交、HF 不动」；v14 三个议题候选等用户拍板（见 §8）。协议在正确工作，不是事故。
 
 ## 1. 团队与分工
 
@@ -27,12 +27,12 @@
 
 | 内容 | 位置 | 效力 |
 |---|---|---|
-| 项目权威上下文 | `kaggle_eval/HANDOFF_NLI_V11.md`（当前轮）+ `HANDOFF_NLI_V2~V10.md`（历史） | **权威**。汇报数字不要靠记忆复述，回真值源取 |
-| 验收判定 | `kaggle_eval/protocol_verdict.py`；v11 判定日志 `data_local/protocol_verdict_v11.log` | 复现命令见 §4 |
+| 项目权威上下文 | `kaggle_eval/HANDOFF_NLI_V13.md`（最新任务书）+ `HANDOFF_NLI_V12.md`（现役头的任务书）+ `HANDOFF_NLI_V2~V11.md`（历史） | **权威**。汇报数字不要靠记忆复述，回真值源取。注意：v12/v13 交接书只写了任务书，**没有「第 N 轮执行结果」小节**（v11 有，见 `ROUND11_CLOSEOUT_GAPS.md` 缺口 1），逐轴读数在 §8 与 `data_local/protocol_verdict_v12.log` / `_v13.log` |
+| 验收判定 | `kaggle_eval/protocol_verdict.py`；判定日志 `data_local/protocol_verdict_v11.log` / `_v12.log` / `_v13.log` | 复现命令见 §4 |
 | 工具链 | `kaggle_eval/*.py`（gen_* 语料生成、eval_kernel、conformal_abstain、family_diag、leak_audit、band_report、hf_publish、hf_archive_index 等） | 脚本即文档，改动走 commit |
-| 语料真值源 | `data_local/nli_conflict_train_v11.jsonl`（15914 行）；Kaggle 数据集 `daphnelaurent/nli-conflict-pairs` v16 | 携带链与卫生断言见 V11 交接书 |
-| 本机 checkpoint | `D:\laya-kaggle-output\`（v4 现役 + v5–v11 各臂） | SHA256 见 `kaggle_eval/archive_sha256_manifest.txt` |
-| 公开发布 | HF `slow-stack/laya-nli-memory-conflict`（v4 现役）+ v5–v10 九个归档仓 + 合集 | 归档卡面数字取自本地 metrics 真值源 |
+| 语料真值源 | `data_local/nli_conflict_train_v12.jsonl`（15950 行，本机实数已核）；Kaggle 数据集 `daphnelaurent/nli-conflict-pairs` v17；v13 语料与 v12 逐字节同一份（零改动轮） | 携带链与卫生断言见 V12/V13 交接书 |
+| 本机 checkpoint | `D:\laya-kaggle-output\`（v1–v13 各臂；v12/v13 三跑各有根目录 + `checkpoint_latest/` 两份同尺寸副本） | SHA256 见 `kaggle_eval/archive_sha256_manifest.txt`（v5–v10 九档 + v12/v13 三跑） |
+| 公开发布 | HF 组织 `slow-stack`：14 个模型仓（现役头 `laya-nli-conflict-v12` = r2 权重、被取代的 `laya-nli-memory-conflict` = v4、v5–v10 九个归档仓、v12-r1/r3、`laya-typed-decisions-multilingual`）+ 3 个数据集仓（`nli-conflict-pairs`、`laya-nli-conflict-eval` 66 案、`nli-conflict-train-lineage` v3–v12） | 归档卡面数字取自本地 metrics 真源；合集只挂了 4 项，见 §8 待办 |
 | 工作日志 | 本 fork 独有的提交历史（round-N task book → execution → record 节奏） | `git log` 就是流水账 |
 | AI 私有记忆 | 各 agent 自管（如 ZCode 在 `~/.zcode/cli/memories/`） | **不共享**。重要结论必须落盘到 HANDOFF 或本文档 |
 
@@ -42,23 +42,25 @@
 - Python：一律 `D:\Miniconda\envs\laya-ft\python.exe`（torch CPU + transformers + datasets + laya 可编辑安装）。
 - **C 盘空间敏感**：大文件一律放 D 盘；例外 `C:\kaggle_cfg\` 是 ASCII 路径暂存区，Kaggle 工具链依赖它。
 - 凭据：Kaggle `C:\kaggle_cfg\kaggle.json`（经环境变量使用，值不落盘不进日志）；HF 已 `hf auth login`（classic write token，注意两处同步：`~/.cache/huggingface/token` 与 `D:\hf_cache\token`，HF_HOME 指向后者）。
-- 账号：GitHub `modusensus`、HF `Modusnsus`（**仓库已于 2026-10-08 全部迁入组织 `slow-stack`**，新地址 `slow-stack/<repo>`，旧地址 307 跳转）、Kaggle `daphnelaurent`（均为公开身份）。
+- 账号：GitHub `modusensus`、HF `Modusensus`（2026-10-11 `hf auth whoami` 实查更正：此前记作 `Modusnsus` 是笔误，两边拼写其实一致，只差大小写。**仓库已于 2026-10-08 全部迁入组织 `slow-stack`**，新地址 `slow-stack/<repo>`，旧地址 307 跳转）、Kaggle `daphnelaurent`（均为公开身份）。
 - 已知坑：Git Bash 自带 ssh 读不到 `~/.ssh/config`（中文用户名路径编码 bug），hf.co 的 git 操作要用 Windows OpenSSH（`C:\Windows\System32\OpenSSH\ssh.exe`）。
 
-## 4. 现状快照（2026-10-04）
+## 4. 现状快照（2026-10-11）
 
-- **v4 现役**：HF `slow-stack/laya-nli-memory-conflict`（公开，apache-2.0）。软冲突 p_true 置信天花板 ≈0.92——下游把头接进记忆插件时，自动写入阈值不得 >0.92。
-- **v11 三跑协议判定 FAIL（终局，2026-10-04 落盘）**：13 轴 10 PASS / 3 FAIL。
-  - FAIL：轴 1 主 val 三跑中位 0.895 < 0.896（差 1 例）；轴 3 new10（r2=9/10）；轴 4 negation（r2=4/5）——后两轴是「三跑全满分」口径下的薄边单例翻转。
-  - PASS 亮点：老 20 三跑 60/60（杠杆 1b 根治）；**家族轴三跑全绿**（family mean p 0.2169 / 0.0939 / 0.0794，中位 0.0939，零高置信案）vs 旧单案 B2 读数摆幅 0.544↔0.107——家族率仪器设计被三跑实证；conformal 六档全过。
-  - 负结论照交：v4 不动、HF 不动、不叠修补。复现：`python kaggle_eval/protocol_verdict.py --tags r1,r2,r3 --prefix v11_`（日志 `data_local/protocol_verdict_v11.log`）。
-- 训练通道：Kaggle 免费 GPU，r1–r3 = kernel `laya-nli-conflict-ce` version 9/10/11（约 17 分钟/跑）；数据集 v16（15914 行）。
-- fork 已同步上游 0.3.24–0.3.26（2026-10-04，merge commit b113c93）。
+- **v12 现役**：HF `slow-stack/laya-nli-conflict-v12`（公开，apache-2.0），权重是三跑协议的 **r2**；`metrics.json` = val_accuracy 0.903 / val_ece 0.0209 / n_val 1000 / no_rl。三跑主 val 0.904 / 0.903 / 0.907（中位 0.904，对当轮 0.896 门余量 8 例），14 轴全 PASS——v5 起首个达标轮。r1/r3 原样归档为 `laya-nli-conflict-v12-r1` / `-v12-r3`。三档权重 SHA256 已做到「本机实算 = 卡面 = Hub LFS 指针」三方一致（2026-10-11 复核，台账 `kaggle_eval/archive_sha256_manifest.txt`）。
+- **v13 三跑协议判定 FAIL（终局，2026-10-08 落盘）**：纯协议轮（语料、kernel、数据集零改动，唯一变化是主 val 门按预注册升到 0.900）。14 轴 **11 PASS / 3 FAIL**。
+  - FAIL：轴 1 主 val 中位 0.899 < 0.900（三跑 0.910 / 0.899 / 0.898，错 90 / 101 / 102，差 1 例）；轴 10 conformal r2 弃权 0.352–0.354 超 35% 门 0.2–0.4pp（v12 六跑全过，属方差性压线破）；轴 13 negfam r1/r2 各 2 案低置信（r3 1 案；N8 device en 连续 4 跑低置信，均值 0.712–0.785）。
+  - PASS 亮点：验收三段三跑全稳（old20 20/19/20 零重复、negation 5/5/5、new10 10/10/10）；轴 12 family 与轴 14 卫生 0/35 达标。
+  - 负结论照交：v12 头不动、HF 不动、不叠修补；`claims_v13.json` 按 §1.4 先例有意省略。复现：`python kaggle_eval/protocol_verdict.py --protocol v13 --tags r1,r2,r3 --prefix v13_`（日志 `data_local/protocol_verdict_v13.log`）。
+- **历轮**：v4（0.901 / 0.0192）已被 v12 取代但仍公开在 HF；v5–v11 未达门槛，v5–v10 九个 ckpt 归档在 HF，v11 从未上传。逐轴读数见各轮 HANDOFF 与 §8。
+- **下游阈值提醒**：原快照记的「软冲突 p_true 置信天花板 ≈0.92，自动写入阈值不得 >0.92」是 **v4** 的读数，v12 侧同类天花板尚未按本机工件重算。接手者要定阈值就从 `data_local/conf_band_v12_*.txt` 重算，别沿用 0.92。
+- 训练通道：Kaggle 免费 GPU；v12 三跑 = kernel version 12/13/14，v13 三跑 = 15/16/17；数据集 v17（15950 行）。
+- fork 已同步上游 **0.4.2**（2026-10-11，merge commit 39c6784，203 个上游提交，与 `kaggle_eval/` 零文件重叠）。
 
 ## 5. 新会话启动清单
 
 1. 读本文档。
-2. 读 `kaggle_eval/HANDOFF_NLI_V11.md`（当前轮上下文；需要历史与「三大坑」背景时再读 V2/V3）。
+2. 读 `kaggle_eval/HANDOFF_NLI_V13.md`（最新一轮任务书）与 `HANDOFF_NLI_V12.md`（现役交付头的任务书）；需要历史与「三大坑」背景时再读 V2/V3。注意这两份都**没有**「执行结果」小节，逐轴读数回 §4/§8 与 `data_local/protocol_verdict_v1*.log` 取。
 3. `git log --oneline -30` + `ls kaggle_eval/`——确认别的 agent 已经做了什么，别重写。
 4. 需要报数字时回 §2 真值源取，并保证本机可复现。
 5. 不确定的事问用户；用户没拍板的事不动手。
