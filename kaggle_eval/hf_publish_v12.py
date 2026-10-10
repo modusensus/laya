@@ -20,7 +20,7 @@ from huggingface_hub import HfApi, add_collection_item, hf_hub_download
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 OUT = r'D:\laya-kaggle-output'
-COLLECTION = 'slow-stack/laya-nli-memory-conflict-head-v4-and-three-run-protocol-6ac03c397eb43e9e3ecf87f0'
+COLLECTION = 'slow-stack/laya-nli-memory-conflict-heads-v12-and-three-run-protocol-6ac698ed9a92a16917804f5b'
 R2_SHA = '6648d892449c13f81107b0b5891aca260293d176567ccbe432b8a6ef4af3f72b'
 FILES = ['model.safetensors', 'rl_agent_config.json', 'metrics.json', 'val_probs.json',
          'encoder/config.json', 'tokenizer/tokenizer.json', 'tokenizer/tokenizer_config.json']

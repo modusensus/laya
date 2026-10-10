@@ -20,7 +20,7 @@ metrics:
 
 # laya-nli-conflict-v5-ce — research archive (round 5, arm B), NOT delivered
 
-> ⚠️ **Research archive — NOT a delivered model.** This checkpoint failed its round's acceptance gates and was never shipped. The current production head is [`slow-stack/laya-nli-memory-conflict`](https://huggingface.co/slow-stack/laya-nli-memory-conflict) (v4). Uploaded 2026-10-02 for provenance/backup while round 11 (multi-run verdict protocol) waits for Kaggle GPU quota.
+> ⚠️ **Research archive — NOT a delivered model.** This checkpoint failed its round's acceptance gates and was never shipped. The current production head is [`slow-stack/laya-nli-conflict-v12`](https://huggingface.co/slow-stack/laya-nli-conflict-v12) (v12, delivered 2026-10-07; it superseded v4). Uploaded 2026-10-02 for provenance/backup while round 11 (multi-run verdict protocol) waits for Kaggle GPU quota.
 
 Round 5 (2026-09-28) arm B: **pure CE on graded soft targets**, same corpus as arm A (see [`laya-nli-conflict-v5`](https://huggingface.co/slow-stack/laya-nli-conflict-v5)).
 

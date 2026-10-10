@@ -9,9 +9,14 @@ import sys
 from huggingface_hub import HfApi, hf_hub_download
 
 V4 = 'slow-stack/laya-nli-memory-conflict'
-COLL = 'slow-stack/laya-nli-conflict-rounds'
+HEAD = 'slow-stack/laya-nli-conflict-v12'
+COLL = 'slow-stack/laya-nli-conflict-rounds'  # never used; see COLLECTION_ITEMS
 # 合集范围(用户拍板 2026-10-03):现役 v4 + 三跑协议核心样本(v9 / S2 / L2)
+# 2026-10-11 扩展:现役头换成 v12 后,把 v12 + r1/r3 按同一形状加进来(v4 保留,卡面已标 superseded)
 COLLECTION_ITEMS = [
+    HEAD,
+    'slow-stack/laya-nli-conflict-v12-r1',
+    'slow-stack/laya-nli-conflict-v12-r3',
     V4,
     'slow-stack/laya-nli-conflict-v9',
     'slow-stack/laya-nli-conflict-v10-s2',
@@ -39,10 +44,11 @@ def main():
     cid = None
     try:
         col = api.create_collection(
-            'Laya NLI memory-conflict head — v4 & three-run protocol',
+            'Laya NLI memory-conflict heads — v12 & three-run protocol',
             namespace='slow-stack',
-            description='Delivered head (v4) plus the round-9/10 same-config runs that '
-                        'established the three-run noise band (v9 / S2 / L2).',
+            description='Delivered head: laya-nli-conflict-v12 (r2 weights), its r1/r3 runs '
+                        'archived alongside, plus v4 (superseded 2026-10-07) and the '
+                        'v9/v10 noise-band runs.',
             exists_ok=True)
         cid = getattr(col, 'slug', None) or getattr(col, 'id', None)
         print('collection:', cid, flush=True)
@@ -76,7 +82,7 @@ def main():
             if cid else
             '\n\nAll repos are visible on [the slow-stack organization](https://huggingface.co/slow-stack).')
     section = f'\n\n{ANCHOR}\n\n' \
-        'Rounds 5–10 did not pass their acceptance gates, so **v4 remains the delivered head**. ' \
+        'Rounds 5–10 did not pass their acceptance gates; v4 was the delivered head until **v12** passed the full protocol on 2026-10-07. ' \
         'Each round checkpoint is preserved as a separate research-archive repo (NOT delivered; ' \
         'every card lists the failed gates, weight SHA256 and provenance):\n\n' + '\n'.join(
             f'- [`slow-stack/{n}`](https://huggingface.co/slow-stack/{n}) — {d}' for n, d in ARCHIVE

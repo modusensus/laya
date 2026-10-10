@@ -141,7 +141,7 @@ polarity is part of the wire contract (see the handoffs' polarity notes).
   current-round rolling mirror: [slow-stack/nli-conflict-pairs](https://huggingface.co/datasets/slow-stack/nli-conflict-pairs)
 - Frozen evaluation set (66 cases, 7 instruments, scoring recipe):
   [slow-stack/laya-nli-conflict-eval](https://huggingface.co/datasets/slow-stack/laya-nli-conflict-eval)
-- Full index: [the "Laya NLI memory-conflict head — v4 & three-run protocol" collection](https://huggingface.co/collections/slow-stack/laya-nli-memory-conflict-head-v4-and-three-run-protocol-6ac03c397eb43e9e3ecf87f0)
+- Full index: [the "Laya NLI memory-conflict heads — v12 & three-run protocol" collection](https://huggingface.co/collections/slow-stack/laya-nli-memory-conflict-heads-v12-and-three-run-protocol-6ac698ed9a92a16917804f5b)
 - Base model: [`convaiinnovations/laya-multilingual`](https://huggingface.co/convaiinnovations/laya-multilingual);
   tooling & handoffs: [kaggle_eval/](https://github.com/modusensus/laya/tree/main/kaggle_eval)
 - All content synthetic; no personal or real-user data.
