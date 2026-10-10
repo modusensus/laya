@@ -11,3 +11,22 @@ bcd1b1583e2ada86edda7b5259d430b201a6f72c9c19f2b074ce85f718174088  laya-nli-confl
 ed77fc7d39bb5b8a2416ada5a8e5783dc3bf0aa77dc2d411a2eab2b816aed7e7  laya-nli-conflict-v10-l1/model.safetensors
 e557d46bf488194fb517f472c07275af0342b7b680aaf2dd48c637a45ab98d15  laya-nli-conflict-v10-l2/model.safetensors
 5cbcc08350184ffe9a9fa0da42d7da151bdea09354a1203798d960f8a28724b6  laya-nli-conflict-v10-s2/model.safetensors
+
+# SHA256 manifest — the v12 delivery and the v13 non-delivery (recomputed 2026-10-11)
+# v12 is the delivered head (14/14 axes PASS): r2 ships as
+# https://huggingface.co/slow-stack/laya-nli-conflict-v12, and r1/r3 are archived unchanged as
+# -v12-r1 / -v12-r3. These three hashes were recomputed from the local checkpoints and agree
+# with both kaggle_eval/delivery_card_v12.md and the Hub-side LFS pointers
+# (model_info(repo, files_metadata=True).siblings[].lfs["sha256"]) — three-way match, verified
+# line by line on 2026-10-11.
+# v13 was judged FAIL 11/14 (2026-10-08), so per HANDOFF_NLI_V13 §1.3 ("negative result ships,
+# HF untouched") nothing from it was uploaded. Its runs are hashed here anyway, so the round is
+# verifiable against the local archive.
+# v11 was also never uploaded and is still absent from this ledger.
+# Recompute locally: sha256sum /d/laya-kaggle-output/laya-nli-conflict-v12-r2/model.safetensors
+6648d892449c13f81107b0b5891aca260293d176567ccbe432b8a6ef4af3f72b  laya-nli-conflict-v12-r2/model.safetensors
+4269ec6bf8a64eee8aed9693395ac2f3d37119531f7d582869b05f048a27dc9b  laya-nli-conflict-v12-r1/model.safetensors
+b2bf87bee5a0d379a1f8a633458389c389ceee7e61fe532ff52203d37d79f9f8  laya-nli-conflict-v12-r3/model.safetensors
+701b8dd9f94a9182a35d56f06b39a795c64c3d3352804178d9066ce074732f55  laya-nli-conflict-v13-r1/model.safetensors
+7e3cd1cfb3e4ac3a973d8d56e454f4b28fef95503869634038ff65922b2293d8  laya-nli-conflict-v13-r2/model.safetensors
+7ebcf4319f4cbb0d278f33e764fdf0f790ded07eee7e76d2a8317e7a6ff31932  laya-nli-conflict-v13-r3/model.safetensors
