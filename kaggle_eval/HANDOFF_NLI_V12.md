@@ -83,3 +83,56 @@ v11 语料 15914 行逐字节保留,新增**否定已知冲突**形状控制行 
 - 「中位满分 + 无案 ≥2 跑 miss」轴 FAIL 概率 = 3q²−2q³;q=0.25 ⇒ ≈15.6%;q=0.05 ⇒ ≈0.7%。
 - 否定家族轴(9 案等价 σ_est ≈0.14–0.19,承 V11 A.3 折算):杠杆生效(家族均值 p≈0.8)时假 FAIL <5%;杠杆空转(均值 p≈0.6–0.7)时中位 ≥0.5 门照常拦截。首跑后照报家族 mean p 跨跑 SD(报告项),v13 用实测重估。
 - 联合过线率:12 个门控轴 + 新家族轴,FAIL 事件集中于单坏跑(V11 A.4 实测),真实联合率高于独立乘积;首跑后回填本节。
+
+## 第 12 轮执行结果
+
+**结论:按 §1.2 预注册判定,三跑 14 轴 14 PASS ⇒ PROTOCOL VERDICT: PASS —— 项目史首次走完整协议达标。交付头 = r2(§1.3 的人工确认门由用户点头后执行,2026-10-07 发布);三档权重同日归档,r1/r3 原样上传。FAIL 轴:无。**
+
+(2026-10-07 交付,本节 2026-10-11 按 `ROUND11_CLOSEOUT_GAPS.md` 缺口 1 的同一纪律补写 —— v12/v13 交接书当时只落了任务书、没落执行结果。逐轴读数全部从 `data_local/` 工件与判定日志回读,未凭记忆。)
+
+### 12.0 判定依据(必读)
+
+- 判定命令:`protocol_verdict.py --protocol v12 --tags r1,r2,r3 --prefix v12_`;日志 `data_local/protocol_verdict_v12.log`。
+- claims 包:`claims_v12.json` 54 项 + `verify_claims_v12.py` exit 0(§1.3 的 `hf_publish` 前置门;2026-10-11 在 89 件工件入库后本机重跑仍 exit 0)。
+- 三跑 = kernel `laya-nli-conflict-ce` version **12/13/14**(编排日志原文 `data_local/v12_orchestrate.log`);语料 = Kaggle 数据集 v17 = 15,950 行(本机 `data_local/nli_conflict_train_v12.jsonl` 行数已重数)。
+- 逐跑明细与 89 件产物 2026-10-11 入库(642cbf5);语料 `*.jsonl` 按设计不入库(.gitignore)。
+- 执行波折:r1 本地评测曾因 OS 应用控制策略拦 torch DLL(WinError 4551)进 `ERROR_eval_r1`,解冻后重跑;状态文件的 `manual_thaw` 审计与 `v12_orchestrate_state.json.bak-error-eval-r1` 一并入库。
+
+### 12.1 前置回测(§1.3)
+
+v11 三跑工件按 v12 定稿口径重判 = **FAIL 两轴**(`data_local/protocol_backtest_v12.log`):轴 1 主 val 中位 0.895 < 0.896;轴 13 negfam 因 v11 无该仪器产物而**结构性 FAIL**(新仪器对历史轮"无产物即 FAIL"是设计内行为,不是缺陷)。其余 12 轴 PASS,含轴 2/3/4 全部按中位口径放行(与 v11 原判定"三跑全满分"口径下 r2 两轴 FAIL 形成对照 ⇒ §4-1 的中位化改动确实降低了单坏跑杀伤,而不是放松了门槛)。
+
+### 12.2 三跑逐轴读数(§1.2)
+
+复核来源:τ 取 ckpt `D:\laya-kaggle-output\laya-nli-conflict-v12-r{1,2,3}\rl_agent_config.json` 的 noul 桶(与 verdict 日志逐位一致);band 取 `conf_band_v12_r*.txt` 的 val_soft `band(q90-q10)`;swap/否定/新 10/老 20 取 `memory_conflict_realtest_v12_r*.json` 逐案;家族与 conformal 取 verdict 日志 + `conformal_v12_r*_s{1,2}.json`。
+
+| 轴 | r1 / r2 / r3 | 聚合 | 判定 |
+|---|---|---|---|
+| 1 主 val(err,n=1000) | 0.904(96) / 0.903(97) / 0.907(93) | 中位 0.904 | PASS(≥0.896,余量 8 例) |
+| 2 老 20 | **19** / 20 / 20 | 中位 20;无案 ≥2 跑 miss | PASS(r1 miss=「子集关系」expect false→got true,p 0.8907) |
+| 3 新 10 | 10 / 10 / 10 | 中位 10 | PASS |
+| 4 否定 5 | 5 / 5 / **4** | 中位 5;无案 ≥2 跑 miss | PASS(r3 miss=「否定-无车与通勤兼容」got true,p 0.5253 —— 越过 0.5 仅 0.025 的贴线翻) |
+| 5 val_soft(err,n=300) | 2 / 1 / 1 | 三跑全 ≤3 | PASS |
+| 6 swap | PASS / PASS / PASS | 三跑全 0 | PASS |
+| 7 极性 real·diag | PASS / PASS / PASS | 三跑全 ≤1 | PASS |
+| 8 极性 val_soft | PASS / PASS / PASS | 三跑全 ≤1 | PASS |
+| 9 band(val_soft q90−q10) | 16.70 / 16.05 / 16.73pp | 三跑全 ≥8pp | PASS(同报:主 val band 5.79 / 5.03 / 5.27pp,非门控) |
+| 10 conformal(采用档) | s1 36/50@0.342 + s2 32/50@0.300 / s1 34/50@0.334 + s2 34/50@0.328 / s1 33/47@0.340 + s2 30/47@0.346 | 六档全 ≥50%@≤35% | PASS |
+| 11 偏置诊断 | 13/14 / 13/14 / 13/14 | 3/3 跑 ≥13/14 | PASS |
+| 12 同构家族 mean p(9 案,gold=false) | 0.0806 / 0.0919 / 0.0814 | 中位 0.0814;p≥0.9 案 0/0/0 | PASS |
+| 13 否定家族 mean p(8 案,gold=true,新仪器) | 0.7872 / 0.8022 / 0.7930 | 中位 0.7930;p<0.5 案 1/1/1 | PASS |
+| 14 卫生 | leak_audit 0/35(家族 9+8=17 案零交,生成期断言扩展至 0/51) | — | PASS |
+| τ(noul)(非门控,照报) | 1.0887 / 1.0914 / 1.1080 | — | — |
+| automation@5%(非门控,v11 基线 0.743/0.786/0.793) | 0.814 / 0.781 / 0.781 | — | — |
+
+### 12.3 附录 A 回填(实测联合)
+
+- 三跑共 4 个单跑 FAIL 级薄边事件:轴 2 挂 r1、轴 4 挂 r3、轴 13 三跑各 1 案低置信 —— **无任何一案在 ≥2 跑重复 miss**,中位口径按 §4-1 设计意图生效;FAIL 集中于"该跑自己"的分布与 V11 A.4 实测一致。
+- 轴 4 的 q 实测:r3 翻转一例 ⇒ 该案单跑翻转率按 1/3 记(样本 n=3,不据此改门槛);附录 A 用 q=0.25 估的「中位口径轴 FAIL ≈15.6%」与本轮"贴线案恰好只在 1 跑翻"相容,未触发轴 FAIL。
+- 轴 13 首跑实证:杠杆(36 行否定-已知上采样)未空转 —— 家族 mean p 三跑 0.787/0.802/0.793,对照同构家族 0.08 量级,区分度清晰;跨跑 SD ≈0.008。
+
+### 12.4 交付动作与遗留
+
+- 现役头 = HF [`slow-stack/laya-nli-conflict-v12`](https://huggingface.co/slow-stack/laya-nli-conflict-v12)(r2 权重),`metrics.json` = val_accuracy 0.903 / val_ece 0.0209 / n_val 1000;取代 v4(`laya-nli-memory-conflict`,0.901 / 0.0192),v4 卡面已加 `Superseded (2026-10-07)` 注记。
+- 三档权重 SHA256 已入 `archive_sha256_manifest.txt`(r1 `4269ec6b…` / r2 `6648d892…` / r3 `b2bf87be…`);2026-10-11 做到**本机实算 = 卡面 = Hub LFS 指针**三方逐条一致。
+- 遗留(2026-10-11 处理):卡面所链合集 id 因合集被删除重建而 404、且九张归档卡仍称 v4 为 production head ⇒ 已按 §8 待办 7 修复并复核;**权重与读数未因该修复改动**。
