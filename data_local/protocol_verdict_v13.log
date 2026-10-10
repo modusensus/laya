@@ -1,0 +1,39 @@
+== V13 §1.2 protocol verdict over runs: ['r1', 'r2', 'r3'] (prefix "v13_") ==
+
+main val: [('r1', 0.91, 90), ('r2', 0.899, 101), ('r3', 0.898, 102)] | median: 0.899 | gate: 0.9
+old20: {'r1': 20, 'r2': 19, 'r3': 20} | median: 20 | per-case miss counts: {'无关补充': 1} | repeated(>=2): none
+new10 repeated(>=2): none | negation repeated(>=2): none
+negation: {'r1': 5, 'r2': 5, 'r3': 5} | new10: {'r1': 10, 'r2': 10, 'r3': 10}
+val_soft err: {'r1': 1, 'r2': 1, 'r3': 1}
+swap: {'r1': 'PASS', 'r2': 'PASS', 'r3': 'PASS'}
+polarity gates (real·diag, val_soft): {'r1': (True, True), 'r2': (True, True), 'r3': (True, True)}
+band gate: {'r1': True, 'r2': True, 'r3': True}
+  conformal r1 [s1]: 32/46 @ 0.336 -> PASS
+  conformal r1 [s2]: 31/46 @ 0.298 -> PASS
+  conformal r2 [s1]: 39/54 @ 0.354 -> FAIL
+  conformal r2 [s2]: 36/54 @ 0.352 -> FAIL
+  conformal r3 [s1]: 36/51 @ 0.336 -> PASS
+  conformal r3 [s2]: 33/51 @ 0.328 -> PASS
+diag ok: {'r1': '13/14', 'r2': '13/14', 'r3': '13/14'} | runs >=13/14: 3/3
+family mean p: [('r1', 0.086), ('r2', 0.0877), ('r3', 0.076)] | median: 0.086 | p>=0.9 cases per run: {'r1': 0, 'r2': 0, 'r3': 0}
+negfam mean p: [('r1', 0.7288), ('r2', 0.7122), ('r3', 0.785)] | median: 0.7288 | p<0.5 cases per run: {'r1': 2, 'r2': 2, 'r3': 1}
+leak_audit_v13.txt: present, 0/35
+tau(noul) report-only: {'r1': 1.0961652994155884, 'r2': 1.1152042150497437, 'r3': 1.0829229354858398}
+automation@5% report-only (v11 baseline 0.743/0.786/0.793): {'r1': 0.803, 'r2': 0.781, 'r3': 0.8}
+
+  FAIL  1 main_val(median>=0.9)
+  PASS  2 old20(median=20 AND no case missed in >=2 runs)
+  PASS  3 new10(median=10 AND no case missed in >=2 runs)
+  PASS  4 negation(median=5 AND no case missed in >=2 runs)
+  PASS  5 val_soft(all<=3)
+  PASS  6 swap(all PASS)
+  PASS  7 polarity real·diag(all<=1)
+  PASS  8 polarity val_soft(all<=1)
+  PASS  9 band(all >=8pp)
+  FAIL  10 conformal(adopted rule, all >=50%@<=35%)
+  PASS  11 bias_diag(>=2/3 runs >=13/14)
+  PASS  12 family(median mean-p<0.5 AND all runs <=1 case p>=0.9)
+  FAIL  13 negfam(median mean-p>=0.5 AND all runs <=1 case p<0.5)
+  PASS  14 hygiene(0/35 + family 9+8=17 cases 0 overlap asserted at gen)
+
+PROTOCOL VERDICT: FAIL -> no delivery, HF untouched

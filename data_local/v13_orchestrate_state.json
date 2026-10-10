@@ -1,0 +1,13 @@
+{
+ "phase": "done",
+ "done": [
+  "r1",
+  "r2",
+  "r3"
+ ],
+ "corpus_rows": 15950,
+ "pushed_r1_at": "2026-10-07T22:31:41",
+ "pushed_r2_at": "2026-10-07T23:34:59",
+ "pushed_r3_at": "2026-10-08T01:14:06",
+ "verdict_rc": 1
+}

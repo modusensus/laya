@@ -1,0 +1,179 @@
+[10-06 03:58:14] $ (kaggle) D:\Miniconda\envs\laya-ft\python.exe -m kaggle kernels push -p C:\kaggle_cfg\stage\kernel_v12_r1
+[10-06 03:58:20] Kernel version 12 successfully pushed.  Please check progress at https://www.kaggle.com/code/daphnelaurent/laya-nli-conflict-ce
+[10-06 04:30:20] $ (kaggle) D:\Miniconda\envs\laya-ft\python.exe -m kaggle kernels status daphnelaurent/laya-nli-conflict-ce
+[10-06 04:30:23] daphnelaurent/laya-nli-conflict-ce has status "KernelWorkerStatus.COMPLETE"
+[10-06 04:30:23] $ (kaggle) D:\Miniconda\envs\laya-ft\python.exe -m kaggle kernels output daphnelaurent/laya-nli-conflict-ce -p C:\kaggle_cfg\stage\kernel_v12_r1_out
+[10-06 04:34:23] Output file downloaded to C:\kaggle_cfg\stage\kernel_v12_r1_out\laya-nli-conflict/metrics.json
+Output file downloaded to C:\kaggle_cfg\stage\kernel_v12_r1_out\laya-nli-conflict/model.safetensors
+Output file downloaded to C:\kaggle_cfg\stage\kernel_v12_r1_out\laya-nli-conflict/rl_agent_config.json
+Output file downloaded to C:\kaggle_cfg\stage\kernel_v12_r1_out\laya-nli-conflict/tokenizer/tokenizer.json
+Output file downloaded to C:\kaggle_cfg\stage\kernel_v12_r1_out\laya-nli-conflict/tokenizer/tokenizer_config.json
+Output file downloaded to C:\kaggle_cfg\stage\kernel_v12_r1_out\laya-nli-conflict/val_probs.json
+Output file downloaded to C:\kaggle_cfg\stage\kernel_v12_r1_out\train_nli_conflict.py
+Kernel log downloaded to C:\kaggle_cfg\stage\kernel_v12_r1_out\laya-nli-conflict-ce.log
+[10-06 04:34:24] r1 pulled from C:\kaggle_cfg\stage\kernel_v12_r1_out\laya-nli-conflict -> D:\laya-kaggle-output\laya-nli-conflict-v12-r1
+[10-06 04:34:36] torch blocked (probe 1); retry in 120s
+[10-06 04:36:37] torch blocked (probe 2); retry in 120s
+[10-06 04:38:38] torch blocked (probe 3); retry in 120s
+[10-06 04:40:38] torch blocked (probe 4); retry in 120s
+[10-06 04:42:39] torch blocked (probe 5); retry in 120s
+[10-06 04:44:40] torch blocked (probe 6); retry in 120s
+[10-06 04:46:42] torch blocked (probe 7); retry in 120s
+[10-06 04:48:42] torch blocked (probe 8); retry in 120s
+[10-06 04:50:43] torch blocked (probe 9); retry in 120s
+[10-06 04:52:44] torch blocked (probe 10); retry in 120s
+[10-06 04:54:44] torch blocked (probe 11); retry in 120s
+[10-06 04:56:45] torch blocked (probe 12); retry in 120s
+[10-06 04:58:46] torch blocked (probe 13); retry in 120s
+[10-06 05:00:46] torch blocked (probe 14); retry in 120s
+[10-06 05:02:47] torch blocked (probe 15); retry in 120s
+[10-06 05:04:48] torch blocked (probe 16); retry in 120s
+[10-06 05:06:48] torch blocked (probe 17); retry in 120s
+[10-06 05:08:49] torch blocked (probe 18); retry in 120s
+[10-06 05:10:50] torch blocked (probe 19); retry in 120s
+[10-06 05:12:50] torch blocked (probe 20); retry in 120s
+[10-06 05:14:51] torch blocked (probe 21); retry in 120s
+[10-06 05:16:51] torch blocked (probe 22); retry in 120s
+[10-06 05:18:52] torch blocked (probe 23); retry in 120s
+[10-06 05:20:53] torch blocked (probe 24); retry in 120s
+[10-06 05:22:53] torch blocked (probe 25); retry in 120s
+[10-06 05:24:54] torch blocked (probe 26); retry in 120s
+[10-06 05:26:55] torch blocked (probe 27); retry in 120s
+[10-06 05:28:55] torch blocked (probe 28); retry in 120s
+[10-06 05:30:56] torch blocked (probe 29); retry in 120s
+[10-06 05:32:57] torch blocked (probe 30); retry in 120s
+[10-06 05:34:57] $ D:\Miniconda\envs\laya-ft\python.exe eval_arm_v12.py D:/laya-kaggle-output/laya-nli-conflict-v12-r1 r1
+[10-06 05:35:08]    (MISSING artifact: D:\laya\data_local/family_diag_v12_r1.json)
+== negfam diag (NEW V12 §2.2) [r1] ==
+     File "D:\Miniconda\envs\laya-ft\Lib\site-packages\torch\__init__.py", line 292, in _load_dll_libraries
+       raise err
+   OSError: [WinError 4551] 应用程序控制策略已阻止此文件。 Error loading "D:\Miniconda\envs\laya-ft\Lib\site-packages\torch\lib\torch_global_deps.dll" or one of its dependencies.
+   (section rc=1; gate outcome -> verdict tool)
+   (MISSING artifact: D:\laya\data_local/negfam_diag_v12_r1.json)
+== done [r1] rc=1 ==
+[10-06 05:35:08] r1 eval battery failed rc=1
+[10-06 05:59:25] state=ERROR_eval_r1 — no-op (human review / finished)
+[10-06 06:29:26] state=ERROR_eval_r1 — no-op (human review / finished)
+[10-06 06:59:24] state=ERROR_eval_r1 — no-op (human review / finished)
+[10-06 07:29:27] state=ERROR_eval_r1 — no-op (human review / finished)
+[10-06 07:59:29] state=ERROR_eval_r1 — no-op (human review / finished)
+[10-06 08:29:30] state=ERROR_eval_r1 — no-op (human review / finished)
+[10-06 08:59:29] state=ERROR_eval_r1 — no-op (human review / finished)
+[10-06 09:29:31] state=ERROR_eval_r1 — no-op (human review / finished)
+[10-06 09:59:29] state=ERROR_eval_r1 — no-op (human review / finished)
+[10-06 10:29:09] state=ERROR_eval_r1 — no-op (human review / finished)
+[10-06 10:59:13] state=ERROR_eval_r1 — no-op (human review / finished)
+[10-06 11:29:10] state=ERROR_eval_r1 — no-op (human review / finished)
+[10-06 11:59:13] state=ERROR_eval_r1 — no-op (human review / finished)
+[10-06 12:29:23] state=ERROR_eval_r1 — no-op (human review / finished)
+[10-06 12:59:13] state=ERROR_eval_r1 — no-op (human review / finished)
+[10-06 13:29:12] state=ERROR_eval_r1 — no-op (human review / finished)
+[10-06 13:59:14] state=ERROR_eval_r1 — no-op (human review / finished)
+[10-06 14:29:18] state=ERROR_eval_r1 — no-op (human review / finished)
+[10-06 14:59:27] state=ERROR_eval_r1 — no-op (human review / finished)
+[10-06 15:29:16] state=ERROR_eval_r1 — no-op (human review / finished)
+[10-06 16:00:42] state=ERROR_eval_r1 — no-op (human review / finished)
+[10-06 18:55:07] MANUAL THAW: ERROR_eval_r1 -> eval_r1 (torch unblocked; r1 artifacts verified; user authorized; backup v12_orchestrate_state.json.bak-error-eval-r1)
+[10-06 18:55:17] $ D:\Miniconda\envs\laya-ft\python.exe eval_arm_v12.py D:/laya-kaggle-output/laya-nli-conflict-v12-r1 r1
+[10-06 19:14:38]    OK   家族F8 laptop name false -> false 0.0782
+   family: 9/9 ok | mean p_conflict 0.0806 | p>=0.9 cases 0
+   saved: D:\laya\data_local/family_diag_v12_r1.json
+== negfam diag (NEW V12 §2.2) [r1] ==
+   MISS 否定家族N8 device (en) true -> false 0.0856
+   negfam: 7/8 ok | mean p_conflict 0.7872 | p<0.5 cases 1
+   saved: D:\laya\data_local/negfam_diag_v12_r1.json
+== done [r1] rc=0 ==
+[10-06 19:15:38] $ (kaggle) D:\Miniconda\envs\laya-ft\python.exe -m kaggle kernels push -p C:\kaggle_cfg\stage\kernel_v12_r2
+[10-06 19:15:43] Kernel version 13 successfully pushed.  Please check progress at https://www.kaggle.com/code/daphnelaurent/laya-nli-conflict-ce
+[10-06 19:20:43] $ (kaggle) D:\Miniconda\envs\laya-ft\python.exe -m kaggle kernels status daphnelaurent/laya-nli-conflict-ce
+[10-06 19:20:48] daphnelaurent/laya-nli-conflict-ce has status "KernelWorkerStatus.RUNNING"
+[10-06 19:20:48] r2 still running; will re-check next tick
+[10-06 19:25:48] $ (kaggle) D:\Miniconda\envs\laya-ft\python.exe -m kaggle kernels status daphnelaurent/laya-nli-conflict-ce
+[10-06 19:25:52] daphnelaurent/laya-nli-conflict-ce has status "KernelWorkerStatus.RUNNING"
+[10-06 19:25:52] r2 still running; will re-check next tick
+[10-06 19:30:52] $ (kaggle) D:\Miniconda\envs\laya-ft\python.exe -m kaggle kernels status daphnelaurent/laya-nli-conflict-ce
+[10-06 19:30:55] daphnelaurent/laya-nli-conflict-ce has status "KernelWorkerStatus.RUNNING"
+[10-06 19:30:55] r2 still running; will re-check next tick
+[10-06 19:35:55] $ (kaggle) D:\Miniconda\envs\laya-ft\python.exe -m kaggle kernels status daphnelaurent/laya-nli-conflict-ce
+[10-06 19:35:59] daphnelaurent/laya-nli-conflict-ce has status "KernelWorkerStatus.COMPLETE"
+[10-06 19:35:59] $ (kaggle) D:\Miniconda\envs\laya-ft\python.exe -m kaggle kernels output daphnelaurent/laya-nli-conflict-ce -p C:\kaggle_cfg\stage\kernel_v12_r2_out
+[10-06 19:41:02] Output file downloaded to C:\kaggle_cfg\stage\kernel_v12_r2_out\laya-nli-conflict/metrics.json
+Output file downloaded to C:\kaggle_cfg\stage\kernel_v12_r2_out\laya-nli-conflict/model.safetensors
+Output file downloaded to C:\kaggle_cfg\stage\kernel_v12_r2_out\laya-nli-conflict/rl_agent_config.json
+Output file downloaded to C:\kaggle_cfg\stage\kernel_v12_r2_out\laya-nli-conflict/tokenizer/tokenizer.json
+Output file downloaded to C:\kaggle_cfg\stage\kernel_v12_r2_out\laya-nli-conflict/tokenizer/tokenizer_config.json
+Output file downloaded to C:\kaggle_cfg\stage\kernel_v12_r2_out\laya-nli-conflict/val_probs.json
+Output file downloaded to C:\kaggle_cfg\stage\kernel_v12_r2_out\train_nli_conflict.py
+Kernel log downloaded to C:\kaggle_cfg\stage\kernel_v12_r2_out\laya-nli-conflict-ce.log
+[10-06 19:41:04] r2 pulled from C:\kaggle_cfg\stage\kernel_v12_r2_out\laya-nli-conflict -> D:\laya-kaggle-output\laya-nli-conflict-v12-r2
+[10-06 19:41:12] $ D:\Miniconda\envs\laya-ft\python.exe eval_arm_v12.py D:/laya-kaggle-output/laya-nli-conflict-v12-r2 r2
+[10-06 20:00:33]    OK   家族F8 laptop name false -> false 0.0855
+   family: 9/9 ok | mean p_conflict 0.0919 | p>=0.9 cases 0
+   saved: D:\laya\data_local/family_diag_v12_r2.json
+== negfam diag (NEW V12 §2.2) [r2] ==
+   MISS 否定家族N8 device (en) true -> false 0.1932
+   negfam: 7/8 ok | mean p_conflict 0.8022 | p<0.5 cases 1
+   saved: D:\laya\data_local/negfam_diag_v12_r2.json
+== done [r2] rc=0 ==
+[10-06 20:05:33] $ (kaggle) D:\Miniconda\envs\laya-ft\python.exe -m kaggle kernels push -p C:\kaggle_cfg\stage\kernel_v12_r3
+[10-06 20:05:37] Kernel version 14 successfully pushed.  Please check progress at https://www.kaggle.com/code/daphnelaurent/laya-nli-conflict-ce
+[10-06 20:10:38] $ (kaggle) D:\Miniconda\envs\laya-ft\python.exe -m kaggle kernels status daphnelaurent/laya-nli-conflict-ce
+[10-06 20:10:44] daphnelaurent/laya-nli-conflict-ce has status "KernelWorkerStatus.RUNNING"
+[10-06 20:10:44] r3 still running; will re-check next tick
+[10-06 20:15:44] $ (kaggle) D:\Miniconda\envs\laya-ft\python.exe -m kaggle kernels status daphnelaurent/laya-nli-conflict-ce
+[10-06 20:15:48] daphnelaurent/laya-nli-conflict-ce has status "KernelWorkerStatus.RUNNING"
+[10-06 20:15:48] r3 still running; will re-check next tick
+[10-06 20:20:49] $ (kaggle) D:\Miniconda\envs\laya-ft\python.exe -m kaggle kernels status daphnelaurent/laya-nli-conflict-ce
+[10-06 20:20:53] daphnelaurent/laya-nli-conflict-ce has status "KernelWorkerStatus.RUNNING"
+[10-06 20:20:53] r3 still running; will re-check next tick
+[10-06 20:25:53] $ (kaggle) D:\Miniconda\envs\laya-ft\python.exe -m kaggle kernels status daphnelaurent/laya-nli-conflict-ce
+[10-06 20:25:58] daphnelaurent/laya-nli-conflict-ce has status "KernelWorkerStatus.RUNNING"
+[10-06 20:25:58] r3 still running; will re-check next tick
+[10-06 20:30:59] $ (kaggle) D:\Miniconda\envs\laya-ft\python.exe -m kaggle kernels status daphnelaurent/laya-nli-conflict-ce
+[10-06 20:31:03] daphnelaurent/laya-nli-conflict-ce has status "KernelWorkerStatus.COMPLETE"
+[10-06 20:31:03] $ (kaggle) D:\Miniconda\envs\laya-ft\python.exe -m kaggle kernels output daphnelaurent/laya-nli-conflict-ce -p C:\kaggle_cfg\stage\kernel_v12_r3_out
+[10-06 20:33:08] Output file downloaded to C:\kaggle_cfg\stage\kernel_v12_r3_out\laya-nli-conflict/checkpoint_latest/encoder/config.json
+
+('Connection broken: IncompleteRead(420458203 bytes read, 223377321 more expected)', IncompleteRead(420458203 bytes read, 223377321 more expected))
+[10-06 20:33:08] pull attempt 1/3 network-failed; retry in 120s
+[10-06 20:35:08] $ (kaggle) D:\Miniconda\envs\laya-ft\python.exe -m kaggle kernels output daphnelaurent/laya-nli-conflict-ce -p C:\kaggle_cfg\stage\kernel_v12_r3_out
+[10-06 20:36:40] Output file downloaded to C:\kaggle_cfg\stage\kernel_v12_r3_out\laya-nli-conflict/checkpoint_latest/encoder/config.json
+
+('Connection broken: IncompleteRead(95382346 bytes read, 548453178 more expected)', IncompleteRead(95382346 bytes read, 548453178 more expected))
+[10-06 20:36:40] pull attempt 2/3 network-failed; retry in 120s
+[10-06 20:38:40] $ (kaggle) D:\Miniconda\envs\laya-ft\python.exe -m kaggle kernels output daphnelaurent/laya-nli-conflict-ce -p C:\kaggle_cfg\stage\kernel_v12_r3_out
+[10-06 20:40:25] Output file downloaded to C:\kaggle_cfg\stage\kernel_v12_r3_out\laya-nli-conflict/checkpoint_latest/encoder/config.json
+
+('Connection broken: IncompleteRead(136999495 bytes read, 506836029 more expected)', IncompleteRead(136999495 bytes read, 506836029 more expected))
+[10-06 20:40:25] pull network-flaked 3x this tick; phase stays pull_r3 — next tick retries (not an ERROR)
+[10-06 20:45:25] $ (kaggle) D:\Miniconda\envs\laya-ft\python.exe -m kaggle kernels output daphnelaurent/laya-nli-conflict-ce -p C:\kaggle_cfg\stage\kernel_v12_r3_out
+[10-06 20:51:04] Output file downloaded to C:\kaggle_cfg\stage\kernel_v12_r3_out\laya-nli-conflict/metrics.json
+Output file downloaded to C:\kaggle_cfg\stage\kernel_v12_r3_out\laya-nli-conflict/model.safetensors
+Output file downloaded to C:\kaggle_cfg\stage\kernel_v12_r3_out\laya-nli-conflict/rl_agent_config.json
+Output file downloaded to C:\kaggle_cfg\stage\kernel_v12_r3_out\laya-nli-conflict/tokenizer/tokenizer.json
+Output file downloaded to C:\kaggle_cfg\stage\kernel_v12_r3_out\laya-nli-conflict/tokenizer/tokenizer_config.json
+Output file downloaded to C:\kaggle_cfg\stage\kernel_v12_r3_out\laya-nli-conflict/val_probs.json
+Output file downloaded to C:\kaggle_cfg\stage\kernel_v12_r3_out\train_nli_conflict.py
+Kernel log downloaded to C:\kaggle_cfg\stage\kernel_v12_r3_out\laya-nli-conflict-ce.log
+[10-06 20:51:06] r3 pulled from C:\kaggle_cfg\stage\kernel_v12_r3_out\laya-nli-conflict -> D:\laya-kaggle-output\laya-nli-conflict-v12-r3
+[10-06 20:51:14] $ D:\Miniconda\envs\laya-ft\python.exe eval_arm_v12.py D:/laya-kaggle-output/laya-nli-conflict-v12-r3 r3
+[10-06 21:13:21]    OK   家族F8 laptop name false -> false 0.0817
+   family: 9/9 ok | mean p_conflict 0.0814 | p>=0.9 cases 0
+   saved: D:\laya\data_local/family_diag_v12_r3.json
+== negfam diag (NEW V12 §2.2) [r3] ==
+   MISS 否定家族N8 device (en) true -> false 0.1206
+   negfam: 7/8 ok | mean p_conflict 0.7930 | p<0.5 cases 1
+   saved: D:\laya\data_local/negfam_diag_v12_r3.json
+== done [r3] rc=0 ==
+[10-06 21:18:21] $ D:\Miniconda\envs\laya-ft\python.exe protocol_verdict.py --protocol v12 --tags r1,r2,r3 --prefix v12_
+[10-06 21:18:22]   PASS  9 band(all >=8pp)
+  PASS  10 conformal(adopted rule, all >=50%@<=35%)
+  PASS  11 bias_diag(>=2/3 runs >=13/14)
+  PASS  12 family(median mean-p<0.5 AND all runs <=1 case p>=0.9)
+  PASS  13 negfam(median mean-p>=0.5 AND all runs <=1 case p<0.5)
+  PASS  14 hygiene(0/35 + family 9+8=17 cases 0 overlap asserted at gen)
+
+PROTOCOL VERDICT: PASS -> eligible for HF delivery (§1.3)
+[10-06 21:18:22] VERDICT rc=0 (PASS -> eligible for delivery); orchestrator stopped — HF delivery is human-gated (§1.3)
+[10-07 00:29:15] state=done — no-op (human review / finished)
+[10-07 00:59:31] state=done — no-op (human review / finished)

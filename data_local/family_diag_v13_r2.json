@@ -1,0 +1,80 @@
+{
+  "checkpoint": "D:/laya-kaggle-output/laya-nli-conflict-v13-r2",
+  "cases": [
+    {
+      "note": "家族F0 (B2) 名字一致",
+      "expect": "false",
+      "got": "false",
+      "p_conflict": 0.1353,
+      "ok": true,
+      "is_b2": true
+    },
+    {
+      "note": "家族F1 车名一致",
+      "expect": "false",
+      "got": "false",
+      "p_conflict": 0.0823,
+      "ok": true,
+      "is_b2": false
+    },
+    {
+      "note": "家族F2 car name",
+      "expect": "false",
+      "got": "false",
+      "p_conflict": 0.076,
+      "ok": true,
+      "is_b2": false
+    },
+    {
+      "note": "家族F3 手机名一致",
+      "expect": "false",
+      "got": "false",
+      "p_conflict": 0.1201,
+      "ok": true,
+      "is_b2": false
+    },
+    {
+      "note": "家族F4 phone name",
+      "expect": "false",
+      "got": "false",
+      "p_conflict": 0.0749,
+      "ok": true,
+      "is_b2": false
+    },
+    {
+      "note": "家族F5 车名一致",
+      "expect": "false",
+      "got": "false",
+      "p_conflict": 0.0761,
+      "ok": true,
+      "is_b2": false
+    },
+    {
+      "note": "家族F6 bike name",
+      "expect": "false",
+      "got": "false",
+      "p_conflict": 0.0759,
+      "ok": true,
+      "is_b2": false
+    },
+    {
+      "note": "家族F7 笔记本名一致",
+      "expect": "false",
+      "got": "false",
+      "p_conflict": 0.0676,
+      "ok": true,
+      "is_b2": false
+    },
+    {
+      "note": "家族F8 laptop name",
+      "expect": "false",
+      "got": "false",
+      "p_conflict": 0.0809,
+      "ok": true,
+      "is_b2": false
+    }
+  ],
+  "family_mean_p": 0.0877,
+  "n_highconf": 0,
+  "n_ok": 9
+}

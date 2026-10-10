@@ -1,0 +1,497 @@
+{
+  "real_std": [
+    {
+      "note": "地点变更",
+      "expect": "true",
+      "got": "true",
+      "p_conflict": 0.9047,
+      "ok": true
+    },
+    {
+      "note": "偏好变更",
+      "expect": "true",
+      "got": "true",
+      "p_conflict": 0.9091,
+      "ok": true
+    },
+    {
+      "note": "时间变更",
+      "expect": "true",
+      "got": "true",
+      "p_conflict": 0.9083,
+      "ok": true
+    },
+    {
+      "note": "关键事实反转",
+      "expect": "true",
+      "got": "true",
+      "p_conflict": 0.8915,
+      "ok": true
+    },
+    {
+      "note": "部署变更",
+      "expect": "true",
+      "got": "true",
+      "p_conflict": 0.9141,
+      "ok": true
+    },
+    {
+      "note": "口味变更",
+      "expect": "true",
+      "got": "true",
+      "p_conflict": 0.9128,
+      "ok": true
+    },
+    {
+      "note": "名字矛盾",
+      "expect": "true",
+      "got": "true",
+      "p_conflict": 0.9062,
+      "ok": true
+    },
+    {
+      "note": "年龄矛盾",
+      "expect": "true",
+      "got": "true",
+      "p_conflict": 0.9172,
+      "ok": true
+    },
+    {
+      "note": "一致行为",
+      "expect": "false",
+      "got": "false",
+      "p_conflict": 0.1385,
+      "ok": true
+    },
+    {
+      "note": "补充细节",
+      "expect": "false",
+      "got": "false",
+      "p_conflict": 0.0858,
+      "ok": true
+    },
+    {
+      "note": "无关补充",
+      "expect": "false",
+      "got": "false",
+      "p_conflict": 0.1666,
+      "ok": true
+    },
+    {
+      "note": "无关陈述",
+      "expect": "false",
+      "got": "false",
+      "p_conflict": 0.0613,
+      "ok": true
+    },
+    {
+      "note": "工作相关",
+      "expect": "false",
+      "got": "false",
+      "p_conflict": 0.0705,
+      "ok": true
+    },
+    {
+      "note": "习惯一致",
+      "expect": "false",
+      "got": "false",
+      "p_conflict": 0.152,
+      "ok": true
+    },
+    {
+      "note": "偏好一致",
+      "expect": "false",
+      "got": "false",
+      "p_conflict": 0.1377,
+      "ok": true
+    },
+    {
+      "note": "兼容细节",
+      "expect": "false",
+      "got": "false",
+      "p_conflict": 0.0526,
+      "ok": true
+    },
+    {
+      "note": "临时的不违背偏好",
+      "expect": "false",
+      "got": "false",
+      "p_conflict": 0.2358,
+      "ok": true
+    },
+    {
+      "note": "饮食禁忌松动",
+      "expect": "true",
+      "got": "true",
+      "p_conflict": 0.8816,
+      "ok": true
+    },
+    {
+      "note": "家庭结构矛盾",
+      "expect": "true",
+      "got": "true",
+      "p_conflict": 0.9213,
+      "ok": true
+    },
+    {
+      "note": "子集关系",
+      "expect": "false",
+      "got": "false",
+      "p_conflict": 0.1584,
+      "ok": true
+    }
+  ],
+  "real_swap": [
+    {
+      "note": "地点变更",
+      "expect": "true",
+      "got": "true",
+      "p_conflict": 0.9011,
+      "ok": true
+    },
+    {
+      "note": "偏好变更",
+      "expect": "true",
+      "got": "true",
+      "p_conflict": 0.9069,
+      "ok": true
+    },
+    {
+      "note": "时间变更",
+      "expect": "true",
+      "got": "true",
+      "p_conflict": 0.9066,
+      "ok": true
+    },
+    {
+      "note": "关键事实反转",
+      "expect": "true",
+      "got": "true",
+      "p_conflict": 0.8839,
+      "ok": true
+    },
+    {
+      "note": "部署变更",
+      "expect": "true",
+      "got": "true",
+      "p_conflict": 0.9105,
+      "ok": true
+    },
+    {
+      "note": "口味变更",
+      "expect": "true",
+      "got": "true",
+      "p_conflict": 0.9094,
+      "ok": true
+    },
+    {
+      "note": "名字矛盾",
+      "expect": "true",
+      "got": "true",
+      "p_conflict": 0.9051,
+      "ok": true
+    },
+    {
+      "note": "年龄矛盾",
+      "expect": "true",
+      "got": "true",
+      "p_conflict": 0.914,
+      "ok": true
+    },
+    {
+      "note": "一致行为",
+      "expect": "false",
+      "got": "false",
+      "p_conflict": 0.1281,
+      "ok": true
+    },
+    {
+      "note": "补充细节",
+      "expect": "false",
+      "got": "false",
+      "p_conflict": 0.0846,
+      "ok": true
+    },
+    {
+      "note": "无关补充",
+      "expect": "false",
+      "got": "false",
+      "p_conflict": 0.1775,
+      "ok": true
+    },
+    {
+      "note": "无关陈述",
+      "expect": "false",
+      "got": "false",
+      "p_conflict": 0.0606,
+      "ok": true
+    },
+    {
+      "note": "工作相关",
+      "expect": "false",
+      "got": "false",
+      "p_conflict": 0.0748,
+      "ok": true
+    },
+    {
+      "note": "习惯一致",
+      "expect": "false",
+      "got": "false",
+      "p_conflict": 0.1531,
+      "ok": true
+    },
+    {
+      "note": "偏好一致",
+      "expect": "false",
+      "got": "false",
+      "p_conflict": 0.1236,
+      "ok": true
+    },
+    {
+      "note": "兼容细节",
+      "expect": "false",
+      "got": "false",
+      "p_conflict": 0.0536,
+      "ok": true
+    },
+    {
+      "note": "临时的不违背偏好",
+      "expect": "false",
+      "got": "false",
+      "p_conflict": 0.2366,
+      "ok": true
+    },
+    {
+      "note": "饮食禁忌松动",
+      "expect": "true",
+      "got": "true",
+      "p_conflict": 0.8792,
+      "ok": true
+    },
+    {
+      "note": "家庭结构矛盾",
+      "expect": "true",
+      "got": "true",
+      "p_conflict": 0.914,
+      "ok": true
+    },
+    {
+      "note": "子集关系",
+      "expect": "false",
+      "got": "false",
+      "p_conflict": 0.1584,
+      "ok": true
+    }
+  ],
+  "diag_std": [
+    {
+      "note": "对照A1 地点变更",
+      "expect": "true",
+      "got": "true",
+      "p_conflict": 0.9047,
+      "ok": true
+    },
+    {
+      "note": "对照A2 地点无关",
+      "expect": "false",
+      "got": "false",
+      "p_conflict": 0.0547,
+      "ok": true
+    },
+    {
+      "note": "对照B1 名字矛盾",
+      "expect": "true",
+      "got": "true",
+      "p_conflict": 0.9062,
+      "ok": true
+    },
+    {
+      "note": "对照B2 名字一致",
+      "expect": "false",
+      "got": "false",
+      "p_conflict": 0.1335,
+      "ok": true
+    },
+    {
+      "note": "对照C1 年龄矛盾",
+      "expect": "true",
+      "got": "true",
+      "p_conflict": 0.9144,
+      "ok": true
+    },
+    {
+      "note": "对照C2 年龄无关",
+      "expect": "false",
+      "got": "false",
+      "p_conflict": 0.076,
+      "ok": true
+    },
+    {
+      "note": "对照D1 过敏反转",
+      "expect": "true",
+      "got": "true",
+      "p_conflict": 0.8915,
+      "ok": true
+    },
+    {
+      "note": "对照D2 其他坚果无关",
+      "expect": "false",
+      "got": "true",
+      "p_conflict": 0.8714,
+      "ok": false
+    },
+    {
+      "note": "对照E1 部署变更",
+      "expect": "true",
+      "got": "true",
+      "p_conflict": 0.9141,
+      "ok": true
+    },
+    {
+      "note": "对照E2 部署兼容",
+      "expect": "false",
+      "got": "false",
+      "p_conflict": 0.061,
+      "ok": true
+    },
+    {
+      "note": "交换B1",
+      "expect": "true",
+      "got": "true",
+      "p_conflict": 0.91,
+      "ok": true
+    },
+    {
+      "note": "交换A2",
+      "expect": "false",
+      "got": "false",
+      "p_conflict": 0.0716,
+      "ok": true
+    },
+    {
+      "note": "交换C1",
+      "expect": "true",
+      "got": "true",
+      "p_conflict": 0.916,
+      "ok": true
+    },
+    {
+      "note": "交换A1",
+      "expect": "true",
+      "got": "true",
+      "p_conflict": 0.9047,
+      "ok": true
+    }
+  ],
+  "diag_swap": [
+    {
+      "note": "对照A1 地点变更",
+      "expect": "true",
+      "got": "true",
+      "p_conflict": 0.9011,
+      "ok": true
+    },
+    {
+      "note": "对照A2 地点无关",
+      "expect": "false",
+      "got": "false",
+      "p_conflict": 0.0577,
+      "ok": true
+    },
+    {
+      "note": "对照B1 名字矛盾",
+      "expect": "true",
+      "got": "true",
+      "p_conflict": 0.9051,
+      "ok": true
+    },
+    {
+      "note": "对照B2 名字一致",
+      "expect": "false",
+      "got": "false",
+      "p_conflict": 0.1466,
+      "ok": true
+    },
+    {
+      "note": "对照C1 年龄矛盾",
+      "expect": "true",
+      "got": "true",
+      "p_conflict": 0.9076,
+      "ok": true
+    },
+    {
+      "note": "对照C2 年龄无关",
+      "expect": "false",
+      "got": "false",
+      "p_conflict": 0.0768,
+      "ok": true
+    },
+    {
+      "note": "对照D1 过敏反转",
+      "expect": "true",
+      "got": "true",
+      "p_conflict": 0.8839,
+      "ok": true
+    },
+    {
+      "note": "对照D2 其他坚果无关",
+      "expect": "false",
+      "got": "true",
+      "p_conflict": 0.8677,
+      "ok": false
+    },
+    {
+      "note": "对照E1 部署变更",
+      "expect": "true",
+      "got": "true",
+      "p_conflict": 0.9105,
+      "ok": true
+    },
+    {
+      "note": "对照E2 部署兼容",
+      "expect": "false",
+      "got": "false",
+      "p_conflict": 0.0628,
+      "ok": true
+    },
+    {
+      "note": "交换B1",
+      "expect": "true",
+      "got": "true",
+      "p_conflict": 0.9072,
+      "ok": true
+    },
+    {
+      "note": "交换A2",
+      "expect": "false",
+      "got": "false",
+      "p_conflict": 0.0742,
+      "ok": true
+    },
+    {
+      "note": "交换C1",
+      "expect": "true",
+      "got": "true",
+      "p_conflict": 0.9074,
+      "ok": true
+    },
+    {
+      "note": "交换A1",
+      "expect": "true",
+      "got": "true",
+      "p_conflict": 0.9011,
+      "ok": true
+    }
+  ],
+  "acc": {
+    "real_std": 20,
+    "real_swap": 20,
+    "diag_std": 13,
+    "diag_swap": 13
+  },
+  "diff": {
+    "real": 0,
+    "diag": 0
+  },
+  "verdict": "PASS"
+}

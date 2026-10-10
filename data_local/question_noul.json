@@ -1,0 +1,8 @@
+{
+  "type": "noul",
+  "instructions": "新信息(new)与已有记忆(known)是否冲突？冲突=矛盾需更新旧记忆，兼容=一致或无关",
+  "labels": {
+    "false": "兼容",
+    "true": "冲突"
+  }
+}

@@ -1,0 +1,191 @@
+{
+  "input": {
+    "soft": "D:\\laya\\data_local/val_soft_probs_v13_r2.json",
+    "main": "D:\\laya\\data_local/val_probs_v13_r2.json",
+    "real": "D:\\laya\\data_local/memory_conflict_realtest_v13_r2.json"
+  },
+  "fit": {
+    "seed": 20260928,
+    "n1": 500,
+    "n2": 500,
+    "half1_err": 47,
+    "half2_err": 54,
+    "half1_acc": 0.906,
+    "half2_acc": 0.892,
+    "acc_gap_pp": 1.4,
+    "nominal": 0.9,
+    "k_order_stat": 451,
+    "qhat": 0.3979,
+    "threshold_T": 0.6021,
+    "half1_in_sample": {
+      "decide": 497,
+      "abstain": 0.006,
+      "captured_err": 1
+    },
+    "half2_report": {
+      "decide": 495,
+      "abstain": 0.01,
+      "capture": 3,
+      "capture_total": 54,
+      "write_error_rate": 0.103
+    },
+    "gate": "capture >=50% of 54 @ abstain <= 35%",
+    "pass": false
+  },
+  "fit_legacy_valsoft": {
+    "set": "val_soft 300",
+    "nominal": 0.9,
+    "k_order_stat": 271,
+    "qhat": 0.2218,
+    "threshold_T": 0.7782,
+    "status": "archive: cross-set transfer collapsed in v5 (12/107@2.3% / 16/98@3.0%); superseded by same-distribution split-half fit"
+  },
+  "gates": {
+    "capture": 3,
+    "capture_total": 54,
+    "abstain": 0.01,
+    "gate": ">=50% of report-half errors and <=35% abstain",
+    "pass": false
+  },
+  "main_val": {
+    "decide": 495,
+    "abstain": 0.01,
+    "capture": 3,
+    "write_error_rate": 0.103,
+    "aurc_maxconf_order": 0.04559,
+    "aurc_oracle": 0.00533,
+    "scope": "report half (split-half calibration; AURC over full main val, threshold-free)"
+  },
+  "val_soft": {
+    "decide": 300,
+    "coverage": 0.9967,
+    "abstain": 0.0,
+    "note": "same-distribution slice; nominal 90% guarantee applies here"
+  },
+  "realtest_35": {
+    "decide": 35,
+    "coverage_decide_and_ok": 0.9714,
+    "abstain": 0.0
+  },
+  "diag_14": {
+    "n_p_found": 14,
+    "decide": 14
+  },
+  "budget_20pct": {
+    "envelope_capture": "48-49/99 (recompute note in V4.1); 50 unreachable at <=20%",
+    "verdict": "unreachable, report-only per V4.1"
+  },
+  "variants_migrated": {
+    "95%": {
+      "T": 0.772,
+      "qhat": 0.228,
+      "main_abstain": 0.037,
+      "main_capture": 20
+    },
+    "85%": {
+      "T": 0.7888,
+      "qhat": 0.2112,
+      "main_abstain": 0.042,
+      "main_capture": 22
+    },
+    "80%": {
+      "T": 0.8096,
+      "qhat": 0.1904,
+      "main_abstain": 0.048,
+      "main_capture": 24
+    }
+  },
+  "audit_table_main_val": {
+    "0.9200": {
+      "threshold": 0.92,
+      "write_rate": 0.817,
+      "write_error_rate": 0.0539,
+      "abstain_rate": 0.183,
+      "n_write": 817,
+      "n_write_err": 44
+    },
+    "0.6021": {
+      "threshold": 0.6020675301551819,
+      "write_rate": 0.992,
+      "write_error_rate": 0.0978,
+      "abstain_rate": 0.008,
+      "n_write": 992,
+      "n_write_err": 97
+    },
+    "0.9225": {
+      "threshold": 0.9225,
+      "write_rate": 0.793,
+      "write_error_rate": 0.053,
+      "abstain_rate": 0.207,
+      "n_write": 793,
+      "n_write_err": 42
+    },
+    "0.9000": {
+      "threshold": 0.9,
+      "write_rate": 0.879,
+      "write_error_rate": 0.0637,
+      "abstain_rate": 0.121,
+      "n_write": 879,
+      "n_write_err": 56
+    }
+  },
+  "audit_table_val_soft": {
+    "0.9200": {
+      "threshold": 0.92,
+      "write_rate": 0.2667,
+      "write_error_rate": 0.0,
+      "abstain_rate": 0.7333,
+      "n_write": 80,
+      "n_write_err": 0
+    },
+    "0.6021": {
+      "threshold": 0.6020675301551819,
+      "write_rate": 1.0,
+      "write_error_rate": 0.0033,
+      "abstain_rate": 0.0,
+      "n_write": 300,
+      "n_write_err": 1
+    },
+    "0.9225": {
+      "threshold": 0.9225,
+      "write_rate": 0.2267,
+      "write_error_rate": 0.0,
+      "abstain_rate": 0.7733,
+      "n_write": 68,
+      "n_write_err": 0
+    },
+    "0.9000": {
+      "threshold": 0.9,
+      "write_rate": 0.7433,
+      "write_error_rate": 0.0,
+      "abstain_rate": 0.2567,
+      "n_write": 223,
+      "n_write_err": 0
+    }
+  },
+  "tau_warning": "confidence band is a function of tau: sharpening tau 1.2176->0.7-0.8 lifts main-val write rate 87.1%->98.5%+ and write error rate 6.66%->9.4-9.5%; any tau change must pass the audit table first (V4.1 预核算 §5)",
+  "exchangeability_note": "val_soft(synthetic) fit -> main val(MNLI) = distribution shift; main-val numbers are TRANSFER PERFORMANCE, not a finite-sample guarantee; val_soft coverage 0.907 is the same-distribution check",
+  "abstained_errors": [
+    {
+      "idx": 229,
+      "known": "What changed?",
+      "new": "What was unique?",
+      "p_true": 0.5635248422622681,
+      "gold": "false"
+    },
+    {
+      "idx": 275,
+      "known": "The Leland Act  (1) simplify the household definition",
+      "new": "The Leland Act defines the legal definition of what a household is.",
+      "p_true": 0.5464003682136536,
+      "gold": "false"
+    },
+    {
+      "idx": 833,
+      "known": "no North Carolina State",
+      "new": "North Carolina is a county",
+      "p_true": 0.4967162311077118,
+      "gold": "true"
+    }
+  ]
+}
