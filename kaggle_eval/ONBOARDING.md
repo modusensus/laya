@@ -32,7 +32,7 @@
 | 工具链 | `kaggle_eval/*.py`（gen_* 语料生成、eval_kernel、conformal_abstain、family_diag、leak_audit、band_report、hf_publish、hf_archive_index 等） | 脚本即文档，改动走 commit |
 | 语料真值源 | `data_local/nli_conflict_train_v12.jsonl`（15950 行，本机实数已核）；Kaggle 数据集 `daphnelaurent/nli-conflict-pairs` v17；v13 语料与 v12 逐字节同一份（零改动轮） | 携带链与卫生断言见 V12/V13 交接书 |
 | 本机 checkpoint | `D:\laya-kaggle-output\`（v1–v13 各臂；v12/v13 三跑各有根目录 + `checkpoint_latest/` 两份同尺寸副本） | SHA256 见 `kaggle_eval/archive_sha256_manifest.txt`（v5–v10 九档 + v12/v13 三跑） |
-| 公开发布 | HF 组织 `slow-stack`：14 个模型仓（现役头 `laya-nli-conflict-v12` = r2 权重、被取代的 `laya-nli-memory-conflict` = v4、v5–v10 九个归档仓、v12-r1/r3、`laya-typed-decisions-multilingual`）+ 3 个数据集仓（`nli-conflict-pairs`、`laya-nli-conflict-eval` 66 案、`nli-conflict-train-lineage` v3–v12） | 归档卡面数字取自本地 metrics 真源；合集只挂了 4 项，见 §8 待办 |
+| 公开发布 | HF 组织 `slow-stack`：14 个模型仓（现役头 `laya-nli-conflict-v12` = r2 权重、被取代的 `laya-nli-memory-conflict` = v4、v5–v10 九个归档仓、v12-r1/r3、`laya-typed-decisions-multilingual`）+ 3 个数据集仓（`nli-conflict-pairs`、`laya-nli-conflict-eval` 66 案、`nli-conflict-train-lineage` v3–v12） | 归档卡面数字取自本地 metrics 真源；合集实查仅 4 项、不含现役头，见 §8 待办 7 |
 | 工作日志 | 本 fork 独有的提交历史（round-N task book → execution → record 节奏） | `git log` 就是流水账 |
 | AI 私有记忆 | 各 agent 自管（如 ZCode 在 `~/.zcode/cli/memories/`） | **不共享**。重要结论必须落盘到 HANDOFF 或本文档 |
 
@@ -105,11 +105,13 @@
 - 对 `laya/` 核心代码的修改遵循上游 `AGENTS.md`（英文 conventional commit、CI gates、不整文件重排版）。fork 内 `kaggle_eval/` 的提交同样用 conventional 风格：`feat/fix/docs(kaggle-eval): ...`。
 - **文档同步纪律**：状态变更要更新 HANDOFF 对应轮次 + 本文 §4 快照；只写进私有记忆 = 下一个 agent 看不见。
 
-## 8. 当前计划与待办（2026-10-07）
+## 8. 当前计划与待办（2026-10-07；第 6 项补注与新增的第 7、8 项为 2026-10-11 实查后更新）
 
-1. **v12 已交付（2026-10-07,b558d6b）**：14/14 轴全 PASS（项目史首次过完整协议）,交付头 = **r2**（`slow-stack/laya-nli-conflict-v12`,SHA 6648d892…;选择标准=唯一三验收段全满分的跑）,r1/r3 同批归档（`-v12-r1`/`-v12-r3`）,v4 卡面已加 superseded 注记,合集 5 项含 v12。claims 包 54 条 verify exit 0（§1.3 推前门）。执行波折：r1 本地评测曾因 Windows 应用控制策略拦 torch DLL（WinError 4551）进 ERROR_eval_r1 ~2.5h,SAC 自行放行后人工解冻（状态文件有 manual_thaw 审计记录）。
+1. **v12 已交付（2026-10-07,b558d6b）**：14/14 轴全 PASS（项目史首次过完整协议）,交付头 = **r2**（`slow-stack/laya-nli-conflict-v12`,SHA 6648d892…;选择标准=唯一三验收段全满分的跑）,r1/r3 同批归档（`-v12-r1`/`-v12-r3`）,v4 卡面已加 superseded 注记（2026-10-11 实查：卡面确有 `Superseded (2026-10-07)` 指向 v12 那行）。**合集更正：同一句原写「合集 5 项含 v12」，与 Hub 现状不符——2026-10-11 两次独立读取都是 4 项（v4 / v9 / v10-s2 / v10-l2），不含 v12，标题也仍是 head v4，见本节待办 7。**claims 包 54 条 verify exit 0（§1.3 推前门）。执行波折：r1 本地评测曾因 Windows 应用控制策略拦 torch DLL（WinError 4551）进 ERROR_eval_r1 ~2.5h,SAC 自行放行后人工解冻（状态文件有 manual_thaw 审计记录）。
 2. **v13 执行完毕判 FAIL(2026-10-08 02:16,phase=done,verdict_rc=1)**:纯协议轮(语料/kernel/数据集零改动),三跑 = kernel version 15/16/17。14 轴 **11 PASS / 3 FAIL**——轴 1 主 val 中位 0.899 < 0.900(r1 0.910 历轮最高/r2 0.899/r3 0.898,差 1 例);轴 10 conformal r2 弃权 0.352–0.354 超 35% 门 0.2–0.4pp(v12 六跑全过,方差性压线破);轴 13 negfam r1/r2 各 2 案低置信(r3 1 案;N8 device en 连续 4 跑低置信,均值 0.712–0.785)。验收三段三跑全稳(old20 20/19/20 零重复、neg 5/5/5、new 10/10/10)。**负结论照交:v12 交付头不动、HF 不动、不叠修补(§1.3)**;claims_v13 有意省略(承 §1.4 先例)。**v14 议题候选**(判定后讨论,不 gate-shopping):①negfam N3/N8 案面审查(仪器修订议题,须用户仲裁预注册);②主 val 门 0.900 的定位(重估「恢复筛选力」的代价演示——v13 FAIL 是门在工作不是事故);③conformal 弃权侧方差重裁(v10 §6 先例)。编排 cron automation-7eef5deb 已无作用可删。
 3. **待用户拍板**：v1/v2/v2-e3/v3 早期 ckpt 与 typed_decisions 目录是否补传 HF 归档。
 4. **已清理**：定时任务 automation-f6e9077a（v11）、automation-331e565f（v12,用户已删）。
 5. **可选**：上游 tag v0.3.24/25/26 已 fetch 到本地，是否推 fork 待定。
-6. **上游新能力评估（0.3.24–0.3.26）**：`LAYA_JEV_STRICT`（serve 端严格 Jev wire contract）、selective-classification 评测指标（Brier/AURC）、histogram-binning 置信重校准、`tests/test_conformal_abstention.py`——与 v13+ 方向的相关性待评估。
+6. **上游新能力评估（0.3.24–0.3.26）**：`LAYA_JEV_STRICT`（serve 端严格 Jev wire contract）、selective-classification 评测指标（Brier/AURC）、histogram-binning 置信重校准、`tests/test_conformal_abstention.py`——与 v13+ 方向的相关性待评估。**2026-10-11 更新：fork 已到 0.4.2（merge 39c6784），这几项全部在树里，可以直接评；另需注意 `render_options()` 仍按字典插入顺序渲染选项——上游 `3ebc23d` 声称排序修复只加了测试没实现，`367685b` 又把那个测试删了并说明「排序会静默改变所有 dict-criteria 调用方读到的东西」，所以 issue #779 是不修的决定，v14 做案面审查时选项顺序得自己钉。**
+7. **待用户批准（要写 HF）**：补挂合集——现役头 `laya-nli-conflict-v12` 与 `-v12-r1`/`-v12-r3`，加上漏掉的 v5、v5-ce、v6、v7、v8、v10-l1，现 4/13；标题里的 head v4 也要改成 v12。根因两处：`hf_archive_index.py` 设计挂 10 项但「token 无 collections 权限时降级为不阻塞」静默跳过了大部分，`hf_publish.py` 根本不碰合集。
+8. **交接书缺「执行结果」小节（文档活，不写 HF）**：v12/v13 只有任务书，逐轴读数散在本文 §4/§8 与 `data_local/protocol_verdict_v1*.log`——`ROUND11_CLOSEOUT_GAPS.md` 缺口 1 的同一形态在 v12/v13 复现（v11 当年已按 f7a8a0f 补过）。用户点头即可按 §1.2 逐轴填表，数字全部从工件回读、不靠记忆。
